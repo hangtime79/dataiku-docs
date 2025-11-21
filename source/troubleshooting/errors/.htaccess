@@ -1,0 +1,2 @@
+# Apache Syntax sucks. Big time.
+ErrorDocument 404 /dss/14/troubleshooting/errors/undocumented-error.html

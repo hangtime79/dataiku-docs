@@ -1,0 +1,33 @@
+{
+    "meta": {
+        "label": "Datasets copy",
+        "description": "Duplicate a dataset",
+        "icon": "icon-copy"
+    },
+    "inputRoles": [
+        {
+            "name": "dataset_to_copy",
+            "label": "Dataset to copy",
+            "description": "Which dataset you want to copy",
+            "arity": "UNARY",
+            "required": true,
+            "acceptsDataset": true
+        }
+    ],
+    "selectableFromDataset": "dataset_to_copy",
+    "outputRoles": [
+        {
+            "name": "copied_dataset",
+            "label": "Result dataset",
+            "description": "This is where the dataset is copied.",
+            "arity": "UNARY",
+            "required": true,
+            "acceptsDataset": true
+        }
+    ],
+    "kind": "PYTHON",
+    "params": [
+    ],
+    "resourceKeys": []
+
+}

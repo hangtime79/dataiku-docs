@@ -1,0 +1,3419 @@
+DSS 13 Release notes
+#####################
+
+.. contents::
+    :depth: 3
+    :local:
+
+Migration notes
+================
+
+How to upgrade
+----------------
+
+* For Dataiku Cloud users, your DSS will be upgraded automatically to DSS 13 within pre-announced timeframes
+
+* For Dataiku Cloud Stacks users, please see upgrade documentation
+
+    * :doc:`For Cloud Stacks AWS users </installation/cloudstacks-aws/dss-upgrade>`
+    * :doc:`For Cloud Stacks Azure users </installation/cloudstacks-azure/dss-upgrade>`
+    * :doc:`For Cloud Stacks GCP users </installation/cloudstacks-gcp/dss-upgrade>`
+
+* For Dataiku Custom users, please see upgrade documentation: :doc:`/installation/custom/upgrade`.
+
+Pay attention to the warnings described in :ref:`releases_notes.13.limitations`.
+
+Migration paths to DSS 13
+---------------------------
+
+    * From DSS 12: Automatic migration is supported, with the restrictions and warnings described in :ref:`releases_notes.13.limitations`
+
+    * From DSS 11: Automatic migration is supported. In addition to the restrictions and warnings described in :ref:`releases_notes.13.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`10.0 -> 11</release_notes/11>`, :doc:`11 -> 12</release_notes/12>`
+
+    * From DSS 10.0: Automatic migration is supported. In addition to the restrictions and warnings described in :ref:`releases_notes.13.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`10.0 -> 11</release_notes/11>`, :doc:`11 -> 12</release_notes/12>`
+
+    * From DSS 9.0: Automatic migration is supported. In addition to the restrictions and warnings described in :ref:`releases_notes.13.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`9.0 -> 10.0 </release_notes/10.0>`, :doc:`10.0 -> 11</release_notes/11>`, :doc:`11 -> 12</release_notes/12>`
+
+    * From DSS 8.0: Automatic migration is supported. In addition to the restrictions and warnings described in :ref:`releases_notes.13.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See  :doc:`8.0 -> 9.0 </release_notes/9.0>`, :doc:`9.0 -> 10.0 </release_notes/10.0>`, :doc:`10.0 -> 11</release_notes/11>`, :doc:`11 -> 12</release_notes/12>`
+
+    * From DSS 7.0: Automatic migration is supported. In addition to the restrictions and warnings described in :ref:`releases_notes.13.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`7.0 -> 8.0 </release_notes/8.0>`, :doc:`8.0 -> 9.0 </release_notes/9.0>`, :doc:`9.0 -> 10.0 </release_notes/10.0>`, :doc:`10.0 -> 11</release_notes/11>`, :doc:`11 -> 12</release_notes/12>`
+
+    * From DSS 6.0: Automatic migration is supported. In addition to the restrictions and warnings described in :ref:`releases_notes.13.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`6.0 -> 7.0 </release_notes/7.0>`, :doc:`7.0 -> 8.0 </release_notes/8.0>`, :doc:`8.0 -> 9.0 </release_notes/9.0>`, :doc:`9.0 -> 10.0 </release_notes/10.0>`, :doc:`10.0 -> 11</release_notes/11>`, :doc:`11 -> 12</release_notes/12>`
+
+    * From DSS 5.1: Automatic migration is supported. In addition to the restrictions and warnings described in :ref:`releases_notes.13.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`5.1 -> 6.0 </release_notes/6.0>`, :doc:`6.0 -> 7.0 </release_notes/7.0>`, :doc:`7.0 -> 8.0 </release_notes/8.0>`, :doc:`8.0 -> 9.0 </release_notes/9.0>`, :doc:`9.0 -> 10.0 </release_notes/10.0>`, :doc:`10.0 -> 11</release_notes/11>`, :doc:`11 -> 12</release_notes/12>`
+
+    * From DSS 5.0: Automatic migration is supported. In addition to the restrictions and warnings described in :ref:`releases_notes.13.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`5.0 -> 5.1 </release_notes/5.1>`, :doc:`5.1 -> 6.0 </release_notes/6.0>`, :doc:`6.0 -> 7.0 </release_notes/7.0>`, :doc:`7.0 -> 8.0 </release_notes/8.0>`, :doc:`8.0 -> 9.0 </release_notes/9.0>`, :doc:`9.0 -> 10.0 </release_notes/10.0>`, :doc:`10.0 -> 11</release_notes/11>`, :doc:`11 -> 12</release_notes/12>`
+
+    * From DSS 4.3: Automatic migration is supported. In addition to the restrictions and warnings described in :ref:`releases_notes.13.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`4.3 -> 5.0 </release_notes/5.0>`, :doc:`5.0 -> 5.1 </release_notes/5.1>`, :doc:`5.1 -> 6.0 </release_notes/6.0>`, :doc:`6.0 -> 7.0 </release_notes/7.0>`, :doc:`7.0 -> 8.0 </release_notes/8.0>`, :doc:`8.0 -> 9.0 </release_notes/9.0>`, :doc:`9.0 -> 10.0 </release_notes/10.0>`, :doc:`10.0 -> 11</release_notes/11>`, :doc:`11 -> 12</release_notes/12>`
+
+    * From DSS 4.2: Automatic migration is supported. In addition to the restrictions and warnings described in :ref:`releases_notes.13.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`4.2 -> 4.3 </release_notes/4.3>`, :doc:`4.3 -> 5.0 </release_notes/5.0>`, :doc:`5.0 -> 5.1 </release_notes/5.1>`, :doc:`5.1 -> 6.0 </release_notes/6.0>`, :doc:`6.0 -> 7.0 </release_notes/7.0>`, :doc:`7.0 -> 8.0 </release_notes/8.0>`, :doc:`8.0 -> 9.0 </release_notes/9.0>`, :doc:`9.0 -> 10.0 </release_notes/10.0>`, :doc:`10.0 -> 11</release_notes/11>`, :doc:`11 -> 12</release_notes/12>`
+
+    * From DSS 4.1: Automatic migration is supported. In addition to the restrictions and warnings described in :ref:`releases_notes.13.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`4.1 -> 4.2 </release_notes/4.2>`, :doc:`4.2 -> 4.3 </release_notes/4.3>`, :doc:`4.3 -> 5.0 </release_notes/5.0>`, :doc:`5.0 -> 5.1 </release_notes/5.1>`, :doc:`5.1 -> 6.0 </release_notes/6.0>`, :doc:`6.0 -> 7.0 </release_notes/7.0>`, :doc:`7.0 -> 8.0 </release_notes/8.0>`, :doc:`8.0 -> 9.0 </release_notes/9.0>`, :doc:`9.0 -> 10.0 </release_notes/10.0>`, :doc:`10.0 -> 11</release_notes/11>`, :doc:`11 -> 12</release_notes/12>`
+
+    * From DSS 4.0: Automatic migration is supported. In addition to the restrictions and warnings described in :ref:`releases_notes.13.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`4.0 -> 4.1 </release_notes/4.1>`, :doc:`4.1 -> 4.2 </release_notes/4.2>`, :doc:`4.2 -> 4.3 </release_notes/4.3>`, :doc:`4.3 -> 5.0 </release_notes/5.0>`, :doc:`5.0 -> 5.1 </release_notes/5.1>`, :doc:`5.1 -> 6.0 </release_notes/6.0>`, :doc:`6.0 -> 7.0 </release_notes/7.0>`, :doc:`7.0 -> 8.0 </release_notes/8.0>`, :doc:`8.0 -> 9.0 </release_notes/9.0>`, :doc:`9.0 -> 10.0 </release_notes/10.0>`, :doc:`10.0 -> 11</release_notes/11>`, :doc:`11 -> 12</release_notes/12>`
+
+    * Migration from DSS 3.1 and below is not supported. You must first upgrade to 5.0. See :doc:`/release_notes/5.0`
+
+.. _releases_notes.13.limitations:
+
+Limitations and warnings
+--------------------------
+
+Automatic migration from previous versions is supported (see above). Please pay attention to the following cautions, removal and deprecation notices.
+
+Cautions
+---------
+.. _releases_notes.13.limitations.xgboost:
+
+XGBoost models migration
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+(Introduced in 13.0)
+
+DSS 13.0 now uses XGBoost 1.5 in the default VisualML setup.
+
+No action is required on existing models when :doc:`Optimized scoring </machine-learning/scoring-engines>` is used for scoring.
+(Note that in particular, row-level explanations cannot use Optimized scoring.)
+
+If Optimized scoring cannot be used, you can either:
+
+* Run the :ref:`XGBoost models upgrade macros <xgboost_upgrade_macros>` to automatically make the existing models compatible
+* Or, retrain the existing XGBoost models
+
+Python 2.7 builtin env removal
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+(Introduced in 13.0)
+
+.. note::
+
+    If you are using Dataiku Cloud or Dataiku Cloud Stacks, you do not need to pay attention to this
+
+    Very few Dataiku Custom customers are affected by this, as this was a very legacy setup.
+
+Python 2.7 support for the builtin env of Dataiku was deprecated years ago and is now fully removed. If your builtin env was still Python 2.7, it will automatically migrate to Python 3. This may affect:
+
+* Existing code running on the builtin env, that may need adaptations to work in Python 3.
+* Machine Learning models, that will usually need to be retrained
+
+Behavior change: handling of schema mismatch on SQL datasets
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+(Introduced in 13.1)
+
+DSS will now by default refuse to drop SQL tables for managed datasets when the parent recipe is in append mode. In case of schema mismatch, the recipe now fails. This behavior can be reverted in the advanced settings of the output dataset
+
+Models retraining
+%%%%%%%%%%%%%%%%%%%
+
+(Introduced in 13.2)
+
+The following models, if trained using DSS’ built-in code environment, will need to be retrained after upgrading to remain usable for scoring:
+
+* Isolation Forest (AutoML Clustering Anomaly Detection)
+* Spectral clustering
+* KNN
+
+Switch to Numpy 2
+%%%%%%%%%%%%%%%%%%%%
+
+(Introduced in 13.5)
+
+DSS 13.5 adds compatibility with numpy 2, for code environments that use the Pandas 2.2. For such code envs, updating could mean numpy gets upgraded from version 1.x to version 2. While this usually doesn’t cause issues, if you need to restrict numpy, you may add ``numpy<2`` to the requirements and update the code environment.
+
+
+Support removal
+-----------------
+
+Some features that were previously announced as deprecated are now removed or unsupported
+
+* Hadoop distributions support
+
+  * Support for Cloudera CDH 6
+  * Support for Cloudera HDP 3
+  * Support for Amazon EMR
+
+* OS support
+
+  * Support for Red Hat Enterprise Linux before 7.9
+  * Support for CentOS 7 before 7.9
+  * Support for Oracle Linux before 7.9
+  * Support for SUSE Linux Enterprise Server 15, 15 SP1, 15 SP2
+  * Support for CentOS 8
+
+* Support for Java 8
+
+* Support for Python 2.7
+
+* Support for Spark 2
+
+Deprecation notices
+--------------------
+
+DSS 13 deprecates support for some features and versions. Support for these will be removed in a later release.
+
+* Support for Python 3.6 and Python 3.7
+
+* Support for Ubuntu 18.04
+
+* Support for RedHat 7
+
+* Support for CentOS 7
+
+* Support for Oracle Linux 7
+
+* Support for SuSE Linux 12
+
+* Support for SuSE Linux 15 SP3
+
+* Support for Scala notebook for Spark
+
+* Support for multiple Hadoop clusters
+
+* Support for R 3.6
+
+* Support for Java 11
+
+Version 13.5.7 - August 14th, 2025
+===================================
+DSS 13.5.7 is a release with bug fixes, performance and security fixes
+
+Visual recipes
+--------------
+* Fixed SQL parser error on large queries (also in 14.0.2)
+* Fixed infinite loop when listing tables of an empty Fabric schema (also in 14.1.0)
+* Fixed temporal type inference on Redshift when "date only" are disabled in Type system version (also in 14.0.2)
+
+Agent and tools
+---------------
+* Fixed possible accumulation of sources from Tools between runs (also in 14.1.0)
+
+Coding
+------
+* Fixed Knowledge Bank usage via langchain when using the ``dataiku`` package outside of a DSS instance
+
+Security
+--------
+* Fixed :doc:`Hugging Face token printed in logs of an uncontainerized fine-tuning recipe </security/advisories/dsa-2025-006>` (also in 14.1.0)
+
+Version 13.5.6 - July 15th, 2025
+===================================
+DSS 13.5.6 is a release with bug fixes
+
+Dataset and Connections
+-----------------------
+
+* Snowflake: Fixed KeyPair authentication mode when user id contains dots (also in 14.0.0)
+* Fixed reading of numbers on XLSB format when they are stored as integers (also in 14.0.0)
+* Fixed 'DataFormat' error when importing a Excel export into Power BI
+* Fixed support for reading some Excel files that could wrongfully trigger anti-DoS protections (also in 14.0.0)
+* Added a connection setting to use default catalog/schema to "auto-resolve" not-fully-qualified datasets when checking table existence
+
+Charts
+------
+
+* Fixed filtering from a cell value when using custom coloring rules on pivot table
+
+Misc
+----
+
+* Fixed possible error when invoking some LLM custom plugins
+
+
+Version 13.5.5 - June 10th, 2025
+===================================
+
+DSS 13.5.5 is a release with bug fixes and security fixes
+
+LLM Mesh
+--------
+
+* Fixed code environment for RAG and Agents causing Visual Agent failures
+* LLM Evaluation: fixed "Test this metric" button
+* Fixed fined-tuned HuggingFace models
+* Prompt Recipe: Added an option to remove images from the `llm_raw_query` output column (keeping them only as reference to the folder)
+
+Machine Learning
+----------------
+
+* Time Series: Fixed support for external features with NPTS
+* Individual explanations: Improved Shapley values computation performance with sparse-matrix-compatible algorithms
+
+Datasets and connections
+-------------------------
+
+* Added variables support for file selection settings on plugin datasets based on files
+* Fixed incorrect parsing of Japanese Excel files containing kanjis, which could wrongfully include phonetic hints
+* Sharepoint: Added ability to configure timeouts
+
+API Deployer
+------------
+
+* Endpoint tuning: fixed "cruise" pool setting not properly respected
+* Fixed display of response time in Unified Monitoring
+
+Visual recipes
+--------------
+
+* Prepare: Fixed "Find and Replace" step when applied on a shared dataset
+* Fixed width of display in formula type-ahead modal
+* Fixed formula auto-completion on column name with spaces
+
+Coding
+------
+* Fixed writing of BigFrames dataframes (on BigQuery) with `bigframes > 2.5.0`
+
+Charts and Dashboards
+---------------------
+
+* Fixed sorting of chart date dimensions
+* Fixed content display of Notebook insights in insight page
+* Fixed Bubble chart export with color dimensions
+
+Governance
+----------
+
+* Fixed registries Sign-off filter
+
+Scenario
+--------
+
+* Fixed saving "days of week" time trigger when using a non-English user language
+
+
+Code Studios
+------------
+
+* Fixed RStudio not starting
+
+
+Cloud Stacks
+-------------
+
+* Azure: Fixed provisioning failure due to backwards-incompatible change in `azcopy`
+
+Administration
+--------------
+
+* Fixed impersonation rules filter
+* Govern: fixed edition of settings on Dataiku Cloud
+
+
+Security
+---------
+
+* Fixed :doc:`Insufficient permission checks when copying part of a Flow to another project </security/advisories/dsa-2025-005>`
+
+Misc
+----
+
+* Fixed importing projects with LLMs exported before DSS 13.5.0
+
+
+Version 13.5.4 - May 22nd, 2025
+===================================
+
+DSS 13.5.4 is a release with new features, bug fixes and security fixes
+
+Datasets
+--------
+* Fixed plugin datasets parameters being lost after migration or project import
+
+LLM Mesh
+----------
+
+* **New feature**: Snowflake Cortex: Added streaming and tools support
+* Hugging Face connection: Fixed "Reserved capacity" settings if cluster does not have "Usable by all" permission
+* Added ability to store analyzed and generated images (both input and output) in a folder for audit purposes
+
+LLM Guard Services
+------------------
+
+* Fixed LLM evaluation failure with SQL databases due to array column
+
+
+Machine Learning
+----------------
+
+* Individual explanations: Improved performance for computation of Shapley values with sparse-matrix-compatible algorithms
+
+MLOps
+------
+
+* Fixed import of MLFlow models exported before DSS 13.4
+
+Charts
+------
+* Fixed conditional formatting based on another non-numerical column
+* Fixed gauge chart "Text area fill" setting
+* Fixed sorting of date axis by aggregation when "one tick per bin" is enabled
+* Fixed scatter plot when one of the axis only has one value
+* Improved geometry display precision
+* Fixed possible error on SQL engine when using a filter on a boolean column
+
+Webapps
+-------
+
+* Fixed visual webapps with mandatory parameters
+* Fixed renaming of webapps
+* Fixed incorrect `HOME` environment variable in containerized webapps
+* Stopped bundling JQuery on visual webapps when not explicitly requested
+
+Recipes
+----------
+
+* Improved performance of stack recipe validation with high number of columns
+
+Hadoop
+------
+* Fixed Java 17 support on CDP 7.1.9
+
+Kubernetes
+----------
+* Removed excessive Kubernetes annotation values sanitization
+
+Code Studios
+-------------
+
+* Fixed VSCode block if a code environment block is present before
+
+Cloud Stacks
+------------
+
+* GCP: Fixed reprovisioning failures after Fleet Manager upgrade
+
+Govern
+------
+
+* Fixed artifact admin permission not giving read access on system locked artifacts
+
+Dataiku Applications
+--------------------
+* Fixed "Edit project variables" tiles default values
+
+Security
+--------
+
+* Fixed :doc:`XSS in Sanity Checks </security/advisories/dsa-2025-003>`
+* Fixed :doc:`Unauthenticated Denial of Service </security/advisories/dsa-2025-004>`
+
+
+Version 13.5.3 - May 15th, 2025
+===================================
+
+DSS 13.5.3 was a release with new features and bug fixes. This release is not available for download.
+Upgrading to 13.5.4 or later is required to benefit from the changes described below
+
+Agents & RAG
+-------------
+
+* Visual Agents: Added ability to use Vertex AI Gemini models with Visual Agents
+* Visual Agents: Improved Visual Agent usage of Agent Tools configured with a JSON schema
+* Agents: Fixed selection of the active version of an Agent on an Automation node when no version was previously active
+* Agents: Fixed display of errors when creating a new Agent
+* Agents: Fixed possible shadowing of Plugin Agent modules by global/project libraries when not running in a container
+* Tools: Added partial filtering support in “Search Knowledge Bank” tool for FAISS, Qdrant-local, Elasticsearch, Pinecone, and Vertex AI Vector Search
+* Tools: Fixed predictions of the Model Prediction agent tool when records contain decimal values
+* Tools: Fixed API listing of Agent Tools
+* Tools: Fixed addition of DSS metadata on Agent Tools
+* RAG: Improved cleanup of stale files in Knowledge Banks
+* RAG: Fixed possible Upsert failure in Embed Dataset recipe when updating large documents
+* RAG: Fixed indexing of some date types metadata on FAISS, Elasticsearch/Opensearch and Qdrant-local Knowledge Banks
+* RAG: Fixed missing ``build`` method on ``DSSKnowledgeBank``, and ability to run an Embed recipe via API
+* RAG: Fixed page range metadata produced by the Embed Documents recipe
+* RAG: Fixed a possible race condition on retrieval-augmented models configured with retrieval guardrails and used in a prompt recipe
+
+LLM Guard Services
+-------------------
+
+* Fixed usage of o1 and o3-mini for the computation of LLM evaluation recipe’s metrics
+* Fixed LLM Evaluation row-by-row analysis when hiding columns
+
+LLM Mesh
+---------
+
+* OpenAI: Added GPT 4.1 (regular, mini, and nano) to the OpenAI connection
+* Vertex: Added Gemini 2.0 Flash-Lite to the Vertex LLM connection
+* Databricks Mosaic AI: Added Claude 3.7 Sonnet and Llama 4 Maverick to the Databricks Mosaic AI connection
+* Local HuggingFace models: Added support for Gemma 3 on the local Hugging Face connection
+* Local HuggingFace models: Bumped vLLM to v0.8.4
+* Local HuggingFace models: Added support for 4-bit inflight quantized models without fallback to (slower) transformers, as well as BNB models
+* Fixed the Fine-tune recipe when using a Hugging Face LLM with a custom ID
+* Fixed import of ``dataikuapi.dss.langchain.DKULLM`` done outside of DSS
+
+Machine Learning
+----------------
+
+* Fixed display of “lower is better” custom metrics in hyperparameter search chart
+* Fixed capitalization of ARIMA model coefficient column headers
+* Fixed display of ARIMA model summary while training
+* Fixed "automatic” determination of number of hyperparameter search threads when training on Kubernetes with cgroups v2
+* Fixed retraining of ensemble models not always abiding by sample weights settings
+* MLFlow Import: Added checks for model input declaration consistency against MLflow model signature
+
+Charts and Dashboards
+-------------------------
+
+* **New feature**: Added color customization option on Density map
+* Fixed percentage scale calculation in SQL engine
+* Fixed red border display when a dashboard tile fails to load
+* Fixed “is not defined” color rule when exporting pivot table chart to Excel
+* The “Back to dashboard” link in insight now returns the user to the original dashboard tab
+* Fixed edition of empty dashboards opened from workspaces
+* Fixed persistence of pivot table headers / subheaders formatting settings when the table only has columns (no rows)
+* Fixed display of reference lines on charts migrated from an older DSS version
+* Fixed display of reference lines on thumbnails for scatters
+* Fixed issue where invalid reference lines caused valid ones to not display
+* Fixed display of tick labels when axis uses a string column with unparsed dates
+* Fixed charts using a user-defined aggregation function when all data is filtered
+* Fixed possible “out of axis” error on dashboard chart using Snowflake with filters
+
+
+Dataset and Connections
+-------------------------
+
+* BigQuery: Switched to a single SQL statement when creating tables for managed datasets that have descriptions instead of 2 to prevent rate limiting errors
+* Databricks: Fixed fast-path on recipes where redispatch partitioning is enabled
+
+
+Recipes
+---------------
+
+* Join: Fixed DSS engine not automatically aborting a recipe when the disk size limit is reached
+* SQL Query: Fixed recipe not correctly raising errors generated by CATCH clauses on SQL Server
+* Push to editable: Upstream changes in a column now propagate correctly when values are overridden
+* Added “Build from” in the right-click menu on Shared datasets. This allows building downstream datasets from a shared dataset
+
+Governance
+-----------
+
+* Fixed action menu on custom pages not clickable after save
+
+API Deployment
+---------------
+
+* Added a `dku_http_request_metadata` variable to provide access to request’s HTTP headers and URL path in Python function and Python Custom prediction API endpoints
+* Added the ability to customize HTTP response in Python function endpoints
+
+
+Coding & API
+-------------
+
+* Added an API to programmatically create internal code environments
+* Added an API to programmatically delete Knowledge Banks and update their settings
+* Added an API to programmatically delete imported bundles on the automation node
+
+Scenarios
+---------
+
+* Project Testing: Added the possibility to specify the expected response type in webapp testing scenario step
+
+Git
+----
+
+* A Git commit is now created when migrating projects to a new version of DSS
+* Moved internal DSS project files into the ``.dss-meta`` subdirectory, which is ignored by Git
+
+Cloud Stacks
+------------
+
+* AWS: Fixed possible failure deprovisioning a load balancer that was not successfully set up
+* Azure: Fixed Fleet Manager boot when multiple identities are present
+* Fixed possible failure updating custom SSL certificates
+
+Miscellaneous
+---------------
+
+* Allow matching users with their email in Microsoft Entra ID (Azure AD)
+* Newly created webapps are now configured to be multi-threaded by default
+* Fixed exposition mode in webapp advanced settings not correctly taken into account
+* Fixed page tour captions not displaying correctly in Safari
+* Fixed lag when tagging users in discussions
+* Fixed DSS load failure in certain cases of invalid plugin definitions
+* Removed Local Deployer menu when instance is set to use a remote one
+* Fixed system metrics charts to better deal with data fetching frequency
+
+
+Version 13.5.2 - May 7th, 2025
+===================================
+
+DSS 13.5.2 is a bugfix release.
+
+Spark
+-----
+* Fixed PySpark recipes containing a vectorized User-Defined Function
+
+Version 13.5.1 - May 2nd, 2025
+===================================
+
+DSS 13.5.1 is a bugfix release.
+
+Agents & RAG
+------------
+* Embed Documents recipe: Fixed a possible memory issue when processing high number of documents, or large txt/md files
+* Fixed compatibility issue with Dataiku Answers >= 2.0.0 and < 2.2.0
+* Fixed project export when a Query Agent tool has missing fields
+* Fixed compatibility with some custom LLM connection plugins
+
+Recipes
+-------
+* Fixed Redshift-to-S3 fast path on columns with special characters
+
+Automation
+----------
+* Fixed the Automation monitoring page
+
+Dashboards
+----------
+* Fixed dashboards containing an insight dataset with a "color by scale" rule on a removed column
+
+Dataiku Applications
+--------------------
+* Fixed the instantiation of an application through `dataikuapi`
+
+
+Version 13.5.0 - April 17th, 2025
+===================================
+
+DSS 13.5.0 is a release with significant new features, bug fixes, security fixes, and performance improvements.
+
+Compatibility notes
+--------------------
+
+DSS 13.5 adds compatibility with numpy 2, for code environments that use the Pandas 2.2. For such code envs, updating could mean numpy gets upgraded from version 1.x to version 2. While this usually doesn’t cause issues, if you need to restrict numpy, you may add ``numpy<2`` to the requirements and update the code environment.
+
+DKULLM and DKUChatModel’s default ``temperature`` parameter is now ``None``, which means the default of the provider/model, instead of 0 (which is not supported by all models). If you need 0, you can specify it explicitly.
+
+New feature: Chat in Prompt Studio
+-----------------------------------
+
+Prompt Studio now features a Chat mode. Note that Chat mode cannot become a Prompt recipe. It is primarily targeted at quick tests and tuning of system prompts for chat-oriented use cases.
+
+
+New feature: Conditional Governance Workflows
+-----------------------------------------------
+
+Workflow steps can now be defined to show up only if certain conditions on the artifact are matched, including field values, current workflow state or sign-off statuses.
+
+Workflows are not started by default anymore, meaning the first step is not ongoing at first. Workflows can now be finished, meaning the last step can be set as finished.
+
+As a consequence of this new feature, `artifact.status.stepId` is now deprecated. While it remains supported for backwards compatibility, some behaviors can be not totally supported anymore. Please use `artifact.workflow` instead.
+
+
+New feature: Recipe to extract rows failing Data Quality rules
+---------------------------------------------------------------
+
+When performing Data Quality checks, some rules have a "row-by-row" effect, such as the "All values must be in a given set". From the Data Quality screen, you can now create a new recipe "Extract failing rows" that, when run, creates a dataset with all rows that failed one or several Data Quality rules, for quick and easy analysis and remediation.
+
+New feature: Share workspaces by email
+----------------------------------------
+
+Workspace administrators can now grant permissions to access a workspace using an email address. If the email address does not match an existing user, an invitation email is sent and the permission grant is put on hold until their account is created. This capability can be globally disabled by administrators.
+
+Agents & RAG
+--------------
+
+* Search Knowledge Bank tool: Added support for filters on Azure AI Search
+* Added date storage type support on Embed Dataset recipe with Chroma, Azure AI Search, and Pinecone
+* Fixed Embed Document recipe with input files having special characters in their name
+* Fixed connection remapping of Visual Agents & Tools on project import / export / duplication and bundle deployment / activation
+* Fixed plugin code agent using plugin libraries while running in containers
+* Support for multimodal faithfulness and relevancy guardrails in augmented LLMs
+* Added ability to configure the prompt settings (e.g. temperature) of the underlying LLM of a Visual Agent
+
+
+LLM Mesh
+---------
+
+* Anthropic: Added support for Claude 3.7 Sonnet
+* HuggingFace: added ability to see the status and logs of locally running models
+* HuggingFace: fixed inference processes failures after 7 days of continuous run
+* Added support for image inputs on Custom LLM connections that implement it
+* Prompt Studio history is now included into project exports
+* Added support for “required” tool choice on Azure OpenAI & Azure LLM
+* Improved storage efficiency when rebuilding Knowledge Banks backed by a local vector store
+* Fixed retry on requests over the rate limit in Bedrock & AWS SageMaker
+* LLM Evaluation: support for multimodal context (multimodal faithfulness and relevancy built-in metrics, and display of context images in the evaluations)
+
+
+Machine Learning
+-------------------
+
+* **New feature**: Time Series forecasting: flexible forecast period (less or more than one horizon) in the Score recipe
+* **New feature**: Time Series forecasting: fixed-order SARIMA models
+* Time Series forecasting: New API to read the metrics of each time series on a multi-series forecasting model
+* Added support for XGBoost 2.1 (on Python 3.8+ code environments)
+* Added compatibility of more operators in ML Overrides with Java model export
+* Fixed ICE prediction explanations in Score recipe
+* Fixed optimized scoring of XGBoost models using a “Logistic Regression” objective
+* Fixed “Redetect Settings” that would remove custom metrics from the current task
+* Fixed a rare mixup of classes in post-train computation on binary classification models
+* Time Series forecasting: Fixed time series forecasting training when one series’ target is constant
+* Fixed optimized (Java) scoring of models using derived numerical features
+
+Datasets
+---------
+
+* **New feature**: Databricks: Support for Databricks Volumes for managed folders. Databricks Volumes can be used to read and write managed folders
+* **New feature**: Databricks: Support for Databricks Volumes for fast-write. You can now fast-write into Databricks without an external S3/Azure Blob/GCS connection
+* **New feature**: Snowflake: Support for storage integrations for fast-write with Azure Blob and S3
+* **New feature**: Teradata: Random sampling is now executed in database
+* **New feature**: Greenplum: Random sampling is now executed in database
+* **New feature**: Improved conditional formatting in Explore. It’s now easier to add, remove, manage and mix different conditional formatting rules
+* **New feature**: MongoDB: Added support for per-user credentials
+* Excel: Fixed reading of date and multiline string cells
+* Snowflake: Added visual support for authentication using key pairs.
+* Snowflake: Fixed automatic fast-write not always cleaning up files copied to S3 in case of error.
+* Databricks: Fixed issue preventing writing from Delta datasets to CSV datasets
+* BigQuery: Fixed writing partitioned datasets containing columns with spaces to GCS
+* BigQuery: Fixed writing partitioned datasets containing 'datetime no tz' columns to GCS
+* Fabric: Fixed automatic fast-write failing when dataset contain dates column using Parquet format
+* Fabric: Fixed table listing failure when another job is writing to the same connection
+* DB2: Fixed handling of ‘datetime no tz’ columns
+
+Recipes
+--------
+
+* **New feature**: Upsert recipe: This recipe (provided by a plugin) gives the ability to merge datasets by inserting or updating rows based on a primary key, on SQL and file-based datasets.
+* Prepare: Added buttons to quickly create common steps like Formula, Filter on value, and Fill empty cells.
+* Prepare: Column descriptions are now automatically propagated when creating, editing or running a Prepare recipe
+* Prepare: Fixed "Increment date" step with SQL engine when increment is a column created in a previous step
+* Prepare: Added last modified column to "Enrich records with files info" step
+* Prepare: Fixed "Enrich records with files info" step to correctly output the file name instead of the file path on GCS and Azure
+* Prepare: Fixed “Fill empty with value” step failing on Snowflake when the column contains NULL values
+* Filter/Sampling: Added SQL engine support when sampling is enabled for Snowflake, Databricks, BigQuery, Redshift, Teradata and Greenplum
+* Sync: Fixed sync issue between partitioned SQL datasets when the redispatch option is checked
+* Fixed recipe failure on partitioned datasets when both redispatch and automatic fast-write are enabled
+* Fixed incorrect engine detection for GCS causing recipes to fail
+
+Flow
+-----
+
+* Added activity status indicator on the Flow for Knowledge Banks, Saved Models, Evaluation Stores, and Managed Folders
+* Fixed performance issue when selecting zones via multi-select button
+
+Coding & API
+-------------
+
+* Added support for numpy 2 (in Python 3.9+ code environments)
+* Added API to download a bundle or an API service package from the deployer
+* Added Python methods to create, update, delete messaging channels
+* Added support for creating 'Export to Folder' recipes using `DSSProject.new_recipe`
+* Added ability to add a client certificate when instantiating DSSClient
+* R: Added support per code-env Dockerfile hooks
+* R: Fixed code recipe and Shiny webapps using the `scorecard` package failing in containerized execution
+
+Code Studios
+-------------
+
+* Fixed missing error message when a non-admin user attempts to change the "Run backend as" user in a Code Studio webapp
+
+
+Charts and Dashboards
+-----------------------
+
+* Pivot Table: Conditional formatting: added ability to use scales in coloring rules
+* Pivot Table: Conditional formatting: added ability to base color rules on another column than the one colored
+* KPI: Conditional formatting: added ability to base color rules on another column than the one colored
+* Added the possibility to define “promoted colors” in the DSS instance admin settings. Those colors are then displayed first in all color pickers.
+* Added more customization options for displaying values in charts
+* Improved dashboard cache/sample building process to avoid "EOFException" occurrences
+* Filters: Added input fields on sliders to precisely set the value
+* Filters: Added ability to only show selected values in filters
+* Scatter map: Fixed filtering
+* Scatter map: Fixed point radius update
+* Dashboards: Fixed “None” option for dashboard tile border
+* Dashboards:Fixed dashboard web content tiles cropping their content
+* Fixed placement of values when downloading a chart as image
+
+Stories
+--------
+
+* Fixed the persistence of column width in tables
+* Fixed average displayed in tables
+* Fixed a race condition when doing zip and pdf export at the same time
+* Fixed copy/paste issue using keyboard shortcuts
+* Fixed slide deletion when the slide contains an image
+
+Governance
+-----------
+
+* **New feature**: Custom pages: Added new customization possibilities through the introduction of custom filters into the custom page designer, allowing to define advanced filters for filtering the content of the page.
+* **New feature**: Added ability to automatically govern projects with a defined template
+* **New feature**: Added ability for users to name and save their custom filters
+* Added Markdown text formatting capabilities to text fields
+* Added support for the sync of DSS plugins’ custom fields (see :doc:`/plugins/reference/custom-fields`)
+* Added a new JSON field type
+* Added ability to cancel file upload
+* Added ability to revert changes made to a custom page definition
+* Simplified navigation menu
+* Uploaded files and time series: added an "owner" field on these items, which is set to the user creating the item. Items created before 13.5.0 have no owner. Read and write permissions for orphan items without an owner are now only granted to the instance admins, govern managers, and if it exists, its owner (the access to those hidden items was previously not restricted)
+* Fixed upload of additional attachments when one is already in progress
+* Fixed custom filters when using a number criterion on a text field value
+
+Deployer
+----------
+
+* **New feature**: Added remapping for containerized execution configurations
+* Bundles: added an option to specify whether to include notebooks with their outputs, just notebooks definitions, or not to include notebooks at all.  Default is now to only include notebooks definitions. Previous behavior was notebooks and outputs
+* Added an option on project deployment to include connection remappings defined at infrastructure level upon deployment update (remappings defined at deployment level take precedence)
+* Fixed API endpoint disappearing from Unified Monitoring when updating the associated deployment
+* Fixed custom prediction Python endpoints deployed on Vertex AI infrastructure when the endpoint does not output probabilities
+* Fixed latency computation for deployments with low activity
+
+MLOps
+-------
+
+* **New feature**: Added support for custom metrics in the Standalone Evaluation Recipe
+* Added support for 2-dimensional numpy array output in MLflow imported regression models
+* Fixed evaluation recipe failing when there are normalized datetime features whose values are all NaN/NaT
+
+Elastic AI
+-----------
+
+* Fixed missing link to cluster objects in K8S cluster monitoring
+* GKE: Added option to use the DNS endpoint feature when attaching to an existing cluster
+* Fixed error preventing the creation of namespaces when switching to a new cluster
+* Fixed plugin update triggering an image rebuild when "Containerized visual recipe" is disabled and "auto-rebuild image" is enabled
+
+Cloud Stacks
+--------------
+
+* **New feature**: A single Fleet Manager can now create and manage DSS instances in multiple regions and accounts
+* **New feature**: Fleet Manager can now deploy a Load Balancer / Application Gateway in front of each DSS instance for more managed access
+* Azure: All resources created by FleetManager are now tagged with dku:stackName
+* GCP: All resources created by FleetManager are now tagged with dku-stackName
+* Updated location of user home directories. They are now persisted on data disk in /data/home
+
+Performance & Scalability
+--------------------------
+
+* Fixed possible deadlock in PostgreSQL runtime database when computing metrics
+* Fixed error during user provisioning on very large Azure AD / Entra directories
+
+Security
+---------
+
+* Fixed Azure AD / Entra user provisioning failing for emails containing a quote character
+* New personal connections are now by default only usable by their creator
+* Fixed :doc:`Incorrect type validation in image preview </security/advisories/dsa-2025-002>`
+
+Miscellaneous
+--------------
+
+* Added interactive tours to guide new users when they first open a Flow, a Dataset, or a Prepare recipe
+* Added step summary to the scenario Info tab in the right panel
+
+
+Version 13.4.4 - April 8th, 2025
+===================================
+
+DSS 13.4.4 is a bugfix release.
+
+LLM Mesh
+---------
+
+* Fixed templates list in the “Send an email or message” Tool
+* Fixed Embed Documents dependencies installation on Ubuntu 22.04
+
+Machine Learning
+-----------------
+
+* Fixed support of millisecond timestamps in MQ-CNN timeseries forecasting
+
+Scenarios
+----------
+
+* Fixed Query/Response test parameters in the Test Webapp scenario step
+
+Charts and Dashboards
+-----------------------
+
+* Fixed scatters with millisecond precision time scale
+
+Datasets
+---------
+
+* Fixed Parquet compression not applied in some cases with Spark
+* Fixed writing of the datetimenotz type in Parquet
+* Fixed suboptimal Parquet write performance when writing Parquet dates (without time) to a datetimetz field
+
+Flow
+----
+
+* Fixed “Propagate schema” Flow action wrongfully affecting other projects
+
+Visual recipes
+---------------
+
+* Fixed mishandling of “trunc” formula for dates on Oracle
+
+Deployer
+--------
+
+* Fixed last deployment attempt status for non-admin users
+* Fixed use of variables in service path field when deploying API Services to Kubernetes
+
+Webapps
+---------
+
+* Fixed failure using WebappImpersonationContext
+
+Coding
+-------
+
+* Fixed writing of pandas datetime64[us] series into datetimenotz columns
+
+Elastic AI
+-----------
+
+* Fixed incorrect $HOME environment variable in non-containerized code recipes when UIF is enabled
+
+Misc
+-----
+
+* Improved performance of the Explore screen
+
+
+
+Version 13.4.3 - March 25th, 2025
+===================================
+
+DSS 13.4.3 is a feature and bugfix release
+
+LLM Mesh
+--------
+
+* Hugging Face: Added experimental support for tool calling
+* Hugging Face: Added more inference configuration options
+* Azure OpenAI: Added support for o1-mini, o1, and o3-mini models
+* Bedrock: Added support for Claude 3.7 Sonnet
+* OpenAI: Added support for gpt-4.5
+* Vertex: Updated model version for Gemini 2.0 Flash Thinking Experimental
+* Improved accuracy of the Text Classification recipe when using Mistral models
+* Fixed possible issues with empty metadata values in the Embed Dataset recipe
+* Fixed possible issues with integer and float metadata columns on Azure AI Search KBs
+* Fixed images input with Claude 3 Opus via Bedrock
+* Fixed images input with Gemini models
+* Fixed cropping/scrolling of image (and document page) previews in Prompt Studio
+* Fixed addition of Guardrails on Prompt recipes created prior to DSS 13.4.0
+* Hugging Face: Fixed observance of the ``HF_ENDPOINT`` environment variable
+* Fixed the Text Classification recipe’s hypothesis template used with MLNI models
+* Fixed LLM Evaluation Recipe failing on “Other” task when not selecting an input or an output column
+
+Agents & RAG
+--------------
+
+* Document embedding: Added support for odt, odp, doc, ppt, jpeg, and png formats
+* Document embedding: Added support for text and Markdown files with non-UTF8 encoding
+* Document embedding: Fixed fallback for pptx files in the Embed Document recipe when LibreOffice fails conversion
+* Fixed dataset status refresh and column restrictions on the “Append Record” Agent Tool
+* Fixed filtering on the “Dataset Lookup” Agent Tool when restricted to another lookup column
+* Fixed collection of Visual Agent code env when preparing a project bundle
+
+Machine Learning
+-------------------
+
+* Fixed a rare training failure when retraining on an automation node
+* Fixed probability calibration on LightGBM models using optimized scoring
+* Fixed time series forecasting scoring with “Output model metadata” enabled
+* Fixed time series forecasting scoring with 2 or more "datetime with tz" columns
+* Fixed time series forecasting scoring with a "datetime with tz" column that was rejected at training time
+* Scoring: Fixed handling of columns of type “datetime no tz” containing values without milliseconds
+* Fixed ability to set a constant imputation as fallback of “keep empty values” on numerical features
+* Fixed failing evaluation recipes when using empty labels
+* Fixed possible failure of interpretation screens when using non-imputed numerical inputs
+
+
+Charts and Dashboards
+---------------------------
+
+* Fixed exports for slow loading dashboards
+* Fixed dashboard export failing when done from the dashboards list page
+* Fixed “Values in Chart” settings to display “totals” options at the creation of the chart
+* Fixed the display of KPI values for Dashboards created in earlier DSS versions
+* Fixed cross filters creation when filter panel is empty
+* Tableau: fixed export on datasets containing new date types
+
+
+Dataset and Connections
+-----------------------
+
+* Databricks: execute CREATE OR REPLACE instead of DROP + CREATE when building datasets
+* Databricks: fixed importing datasets on Databricks clusters without Unity Catalog
+* BigQuery: Fixed reading columns of type DATETIME as strings
+* GCS: Fixed reading of Parquet files using credentials from environment
+* S3: fixed preview doing a full scan with Delta tables
+* S3: fixed Spark engine when using Glue metastore
+* Oracle: added description retrieval when importing tables from Oracle
+* Oracle: fixed creation of tables with strings with maximum length between 2000 and 4000 characters
+* Oracle: fixed reading SYSDATE-like columns as string truncating the time part
+* Oracle: fixed “datetime with tz” columns to use Oracle “timestamp with local time zone” type
+* Azure Blob: fixed reading Parquet files via WASB (legacy API)
+* Fixed reading of partitioned datasets using Spark engine with date-partitioned Delta files by a column of type String
+* Vertica: added OAuth authentication support
+* Fabric: removed option to use Managed Identities in fast-path as it’s not supported by Fabric
+* Trino: fixed connection requiring a database to be filled
+* Excel: added support for reading XLSB files
+
+Recipes
+---------------
+
+* Sync: Fixed issue with ElasticSearch when columns of type "datetime no tz" contains values without milliseconds
+* Prepare: Fixed Parse date and Format date steps when executed using Spark on a cluster setup with a timezone different from UTC
+* Prepare: Fixed Spark execution when a Prepare recipe immediately follows a Pivot recipe
+* Group: Fixed sort with removed columns
+* Stack: Fixed origin column in remap mode
+* Join: Fixed DSS engine wrongly joining dates when they coincide with Daylight Saving Time change
+* Hive: Added schema propagation support on Hive recipes
+* Push To Editable: added schema propagation when running the recipe
+
+Stories
+--------
+
+* Fixed deletion of Stories from workspaces
+* Fixed PDF and PPTX export when a filter prompt is included in a Story
+
+Coding & API
+------------
+
+* Fixed `DSSUser.get_client_as` with encrypted RPC
+* Fixed `DSSManagedFolder.list_paths_in_partition` not correctly returning an exception when enumeration stops due to “too many files” error
+* Fixed “Date only” columns generated by Python recipes being created as string instead of “Datetime with tz”
+* Fixed `SQLExecutor2.exec_recipe_fragment` when the recipe has a managed folder output
+* Fixed bad error message returned by `scenario_run.wait_for_completion()` when the scenario fails
+* Adapted Dash webapp template to be compatible with Dash 3
+
+Git
+----
+
+* Added integrity check on project configuration files when resolving a conflict during merge request
+
+Governance
+------------
+
+* Added an option in emails notification settings to automatically set the sender field of the email as the user who performed the action triggering the notification
+* Added ability to set the profiles of multiple users at the same time
+* Added an option to include a dump of the database in instance diagnostics
+* Improved the template selection when creating an artifact
+* Removed some static filters: Country and Sponsor from Governed project page, and Region, Sponsor and Business function from Business Initiative page. Note that you can still filter on those fields using a custom filter.
+* Fixed sticky right panel when switching between tabs
+* Fixed inconsistent naming of blueprints and blueprint versions for Dataiku items between right panel and artifact page header or minicard.
+* Fixed group edition page title to display the name of the group
+* Fixed custom page edition
+* Fixed Augmented LLMs displayed as governable when they should not because their project is not governed and user doesn’t have the permission to govern the project
+* Fixed text selection in text field within a list
+
+
+Elastic AI
+-----------
+
+* GKE: Don't install NVidia drivers when GPU is not requested
+
+Cloud Stacks
+-------------
+
+* Azure: Remove v6 instance types that cannot be used
+* Improved propagation of tags to Cloud resources
+
+Performance & Stability
+------------------------
+
+* Fixed possible crash when computing a map chart with enormous geometries
+* Reduced performance impact of indexing in the catalog / DSS items search
+
+Misc
+-----
+
+* Fixed prediction classes not properly set when deploying a classification model from an experiment tracking run
+* Fixed API Designer test failure when using an Oracle connection for bundled data
+* The plugin “Usages” tab now accounts for Agents, Tools, and LLM Guardrails
+* Fixed possible failures of webapps when using public mode or vanity URLs
+* Fixed issues with webapp duplication
+
+
+
+Version 13.4.2 - March 12th, 2025
+====================================
+
+DSS 13.4.2 is a bugfix release
+
+Performance
+-----------
+* Fixed thread leak when writing Parquet files on S3 via non-regional endpoints
+
+
+Version 13.4.1 - February 21st, 2025
+====================================
+
+DSS 13.4.1 is a bugfix release
+
+LLM
+---
+* Allow to specify costs for custom AWS Bedrock models with a finer granularity than 0.01$
+* Fixed "Advanced LLM Mesh required" warning modal
+
+Connections
+-----------
+* Fixed OAuth2 mode of Azure and Azure OpenAI Connections if token endpoint is specified
+* Fixed propagation of string columns max length on SQLServer and PostgreSQL datasets
+* Fixed MongoDB connection when using username and password fields with non default MongoDB authentication
+
+API
+---
+* Fixed the drop_and_create option of  `Dataset#write_schema` Python method
+
+Elastic AI
+----------
+* Fixed the "Push base images" button in "Containerized execution" settings page
+
+Govern
+------
+* Fixed saved model visual agents displayed as fine-tuned saved models
+
+Deployer
+--------
+* Fixed project deployment save button
+
+Plugins
+-------
+* Fixed issue saving the visibility settings of plugins
+
+Testing
+-------
+* Fixed code environment selection dropdown in Pytest scenario step settings
+
+Git
+---
+* Fixed "Revert project" version warning if several Dataiku upgrades had happened since the commit
+
+Performance
+-----------
+* Fixed memory leak when writing Parquet files on S3
+* Fixed possible hang related to refresh token rotation
+* Fixed jobs failing to start on instances with hundreds of Dataiku Applications
+
+
+Version 13.4.0 - February 9th, 2025
+====================================
+
+DSS 13.4.0 is a major new release, with major new features, bug fixes, security fixes, and performance improvements
+
+
+New Feature: Dataiku Stories
+------------------------------
+
+Dataiku Stories empowers business users to quickly build contextualized, interactive, and up-to-date data presentations so that they can more easily understand and share the stories hidden in their data.
+
+Through drag-and-drop visual interfaces, business users can collaboratively create meaningful presentations with filters, annotations, and interactive elements that are automatically refreshed with new data.
+
+For more details, please see :doc:`/stories/index`
+
+New Feature: Dataiku Answers & Agent Connect
+----------------------------------------------
+
+Dataiku now includes two fully-featured AI Chatbot user interfaces, allowing you to expose rich chatbots to your users powered by AI. They handle security, tracing, user preferences, history, and are customizable.
+
+* Answers is a full-featured Chat interface for creating chat bots based on your internal knowledge and data
+* Agent Connect is a more advanced multi-agent Chat interface for unified user access to multiple Generative AI use cases
+
+
+For more details, please see :doc:`/generative-ai/chat-ui/index`
+
+New Feature: Visual Agents & Tools
+------------------------------------
+
+You can now visually define your own Generative AI Agents, that can then be used in all LLM-enabled capabilities of Dataiku (Prompt Studio, Prompt Recipes, Dataiku Answers, Agent Connect, LLM Mesh API).
+
+Visual Agents leverage managed Tools, that give them the power to perform various tasks.
+
+For more details, please see :doc:`/agents/index`.
+
+
+New Feature: Document embedding
+---------------------------------
+
+In addition to the traditional embedding of text and storage in Vector Stores, Dataiku can now work directly with unstructured documents.
+
+The "Embed documents" recipe takes a managed folder of documents (PDF, DOCX, PPTX, ....) as input and outputs a Knowledge Bank that can directly be used to query the content of these documents.
+
+For more details, please see :doc:`/generative-ai/knowledge/index`.
+
+New Feature: LLM cost blocking & alerting
+--------------------------------------------
+
+This feature is part of the Advanced LLM Mesh add-on.
+
+You can now define quotas, matching conditions, alert threshold and block LLM queries that go over defined spending limits. It is possible to define multiple rules, based on models, providers, projects, ...
+
+For more details, please see :doc:`/generative-ai/cost-control`.
+
+New feature: Unified LLM Guardrails & Custom Guardrails
+---------------------------------------------------------
+
+LLM Mesh Guardrails can now be used "at usage time" in addition to connection level. This allows customizing validations made depending on the use case.
+
+It is now possible to write custom LLM Guardrails to implement custom validation rules.
+
+For more details, please see :doc:`/generative-ai/guardrails/index`
+
+New Feature: New handling of dates
+-----------------------------------
+
+A long standing limitation of Dataiku has been the support for only "dates with timestamps". This type used to represent an absolute point in time, including a date, time, and timezone. However, many systems such as databases also handle dates that aren't tied to a specific moment, such as a calendar day without a time or a datetime without a timezone.
+
+Dataiku now includes three date handling types:
+
+* "Datetime with TZ": represents an absolute point in time (date+time+timezone). For example, `2024-08-26T15:00:00+0200`. This is the type, that used to exist and was called "date"
+* "Datetime no TZ": represents a date with time but without a time zone. For example, `2024-08-26 15:00:00`
+* "Date only": represents a calendar day. For example, `2024-08-26`
+
+The old "date" type remains available in code, but is more generally called "Datetime with TZ"
+
+New Feature: Revamped filtering and search in Flow
+---------------------------------------------------
+
+A new search, filtering and coloring experience is available in the Flow.
+
+* Quickly find objects by typing free text or keywords to narrow down your search. Get suggestions while typing
+* Receive relevant suggestions as you type, based on your flow’s objects and views properties
+
+New Feature: AI SQL Assistant
+-------------------------------
+
+SQL Assistant enhances Dataiku's AI Assistant capabilities by leveraging Generative AI to boost productivity within the platform. It enables users of all skill levels to write SQL queries directly from natural language, in SQL notebooks and SQL recipes
+
+For more details, please see :doc:`/ai-assistants/sql-assistant`.
+
+New Feature: Data Quality "typical range" rules
+-------------------------------------------------
+
+New Data Quality rules can to automatically detect when a value (min of column, median of column, …) goes outside of its typical range
+
+
+LLM Mesh
+----------
+
+* **New feature**: RAG guardrails (part of the Advanced LLM Mesh add-on). On augmented models, specify minimum faithfulness & relevancy thresholds.
+* **New feature**: Hybrid search for RAG. Knowledge Bank backed by Azure AI search and Elasticsearch vector stores can now use hybrid (semantic + keyword-based) search for retrieval, as well as the improved reranking features offered by those services.
+* **New feature**: For local models (Hugging Face connection), you can now, on each model, specify a minimum and maximum number of running inference processes. Minimum means this model remains loaded and ready to infer immediately, even when not currently serving any request, at the cost of occupying the resources defined in the container execution configuration.
+* **New models**: AWS Bedrock: added support for the Amazon Nova model family
+* **New models**: AWS Bedrock: added support for Llama 3.3 70B
+* **New models**: Databricks Mosaic AI: added support for Llama 3.3 70B
+* **New models**: Local models (Hugging Face): added support for the Phi 4 14B and Mistral Small 3 24B models
+* **New models**: OpenAI: added support for o1 and o3-mini models
+* **New models**: Snowflake Cortex: added support for Llama 3.3 70B
+* **New models**: Stability AI: added support for SD 3 medium model and the SD 3.5 model family
+* Local models: Added ability to customize containerized execution configuration for each local model
+* Local models: Added ability to customize context length for each local model
+* Local models: Fixed logging of vLLM generation statistics
+* AWS Bedrock: added support for inference profiles
+* Code Agents: Added ability for a Code Agent to respond to queries that have image inputs
+* Code Agents: Improved Code Agents code requirements: you can now implement one or more of ``process``, ``aprocess``, ``process_stream`` and ``aprocess_stream`` (blocking/streamed and sync/async), and the other ones are emulated automatically, without the need to choose an “implementation mode”.
+* Code Agents: Fixed saving of Code Agents after a failed run of a test query
+* Guardrails: Improve sturdiness of LLM-as-a-judge prompt injection detection
+* Evaluation: Added Model Evaluation labels for tracking the embedding and completion LLMs used for LLM-as-a-judge metrics
+* Improved error reporting when testing a LLM connection
+* LLM audit logs now include the queried model
+* Fixed inability to add a fine-tuned saved model as input of a Python recipe
+* Fixed inability to use LangChain filters (through code) in a KB on Azure AI Search
+* Fixed retrieval of documents with an empty metadata column on ChromaDB
+* Fixed unneeded ``prediction_explanation`` empty column in the output dataset of a Classify Text recipe when such explanations were not requested
+* Fixed containerized execution & dev mode settings ignored for plugin agents
+* Fixed wrongful buffering of streaming responses when using the LLM Mesh API from outside Dataiku
+
+Machine Learning
+------------------
+
+* **New feature**: Added support for NaN / missing values for numerical features, for algorithms that can support it
+* Added support for LightGBM 4.5
+* Sped up computation of variable importances on Causal models
+* Sped up model documentation export with large tables
+* Fixed creation of Evaluate recipes when there is a Code or Plugin Agent in the same project
+* Fixed possible incorrect predictions when scoring with optimized (Java) scoring XGboost models trained using ``hist`` or ``approximate`` tree methods
+* Fixed possible unnecessary data loading when requesting prediction explanations
+* Fixed programmatic creation of clustering scoring recipes using ``with_existing_output``
+* Added a new “optimize” parameter to ``get_predictor`` to allow the use of a faster lightweight predictor for models that are compatible with python export.
+
+Time series forecasting
+-------------------------
+
+* **New feature**: residuals analysis (visualization & statistical tests)
+* **New feature**: Added per-fold metrics
+* **New feature**: Added ability to customize the resampling start & end dates, and to resample to any day of the month
+* **New feature**: Added “Information criteria” and model coefficients error & p-values for statistical models (ARIMA, Seasonal Trend, prophet)
+* Fixed training of models with a forecast horizon of 1 using pandas 2
+
+Charts and Dashboards
+-----------------------
+
+* **New feature**: Added ability to assign another measure as data label
+* **New feature**: Added support for reference line on the X-axis
+* **New feature**: Added support for date reference lines
+* Pivot Table: Added ability to hide row and column headers, to freeze the row headers when scrolling horizontally, and to have different font formatting options for row and column subheaders
+* Pivot Table: Added ability to hide the side bar
+* Added ability to rebuild cached data of selected datasets for associated charts and dashboards in the “Refresh statistics & chart cache” scenario step
+* Filters: Added ability to sort the values of filters
+* Filters: Added ability to rename filters
+* Filters: Added option to include empty values for numerical range, date range and relative date range filters
+* Filters: Fixed an error with alphanumeric filter with no or all values on SQL Databases
+* Added ability to use “Count of records” in displayed aggregations
+* Dashboards: Fixed download of dataset tiles to take into account the “include empty values” option
+* Dashboards: Fixed the generated url to properly take into account when a relative date filter has been cleared
+* Dashboards: Added support for “include empty values” option in the URL for dashboards (using “emptyvalues()” URL parameter)
+* Fixed reference line defined with a source as “displayed aggregation” to rollback to a source as “Constant” when switching to a chart that does not support source as “displayed aggregation”
+* ixed broken dashboard sample filters
+* Fixed unavailable zoom on scatter when at least one axis is zoomable
+* Set default percentile for aggregation to 50
+* Fixed deletion of reference lines not deleting the expected line
+* Added reference lines on the zoom timelin to display reference lines
+* Fixed the refresh of zoom timeline when switching between different date ranges
+* Fixed empty line chart when deleting a reference line after zooming on the timeline
+* Fixed possible leak of temporary tables when aborting a chart computed on Impala
+
+Collaboration
+--------------
+
+* **New feature**: Welcome emails: Added ability for administrators to send a welcome email to newly added users
+* **New feature** : Default project folder: A new project folder named "Sandbox" is now available by default in DSS. When creating a new project, users can now choose in which folder it will be created. The project folder suggested by default is the new Sandbox folder but can be changed by DSS administrators in Administration > Settings > Themes & Customization.
+* Added integration with Google Chat for scenario reporters, send message steps and project notifications
+
+Dataset and Connections
+------------------------
+
+* **New feature**: Databricks: Random sampling is now executed in database
+* **New feature**: Redshift: Random sampling is now executed in database
+* **New feature**: The description of SQL dataset descriptions can now be pushed to the underlying SQL databases as tables comments
+* **New feature**: Explore View: Added ability to reorder and quickly hide columns when exploring datasets
+* **New feature**: Added button to quickly schedule the build of a dataset and optionally send it by email
+* SQL datasets: Fixed import of tables with columns containing non-alphabetical characters such as parentheses
+* Snowflake: Fixed SQL pipeline failing when catalog is specified on the connection
+* BigQuery: Fixed columns not being fetched correctly when indexing BigQuery connections
+* Greenplum: Fixed filtering of date-based partitioned datasets
+* Dataset from folder: Fixed explicitly selecting files on newly created “Dataset from folder” datasets
+* Fixed reading Delta dataset stored with columns of type "array" written by PyArrow
+* Job are now marked as "completed with warnings" when creating an SQL table name whose name is truncated by the database (in case database has limits on table names such as Oracle and PostgreSQL)
+* Added button to refresh OAuth token in case it has expired in Explore and Dashboards
+
+Visual recipes
+----------------
+
+* Group: Adding reordering of the grouping columns
+* Prepare: Improved user experience of the Generate Steps AI Assistant
+* Prepare: The Find and Replace step now includes the ability to use another dataset as the source for the strings to find and their corresponding replacements
+* Prepare: Added support for the following currencies in Convert currencies step: United Arab Emirates Dirham (AED), Qatari Riyal (QAR), Israeli New Shekel (ILS), Kuwaiti Dinar (KWD), Saudi Riyal (SAR), Omani Rial (OMR)
+* Formula: Deprecated asDate() method. It has been renamed to asDatetimeTz() to match the new dates naming convention.
+* Formula: Added asDatetimeNoTz() method to convert input to “datetime no tz” type
+* Formula: Added asDateOnly() method to convert input to “datetime no tz” type
+* Formula: Added ord() and char() methods to convert a character into a number and vice-versa
+
+Statistics
+-----------
+
+* Added ability to edit card titles within a worksheet
+* Added a Z-test variant to the one-sample Student t-test, for when the standard deviation is known prior to the test
+* Fixed renaming of a Statistics card Dashboard insight
+
+Scenarios & Testing
+------------------------
+
+* **New feature**: Added the ability to specify test queries and expected responses in the “Test webapp” scenario step
+* Added separated “Swap datasets” and “Compare test datasets” tests steps
+* Fixed renaming of datasets to propagate to flow testing tests
+* Added the ability to specify log level in python test steps
+* Automation Monitoring: Allow filtering runs by users
+* Fixed scenario running indefinitely in case a webhook reporter hangs
+* Fixed scenario running indefinitely after aborting if it was computing Spark-based metrics
+
+
+
+MLOps
+-----
+
+* **New feature**: Added support for custom metrics in the Evaluation Recipe
+* Added an option in the Standalone Evaluation Recipe to specify how to interpret empty predictions for multiclass classification
+* Added the possibility to download a MLflow imported model
+* Fixed the Evaluation Recipe failing when no feature handling is defined in the drift metrics settings and there is no suitable input feature for drift computation
+* Fixed the export of MLflow imported models to avoid rewrapping them when exported as MLflow models
+
+Governance
+-----------
+
+* **New Feature**: Added governance of Fine-tuned LLMs, Code Agents and Augmented LLMs
+* **New feature**: Added governance of clustering models
+* **New Feature**: Added governance status in DSS project home
+* Added the ability to hide or unhide multiple items at a time
+* Added a flag to prevent sign-off requester to be able to also approve the same sign-off
+* Fixed export of custom pages to take filters into account
+* Fixed an error appearing when assigning a user for feedback or final approval on signoff without having read permission on the User blueprint
+
+Data Quality
+------------
+
+* Added ability to convert a rule from one type to another
+
+
+Deployer
+--------
+
+* **New Feature**: API Deployer: Added endpoint activity metrics (latency and volume) and health status to the deployment page
+* API Deployer: Added code preview in deployments for custom endpoints
+* API Deployer: Added the propagation of permissions from the project on the design node to the API Service on the deployer node
+* API Deployer: Added model and govern statuses to API deployments
+* API Deployer: Made available OpenAPI content to users with only "Read" permission on the deployment
+* API Deployer: Fixed invisible python logs on Databricks Deployments
+* API Deployer: Fixed lookup endpoint returning a string instead of a double in referenced mode
+* Project Deployer: Added model, data quality, and governance statuses in project deployments
+* Monitoring: Added support for WebApps in Unified Monitoring execution status
+
+Coding & API
+-------------
+
+* **New feature**: Built-in support for BigQuery BigFrames. Read https://developer.dataiku.com/latest/concepts-and-examples/bigframes.html for more details
+* SQL notebooks: Added ability to restrict tables listing by catalog/schema to speed it up
+* Added DKU_CODE_ENV_NAME to the environment variables accessible when executing Python code
+* Added `DSSManagedFolder.rename` to rename managed folders
+* Added `JobDefinitionBuilder.with_auto_update_schema_before_each_recipe_run` to automatically update schemas before building datasets
+* Added ability to create Spark SQL Query recipes using DSSProject.new_recipe('spark_sql_query')
+* Fixed table dropped when calling SQLExecutor2.exec_recipe_fragment, even when overwrite_output_schema=False and drop_partitioned_on_schema_mismatch=False
+* Added the ability to specify a version identifier for the ``update_packages`` command (only applicable to versioned code environments on automation nodes)
+* R: Fixed import of jsonlite in R API endpoints
+
+Cloud Stacks
+------------
+
+* Added display of disk usage for OS disk
+* Added sort of instances by name or status
+
+Plugins
+--------
+
+* **New feature**: Added ability for administrators to limit the visibility of some plugins in the New dataset and New recipe menus. To do so, go to Plugins > SomePlugin > Settings > Permissions. Note that this only limits visibility, it does not prevent usage.
+* Added Agents in the components list
+
+Security
+--------
+
+* Fixed :doc:`Cross-site-scripting in Prepare recipe </security/advisories/dsa-2025-001>`
+
+Miscellaneous
+--------------
+
+* Fixed upload button always disabled in CodeEnv resources on Automation node
+* Git merge: Let user delete project and/or branch when doing a successful merge of git branches
+* Elastic AI on EKS: Fixed metrics server that was not working in EKS managed clusters
+* Fixed possible startup failure following a crash while writing configuration
+* Fixed wrongful buffering when using streaming responses in webapps with Server-Sent-Events
+
+Version 13.3.3 - January 27th, 2025
+====================================
+DSS 13.3.3 is a feature, performance and bugfix release
+
+ML
+--
+* Fixed external feature coefficients on prophet timeseries model
+* Fixed creation of an Evaluate recipe when there is a Code or Plugin Agent in the same project
+
+Labeling
+--------
+* Fixed labeling tasks using a Snowflake input dataset and PostgreSQL as internal DSS database
+
+API Node
+--------
+* Faster recovery when using JWT authentication and JWK URI is not working
+
+Datasets
+--------
+* Fixed global OAuth mode on Azure dataset and Parquet file format
+* Fixed GCS dataset on Parquet file when using a Private Service Connect endpoint
+
+Cloud stacks
+------------
+* Fixed instance creation from a fresh Fleet Manager instance on Azure
+
+Charts and Dashboards
+---------------------
+* Fixed line disappearing in chart when refreshing the page while mouse cursor is on it
+* Improved dashboard performances while loading several tiles in parallel
+
+Macros
+------
+* Fixed “Download(HTML) and “export” results options of the "delete old container images" macro
+
+Git
+---
+* Fixed tag creation on a specific commit
+* Fixed https remotes with credentials support on notebook import
+* Fixed library display and notebooks list after importing a project with a https git reference configured from another instance
+
+Coding
+------
+* Fixed possible instance hanging while using the ``get_uploaded_file`` wiki Public API method to fetch a large article attachment
+* Fixed error when clicking on 'Edit in Notebook' button of coding recipes
+
+
+Version 13.3.2 - January 15th, 2025
+====================================
+
+DSS 13.3.2 is a feature, performance and bugfix release
+
+LLM Mesh
+--------
+* **New feature**: added support of Upsert & Smart Sync modes for Azure AI Search in embedding recipe
+* Prompt Studio: added ability to compare prompts without inputs
+* Visual fine tuning (part of the Advanced LLM Mesh add-on): added ability to fine-tune Llama 3.1 8B and 70B instruct models
+* Vertex AI: added support for the experimental Gemini 2.0 Flash & Gemini 2.0 Flash Thinking Mode LLM completion models, including image inputs and, for the former, tool calling.
+* Local Hugging Face: added preset for Llama 3.3 70B
+* Fixed the OpenAI-compatible API usage on RAG-augmented models
+* Fixed inference of LLMs fine-tuned using the visual fine-tuning recipe
+* Fixed containerized execution of Code Agents leveraging project or instance libraries
+* Fixed possible file permission issues when using Qdrant Knowledge Banks previously rebuilt in append mode in Python
+* Fixed a possible race condition when the same user concurrently builds a local Knowledge Bank and uses Dataiku Answers
+* Fixed build of PII detection code environment on Python 3.8
+
+Machine Learning
+----------------
+
+* Disabled XGBoost GPU support in containerized execution base image for a reduced image size (to use GPU support, use a code environment with GPU runtime addition)
+* Fixed ML tasks sometimes broken when the preparation script or underlying dataset is changed
+* Fixed training multi-series forecasting models when some series report a non-computable MAPE or SMAPE
+* Fixed scoring of plugin models using a class defined elsewhere than in the ``algo.py`` file
+* Fixed diagnostics listed in Lab settings for Causal, Clustering and Time series
+* Fixed abiding by selected diagnostics on Lab training of Causal models
+* Fixed ordering of Saved Models by name in the list
+
+ML Ops
+------
+* Model comparison: fixed broken model links in column headers
+* Standalone Evaluation recipe for multiclass classification: added choice of weighting or not one-vs-all metrics averages across classes
+* Added possibility to download test report using Public API on a design node project
+* Fixed an error in API Designer when there is an API service associated with a deleted saved model
+* Fixed display of API Service package version details in the right panel
+* Fixed LLM evaluation row-by-row comparison tile in dashboards for dashboard-only users
+* Fixed possible model comparison issues with MLFlow imported models
+
+Charts and Dashboards
+---------------------
+* Fixed disabling filter panel in dashboards
+* Added memory protection against charts with large number of values on numerical axis with SQL engine
+* Fixed conditional formatting in exported pivot tables
+* Fixed date filters facets on DSS engine when "all values in sample" option is activated
+* Fixed cleared filters being reapplied on dataset tiles when navigating away and back to dashboard page
+* Fixed dashboard cross filters reactivation after having disabled them
+* Fixed numeric-as-alphanumeric filter facets to take into account other filters
+
+
+Governance
+----------
+* **New feature**: Added a method to retrieve a Govern client from ``DSSClient``
+* Fixed display of Dataiku saved model versions metrics in the artifact page
+* Fixed negate operator in custom filters
+* Improved generation of blueprint version ids to avoid duplicates
+
+Datasets & Connections
+----------------------
+* **New feature**: Elasticsearch & Opensearch connection: added support for AWS OpenSearch serverless (including for Knowledge Banks)
+* Sharepoint: Fixed ability to select a site when the total number of sites is very large
+* Sharepoint: Fixed prepare recipe when input is a Sharepoint list
+* BigQuery: Fixed writing when connection is using global proxy and an automatic fast-write is not set
+* BigQuery: Added ability to use Private Service Connect endpoints
+* GCS: Added ability to use Private Service Connect endpoints
+
+Data Quality
+------------
+* Fixed SQL error when a dataset contains both "values in set" and another statistical rule such as "not empty"
+* Fixed too restrictive permission to compute metrics on folders using public API (Now requires only ``Write project content``)
+
+Recipes
+--------------
+* Prepare: Fixed possible memory overconsumption in the "Split text into chunks" step
+* Prepare: Fixed schema not being automatically updated when running with Spark engine
+* Join: Fixed error raised when having both a pre-join computed column and ignore-case matching option
+* Stack: Fixed post-filters not working on "origin column"
+* SQL Query: Fixed error when executing queries containing UNION
+
+
+Deployer
+--------
+* Fixed execution of webapp test steps from post-deployment hooks
+* Fixed auto-start of webapps after deployment
+* Fixed possible unnecessary rebuild of code environment with container runtime additions when deploying and preloading a bundle in an automation node
+* Fixed deployment status modal when deployment is very fast
+* Fixed project deployer links to webapps when the webapp name contains underscores
+* Fixed issues with node ids containing spaces
+
+Coding
+------
+* **New feature**: Added OAuth support for Databricks Connect
+* **New feature**: Added ability to export a filtered view of a dataset using ``Dataset.to_html`` and ``Dataset.raw_formatted_data``
+* Fixed long execution (more than 10 minutes) of ``dkuWriteDataset`` R method
+
+Elastic AI
+----------
+* Updated EKS plugin fixing GPU drivers installation
+
+Git
+---
+* Added support for https remotes with credentials
+* Git merge: fixed failure when a commit contains an empty message
+
+Security
+--------
+* **New feature**: Added ability to limit the types of files that can be uploaded in wiki articles See :ref:`doc <advanced-options.restricted-types-wikis>` for more details
+
+Misc
+----
+* Fixed "Random birds" and "Random cats" themes
+
+
+Azure OAuth2 Token Endpoint Update
+----------------------------------
+
+Since version 13.3.2, any Azure OAuth2 connection configured in **global mode** must use the **v2.0** endpoint of Azure's token service.
+
+In Dataiku versions **≤ 13.3.1**, a valid token could be retrieved with or without the v2.0 endpoint.
+From version **≥ 13.3.2**, a valid token is **only** retrieved if v2.0 is included in the URL.
+
+Example of required endpoint format:
+```
+https://login.microsoftonline.com/{tenant_id}/oauth2/v2.0/token
+```
+
+Please ensure all Azure OAuth2 connections are updated to use the v2.0 endpoint to remain compatible with future Dataiku versions.
+
+Version 13.3.1 - December 19th, 2024
+====================================
+
+DSS 13.3.1 is a bugfix release
+
+Machine Learning
+----------------
+
+* Time series forecasting: fixed descriptions for numerical extrapolation settings
+* Fixed bundling of fine-tuned LLM saved models
+* Improved code agent name validation
+* Fixed installation of the RAG code environment on Python 3.8
+* Fixed plugin agents not listed when using ``list_llms()`` python API
+
+Visual recipes
+--------------
+* Fixed possible job error when using user-defined meanings
+
+Datasets
+--------
+* Fixed rebuild condition of SQL datasets
+
+Charts
+------
+* Fixed In-Database charts when a default schema/catalog naming rule contains variables
+* Fixed ``AVG`` operator used in a user-defined aggregation function on SQL engines
+* Fixed migration of color groups on KPI charts
+
+MLOps
+-----
+* Fixed deployment of imported MLFlow model with User Isolation enabled
+* Improved temporary folders management for R- and Python-based API node endpoints
+
+
+
+Version 13.3.0 - December 5th, 2024
+====================================
+
+DSS 13.3.0 is a significant new release, with new features, bug fixes and performance improvements
+
+New Feature: Manual layout of Flow zones
+-----------------------------------------
+
+It is now possible to manually define the layout of Flow Zones using drag-and-drop.
+
+This needs to be enabled in the project settings by a project administrator.
+
+New Feature: Agents
+----------------------
+
+You can now define your own Generative AI Agents, that can then be used in all LLM-enabled capabilities of Dataiku:
+
+* Prompt Studio
+* Prompt Recipe
+* Dataiku Answers
+* LLM Mesh API
+
+Agents let you implement advanced logic in your Generative Applications, such as fully-dynamic tool usage, complex chains, corrective RAG, ...
+
+Agents can:
+
+* Be written by customers using Python code
+* Be written by customers using Python code and then packaged as Plugins for easy usage by non-coding users
+* Use plugins developed by Dataiku or third parties
+
+
+New Feature: Project Testing
+-------------------------------
+
+Dataiku now provides facilities for performing easy and repeatable tests of projects.
+
+The following types of tests can be automated:
+
+* Unit testing of Python code
+* Functional testing of Flow. You can specify reference input datasets, reference outputs, and play your whole Flow on the input to verify that the output matches
+
+Tests are run through new scenario steps.
+
+Tests can typically be run as part of an MLOps process on a QA automation node and test reports can be used as part of a sign-off process (through Deployer hooks or Govern).
+
+
+New Feature: Deploy models to Databricks Serving
+--------------------------------------------------
+
+It is now possible to deploy models trained in Dataiku to Databricks Serving endpoints through the Deployer.
+
+New Feature: AI Generate Recipe
+-----------------------------------
+
+The new "Generate Recipe" AI assistants allows users to easily create new recipes in the Flow, using natural language, by expressing their need.
+
+
+New Feature: AI Image Generation API
+-------------------------------------
+
+The LLM Mesh API now supports image generation.
+
+The following image generation models are supported:
+
+* AWS Bedrock Titan Image Generator
+* AWS Bedrock Stability AI SDXL 1.0
+* AWS Bedrock Stability AI Stable Image Core & Ultra
+* AWS Bedrock Stability AI Stable Diffusion 3 Large
+* OpenAI DALL-E 3
+* Azure OpenAI DALL-E 3
+* Stability AI Stable Diffusion 3.0 & 3.0 Turbo
+* Stability AI Stable Image Core & Ultra
+* Google Vertex Imagen 3
+* Google Vertex Imagen 3 Fast
+* Locally-running Stable Diffusion 2.1
+* Locally-running Stable Diffusion XL
+* Locally-running Flux 1 Schnell
+
+
+
+
+New Feature: Governable items page and Governance Modal
+----------------------------------------------------------
+
+In Govern, the governable items table now only displays items that are ready to be either governed or hidden. Those items are now grouped by item types (Projects, Saved Models, Saved Model Versions and Bundles). A new column has been added with the user who created the item, and actions have been grouped together in a single “Actions” column.
+
+The governance modal was improved. Users can now specify how existing and future sub-items of the current one being governed will be governed. Those settings are also now available for edition in a new “Governance settings” tab in each Governed Item page.
+
+
+New Feature: Table customizations in Blueprint Designer and Custom Page Designer
+---------------------------------------------------------------------------------
+
+NB: requires Advanced Govern
+
+The definition of views in the Blueprint Designer has been simplified by removing the distinction between row views and card views. In the settings of a table it’s now possible to create different columns with custom names and mapping them to different views that may depend on the Blueprint of the item being displayed.
+
+It’s also possible to “freeze” columns on both the left and the right of the table so that those columns remain visible while scrolling through the table horizontally.
+
+It is now possible to include or not both the name and the workflow standard columns. The order of all columns may now be customized.
+
+These customization abilities are found in both custom pages settings and in view components displaying references as tables.
+
+
+LLM Mesh
+---------
+
+* **New feature**: Upsert mode for Knowledge Bank. Knowledge Banks can now: append, overwrite, and, if a document identifier column is specified, Upsert or Smart Sync (upsert + remove entries not present in the input). Not supported for Azure AI Search nor Pinecone
+* **New feature**: Structured output; You can specify an expected JSON Schema (structured output) on text completion query in the API. This is compatible models with OpenAI, Azure OpenAI, Vertex Gemini, and experimentally on Hugging Face models
+* **New feature**: Tracing: The API responses and prompt recipe output bear more details on the different steps of completion and embedding calls, with steps, timings, and additional infomration for each step. The system is extensible, especially when using Agents.
+* **New feature**: Added support for Google Vertex Vector Search for Knowledge Banks
+* **New feature**: Experimental JSON mode support on compatible Local Hugging Face models
+* **New feature**: Any generic LLM can now be used for prompt injection detection
+* **New models**: Added support for the Meta Llama 3.2 models in the Local Hugging Face connection
+* **New models**: Added Claude 3.5 Haiku, Claude 3.5 Sonnet V2 and custom models to the Anthropic connection
+* **New models**: Added Claude 3.5 Haiku and Claude 3.5 Sonnet V2 to the AWS Bedrock connection
+* **New models**: Added Meta Llama 3.1, Meta Llama 3.2 3B, Mistral Large 2 and custom models to the Snowflake Cortex connection
+* Added ability to output the RAG sources separately from the LLM’s answer
+* Added ability to set the batch size on Embed recipes
+* Added ability to search for Prompt Studios & Knowledge Banks from the DSS search box
+* Added support for per-user OAuth authentication when using Azure AI Search for Knowledge Banks
+* Added support for tools calling on Vertex AI Gemini models
+* Added support for pydantic 2 when using ``knowledge_bank.as_langchain_retriever()``
+* Added more structured details in audit logs when a guardrails error happens
+* Favored the safetensors format for local models over the pytorch format
+* Fine tuning recipe on OpenAI / Azure OpenAI: added full validation loss when available
+* Fine tuning recipe on Azure OpenAI: added choosing of the best checkpoint automatically
+* Removed Claude 1 models from the Anthropic connection (retired by Anthropic)
+* Removed Claude 1 & Meta Llama 2 13b-chat-v1 models from the Bedrock connection (retired by Bedrock)
+* Removed Meta Llama 2 70b, MTP-7B, MPT-30B models from the Databricks connection (retired by Databricks)
+* Fixed absence of RAG augmented models in the LLMs selector when the original model is fine-tuned
+* Fixed embedding recipe failing on empty content with newer versions of pydantic
+* Fixed formatting of the LLM output when using a RAG augmented model with “Do not print sources” option
+* Fixed incorrect token limit for some embedding models on Bedrock, Cohere, Snowflake, Vertex AI
+* Fixed possible partially missing information in resource usage logs when querying RAG augmented LLMs
+* Fixed broken output link to a Knowledge bank in the Flow’s right panel
+* Fixed possible broken Save when changing “Print document sources” on Knowledge Bank augmented model settings
+
+
+Machine Learning
+-------------------
+
+* Time series forecasting: improved interpolation to be more accurate to the specific time of the interpolated step within the interpolation period. The former method remains available as "Staircase" interpolation.
+* Time series forecasting: added support for PyTorch alternatives to MXNet
+* Time series forecasting: fixed seasonal trend training issue when using a Random hyperparameter search with python 3.8+
+* Added support for sparse matrices on K-Means & Mini-batch K-Means Visual AutoML Clustering tasks
+* Added support for Python 3.12 on Visual ML
+* Added support for Keras/Tensorflow Visual Deep Learning models with Python 3.11
+* Multiclass models: added choice of weighting or not one-vs-all metrics averages across classes
+* Fixed feature effect Dashboard tile
+* Fixed code environment incompatibility warning for bayesian search when using scikit-learn 1.5
+* Fixed What-if settings sometimes not opening on first click
+* Fixed What-if comparator display bug of feature importance when switching explanation method
+* Fixed display hyperparameter search optimization when switching between “higher is better” and “lower is better” metrics
+
+Datasets and Connections
+-------------------------
+
+* **New feature**: Trino dataset
+* **New feature**: Push-down of random sampling to database on Snowflake and BigQueryis now executed in database for Snowflake and BigQuery datasets
+* Snowflake: Execute CREATE OR REPLACE COPY GRANTS instead of DROP + CREATE when building datasets
+* Databricks: Fixed issue where a dataset configured in SQL query mode would generate a schema with columns in uppercase
+* Athena: Added support for Athena JDBC 3.x driver
+* Oracle: Allow administrators to configure the characters limit for identifiers from the connection settings (defaults to 30)
+* S3: Fixed certificate verification issue that sometimes needed switching to path style
+* MongoDB: Added user & password fields when “Use advanced URI syntax” option is checked to prevent having them in clear text
+* Sharepoint: Fixed issue happening when a sharepoint list contains too many items
+* Editable: Added ability to use any row as column names, and not only the first one.
+* Editable: Added button to quickly remove empty rows or empty columns
+* Streaming: Now correctly handle tombstones (null) when reading Kafka streams
+* SQL: Added button to suggest existing schemas when prompting for one
+* SQL: Fixed issues when moving data from a database with high max string length to one with lower max string length
+
+Recipes
+----------------
+
+* **New feature**: Group: Added support for median aggregations (SQL engine only)
+* Join: Fixed issue when using the same dataset as both left and right inputs and using a filter defined as a formula (would trigger an error when running the recipe using DSS engine)
+* SQL Query: Variables are now correctly substituted when displaying execution plan
+* SQL Query: Fixed issue preventing to validate and execute query when partitioning dimensions are not found on the target table due to casing mismatch
+* Download: Fixed variable expansion in the Path field
+* Fixed drop data confirmation modal not appearing when running a recipe in append mode or on a partitioned output dataset
+* Fixed entering of multiple explicit values for a time partition (ex: 2024-03-01,2024-03-02)
+
+Charts and Dashboards
+-----------------------
+
+* **New Feature**: Conditional formatting on pivot tables
+* **New feature**: Added variance (sample and population) as aggregations for numeric columns
+* Finer Dashboard grid granularity for better control of tiles sizes
+* Added the ability to customize the spacing between tiles
+* Added the ability to lock tiles position in dashboards
+* Added the ability to use the same X for all pairs in Scatter Multi-Pairs
+* Added support for categorical Y axis in Scatter Multi-Pairs
+* Improved responsiveness of KPI tiles in dashboards
+* Improved color picker
+* Refined the 'Connect the Points' option for scatter plots to prevent connecting points having differing colors or shapes.
+* Improved overlapping detection for values labels in bar charts
+* Fixed dashboard tile resizing when displaying/hiding the header
+* Fixed responsiveness of dashboard tile headers
+* Fixed color picker in KPI chart conditional formatting
+* Fixed wrongful disabling of color scale logarithmic mode
+* Fixed manual edition of Y axis range option sometimes not appearing
+* Fixed percentile in gauge color ranges
+* Fixed explicit exclude filters not applied in exported dashboards
+* Fixed “Count of records” measure displayed as “NULL” in values formatting
+* Fixed values in charts to be above ref lines
+* Fixed the ability to export only current slide from dashboards
+
+
+LLM Evaluation
+---------------
+
+* Added native support for prompt recipe output
+* Added "token per row" metrics for input and output
+* Added support for row-by-row LLM evaluation comparison in Dashboards
+* Added a “Test” button for Custom Metrics
+* Fixed bundle creation and project export when no LLM is defined in LLM-as-judge settings of this project’s LLM Evaluation Recipe.
+* Prevent creating LLM evaluation recipe without input dataset
+
+MLOps
+-----
+
+* Added the ability to export evaluation sample as a dataset from a Model Evaluation
+
+Statistics
+------------
+
+* Added ability to relax the variance equality assumption on 2-sample and pairwise t-test (Student t-test assumes equal variance, Welch t-test doesn’t)
+* Added ability to limit the comparison to a reference group in N-sample pairwise t-test and N-sample pairwise Mood test
+
+Scenarios and automation
+-------------------------
+
+* Added ability to add descriptions to scenario steps
+* Added ability to restrict the sender field of mails to be the one of the user accounts running the scenarios.
+* Fixed wrongly successful scenario execution status despite failing project deployment steps
+
+Deployer
+----------
+
+* Added a view of WebApp statuses on the status page of a project deployment
+* Added support for setting a Service Account Name on K8S infrastructures
+* Added the ability to generate diagnostic for deployments that always failed
+* Added the possibility to reopen an ongoing deployment's progress modal
+* Unified Monitoring: Added ability to customize Unified Monitoring interval
+* Prevented multiple deployment actions on the same deployment
+* Aborting deployment now actually interrupts the complete process, not just the current phase (pre-deployment hooks, deployment, post-deployment hooks)
+* Fixed post-deployment hook failure wrongfully failing the deployment
+* Fixed incorrect “deployment date” info in bundle and infrastructure pages for deployments that never succeeded
+* Fixed monitoring page on API service when the related Model Evaluation Store is deleted
+* Fixed latency computation on Static and K8S infrastructures when there are no requests
+
+API
+----
+
+* Added an API method to clear Jupyter notebook's outputs
+* Added an API method to read scenario steps logs
+
+Code Studios
+--------------
+
+* Added Dash block to create Dash Webapps using Code Studios
+
+Webapps
+--------
+
+* Fixed issue where custom code creating files in the current directory would prevent Webapp from restarting correctly
+
+Git & Version Control
+----------------------
+
+* Added basic integrity checks on JSON configuration files when merging branches
+* Changed permission required to merge branches: “Write isolated code” permission remains required to merge branches but “Write unisolated code” permission is now only required if the merge would update unisolated code.
+
+
+Govern
+-------
+
+* Added custom filters to reference selection
+* Added support for the Embedding Recipe in the computation of “LLM” and “Ext. AI“ tags
+* Added visual indication in the blueprint designer when a condition is configured for a view component visibility
+* Added the ability to customize whether the sign-off widget comes above or below the other fields in a workflow step
+* Added a “Model Metrics” tab to the Governed model version page
+* Added the display of “Last modification date” info from DSS
+* Added a “Sensitive data” field on standard Governed Project
+* Added an “Edit Custom Page” button on Custom Pages to allow admins to go directly to this page’s settings
+* Fixed the refreshing of blueprint designer when deleting a hook
+* Fixed creation date in Govern for some DSS imported projects
+* Fixed the governance of an item sometimes failing when related items were already governed
+* Fixed sticky error panel on item save “cancel” action
+* Fixed sticky upload file error panel
+
+
+Jobs
+-----
+
+* Allowed searching jobs by their IDs in Jobs page
+* Added buttons to zoom in/out Flow in Jobs page
+* Fixed job diagnosis with very long job names
+* Fixed issue where admin properties would be being overridden by other variables
+
+
+Data Catalog
+-------------
+
+* Added ability to search for a dataset or SQL table from the Data Catalog home page
+* Added ability to search for a dataset by its name in Data Collections
+* Fixed issue in Connection Explorer where using DSS as metastore for Hive dataset generates error in case some projects have been deleted
+
+
+Security
+---------
+
+* Added a new project security permission named “Edit permissions”. This permission allows users to add new groups/users to projects. Note that users with such a permission can only grant/remove permissions they have.
+* Added support for expiration dates to API Keys
+
+Elastic AI
+------------
+
+* Improved the "Remove old container images" macro to remove more left-overs
+* Fixed Kubernetes errors during service deployment when DSS username only contains digit characters
+* Reduce disk space usage of code env images
+* Fixed potential race condition when rebuilding code envs that could lead to containerized job failures
+
+
+Cloud Stacks
+-------------
+
+* AWS: Added tags on EBS root volumes and subnets upon instance creation
+* AWS: Fixed slowness when connecting over SSH to an instance
+* Azure: Added tags on Network interfaces, VPCs, subnets and public IPs upon instance creation
+* GCP: Add tags on boot/OS disks, VPCs and subnets upon instance creation
+* GCP: Added option to encrypt the Fleet Manager disks using custom KMS key
+* Fixed potential race condition on reboot that would not correctly mount the volumes
+
+Misc
+-----
+
+* Project folders are now sorted by name on the "All Projects” page.
+* Removed Achievements from user profile page
+* Allow searching for managed folders by their name when configuring recipes
+* Wiki: Added button to generate a markdown table
+
+
+Version 13.2.4 - November 27th, 2024
+====================================
+
+DSS 13.2.4 is a bugfix release
+
+Dataset and connection
+----------------------
+
+* Fixed error when creating a GCS, BigQuery or Vertex AI connection if no private key file is set (in OAuth/Environment mode)
+* Fixed error when reading BigQuery tables with an ingestion time partitioning
+* Fixed charts on PostgreSQL and BigQuery engines if the underlying connection contains naming rules on the schema
+* Fixed Microsoft OneLake connection not properly closed resulting in possible user session limit error
+
+Machine Learning
+----------------
+
+* Fixed possible training failure on causal regression models when the target distribution is partly concentrated on a single value
+* Fixed failures with local Hugging Face models / augmented LLMs when encrypted RPC is enabled
+* Fixed a possible race condition when a local Hugging Face model is used by multiple concurrent jobs
+
+Dashboards
+----------
+
+* Fixed dataset tile export when a date filter is set in the dashboard
+* Fixed 'Load' insight button when 'Load insight when dashboard opens' setting is disabled
+
+Governance
+----------
+
+* Fixed display of artifact role assignment rules in sign-off widget
+
+
+Version 13.2.3 - November 20th, 2024
+====================================
+
+DSS 13.2.3 is a feature, performance and bugfix release
+
+Machine Learning
+----------------
+
+* Fixed feature handling UI in Clustering
+* Fixed display of some results in dashboards for users only having the "Read Dashboards" permission
+* Model Evaluation: Fixed prediction drift computation on binary classification when the threshold value has been changed
+
+Dataset and connections
+-----------------------
+
+* GCS: JSON private keys are now encrypted in config
+* BigQuery: JSON private keys are now encrypted in config
+* BigQuery: Improved support for views based on partitioned BigQuery tables
+* Sharepoint: Fixed SharePoint dataset reading when written by DSS
+* Parquet: Fixed parsing of Parquet files containing nested arrays of objects
+* S3/GCS/Azure Blob: Added support for repeating dataset mode
+
+Visual recipes
+--------------
+
+* Fixed recipes not displayed in flow if repeating mode is enabled without a driver dataset selected
+* Prepare: Fixed filters creation by right clicking on date columns
+* Spark: Improved warnings when non-optimal Spark operations take place
+
+Charts
+------
+
+* Fixed charts on BigQuery when the dataset is in a project different from the one specified in the connection
+
+Jobs
+----
+
+* Fixed "clear search" button in jobs list
+
+LLM Mesh
+---------
+
+* Increased default caching time for embeddings
+
+
+Coding
+-------
+
+* Improved performance when waiting for background tasks to complete (jobs, scenario, Visual ML) in Python API
+* Fixed dataiku-scoring python package when using Numpy > 2
+
+Governance
+----------
+
+* Fixed sign-off config editing for standard blueprint versions
+
+Cloud stacks
+------------
+
+* Improved automatic sizing of backend memory allocation when switching to larger instances
+
+Plugins
+-------
+* Fixed support for plugins not specifying explicitly 'acceptedPythonInterpreters' in their configuration
+
+Performance
+-----------
+
+* Improved performance for project import / bundle import / app-as-recipe instantiation
+* Improved performance for reading data from Snowflake
+* Improved performance when deleting large amounts of datasets
+* Improved performance and fixed possible memory leak when performing a very large number of failing API calls on the REST API
+* Improved performance and throughput of sending events to the event server, fixing possible loss of events in very high load situations
+* Improved performance and reduced excessive logging for Unified Monitoring on both Deployer and Automation nodes, especially when a large number of deployments are not working
+
+Misc
+----
+
+* Upgraded Snowflake JDBC driver to version 3.20
+* Fixed boot script permissions when installed with a restrictive umask
+* Added support for Suse 15 SP6
+* Reduced amount of logging in various places
+* Fixed missing API deployments in Unified Monitoring for API services created before DSS 11
+
+
+Version 13.2.2 - November 1st, 2024
+====================================
+
+DSS 13.2.2 is a feature, performance and bugfix release
+
+LLM Mesh
+------------------------------
+
+* Added support for multimodal local models (Idefics2, Llava 1.6, Falcon2 11B VLM, Phi3 Vision)
+* Added ``o1-mini`` model to the OpenAI connection (experimental)
+* Added Gemma 2 2B & 9B local models
+* Added Llama Guard 1B and 8B as local options for Toxicity Detection. This feature is available in Private Preview as part of the Advanced LLM Mesh Early Adopter Program.
+* Added support for AWS OpenSearch Managed Cluster deployed with Compatibility Mode
+* Added support for redirections in a Huggingface model’s repository when using the DSS model cache
+* Fixed PII detection not performed on multipart messages’ text parts
+* Fixed some API/prompt parameters not properly taken into account on a RAG augmented model
+* Fixed an error in the Prompt studio when running a non-reusable prompt on a RAG augmented model
+* Fixed the Pinecone connection’s test button sometimes failing with a 401 error despite correct API key
+* Fixed tools calls failing when the ``parameters`` argument is explicitly set to ``null``
+* Fixed schema propagation passing through a prompt, text classification, or text summarization recipe
+* Fixed query cancellation for local models
+* Fixed fine-tuning recipe on Bedrock when using a validation dataset
+
+Visual Machine Learning
+------------------------------
+
+* Added the weighting method in prediction models report
+* Added ability to include the feature dependence plot for a given feature when exporting a model’s documentation
+* Added the anomaly score in API response when querying an isolation forest model
+* Fixed possible failing scoring of time series forecasting models trained before 13.2.0 and not retrained since
+* Fixed the redeployment of a partitioned model to the flow via API
+* Fixed the reproducibility of tree-based feature selection, and the possible error when ensembling models using it
+
+Dataset and Connections
+------------------------------
+
+* Fixed 'select displayed columns' and 'select sort column' options in dataset explore if it is opened before dataset sampling is loaded
+* Sharepoint: Improved performance with large number of sites and drives
+* MongoDB: Fixed parsing of columns containing arrays of objects
+* Fixed Delta dataset sampling computation when reading through Spark
+* SQL: Fixed usage of project variables in post-connect statements
+
+Recipes
+------------------------------
+
+* Prepare: Fixed UI of the Python processor when using row/rows mode
+* Prepare: Fixed discrepancy in translation of GeoDistanceProcessor
+* Fixed repeating mode on HTTP datasets
+* Improved error message with dynamic dataset repeat option if no “driver” dataset is selected
+
+Charts and Dashboards
+------------------------------
+
+* Fixed alphanumerical filters on numerical columns shared via URL parameter when selecting all values and using the “include others” option
+* Fixed filters on numerical columns shared via URL parameter when selecting NO_VALUE and using the “Exclude others” option
+* Fixed filter sometimes wrongly created at the end of the filter list when dragging and dropping a column
+* Fixed dashboard filters on case-insensitive datasets
+* Fixed AVG aggregation on integer column to return a double rather than a truncated integer
+* Fixed custom aggregations on DSS engine when the formula appears to do a division by zero when executed on the dataset
+* Fixed "Comparison method violates its general contract!" error in charts happening in some specific situations.
+* Fixed the creation of dashboards from the “Add insight” modal in the insight edition page
+* Fixed the “Replace empty values by 0 / NA” option on pivot tables
+* Fixed broken Excel export of pivot tables when using a color dimension
+
+Data Quality
+-----------------------------
+
+* Fixed possible Arithmetic overflow when computing dataset metrics on SQLServer
+* Fixed issue when computing metrics on delta datasets with Spark engine
+
+
+Scenarios
+-----------------------------
+
+* Improved compatibility with custom templates when sending an email with a dataset in HTML format
+* Fixed possible broken scenario logs UI when scenario is using “Refresh statistics & chart cache” step
+
+MLOps
+-----------------------------
+
+* Added support of Python 3.6 code environments for MLflow export
+* Fixed handling of API node logs in the Evaluation Recipe when there are both “message.feature.proba_X” and “message.result.proba_X” (only consider “message.result” in this case)
+* Fixed MLflow authentication when nesting several calls to `setup_mlflow`
+
+Deployer
+-----------------------------
+
+* Fixed displayed projects names in Unified Monitoring for deployment created through the public API
+* Fixed external model status synchronization in Unified Monitoring after DSS restarts
+* Fixed external model status synchronization in Unified Monitoring when overwriting an existing saved model version
+* Fixed R API functions using code environments on Kubernetes deployments
+* Reduced the size of container image for Kubernetes deployments
+
+Governance
+-----------------------------
+
+* Added a shortcut for Governance Managers to edit the corresponding blueprint version directly from an artifact page
+* Fixed view mapping edition for computed references with no source
+* Fixed the creation of user when there are lots of users already registered
+
+Collaboration & Git
+-----------------------------
+
+* Fixed branch display of imported project previously exported without Git information
+* Fixed default branch after project duplication from the Project Version Control
+
+
+Elastic AI
+-----------------------------
+
+* Fixed Containerized DSS Engine if a plugin requires a R code environment
+* Fixed Scala notebook on Spark-on-Kubernetes
+* Fixed containerized execution on Conda R code environments
+* Fixed Hadoop HDFS dataset creation if there is a Kubernetes cluster configured on the instance
+* Fixed metastore synchronization in "DSS-as-metastore" mode on datasets containing string columns with a defined maxLength
+* Fixed propagation of user-provided CRAN repos when building the API deployer base image
+* EKS: Added a check against creating a cluster where all nodepools are tainted
+* EKS: Fixed support for Nvidia driver installation when using "advanced config" mode
+* GKE: Added ability to specify release channel
+* GKE: Added ability to add labels and taints on nodes
+
+
+
+Hadoop
+-------
+
+* Fixed possible failures reading all Parquet files
+
+Cloud Stacks
+-----------------------------
+
+* Azure: Fixed availability zone selection in instance creation form
+
+Performance & Scalability
+-----------------------------
+
+* Improved performance and scalability of ArrayFold processor
+* Improved performance for massive recipe creation
+* Improved performance for deleting vast amounts of objects
+* Fixed possible instance crash when validating some particular SQL queries
+
+Miscellaneous
+-----------------------------
+
+* Fixed “Code Studio” tab hidden for users only having the “Can update” template permission
+* Fixed cases of unusable webapps after bundle activation due to removed API keys
+* Fixed the ‘Alert Banner’ appearing in Dashboard and Flow exports
+* Fixed homepage display if one a project has corrupted permissions definition
+* Fixed displayed user profile in case user gets the fallback profile
+* Fixed a race condition when stopping a continuous activity
+* Fixed issues with long-running dataset reads when encrypted RPC is enabled
+
+
+Version 13.2.1 - October 16th, 2024
+====================================
+
+DSS 13.2.1 is a bugfix release
+
+LLM Mesh
+---------
+
+* Fixed usage of ElasticSearch and Azure AI Search vector stores for non-admin users
+
+MLOps
+------
+
+* Fixed error when trying to deploy on an AzureML infrastructure using credentials from environment
+
+Webapps
+-------
+
+* Fixed webapp failures on imported projects, if their API keys had been deleted
+
+Coding
+------
+
+* Fixed date support with `infer_with_pandas=False` when using code environments with Pandas 2.2
+* Fixed suggested numpy version when creating code environments with Pandas 1.0
+
+Cloud Stacks
+-------------
+
+* AWS: Added support for il-central-1 region
+
+Misc
+----
+
+* Fixed graphic exports when DSS is configured with ssl=true in install.ini
+* Fixed "Request new Python env" for Conda based environment
+
+
+Version 13.2.0 - October 3rd, 2024
+==================================
+
+
+DSS 13.2.0 is a significant new release with both new features, performance enhancements and bugfixes.
+
+
+New feature: Column-level Data Lineage
+------------------------------------------
+
+Column-level data lineage offers a new view that allows performing Root cause and Impact analysis on dataset columns:
+
+* When identifying a data-related issue, investigate the upstream pipeline to find where the data comes from.
+* Before performing any change on a dataset column, discover the potential impact on downstream datasets and projects.
+
+For more details, please see :doc:`/data-lineage/index`
+
+New feature: LLM evaluation recipe
+-----------------------------------
+
+.. note::
+
+    This feature is available in Private Preview as part of the Advanced LLM Mesh Early Adopter Program
+
+
+When building GenAI applications, evaluating the quality of the output is paramount. The LLM evaluation recipe uses specific GenAI & LLM techniques to compute several metrics that are relevant to the specific cases of GenAI.
+
+The metrics can be output to a Model Evaluation Store and compared across runs.
+
+Individual outputs of the LLMs can also be reviewed and compared across runs.
+
+New feature: Delete & Reconnect recipes
+----------------------------------------
+
+From the Flow, you can now easily delete a recipe and reconnect the subsequent recipe, in order to avoid breaking the Flow.
+
+For more information, please see :doc:`/flow/insert-delete`
+
+New feature: Microsoft Fabric OneLake SQL Connection
+-----------------------------------------------------
+
+This new connection allows you to access data stored in Microsoft Fabric OneLake through Microsoft Fabric Warehouses.
+
+
+New feature: repeating mode for datasets
+-----------------------------------------
+
+Some datasets now have the ability to "repeat" themselves based on the rows of a secondary dataset.
+
+This feature allows for example to:
+
+* Create a files-from-folder dataset using only the files whose names come from a secondary dataset
+* Create a SQL dataset based on multiple tables whose names come from a secondary dataset
+
+New feature: repeating mode for SQL query recipe
+-------------------------------------------------
+
+The SQL query recipe can now execute several times, using variables subtitution with variables coming from a secondary dataset, to generate a single concatenated output dataset
+
+New feature: filtering & repeating mode for export recipe
+----------------------------------------------------------
+
+The export recipe can now filter rows, and can now execute several times, using variables subtitution with variables coming from a secondary dataset.
+
+This can be used to generate multiple export files, each containing a part of the data. For example, you can use this to create one file per year, one file per country, ...
+
+New feature: Share projects by email
+------------------------------------
+
+Project administrators can now grant permissions to access a project using an email address. If the email address does not match an existing user, an invitation email is sent and the permission grant is put on hold until their account is created.
+
+This capability can be globally disabled by administrators.
+
+Upgrade notes
+---------------
+
+The following models, if trained using DSS’ built-in code environment, will need to be retrained after upgrading to remain usable for scoring:
+
+* Isolation Forest (AutoML Clustering Anomaly Detection)
+* Spectral clustering
+* KNN
+
+LLM Mesh
+---------
+
+* **New feature**: Support for ElasticSearch and OpenSearch as vector store for Knowledge Banks
+* **New feature**: Support for Azure AI Search as vector store for Knowledge Banks
+* **New feature**: Prompt injection detection with Meta PromptGuard. This feature is available in Private Preview as part of the Advanced LLM Mesh Early Adopter Program.
+* **New feature**: Added support visual fine tuning on AWS Bedrock and Azure OpenAI. This feature is available in Private Preview as part of the Advanced LLM Mesh Early Adopter Program.
+* **New feature**: Added JSON mode, to ask LLMs to output valid JSON. This is supported on OpenAI & Azure OpenAI (gpt-4o, gpt-4o-mini), Mistral AI (7b, small, large), and VertexAI (Gemini)
+* **New feature**: Added an OpenAI-compatible completion API to query any completion model of the LLM Mesh (including non-OpenAI ones) from systems and libraries compatible with custom OpenAI endpoints. It supports tools calling, streaming, image input and JSON output
+* Added ability to select a different column for RAG augmentation than the one that was indexed for retrieval
+* Added simplified code environment creation and update for local LLMs (Huggingface connection), RAG and PII detection
+* Added support for API parameters ``presencePenalty``, ``frequencyPenalty``, ``logitBias``, ``logProbs`` on local Hugging Face models
+* Vertex AI: Added support for Gemini 1.5 Pro & Flash
+* Vertex AI: Added support for custom Vertex-supported models
+* Vertex AI: Added text & multimodal embedding models
+* Visual fine-tuning now selects the best checkpoint when fine-tuning with OpenAI and the latest checkpoint doesn’t improve on the validation loss
+* Visual fine-tuning can now use models from the model cache
+* Fixed support of LangChain shorthand syntax for tool choice when using the LangChain adapter for LLMs
+* Added variable expansion in Prompt studios & Prompt recipes
+
+
+Machine Learning
+-----------------
+
+* **New feature**: Added ability to specify monotonicity constraints on numerical features when using XGBoost, LightGBM, Random Forest, Decision Tree, or Extra Trees models on binary classification and regression tasks. This requires scikit-learn at least at version 1.4, which requires the use of a dedicated code env
+* ``get_predictor`` can now be used for visual AutoML models using an algorithm from a plugin
+* Improved performance for training and scoring of Isolation Forest models
+* Added support for the feature effects charts in the documentation export of a multiclass classification model
+* Added support for XGBoost ≥1.6 <2, statsmodel 14, sklearn 1.3, and pandas 2.2 when using python 3.9+
+* Added support for numpy 1.24 (python 3.8) and 1.26 (python 3.9+)
+* Improved display of prediction error for regression models: in the Predicted Data tab, the error is no longer winsorized (for newly trained models), and the Error distribution report page shows more clearly the winsorized chart
+* Fixed a possible display issue when unselecting a metric on the Decision chart for a model using k-fold cross test
+* Fixed a possible display issue of decimal numbers on the y axis of the prediction density when doing a What-If analysis on a regression model
+* Fixed the engine selection of a scoring recipe from the flow when the previously selected engine is not available anymore
+
+Datasets & Connections
+-----------------------
+
+* **New feature**: ElasticSearch/OpenSearch: Added support for OAuth authentication
+* **New feature**: Excel: Added support for reading encrypted Excel files
+* Sharepoint: Added support for authentication via certificates, or user/password
+* Excel: Added ability to export datasets as encrypted Excel files
+* SCP/SFTP: Added support for SSH keys written in other formats than PEM RSA (notably the OpenSSH format)
+* SQream: Improved support of SQream regarding dates and other aggregation operations
+* S3: Added settings to configure STS endpoints for AssumeRole
+* Fixed issue where an empty user field in connections of type "Other databases (JDBC)" would yield connection failure even though user & password are provided in the JDBC URL or in the advanced properties.
+* Fixed issue where users could create a personal Athena connection using S3 connections whose details are not readable
+
+Recipes
+--------
+
+* Prepare recipe: Updated INSEE data and added possibility to choose the year of the reference data
+* Prepare recipe: Improved AI Prepare generation when asked to parse dates
+* Sync recipe: Fixed possible date shift issue with Snowflake input datasets when DSS host is not on UTC timezone
+* Download recipe: Added repeating mode to download multiple files using variables coming from a secondary dataset
+
+Charts and Dashboards
+----------------------
+
+* **New feature**: Added standard deviation as an aggregation for numeric column in charts
+* Added "display as percentage" number formatting option, i.e. 0.23 → 23%
+* Added "use parentheses" number formatting option for financial reporting, i.e -237 → (237)
+* Added "hide trailing zeros" number formatting option
+* Added support of percentiles aggregation for reference lines
+* Added number formatting options to use "m" instead of "M" as a suffix for Millions and "G" instead of "B" for Billions
+* Added the ability to display values in Lines and Mix charts
+* Fixed issues when dragging and dropping columns on filters (where the "ghost column" would remain visible)
+* Fixed flickering when dragging and dropping columns on filters
+* Fixed chart legend highlights sometimes not working when using number formatting options on axis.
+* Fixed filters in PDF export
+* Fixed tile size sometimes not properly computed when switching between view and edit mode
+* Fixed formatting pane not updating when changing binning mode
+* Fixed “Force inclusion of zero in axis” option in Lines and Mix charts
+* Fixed the ability to display pivot table despite reaching the objects count limit
+* Fixed Scatter multipair not refreshing when removing the X axis from the first pair, when there are more than 2 pairs
+
+Data Quality
+-------------
+
+* New rule: "Column value in set". This rule checks that a particular column only contains specific values and nothing else.
+* New rule: "Compare values of two metrics". This rule checks that two metrics defined on this dataset or on another dataset have the same value, or that one value is greater than the other, etc.
+
+Scenarios
+---------
+
+* Disabling a step does not change its run condition anymore
+
+MLOps & Deployer
+----------------
+
+* Added support for Release Notes in API services
+* Added a deprecation warning for MLflow version below 2.0.0
+* Added support of the Monitoring Wizard for Dataiku Cloud instances
+* Fixed an error when trying to build the API service package of an ensemble model for which one of the source models was deleted and uses a plugin ML algorithm.
+
+
+Labeling
+--------
+
+* **New feature**: the label can now be free text when labeling records (tabular data).
+* Fixed missing options when copying a single Labeling task in the Flow
+
+Coding & API
+--------------
+
+* Databricks-Connect: Added support for Databricks serverless clusters
+
+Git
+---
+
+* Added ability to choose the default branch name (main, master, …)
+* Added ability to resolve conflicts during a remote branch pull
+
+Governance
+------------
+
+* Added search for the page dropdown list
+* Added multi-selection to the project filter on main pages
+* Added LLM filter checkbox on Governed Projects page
+* Fixed synchronization of API deployments on external infrastructure
+* Fixed view mapping refresh issue in custom page designer
+* Fixed permissions to edit blueprint migrations
+
+Dataiku Applications
+---------------------
+
+* Added a notification on application instances when a new version is available
+
+Code Studios
+--------------
+
+* Added ability to configure pip options for code envs in Code Studio Templates
+
+Workspaces
+----------
+
+* Fixed broken Dataiku Application link
+
+Elastic AI
+----------
+
+* EKS: Added ability to add cloud tags to clusters
+* Fixed issue where the test button in Containerized execution configs would not work when using encrypted RPC
+* HOME and USER environment variables are now set properly in containers
+* Fixed pod leak when aborting a containerized notebook whose pod is in pending state
+
+Cloud stacks
+-------------
+
+* Azure: Switched from Basic SKU Public IPs to Standard SKU Public IPs
+* Azure: Added option to choose the Availability Zone when instantiating a DSS node, or creating a template
+* Azure: Added ability to choose in which Resource Group to store snapshots for a given instance
+* Python API: Added methods to start & stop instances from Fleet Manager
+
+Misc
+----
+
+* Added ability to connect third party accounts (such as OAuth connections to databases) directly from the dataset page
+* Added ability to see the members of a group in Administration > Security > Groups
+* Added ability to control job processes (JEK) resources consumption using cgroups
+* Plugins: Added ability for plugin recipes to write into an output dataset in append mode
+* Cloudera CDP: Added support for Impala Cloudera driver 4.2
+* Fixed error occurring when copying subflow containing a dataset on a deleted connection
+* Fixed issue that prevents deleting or modifying a user when the configuration file of a project contains invalid JSON
+* Fixed issue where Compute Resource Usages (CRU) when reading SQL data on a connection could be wrongly reported as being done on another connection
+
+Performance
+-----------
+* Worked around Chrome 129 bug that can cause failure opening DSS ("Aw, Snap!")
+
+Version 13.1.4 - September 19th, 2024
+======================================
+
+DSS 13.1.4 is a bugfix release
+
+LLM Mesh
+--------
+* Fixed broken display of Azure OpenAI connection page when it has a multimodal chat completion deployment
+* Fixed excessive logging when embedding images
+
+Snowflake
+---------
+* Fixed Snowpark when the Snowflake connection uses private key authentication
+
+Charts
+-------
+* Fixed broken display of scatter plot with some Content Security Policy headers
+
+
+
+Version 13.1.3 - September 16th, 2024
+======================================
+
+DSS 13.1.3 is a feature, security and bugfix release
+
+LLM Mesh & Generative AI
+--------------------------
+
+* **New feature**: Added ability to use image inputs in the Prompt Studio & Prompt Recipe
+* Bedrock: Added Mistral Large 2 to the Bedrock connection, including tools call
+* Bedrock: Added Llama 3.1 8B/70B/405B models to the Bedrock connection
+* Anthropic: Added Claude 3.5 Sonnet to the Anthropic connection
+* Databricks: Added Llama 3.1 70B/405B models to the Databricks Mosaic AI connection
+* Bedrock: Added support for image embedding with Amazon Titan Multimodal Embeddings G1
+* Added support of gpt-4o-mini in the Fine-tuning recipe
+* Sped up inference of some LLMs that use LoRA
+* Added count of input & output tokens for local model inference
+* Added support for finish reason in streamed calls, for compatible models/connections
+* Added support for presence penalty and frequency penalty in Prompt Studio & Prompt Recipe
+* Added support for cost reporting on streamed calls (except on Azure OpenAI, which doesn't support it)
+* Reduced the number of training evaluations when fine-tuning a local model
+* Bedrock: Fixed a UI issue enabling/disabling the Llama3 70B model on a Bedrock connection
+* Fixed possible issues with enforcement on cached responses when calling the LLM Mesh API
+* Fixed possible issue displaying the embedding model on a Knowledge Bank's settings
+
+
+Machine Learning
+-----------------
+
+* Added configurable "min samples leaf" parameters to he Gradient Tree Boosting algorithm
+* Time Series Forecasting: Improved API to change the forecast horizon on a time series forecasting task
+* Time Series Forecasting: Fixed possible failure of a time series forecasting training when using together "Equal duration folds" and "Skip too short time series" options with multiple time series
+* Time Series Forecasting: Fixed possible failure when using pandas 2.2+ with some algorithm/time steps combinations
+* Causal learning: Fixed possible training failure of causal model when using inverse propensity weighting with a calibrated propensity model
+* Fixed possible failure of a scoring recipe using the Spark engine in a pipeline with a model trained by a different user
+* Fixed display of a categorical feature in the Feature effects chart, when it only have numerical values
+* Fixed possibly broken display of trees on partitioned model details
+* Fixed possible issue with the ROC curve or PR curve plot when exporting a multiclass model's documentation
+* Fixed possible scoring issue on some calibrated-probability classification models
+* Fixed failure to compute partial dependence plots on models with sample weights when the sample size is less than the test set size
+* Fixed failure to export model documentation when using time ordering and explicit extract from two datasets
+
+Statistics
+-----------
+
+* Fixed failure on the PCA recipe when the input dataset has fewer rows than columns
+
+
+MLOps
+------
+
+* Fixed Standalone Evaluation Recipe failing on classification task when using prediction weights
+* Fixed copy of Standalone Evaluation Recipes
+
+
+Charts & Dashboards
+----------------------
+
+* Added a "Last 180 days" preset to relative date filters
+* Fixed failure when loading static insights with names containing underscore ( _ )
+* Fixed dashboard tile resizing when showing/hiding page titles in view mode
+* Fixed percentile calculation when there are multiple dimensions in a chart
+* Changed the filters mode to be "Include other values" by default
+* Fixed some chart options sometimes being reset on chart reload
+* Fixed date filter selection in charts being lost after engine or sampling change
+* Fixed dashboard wrongly seen as modified when clicking on saved model or model evaluation report tiles
+* Fixed the loading of fonts in gauge charts within dashboards
+* Fixed gauge chart Max/Min with very small values
+* Fixed gauge and scatter charts not loading when there is a relative date filter in combination with either a gauge target or a reference line aggregation
+
+
+Governance
+-----------
+
+* Added automated generation of step ID from the step name in the configuration of workflows
+* Added support for proxy settings for OIDC authentication
+* Added examples of Python logger usage and field migration to migration scripts
+* Added ability to collapse view containers
+* In the Blueprint Designer, added ability to search for fields by label or by ID when creating view components
+* Fixed upgrade when there are API keys without labels
+* Fixed deletion of reference from tables, to avoid selecting the deleted item in the right panel
+
+Webapps
+--------
+
+* Added ability to have API access for Code Studio webapps (Streamlit, ...)
+
+Dataset and Connections
+------------------------
+
+* Fixed issue when building datasets using Database-to-Cloud fast paths with non-trivial partitions dependencies
+* Automatically refresh STS tokens when reading or writing S3 datasets using Spark
+
+Scenarios and automation
+-------------------------
+
+* Fixed scenario variable ``firstFailedJobName`` incorrect initialization when a build step fails
+* Added option to prevent DSS from escaping HTML tags in dataset cells when a dataset is rendered as an HTML variable (Starting with DSS 13.1.0, HTML tags are escaped by default)
+* Fixed issue where DSS reads more than the maximum number of rows indicated in SQL scenario steps when the provided SQL query starts with a comment
+
+Deployer
+---------
+
+* Unified Monitoring: Fixed support for API endpoints deployed from automation nodes
+* Fixed code environment resources folder when deploying API services on Kubernetes infrastructures
+
+Coding
+-------
+
+* Added button in Jupyter notebook right panel to delete output (useful to clean notebooks containing large outputs without actually loading them)
+* Fixed ability to import the ``dataiku`` package without ``pandas``
+* Added ``int_as_float`` parameter to ``get_dataframe`` and ``iter_dataframes``
+* Added ``pandas_read_kwargs`` parameter to ``iter_dataframes``
+
+Git
+----
+
+* Fixed issue where creating a remote branch does not create a local branch
+* Fixed issue where pulling from a remote would fail if Git has been configured without an author
+
+Security
+---------
+
+* Fixed issue where DSS version is returned in HTTP response to non-logged users even when flag hideVersionStringsWhenNotLogged is set
+* Fixed credentials appearing in the logs when using Cloud-to-database fast paths between S3 and Redshift
+
+Cloud stacks
+-------------
+
+* Fixed replaying long setup actions displaying an error in the UI, even though it actually completes successfully
+
+Performance & Scalability
+---------------------------
+
+* Improved performance for ``get_auth_info`` API call
+
+Misc
+-----
+
+* Added support for storing encryption key in Google Cloud Secrets Manager
+* Fixed HTML escaping issues in project timeline with names containing ampersand (&) characters
+
+Version 13.1.2 - August 29th, 2024
+====================================
+
+DSS 13.1.2 is a bugfix release
+
+Coding
+------
+
+* Fixed authentication failure when connecting using python client running inside DSS and connecting to another DSS running 13.0 and below.
+
+Spark
+-----
+
+* Fixed a failure on Spark jobs that need to retrieve credentials
+
+
+Version 13.1.1 - August 26th, 2024
+====================================
+
+DSS 13.1.1 is a security and bugfix release
+
+Recipes
+--------
+
+* Prepare recipe: Fixed failure when executing a "Compute difference between dates" step using SQL engine
+
+Coding and API
+---------------
+
+* Fixed ``as_langchain_*`` methods in a non-containerized kernel on Knowledge Banks built by another user
+
+Security
+--------
+
+* Fixed authentication used by the Python client to connect to DSS, using Basic authentication instead of Bearer for backward compatibility with DSS versions 13.0 and below.
+* Fixed failure when enabling hashed API keys on upgraded Govern nodes
+* Fixed possible :doc:`directory traversal during provisioning of a DSS node by Fleet Manager </security/advisories/dsa-2024-006>`.
+
+
+Version 13.1.0 - August 14th, 2024
+====================================
+
+DSS 13.1.0 is a significant new release with both new features, performance enhancements and bugfixes.
+
+
+New feature: Managed LLM fine-tuning
+-------------------------------------
+
+.. note::
+
+    This feature is available in Private Preview as part of the Advanced LLM Mesh Early Adopter Program
+
+LLM Fine-tuning allows you to fine-tune LLMs using your data.
+
+Fine-tuning is available:
+
+* Using a visual recipe for local models (HuggingFace) and OpenAI models
+* Using Python recipes for local models (HuggingFace)
+
+For more information, please see :doc:`/generative-ai/fine-tuning`
+
+
+New feature: Gauge chart
+-------------------------
+
+The Gauge chart, also known as speedometer, is used to display data along a circular axis to demonstrate performance or progress. This axis can be colored to offer better segmentation and clarity.
+
+.. image:: /visualization/img/gauge.png
+
+New feature: Chart median and percentile aggregations
+------------------------------------------------------
+
+Charts (and pivot tables) can now display median, as well as arbitrary percentiles of numerical values
+
+New feature: enhanced Python dataset read API
+-----------------------------------------------
+
+
+The Python API to read datasets has been enhanced with numerous new capabilities and performance improvements.
+
+The new fast-path reading ``Dataset.get_fast_path_dataframe`` method performs direct read from data sources. This provides massive performance improvements, especially when reading only a few columns out of a wide dataset. Fast-path reading is available for:
+
+* Parquet files stored in S3
+* Snowflake tables/views
+
+For regular reading, the following have been added:
+
+* Ability to disable some thorough data checking, yielding performance improvements up to 50%
+* Ability to read some columns as categoricals to reduce memory usage (depending on the data, can be up to 10-100 times lower)
+* Ability to use pandas "nullable integers", allowing to read integer columns with missing values as integers (rather than floating-point values)
+* Ability to precisely match integer types to reduce memory usage (up to 8x for columns containing only tinyints)
+* Added ability to completely override dtypes when reading
+
+For samples and documentation, please see the :doc:`Developer Guide <devguide:concepts-and-examples/datasets/datasets-data>`
+
+New feature: Builtin Git merging
+----------------------------------
+
+In addition to the existing ability to push projects and branches to remote Git repositories and perform merges there, you can now perform Git merges directly within Dataiku, including the ability to view and resolve merge conflicts
+
+Behavior change: handling of schema mismatch on SQL datasets
+-------------------------------------------------------------
+
+DSS will now by default refuse to drop SQL tables for managed datasets when the parent recipe is in append mode. In case of schema mismatch, the recipe now fails. This behavior can be reverted in the advanced settings of the output dataset
+
+
+LLM Mesh
+---------
+
+
+* **New feature**: Added local models for toxicity detection (This feature is available in Private Preview as part of the Advanced LLM Mesh Early Adopter Program)
+* **New feature**: Added support for Tools calling (sometimes called “function calling”) in LLM API and Langchain wrapper. This is available for OpenAI, Azure OpenAI, Bedrock (for Claude 3 & 3.5), Anthropic, and Mistral AI connections
+* **New feature**: Added support for Gemma, Phi 3, Llama 3.1 8B & 70B, and Mistral NeMo 12B models on local Huggingface connection
+* Pinecone: Added support for Pinecone serverless indices
+* In API, added support for ``presencePenalty`` and ``frequencyPenalty`` for OpenAI, Azure OpenAI and Vertex
+* In API, added support for ``logProbs`` and ``topLogProbs`` for OpenAI, Azure OpenAI and Vertex (PaLM only)
+* In API, added support for ``logitBias`` for OpenAI and Azure OpenAI
+* In API, added ``finishReason`` to LLM responses, for LLMs/providers that support it
+* Added Langchain wrappers for embedding models in the public Python API (was already available in the internal Python API). Using the API client, you can now use the LLM Mesh APIs on embedding models with Langchain from outside Dataiku.
+* Added support for Embedding models in Snowflake Cortex connection
+* Improved API support for stop sequences on local models run with vLLM
+* Fixed issue in complete prompt display for RAG LLMs in Prompt Studio
+
+
+Machine Learning
+-----------------
+
+* Isolation Forest: Made training up to ~4 times faster (using parallelism and sparse inputs)
+* Isolation Forest: Added support for “auto” contamination
+* Model Documentation Export: Added support for "Feature effects" chart from feature importance
+* Added ability to not specify an image input features in What-if
+* Improved performance for training of partitioned models with large number of partitions
+* Improved cleanup of temporary data when retraining partitioned models (reduce disk consumption)
+* Improved pre-training validation of ML Overrides and Assertions
+* Fixed computation of optimal threshold on binary classification models using k-fold cross-test
+* Fixed inability to upload 2 different images as input features in What-if
+* Fixed possible broken forecasting models when a model forecasts NaN values
+* Fixed a possible issue when deleting a partitioned model’s version while it was being retrained
+* Fixed some notebook model exports when using scikit-learn 1.2
+
+
+MLOps
+-----
+
+* Added the possibility to do a full update in “Update API deployment” scenario step
+* Added the possibility to include or not editable datasets when creating bundles
+* Improved MLflow import code-environment errors reporting
+* Fixed the sorting on metrics in Model Evaluation Stores
+* Fixed the Monitoring Wizard to take into account deployment level auto logging settings
+
+Charts and Dashboards
+---------------------
+
+* Dashboards: Added background opacity settings for chart, text and metrics tiles
+* Dashboards: Added border and title styling options to tiles
+* Dashboards: Added title styling options to dashboard pages
+* Dashboards: Added the ability to hide dashboard pages
+* Dashboards: Improved loading performance
+* Dashboards: Fixed dashboard’s save button wrongly becoming active when selecting a tile
+* Filters: Added support for alphanum filter facets on numerical columns in SQL, and the possibility to include/exclude null values
+* Scatter plots: Improved axis format for dates by displaying time when range is less than a single day
+* Scatter plots: Increased max scale limit when zooming with rectangle selection
+* Pivot tables: Persist column sizes, as well as folded state of rows or columns
+* Line charts: Fixed the “show X axis” option in line charts with a date axis
+* Added support for numeric custom aggregations used in the chart in reference lines displayed aggregations
+* Added an “auto” mode for the “one tick per bin” option, automatically switching to the most appropriate mode depending on the number of bins
+* Fixed locked tick options (interval/number) after switching between charts
+* Fixed the “Add insight (Add to dashboard)” action for chart insights
+* Fixed Y axis title options disappearing in vertical bar charts when there are 2 or more measures
+* Fixed broken X axis when switching to a dimension that doesn’t support log scale from a dimension where it was supported and activated
+* Fixed empty dashboard wrongly considered as modified
+* Fixed dashboard’s insights associated to deleted datasets loading forever
+
+Governance
+------------
+
+* **New feature**: New Global Timeline: "Instance Timeline" page tracking all the item's events
+* **New feature**: Custom filters are now available on all pages and various improvements were brought:
+
+   * Added ability to filter on application template and application instance flags
+   * Added support for search on reference fields
+   * Added ability to filter on node type and node ID
+   * Added ability filter on DSS tags
+   * Added ability to filter Model versions and Bundles on deployment stages
+   * Added text search filter for all types of fields
+
+* Added execution of hooks on govern action
+* Added ability to copy/paste view components in the Blueprint Designer
+* Added an option in the Blueprint Designer to allow only selection, only creation, or both, on reference fields
+* Added visual indicators of settings validation in the Blueprint Designer
+* Added validation of blueprint versions forked from the standard to detect issues that could break standard govern features
+* Added the synchronization of DSS project’s “short description” field and the ability to search on it
+* Fixed history of deleted signoff
+* Fixed sticky error panel on next user action
+* Fixed artifact create permission to not imply read permission anymore
+
+Datasets and Connections
+-------------------------
+
+* Fixed jobs writing multiple partitions on an SQL dataset failing when executed in containerized mode
+* Fixed an issue when navigating away from an ElasticSearch dataset before the sample is displayed
+
+Data Quality
+-------------
+
+* Added ability to publish Data Quality status of a dataset or a project to a dashboard
+* Added multi-column support to column validity, aggregation in range/set & unique rules
+* Added ability to create, view and edit Data Quality templates
+* Fixed Metrics computed with spark on HDFS partitioned datasets producing incorrect results
+
+Flow
+-----
+
+* Added ability to rename a recipe directly from the Flow
+* Added ability to export the Flow documentation (without screenshots) when the graphics-export feature is not installed.
+* Added support for Spanish and Portuguese languages to AI Explain
+
+Recipes
+--------
+
+* **New feature**: Prepare: ``val`` / ``strval`` / ``numval`` formula functions now support an additional argument to specify an offset. This allows retrieving values from previous rows to compute for example sliding averages or cumulative sums. This feature is only available on the DSS engine.
+* **New feature**: Prepare: The new "Split into chunks" step can split a text into multiple chunks, with one new row for each chunk.
+* Prepare: Added a warning on recipes containing both Filter and Empty values steps, which might lead to unexpected output
+* Prepare: Fixed date difference step returning incorrect results on the Hive engine
+
+Scenario and automation
+------------------------
+
+* **New feature**: Ability to send datasets with conditional formating, directly inline in email body
+* Added a "Build flow outputs" option in scenarios
+* Added ability to build a flow zone in scenarios
+
+Deployer
+--------
+
+* **New feature**: added support for Snowflake Snowpark external endpoints in Unified Monitoring
+* Added governance status in Unified Monitoring
+* Added the possibility to define a specific connection for the monitoring of a managed infrastructure
+* Added the possibility to define an “API monitoring user” to support “per-user” connections in Unified Monitoring
+* Added support for labels and annotations in API deployer K8S infrastructure, optionally overridable in related deployments
+* Fixed the status of endpoints of external scopes in Unified Monitoring when there is an authentication issue
+* Fixed external scopes being monitored even when disabled
+
+Coding
+--------
+
+* Added methods to interact with SQL notebooks (``DSSProject.list_sql_notebooks``, ``DSSProject.get_sql_notebook``, …)
+
+
+Code Studios
+-------------
+
+* Streamlit: Fixed forwarding of query parameters
+
+Notebooks
+----------
+
+* Fixed HTML export of Jupyter notebooks with Python 3.7
+
+Security
+---------
+
+* Added ability to authenticate on the API using a Bearer token (in addition to Basic authentication)
+* Added the ability to store API keys in irreversible hashed form
+* Fixed refresh tokens being requested too often
+
+Cloud Stacks
+-------------
+
+* Fixed HTTP proxy setup action not properly encoding passwords containing special characters
+* HTTP proxy setup action now sets the following environment variables: http_proxy, https_proxy and no_proxy, in addition to their uppercase equivalents
+* AWS: Switched to IMDSv2 to access instance metadata
+* Added ability to change the internal ports for DSS (not recommended, for very specific cases only)
+
+Misc
+-----
+
+* Reduced the number of notifications enabled by default for new users
+* Fixed AI services when using authenticated proxies
+* Fixed trial seats when using authenticated proxies
+
+
+Version 13.0.3 - August 1st, 2024
+=================================
+
+DSS 13.0.3 is a bugfix release
+
+
+Dataiku Applications
+--------------------
+
+* Fixed the "Download file" tile
+
+Charts
+------
+
+* Fixed rectangle zoom when log scale option is enabled
+
+Spark and Kubernetes
+---------------------
+
+* Fixed Spark engine on Azure datasets when DSS is installed with Java 17
+
+
+Version 13.0.2 - July 25th, 2024
+=================================
+
+DSS 13.0.2 is a feature and bugfix release
+
+LLM Mesh
+--------
+
+* **New feature**: AWS Bedrock: Added support for Claude 3.5 Sonnet
+* **New feature**: AWS Bedrock: Added support for Mistral models (Small, 7B, 8x7B, Large)
+* **New feature**: AWS Bedrock: Added support for Llama3 models (8B, 70B)
+* **New feature**: AWS Bedrock: Added support for Cohere Command R & R+
+* **New feature**: AWS Bedrock: Added support for Titan Embedding V2 and Titan Text Premier
+* **New feature**: AWS Bedrock: Added support for image input on Claude 3 and Claude 3.5
+* **New feature**: OpenAI: Added support for GPT-4o mini
+* **New feature**: Added support for generic chat and embedding models on AzureML
+* Added ability to Test custom LLM connections
+* Added ability to clear Knowledge Banks
+* Improved performance of builtin RAG LLMs
+* Improved performance of PII detection
+* HuggingFace: Improved performance of HuggingFace models download
+* HuggingFace: Increase default number of output tokens when using vLLM
+* Gemini: Fixed spaces wrongfully inserted in some LLM responses when using Gemini
+* Snowflake: Fixed Snowflake LLM models listed even when not enabled in the Snowflake Cortex connection
+* Limited ChromaDB version to prevent issues with ChromaDB 0.5.4
+
+
+Dataset and Connections
+------------------------
+
+* **New feature**: Added support for YXDB file format
+* Fixed error message not displayed when previewing an indexed table on which users have no permission
+* Fixed scientific numbers written using the French format (example: "1,23e12") not properly detected as "Decimal (Comma)" meaning
+* Disabled unimplemented normalization mode for regular expression matching custom column filter
+* Added statistics about length of alphanumerical columns in the Analyze dialog
+* Sharepoint built-in connection: Fixed UnsupportedOperationException returned for some lists
+* BigQuery: Added ability to configure connection timeouts
+* BigQuery: Added ability to include BigQuery datasets when importing/exporting projects or bundles.
+* BigQuery: Fixed error happening when parsing dates with timezone written using the short format (ex: "+0200")
+* Athena: Fixed wrongful escaping of underscores in table names
+
+Flow
+-----
+
+* When building downstream, correctly skip Flow datasets or models that are marked as "Explicit build" or "Write protected"
+
+Recipes
+--------
+
+* Prepare: Improved wording of summary of empty values step when configured with multiple columns
+* Prepare: Fixed casting issue in Synapse/SQLServer when using a Filter by Value step on a Date column with SQL engine
+* Window: Disabled concat aggregation on Redshift as it is not supported by this database
+
+
+Charts and Dashboards
+----------------------
+
+* Fixed Scatter Multi-Pair chart with DSS engine for some combinations of sample size and “Number of points” setting
+* Fixed incorrectly enabled save button in unmodified chart insight
+* Fixed dataset insight creation from the insight page
+* Fixed filtering in dashboard insights from workspace
+* Fixed reference lines sometimes getting doubled on scatter charts
+
+Machine Learning
+-----------------
+
+* Multimodal models: Improved image embedding performance
+* Fixed serialization of very big models (>4GB)
+* Fixed possible UI slowness when a partitioned model has many partitions in its versions
+* Fixed possible UI issues when creating a clustering model with a hashed text feature
+* Fixed incorrect median prediction value for classification models with sample weights
+
+Coding and API
+---------------
+
+* Added ability to retrieve the trial status of users with the Python API
+* Fixed `DSSDataset.iter_rows()` not correctly returning an error in case of underlying failure
+* Fixed `\x0b` and `\x0c` characters in data producing incorrect results when reading datasets using Python API
+* Fixed `DeprecationWarning: invalid escape sequence` warnings reported by Python 3.7/3.8/3.9 when importing dataiku package
+
+Code studios
+-------------
+
+* Fixed Gradio block as webapp wrongly reported as timed-out after initial start
+* Fixed IDE block failing if python 3.7 is not available in the base image
+* Fixed Streamlit block failing with manual base image with AlmaLinux 8.10 when R is not installed
+
+
+MLOps
+-----
+
+* Fixed interactive drift score computation
+* Fixed endpoint listing on Azure ML external models when in “environment” authentication mode
+* Fixed text drift section when using interactive drift computation buttons
+* Lowered the log level for too verbose External Models on AzureML
+* Fixed support for "Trust all certificates" when querying the MLflow artifact repository
+* Fixed code environment remapping for Model Evaluations
+
+Webapps
+--------
+
+* Unified direct-access URL of webapps to `/webapps/`
+
+Deployer & Automation
+----------------------
+
+* Fixed inability to edit additional code env settings in automation node
+* Fixed failure installing plugins with code env without a requirements.txt file on automation node
+* In Unified Monitoring, added support for new monitoring metrics available on Databricks external scope
+* Fixed API service error when switching from "multiple generation" with hash-based strategy to "single generation"
+* Added output of the logs to apimain.log file for containerized deployments even when using the “redirect logs to stdout” setting
+* Fixed error notification after a successful retry of an API service deployment
+* Fixed API deployer infrastructure creation when there are missing parameters
+* Fixed support for “Trust all certificates” settings in deployer hooks
+
+Governance
+----------
+
+* Added the ability for an admin to invalidate the configuration cache
+* Prevent creation of items from backreference with blueprints that are not compliant with the backreference
+* Removed the “Open creation page” button for the creation of items from backreferences
+* Prevent the creation of Business Initiatives or Governed projects from inactive blueprint versions
+* Improved performances of table pages, especially when there is a matrix or kanban view
+* Fixed the typing of external deployments
+* Fixed disappearance of artifact table header when toggling edit mode
+
+Performance & Scalability
+--------------------------
+
+* Fixed possible hang when changing connections on a non-responsive data source
+* Fixed possible failures starting Jupyter notebooks when the Kubernetes cluster has no resources available
+
+Security
+----------
+
+* Fixed DSS printing in the logs the whole authorization header (which might contains sensitive data) in case of unsupported authorization method
+* Fixed printing of the "token" field when using Snowpark with OAuth authentication
+
+Miscellaneous
+--------------
+
+* Fixed deletion of API keys in the API Designer that could delete the wrong key
+* Added support for CDP 7.1.9 with Java 17
+
+
+Version 13.0.1 - July 16th, 2024
+===================================
+
+DSS 13.0.1 is a bugfix and security update. `(12.6.5)` denotes fixes that were also released in 12.6.5, which was published after 13.0.0
+
+LLM Mesh
+---------
+
+* Improved parallelism and performance of locally-running HuggingFace models
+
+Recipes
+--------
+
+* Join: Fixed loss of pre and post filter when replacing dataset in join (12.6.5)
+* Join: Fixed issue when doing a self-join with computed columns (12.6.5)
+* Prepare: Fixed help for "Flag rows with formula" (12.6.5)
+* Prepare: Fixed failing saving recipe when it contains certain types of invalid processors (12.6.5)
+* Stack: Fixed addition of datasets in manual remapping mode that caused issues with columns selection (12.6.5)
+
+Charts & Dashboards
+---------------------
+
+* Re-added ability to view page titles in dashboards view mode (12.6.5)
+* Fixed filtering in dashboard on charts with zoom capability (12.6.5)
+* Fixed possible migration issue with date filters (12.6.5)
+* Fixed migration issue with alphanum filters filtering on "No value" (12.6.5)
+* Fixed filtering on "No value" with SQL engine (12.6.5)
+* Restore larger font size for metric tiles (12.6.5)
+* Fixed display of Jupyter notebooks in dashboards (12.6.5)
+* Added safety limit on number of different values returned for numerical filters treated as alphanumerical (12.6.5)
+* Fixed migration of MIN/MAX aggregation on alphanumerical measures
+
+Scenarios and automation
+------------------------
+
+* Added support for Microsoft teams Workflows webhooks (Power Automate) (12.6.5)
+
+Code Studios
+-------------
+
+* Fixed Code Studios with encrypted RPC
+
+Cloud Stacks
+------------
+
+* Fixed Ansible module `dss_group`
+
+Elastic AI
+-----------
+
+* Re-add missing Git binary on container images
+
+Performance
+------------
+
+* Fixed performance issue with most activities in projects containing a very large number of managed folders (thousands) (12.6.5)
+* Improved short bursts of backend CPU consumption when dealing with large jobs database (12.6.5)
+* Fixed possible unbounded CPU consumption when renaming a dataset and a code recipe contains extremely long lines (megabytes) (12.6.5)
+* Visual ML: Clustering: Fixed very slow computation of silhouette when there are too many clusters (12.6.5)
+
+Security
+--------
+
+* Fixed :doc:`Insufficient permission checks in code envs API </security/advisories/dsa-2024-005>` (12.6.5)
+
+Misc
+-----
+
+* Fixed `Dataset.get_location_info` API
+* Fixed sometimes-irrelevant data quality warning when renaming a dataset (12.6.5)
+* Fixed EKS plugin with Python 2.7 (12.6.5)
+* Fixed wrongful typing of data when exporting SQL notebook results to Excel file (12.6.5)
+
+Version 13.0.0 - June 25th, 2024
+=====================================
+
+DSS 13.0.0 is a major upgrade to DSS with major new features.
+
+
+Major new feature: Multimodal embeddings
+-----------------------------------------
+
+In Visual ML, features can now leverage the LLM Mesh to use embeddings of images and text features
+
+Major new feature: Deploy models to Snowflake Snowpark Container Services
+---------------------------------------------------------------------------
+
+In the API deployer, you can now deploy API services to Snowpark Container Services
+
+Major new feature: Databricks Serving in Unified Monitoring
+------------------------------------------------------------
+
+Databricks Serving endpoints can now be monitored from Dataiku Unified Monitoring
+
+
+LLM Mesh
+----------
+
+* **New feature**: Added support for token streaming on local models (when using vLLM inference engine)
+* Added Langchain wrappers in the public Python API (was already available in the internal Python API). Using the API client, you can now use the LLM Mesh APIs from Langchain from outside Dataiku.
+* Added ability to share a Knowledge Bank to another project
+* Added ability to use a custom endpoint URL for OpenAI connections
+* Added ability to deep-link to a prompt inside a prompt studio
+* Added support for embedding models in SageMaker connections
+* Improved error reporting when a call to a RAG-augmented model fails
+* Faster local inference for Llama3 on Huggingface connections
+* Misc improvements to the prompt studio UI
+* Show a job warning when there were errors on some rows of a prompt recipe
+* Fixed erroneous accumulation of metadata when rebuilding a Qdrant Knowledge Bank
+* Fixed Flow propagation when it passes through a Knowledge Bank
+* Fixed RAG failure when using Llama2 on SageMaker
+* Fixed raw prompt display on custom LLM connections
+
+
+Machine Learning
+-----------------
+
+* **New feature**: Added the HDBSCAN clustering algorithm.
+* Improved Feature effects chart (in feature importance) by coloring the top 6 modalities of categorical features.
+* Sped up computation of individual prediction explanations and feature importance.
+* Sped up retrieval of the active version of a Saved Model with many versions.
+* Fixed possible hang when creating an automation bundle including a Saved Model with many versions.
+* Fixed unclear error message in scoring recipe when the input dataset is too small to use as background rows for prediction explanation.
+* Fixed incorrect number of cluster for some AutoML clustering models.
+* Fixed incorrect filtering of time series when a multi-series forecasting model is published to a dashboard.
+* Fixed a rare breakage in feature importances on some models.
+
+Charts & Dashboards
+--------------------
+
+* **New feature**: Added MAX and MIN aggregations for dates (as measures in KPI and pivot table charts, in tooltips and in custom aggregations)
+* **New feature**: Added the option to connect the points on scatter plot and multi-pair scatter plot
+* Added grid lines in Excel export
+* Added grid lines for cartesian charts
+* Added ability to configure max number of points in scatter plots
+* Added ability to customize the display of empty values in pivot tables
+* Added ability to set insight name for charts
+* Improved loading performance of charts with date dimensions
+* Fixed update of points size in scatter plots
+* Fixed rendering of charts when collapsing / expanding the help center
+* Fixed dimensions labels on treemaps
+* Fixed cache for COUNT aggregation
+* Fixed "link neighbors" option in line charts with SQL engine
+* Fixed "show y=x" option on scatter plot
+* Fixed dashboard’s filters when added directly after a dataset
+* Fixed “all values” filter option with SQL engine
+* Fixed dashboard filters when using mixed cased columns names on a database which is case insensitive on columns names
+* Fixed excluding cross-filters for numerical dimensions using “Treat as alphanumerical”
+* Fixed link to insight from dashboards included into workspaces
+* Improved Scatter plot performance
+* Fixed filtering on "No value" in alphanunerical filters with in-database engine
+* Fixed dashboard's filters migration script
+* Fixed intermittent issue on Chrome browser which prevents rendering of Jupyter notebook in dashboards
+* Fixed error when disabling force inclusion of zero option in time series chart
+
+Datasets
+--------
+
+* **New feature**: Sharepoint Online connector. DSS can now connect to Microsoft Sharepoint Online (lists and files) without requiring an additional plugin
+* Updated MongoDB support to handle versions from 3.6 up to 7.0, including Atlas and CosmosDB
+* Added read support for CSV and Parquet files compressed with Zstandard (zstd)
+* Added experimental support for Yellowbrick in JDBC connection
+
+Data Quality
+-------------
+
+* **New feature**: Added ability to create templates of Data Quality rules to reuse them across multiple datasets
+
+MLOps
+--------
+
+* **New feature**: Added text input data drift analysis (standalone evaluation recipe only), relying on LLM Mesh embeddings
+* **New feature**: Added model export to Databricks Registry
+* Added the ability to create dashboard insights from the latest Model Evaluation in a Model Evaluation Store
+* Added the possibility to use plugins code environments in MLflow imported models
+* Added support for global proxy settings in Databricks managed model deployment connections
+* Added support for MLflow 2.13
+* Fixed incorrect ‘python_version’ field in MLflow exported models
+* Fixed listing of versions on Databricks registries when the model has a quote in its name
+* Fixed incorrect warnings in Evaluation recipe’s dataset diagnosis
+
+Flow
+-----
+
+* Added ability to build Flows even if they contains loops
+
+Recipes
+-------
+
+* Stack: Fixed wrong schema when stacking two datasets both containing a column of type string but with different maximum length
+
+Deployer
+---------
+
+* API Deployer: Added a ‘run_test_queries’ endpoint in the public API to execute the test queries associated with a deployment.
+* Projects Deployer: Added the ability to define “additional content” also in the default configuration of bundles (not just directly on existing bundles)
+* Unified Monitoring: Added support for Unified Monitoring on automation nodes
+* Unified Monitoring: Added Data Quality status in Unified Monitoring
+* Unified Monitoring: Endpoint latency now displays 95th percentile
+* Unified Monitoring: display projects names rather than keys
+* Unified Monitoring: Fixed possible issue when opening project details
+* API designer: Fixed API designer test queries hanging in case of test server bootstrap failure
+* Added the ability to define environment variables for Kubernetes deployments
+* Added an “External URL” option for Project & API deployer infrastructures.
+* API Node: Added new commands to `apinode-admin` to clean disabled services (`services-clean`) and unused code environment (`__clean-code-env-cache`).
+
+Governance
+-----------
+
+* **New feature**: Added ability to set filters on workflow and sign-off statuses
+* **New feature**: Added ability to use “negate” conditions in filters
+* **New feature**: Added visibility conditions based on a field for views
+* **New feature**: Added ability to add additional role assignment rules at the artifact level
+* Removed the workflow step prefix to use only the step name defined in the blueprint version
+* Improved the display of the Dataiku instance information
+* Added project’s cost rating to the overview
+* Fixed multi-selector search filters
+* Fixed possible deadlock in hooks
+* Fixed artifact creation to be possible with just creation permission
+* Fixed file upload being cancelled on browser tab change
+* Fixed password reset for Cloud Stacks deployments
+
+Statistics
+-----------
+
+* Time series: when using Quarter or Year granularity, added ability to select on which month to align
+
+Coding
+------
+
+* Added support for Pandas 2.0, 2.1 and 2.2
+* Added support for conda for Python 3.11 code environments
+* Fixed write_dataframe failing in continuous Python for pandas >= 1.1
+* Upgraded Jupyter notebooks to version 6
+
+Code studios
+-------------
+
+* Improved performance when syncing a large number of files at once
+* Added support for ggplot2 in RStudio running inside Code Studios
+
+
+Elastic AI
+----------
+
+* EKS: Added support for defining nodegroup-level taints
+
+Cloud Stacks
+-------------
+
+* Azure: Fixed deploying a new instance from a snapshot if the disk size was different from 50GB
+* Added more information (Ansible Facts) for use in Ansible setup actions
+
+Dataiku Custom
+----------------
+
+Note: this only concerns Dataiku Custom customers
+
+* Added support for the following OS
+
+  * RedHat Enterprise Linux 9
+  * AlmaLinux 9
+  * Rocky Linux 9
+  * Oracle Linux 9
+  * Amazon Linux 2, 2023
+  * Ubuntu 22.04 LTS
+  * Debian 11
+  * SUSE Linux Enterprise Server 15 SP5
+
+
+Security
+---------
+
+* Disabled HTTP TRACE verb
+* Fixed LDAP synchronization correctly denying access to DSS to a user that is no longer in the required LDAP groups but failing to synchronize the DSS groups for this user.
+
+
+Misc
+-----
+
+* Switched default base OS for container images to AlmaLinux 8
+* Fixed a rare failure to restart DSS after a hard restart/crash occurring during a configuration transaction
+* Plugin usage now takes shared datasets into account
+* Added audit message for users dismissing the Alert banner
+* Fixed relative redirect for standard webapps
+* Fixed failure with non-ascii characters in plugin configuration and local UIF execution

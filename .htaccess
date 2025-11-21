@@ -1,0 +1,359 @@
+RewriteEngine on
+
+Redirect permanent /tutorials/1/ https://knowledge.dataiku.com/latest/kb/getting-started/
+Redirect permanent /dss/latest/tutorials/ https://knowledge.dataiku.com/latest/kb/getting-started/
+
+Redirect permanent /tutorials/1.0.1/101/ /dss/latest/tutorials/101/
+Redirect permanent /tutorials/1.0.1/102/ /dss/latest/tutorials/102/
+Redirect permanent /tutorials/1.0.1/103/ /dss/latest/tutorials/103/
+Redirect permanent /tutorials/1.0.1/104/ /dss/latest/tutorials/104/
+
+Redirect permanent /tutorials/1.1.0/101/ /dss/latest/tutorials/101/
+Redirect permanent /tutorials/1.1.0/102/ /dss/latest/tutorials/102/
+Redirect permanent /tutorials/1.1.0/103/ /dss/latest/tutorials/103/
+Redirect permanent /tutorials/1.1.0/104/ /dss/latest/tutorials/104/
+
+Redirect permanent /tutorials/1.2.0/101/ /dss/latest/tutorials/101/
+Redirect permanent /tutorials/1.2.0/102/ /dss/latest/tutorials/102/
+Redirect permanent /tutorials/1.2.0/103/ /dss/latest/tutorials/103/
+Redirect permanent /tutorials/1.2.0/104/ /dss/latest/tutorials/104/
+
+# Page changes: 14.2.0
+Redirect permanent /dss/latest/governance/definitions.html /dss/latest/governance/navigation.html
+Redirect permanent /dss/latest/governance/navigation-item.html /dss/latest/governance/types-govern-items.html
+
+# Page changes: 14.0.0
+Redirect permanent /dss/latest/apinode/api/endpoints-api.html https://developer.dataiku.com/latest/concepts-and-examples/api-designer/inter-calling.html
+RedirectMatch 301 ^/dss/14/notification-emails/(.*)$ /dss/14/collaboration/notification-emails/$1
+RedirectMatch 301 ^/dss/latest/notification-emails/(.*)$ /dss/latest/collaboration/notification-emails/$1
+RedirectMatch 301 ^/dss/latest/generative-ai/agents/(.*)$ /dss/latest/agents/$1
+
+# Page changes: 13.5.3
+Redirect /dss/13/connecting/excel.html /dss/13/connecting/formats/excel.html
+Redirect /dss/latest/connecting/excel.html /dss/latest/connecting/formats/excel.html
+Redirect /dss/13/connecting/excel/excel-templater.html /dss/13/connecting/formats/excel/excel-templater.html
+Redirect /dss/latest/connecting/excel/excel-templater.html /dss/latest/connecting/formats/excel/excel-templater.html
+
+
+# Faulty redirect that temporarily existed in 13.4.0
+Redirect /dss/13/generative-ai/ai-assistants/code-assistant.html /dss/13/ai-assistants/code-assistant.html
+Redirect /dss/latest/generative-ai/ai-assistants/code-assistant.html /dss/latest/ai-assistants/code-assistant.html
+
+# Page changes: 13.4.0
+Redirect /dss/13/code-reports/index.html /dss/13/R/rmarkdown.html
+Redirect /dss/13/code-reports/rmarkdown.html /dss/13/R/rmarkdown.html
+Redirect /dss/latest/code-reports/index.html /dss/latest/R/rmarkdown.html
+Redirect /dss/latest/code-reports/rmarkdown.html /dss/latest/R/rmarkdown.html
+
+Redirect /dss/13/generative-ai/model-cache.html /dss/13/generative-ai/huggingface-models.html
+Redirect /dss/latest/generative-ai/model-cache.html /dss/latest/generative-ai/huggingface-models.html
+Redirect /dss/13/generative-ai/pii-detection.html /dss/13/generative-ai/guardrails/pii-detection.html
+Redirect /dss/latest/generative-ai/pii-detection.html /dss/latest/generative-ai/guardrails/pii-detection.html
+Redirect /dss/13/generative-ai/prompt-injection-detection.html /dss/13/generative-ai/guardrails/prompt-injection-detection.html
+Redirect /dss/latest/generative-ai/prompt-injection-detection.html /dss/latest/generative-ai/guardrails/prompt-injection-detection.html
+Redirect /dss/13/generative-ai/toxicity-detection.html /dss/13/generative-ai/guardrails/toxicity-detection.html
+Redirect /dss/latest/generative-ai/toxicity-detection.html /dss/latest/generative-ai/guardrails/toxicity-detection.html
+Redirect /dss/13/generative-ai/model-fine-tuning.html /dss/13/generative-ai/fine-tuning.html
+Redirect /dss/latest/generative-ai/model-fine-tuning.html /dss/latest/generative-ai/fine-tuning.html
+Redirect /dss/13/generative-ai/rag.html /dss/13/generative-ai/knowledge/index.html
+Redirect /dss/latest/generative-ai/rag.html /dss/latest/generative-ai/knowledge/index.html
+Redirect /dss/13/generative-ai/answers.html /dss/13/generative-ai/chat-ui/answers.html
+Redirect /dss/latest/generative-ai/answers.html /dss/latest/generative-ai/chat-ui/answers.html
+Redirect /dss/13/other_recipes/generate-recipe.html /dss/13/ai-assistants/generate-recipe.html
+Redirect /dss/latest/other_recipes/generate-recipe.html /dss/latest/ai-assistants/generate-recipe.html
+Redirect /dss/13/generative-ai/code-assistant.html /dss/13/ai-assistants/code-assistant.html
+Redirect /dss/latest/generative-ai/code-assistant.html /dss/latest/ai-assistants/code-assistant.html
+
+Redirect /dss/13/connecting/sql/onelake.html /dss/13/connecting/sql/fabricwarehouse.html
+Redirect /dss/latest/connecting/sql/onelake.html /dss/latest/connecting/sql/fabricwarehouse.html
+
+# Page changes: 12.6.0
+Redirect /dss/latest/scenarios/checks.html /dss/latest/metrics-check-data-quality/checks.html
+Redirect /dss/latest/scenarios/custom_metrics_and_checks.html /dss/latest/metrics-check-data-quality/custom_metrics_and_checks.html
+Redirect /dss/latest/scenarios/metrics.html /dss/latest/metrics-check-data-quality/metrics.html
+
+# Page changes: 12.5.0
+Redirect /dss/latest/code-studios/create-your-first-code-studio/vs-code.html /dss/latest/code-studios/code-studio-ides/vs-code.html
+Redirect /dss/latest/code-studios/create-your-first-code-studio/jupyterlab.html /dss/latest/code-studios/code-studio-ides/jupyterlab.html
+Redirect /dss/latest/code-studios/create-your-first-code-studio/rstudio.html /dss/latest/code-studios/code-studio-ides/rstudio.html
+Redirect /dss/latest/code-studios/create-your-first-code-studio/streamlit.html /dss/latest/code-studios/code-studio-webapps/streamlit.html
+Redirect /dss/latest/code-studios/create-your-first-code-studio/index.html /dss/latest/code-studios/code-studio-ides/index.html
+Redirect /dss/latest/code-studios/create-your-first-code-studio /dss/latest/code-studios/code-studio-ides
+
+# Page changes: 12.0.0
+Redirect /dss/latest/machine-learning/ml-assertions.html /dss/latest/machine-learning/supervised/ml-assertions.html
+Redirect /dss/latest/security/dashboard-authorizations.html /dss/latest/security/authorized-objects.html
+
+# Page changes: 12.0.0 - developer guide
+# Redirect permanent /dss/latest/python-api/index.html https://developer.dataiku.com/latest/concepts-and-examples/index.html
+Redirect permanent /dss/latest/python-api/datasets.html https://developer.dataiku.com/latest/concepts-and-examples/datasets/index.html
+Redirect permanent /dss/latest/python-api/datasets-data.html https://developer.dataiku.com/latest/concepts-and-examples/datasets/datasets-data.html
+Redirect permanent /dss/latest/python-api/datasets-other.html https://developer.dataiku.com/latest/concepts-and-examples/datasets/datasets-other.html
+Redirect permanent /dss/latest/python-api/feature-store.html https://developer.dataiku.com/latest/concepts-and-examples/feature-store.html
+Redirect permanent /dss/latest/python-api/managed_folders.html https://developer.dataiku.com/latest/concepts-and-examples/managed-folders.html
+Redirect permanent /dss/latest/python-api/pyspark.html https://developer.dataiku.com/latest/concepts-and-examples/pyspark.html
+Redirect permanent /dss/latest/python-api/client.html https://developer.dataiku.com/latest/concepts-and-examples/client.html
+Redirect permanent /dss/latest/python-api/projects.html https://developer.dataiku.com/latest/concepts-and-examples/projects.html
+Redirect permanent /dss/latest/python-api/project-folders.html https://developer.dataiku.com/latest/concepts-and-examples/project-folders.html
+Redirect permanent /dss/latest/python-api/project-libraries.html https://developer.dataiku.com/latest/concepts-and-examples/project-libraries.html
+Redirect permanent /dss/latest/python-api/recipes.html https://developer.dataiku.com/latest/concepts-and-examples/recipes.html
+Redirect permanent /dss/latest/python-api/saved_models.html https://developer.dataiku.com/latest/api-reference/python/ml.html
+Redirect permanent /dss/latest/python-api/outside-usage.html https://developer.dataiku.com/latest/getting-started/outside-usage.html
+Redirect permanent /dss/latest/python-api/scenarios.html https://developer.dataiku.com/latest/concepts-and-examples/scenarios.html
+Redirect permanent /dss/latest/python-api/scenarios-inside.html https://developer.dataiku.com/latest/concepts-and-examples/scenarios-inside.html
+Redirect permanent /dss/latest/python-api/flow.html https://developer.dataiku.com/latest/concepts-and-examples/flow.html
+Redirect permanent /dss/latest/python-api/ml.html https://developer.dataiku.com/latest/concepts-and-examples/ml.html
+Redirect permanent /dss/latest/python-api/experiment-tracking.html https://developer.dataiku.com/latest/concepts-and-examples/experiment-tracking.html
+Redirect permanent /dss/latest/python-api/statistics.html https://developer.dataiku.com/latest/concepts-and-examples/statistics.html
+Redirect permanent /dss/latest/python-api/api-services.html https://developer.dataiku.com/latest/api-reference/python/api-services.html
+Redirect permanent /dss/latest/python-api/project-deployer.html https://developer.dataiku.com/latest/concepts-and-examples/project-deployer.html
+Redirect permanent /dss/latest/python-api/static_insights.html https://developer.dataiku.com/latest/concepts-and-examples/static-insights.html
+Redirect permanent /dss/latest/python-api/jobs.html https://developer.dataiku.com/latest/concepts-and-examples/jobs.html
+Redirect permanent /dss/latest/python-api/authinfo.html https://developer.dataiku.com/latest/concepts-and-examples/authinfo.html
+Redirect permanent /dss/latest/python-api/tables-import.html https://developer.dataiku.com/latest/concepts-and-examples/tables-import.html
+Redirect permanent /dss/latest/python-api/wiki.html https://developer.dataiku.com/latest/concepts-and-examples/wiki.html
+Redirect permanent /dss/latest/python-api/discussions.html https://developer.dataiku.com/latest/concepts-and-examples/discussions.html
+Redirect permanent /dss/latest/python-api/sql.html https://developer.dataiku.com/latest/concepts-and-examples/sql.html
+Redirect permanent /dss/latest/python-api/sqlquery.html https://developer.dataiku.com/latest/concepts-and-examples/sqlquery.html
+Redirect permanent /dss/latest/python-api/meanings.html https://developer.dataiku.com/latest/concepts-and-examples/meanings.html
+Redirect permanent /dss/latest/python-api/users-groups.html https://developer.dataiku.com/latest/concepts-and-examples/users-groups.html
+Redirect permanent /dss/latest/python-api/connections.html https://developer.dataiku.com/latest/concepts-and-examples/connections.html
+Redirect permanent /dss/latest/python-api/code-envs.html https://developer.dataiku.com/latest/concepts-and-examples/code-envs.html
+Redirect permanent /dss/latest/python-api/plugins.html https://developer.dataiku.com/latest/concepts-and-examples/plugins.html
+Redirect permanent /dss/latest/python-api/dataiku-applications.html https://developer.dataiku.com/latest/concepts-and-examples/dataiku-applications.html
+Redirect permanent /dss/latest/python-api/metrics.html https://developer.dataiku.com/latest/concepts-and-examples/metrics.html
+Redirect permanent /dss/latest/python-api/model-evaluation-stores.html https://developer.dataiku.com/latest/concepts-and-examples/model-evaluation-stores.html
+Redirect permanent /dss/latest/python-api/other-administration.html https://developer.dataiku.com/latest/concepts-and-examples/administration.html
+Redirect permanent /dss/latest/python-api/utils.html https://developer.dataiku.com/latest/concepts-and-examples/utils.html
+Redirect permanent /dss/latest/python-api/dataiku-reference.html https://developer.dataiku.com/latest/api-reference/python/dataiku-index.html
+Redirect permanent /dss/latest/python-api/dataikuapi-reference.html https://developer.dataiku.com/latest/api-reference/python/dataikuapi-index.html
+Redirect permanent /dss/latest/python-api/plugins/index.html https://developer.dataiku.com/latest/concepts-and-examples/plugin-components/index.html
+Redirect permanent /dss/latest/python-api/plugins/custom_recipes.html https://developer.dataiku.com/latest/concepts-and-examples/plugin-components/custom_recipes.html
+Redirect permanent /dss/latest/python-api/plugins/custom_datasets.html https://developer.dataiku.com/latest/concepts-and-examples/plugin-components/custom_datasets.html
+Redirect permanent /dss/latest/python-api/plugins/custom_recipes.html https://developer.dataiku.com/latest/concepts-and-examples/plugin-components/custom_recipes.html
+Redirect permanent /dss/latest/python-api/plugins/custom_formats.html https://developer.dataiku.com/latest/concepts-and-examples/plugin-components/custom_formats.html
+Redirect permanent /dss/latest/python-api/plugins/custom_fsproviders.html https://developer.dataiku.com/latest/concepts-and-examples/plugin-components/custom_fsproviders.html
+Redirect permanent /dss/latest/python-api/clusters.html https://developer.dataiku.com/latest/concepts-and-examples/clusters.html
+Redirect permanent /dss/latest/python-api/fleetmanager/index.html https://developer.dataiku.com/latest/concepts-and-examples/fleetmanager/index.html
+Redirect permanent /dss/latest/python-api/fleetmanager/fmclient.html https://developer.dataiku.com/latest/concepts-and-examples/fleetmanager/fmclient.html
+Redirect permanent /dss/latest/python-api/fleetmanager/fminstances.html https://developer.dataiku.com/latest/concepts-and-examples/fleetmanager/fminstances.html
+Redirect permanent /dss/latest/python-api/fleetmanager/virtualnetworks.html https://developer.dataiku.com/latest/concepts-and-examples/fleetmanager/virtualnetworks.html
+Redirect permanent /dss/latest/python-api/fleetmanager/instancetemplates.html https://developer.dataiku.com/latest/concepts-and-examples/fleetmanager/instancetemplates.html
+Redirect permanent /dss/latest/python-api/fleetmanager/fmclient.html https://developer.dataiku.com/latest/concepts-and-examples/fleetmanager/fmclient.html
+Redirect permanent /dss/latest/python-api/fleetmanager/tenant.html https://developer.dataiku.com/latest/concepts-and-examples/fleetmanager/tenant.html
+Redirect permanent /dss/latest/python-api/fleetmanager/future.html https://developer.dataiku.com/latest/concepts-and-examples/fleetmanager/future.html
+Redirect permanent /dss/latest/python-api/govern/index.html https://developer.dataiku.com/latest/concepts-and-examples/govern/index.html
+Redirect permanent /dss/latest/python-api/govern/govern-client.html https://developer.dataiku.com/latest/concepts-and-examples/govern/govern-client.html
+Redirect permanent /dss/latest/python-api/govern/index.html https://developer.dataiku.com/latest/concepts-and-examples/govern/index.html
+Redirect permanent /dss/latest/python-api/govern/govern/govern-blueprints-blueprint-versions.html https://developer.dataiku.com/latest/concepts-and-examples/govern/govern-blueprints-blueprint-versions.html
+Redirect permanent /dss/latest/python-api/govern/govern-artifacts.html https://developer.dataiku.com/latest/concepts-and-examples/govern/govern-artifacts.html
+Redirect permanent /dss/latest/python-api/govern/govern-uploaded-files.html https://developer.dataiku.com/latest/concepts-and-examples/govern/govern-uploaded-files.html
+Redirect permanent /dss/latest/python-api/govern/govern-time-series.html https://developer.dataiku.com/latest/concepts-and-examples/govern/govern-time-series.html
+Redirect permanent /dss/latest/python-api/govern/govern-artifact-search.html https://developer.dataiku.com/latest/concepts-and-examples/govern/govern-artifact-search.html
+Redirect permanent /dss/latest/python-api/govern/govern-admin-blueprint-designer.html https://developer.dataiku.com/latest/concepts-and-examples/govern/govern-admin-blueprint-designer.html
+Redirect permanent /dss/latest/python-api/govern/govern-admin-roles-permissions-handler.html https://developer.dataiku.com/latest/concepts-and-examples/govern/govern-admin-roles-permissions-handler.html
+Redirect permanent /dss/latest/python-api/govern/govern-authinfo.html https://developer.dataiku.com/latest/concepts-and-examples/govern/govern-authinfo.html
+Redirect permanent /dss/latest/python-api/govern/govern-users-groups.html https://developer.dataiku.com/latest/concepts-and-examples/govern/govern-users-groups.html
+Redirect permanent /dss/latest/python-api/govern/govern-other-administration.html https://developer.dataiku.com/latest/concepts-and-examples/govern/govern-other-administration.html
+Redirect permanent /dss/latest/python-api/govern/govern-custom-pages.html https://developer.dataiku.com/latest/concepts-and-examples/govern/govern-custom-pages.html
+Redirect permanent /dss/latest/python-api/govern/govern-custom-pages-handler.html https://developer.dataiku.com/latest/concepts-and-examples/govern/govern-custom-pages-handler.html
+Redirect permanent /dss/latest/python-api/govern/govern-utils.html https://developer.dataiku.com/latest/concepts-and-examples/govern/govern-utils.html
+Redirect permanent /dss/latest/python-api/workspaces.html https://developer.dataiku.com/latest/concepts-and-examples/workspaces.html
+Redirect permanent /dss/latest/python-api/webapps.html https://developer.dataiku.com/latest/concepts-and-examples/webapps.html
+
+
+
+# Page changes: 11.4.0
+Redirect /dss/11/installation/other/docker.html /dss/11/installation/other/container.html
+Redirect /dss/latest/installation/other/docker.html /dss/latest/installation/other/container.html
+
+# Page changes: 11.3.0
+Redirect /dss/11/unstructured-data/text/ /dss/11/nlp/
+Redirect /dss/latest/unstructured-data/text/ /dss/latest/nlp/
+
+# Page changes: 11.1.0
+Redirect /dss/11.0/ /dss/11/
+Redirect /dss/11/release_notes/11.0.html /dss/11/release_notes/11.html
+Redirect /dss/latest/release_notes/11.0.html /dss/latest/release_notes/11.html
+
+Redirect /dss/11.0/plugins/writing_intro.html /dss/11/plugins/reference/index.html
+
+# Page changes: 11.0.0
+Redirect /dss/latest/time-series/time-series-forecasting/index.html /dss/latest/time-series/time-series-forecasting.html
+Redirect /dss/latest/time-series/time-series-forecasting/train-evaluate.html /dss/latest/time-series/time-series-forecasting.html
+Redirect /dss/latest/time-series/time-series-forecasting/predict.html /dss/latest/time-series/time-series-forecasting.html
+
+# Page changes: 10.0.6
+Redirect /dss/latest/connecting/sql.html /dss/latest/connecting/sql/
+Redirect /dss/10.0/connecting/sql.html /dss/10.0/connecting/sql/
+
+# Page changes: 100
+Redirect /dss/latest/thirdparty.html /dss/latest/thirdparty/index.html
+# Linked specifically by version from DSS
+Redirect /dss/10.0/advanced/formula.html /dss/10.0/formula/index.html
+
+# Page changes: 90
+Redirect /dss/latest/installation/requirements.html /dss/latest/installation/custom/requirements.html
+Redirect /dss/latest/installation/new_instance.html /dss/latest/installation/custom/initial-install.html
+Redirect /dss/latest/installation/upgrade_instance.html /dss/latest/installation/custom/upgrade.html
+Redirect /dss/latest/installation/python.html /dss/latest/installation/custom/python.html
+Redirect /dss/latest/installation/r.html /dss/latest/installation/custom/r.html
+Redirect /dss/latest/installation/java_env.html /dss/latest/installation/custom/advanced-java-customization.html
+Redirect /dss/latest/installation/custom_install.html /dss/latest/installation/custom/advanced-customization.html
+Redirect /dss/latest/installation/proxies.html /dss/latest/installation/custom/reverse-proxy.html
+Redirect /dss/latest/installation/graphics-export.html /dss/latest/installation/custom/graphics-export.html
+Redirect /dss/latest/installation/hadoop-spark.html /dss/latest/installation/custom/hadoop-spark.html
+Redirect /dss/latest/installation/ldap.html /dss/latest/security/ldap.html
+Redirect /dss/latest/installation/jdbc.html /dss/latest/installation/custom/jdbc.html
+Redirect /dss/latest/installation/plugins.html /dss/latest/plugins/index.html
+Redirect /dss/latest/installation/proxies.html /dss/latest/operations/proxies.html
+Redirect /dss/latest/installation/update_license.html /dss/latest/operations/license.html
+Redirect /dss/latest/spark/kubernetes/index.html /dss/latest/containers/index.html
+Redirect /dss/latest/homepage /dss/latest/concepts/homepage
+Redirect /dss/latest/projects /dss/latest/concepts/projects
+Redirect /dss/latest/formats /dss/latest/connecting/formats
+Redirect /dss/latest/advanced/formula.html /dss/latest/formula/index.html
+Redirect /dss/latest/advanced/variables_expansion.html /dss/latest/variables/index.html
+Redirect /dss/latest/advanced/sampling.html /dss/latest/sampling/index.html
+Redirect /dss/latest/advanced/index.html /dss/latest/index.html
+Redirect /dss/latest/bundles/index.html /dss/latest/deployment/index.html
+Redirect /dss/latest/bundles/creating.html /dss/latest/deployment/creating-bundles.html
+Redirect /dss/latest/bundles/importing.html /dss/latest/deployment/manually-importing-bundles.html
+Redirect /dss/latest/bundles/installing.html /dss/latest/installation/index.html
+Redirect /dss/latest/apinode/installing-apideployer.html /dss/latest/apinode/api-deployment-infrastructures.html
+Redirect /dss/latest/projects/duplicate.html /dss/latest/concepts/projects/duplicate.html
+# 90 that is referenced from the product
+Redirect /dss/9.0/advanced/formula.html /dss/9.0/formula/index.html
+Redirect /dss/9.0/advanced/variables_expansion.html /dss/9.0/variables/index.html
+Redirect /dss/9.0/bundles/index.html /dss/9.0/deployment/index.html
+Redirect /dss/9.0/deployer/index.html /dss/9.0/deployment/index.html
+
+
+
+# Page changes: between 8.0 and 9.0
+Redirect permanent /dss/8.0/time-series/time-series-forecasting.html /dss/8.0/time-series/time-series-forecasting/index.html
+
+# Page changes: 80
+Redirect /dss/latest/python-api/rest-api-client/datasets.html /dss/latest/python-api/datasets.html
+Redirect /dss/latest/python-api/rest-api-client/managed-folders.html /dss/latest/python-api/managed_folders.html
+Redirect /dss/latest/python-api/rest-api-client/projects.html /dss/latest/python-api/projects.html
+Redirect /dss/latest/python-api/rest-api-client/project-folders.html /dss/latest/python-api/project-folders.html
+Redirect /dss/latest/python-api/rest-api-client/sqlqueries.html /dss/latest/python-api/sql.html
+Redirect /dss/latest/python-api/partial.html /dss/latest/python-api/sql.html
+Redirect /dss/latest/python-api/rest-api-client/plugins.html /dss/latest/python-api/plugins.html
+Redirect /dss/latest/python-api/rest-api-client/code-envs.html /dss/latest/python-api/code-envs.html
+Redirect /dss/latest/python-api/rest-api-client/wiki.html /dss/latest/python-api/wiki.html
+Redirect /dss/latest/python-api/rest-api-client/discussions.html /dss/latest/python-api/discussions.html
+Redirect /dss/latest/python-api/rest-api-client/connections.html /dss/latest/python-api/connections.html
+Redirect /dss/latest/python-api/rest-api-client/meanings.html /dss/latest/python-api/meanings.html
+Redirect /dss/latest/python-api/rest-api-client/api-services.html /dss/latest/python-api/api-services.html
+Redirect /dss/latest/python-api/rest-api-client/ml.html /dss/latest/python-api/ml.html
+Redirect /dss/latest/python-api/rest-api-client/jobs.html /dss/latest/python-api/jobs.html
+Redirect /dss/latest/python-api/rest-api-client/recipes.html /dss/latest/python-api/recipes.html
+Redirect /dss/latest/python-api/rest-api-client/authinfo.html /dss/latest/python-api/authinfo.html
+Redirect /dss/latest/python-api/rest-api-client/client.html /dss/latest/python-api/client.html
+Redirect /dss/latest/python-api/rest-api-client/tables-import.html /dss/latest/python-api/tables-import.html
+Redirect /dss/latest/python-api/rest-api-client/users-groups.html /dss/latest/python-api/users-groups.html
+Redirect /dss/latest/python-api/rest-api-client/statistics.html /dss/latest/python-api/statistics.html
+Redirect /dss/latest/python-api/rest-api-client/client.html /dss/latest/python-api/client.html
+Redirect /dss/latest/python-api/rest-api-client/scenarios.html /dss/latest/python-api/scenarios.html
+Redirect /dss/latest/python-api/rest-api-client/utils.html /dss/latest/python-api/utils.html
+Redirect /dss/latest/python-api/rest-api-client/metrics-and-checks.html /dss/latest/python-api/metrics.html
+Redirect /dss/latest/python-api/rest-api-client/index.html /dss/latest/python-api/index.html
+Redirect /dss/latest/containers/setup-docker.html /dss/latest/containers/docker.html
+Redirect /dss/latest/containers/remote-daemons.html /dss/latest/containers/docker.html
+Redirect /dss/latest/spark/databricks.html /dss/latest/spark/index.html
+
+# Page changes: 60
+Redirect /dss/latest/hadoop/multi-user-security.html /dss/latest/hadoop/user-isolation.html
+Redirect /dss/latest/security/multi-user-security/index.html /dss/latest/user-isolation/index.html
+Redirect /dss/latest/security/multi-user-security/concepts.html /dss/latest/user-isolation/concepts.html
+Redirect /dss/latest/security/multi-user-security/prerequisites-limitations.html /dss/latest/user-isolation/prerequisites-limitations.html
+Redirect /dss/latest/security/multi-user-security/setup.html /dss/latest/user-isolation/setup.html
+Redirect /dss/latest/security/multi-user-security/comparison.html /dss/latest/user-isolation/capabilities-summary.html
+Redirect /dss/latest/security/multi-user-security/hive-impala.html /dss/latest/user-isolation/capabilities/hadoop-impersonation.html
+Redirect /dss/latest/security/multi-user-security/operations.html /dss/latest/user-isolation/reference-architectures/
+Redirect /dss/latest/security/multi-user-security/spark.html /dss/latest/user-isolation/capabilities/hadoop-impersonation.html
+Redirect /dss/latest/security/multi-user-security/advanced.html /dss/latest/user-isolation/advanced/
+Redirect /dss/latest/spark/kubernetes.html /dss/latest/spark/kubernetes/index.html
+Redirect /dss/latest/containers/eks.html /dss/latest/containers/eks/index.html
+Redirect /dss/latest/containers/aks.html /dss/latest/containers/aks/index.html
+Redirect /dss/latest/containers/gke.html /dss/latest/containers/gke/index.html
+Redirect /dss/latest/containers/setup.html /dss/latest/containers/index.html
+Redirect /dss/latest/collaboration/project-folders /dss/latest/homepage/project-folders
+
+# Page changes: 51
+Redirect /dss/latest/api/r /dss/latest/R-api
+Redirect /dss/latest/api/python/custom_datasets.html /dss/latest/python-api/plugins/custom_datasets.html
+Redirect /dss/latest/api/python/custom_formats.html /dss/latest/python-api/plugins/custom_formats.html
+Redirect /dss/latest/api/python/custom_fsproviders.html /dss/latest/python-api/plugins/custom_fsproviders.html
+Redirect /dss/latest/api/python/custom_recipes.html /dss/latest/python-api/plugins/custom_recipes.html
+Redirect /dss/latest/api/python/custom_scenarios.html /dss/latest/python-api/plugins/custom_scenarios.html
+Redirect /dss/latest/api/python /dss/latest/python-api
+Redirect /dss/latest/api/publicapi/client-python /dss/latest/python-api/rest-api-client
+Redirect /dss/latest/publicapi/client-python /dss/latest/python-api/rest-api-client
+
+
+# Page changes: 50
+Redirect /dss/latest/machine_learning/index.html /dss/latest/machine-learning/index.html
+Redirect /dss/latest/machine_learning/scikitlearn.html /dss/latest/machine-learning/algorithms/in-memory-python.html
+Redirect /dss/latest/machine_learning/mllib.html /dss/latest/machine-learning/algorithms/mllib.html
+Redirect /dss/latest/machine_learning/sparkling_water.html /dss/latest/machine-learning/algorithms/sparkling-water.html
+Redirect /dss/latest/machine_learning/vertica.html /dss/latest/machine-learning/algorithms/vertica.html
+Redirect /dss/latest/machine_learning/supervised.html /dss/latest/machine-learning/supervised/index.html
+Redirect /dss/latest/machine_learning/unsupervised.html /dss/latest/machine-learning/unsupervised/index.html
+Redirect /dss/latest/machine_learning/features_handling.html /dss/latest/machine-learning/features-handling/index.html
+Redirect /dss/latest/machine_learning/scoring-engines.html /dss/latest/machine-learning/scoring-engines.html
+Redirect /dss/latest/machine_learning /dss/latest/machine-learning
+
+# Page changes: 43
+Redirect permanent /dss/latest/apinode/user_api.html /dss/latest/apinode/api/user-api.html
+Redirect permanent /dss/latest/apinode/admin_api.html /dss/latest/apinode/api/admin-api.html
+Redirect permanent /dss/latest/apinode/ha_deployment.html /dss/latest/apinode/operations/ha-deployment.html
+Redirect permanent /dss/latest/apinode/logging_audit.html /dss/latest/apinode/operations/logging-audit.html
+Redirect permanent /dss/latest/apinode/health_monitoring.html /dss/latest/apinode/operations/health-monitoring.html
+Redirect permanent /dss/latest/apinode/cli-tool.html /dss/latest/apinode/operations/cli-tool.html
+Redirect permanent /dss/latest/hadoop/multi-hdfs.html /dss/latest/hadoop/hadoop-fs-connections.html
+Redirect permanent /dss/latest/hadoop/hdfs-connections.html /dss/latest/hadoop/hadoop-fs-connections.html
+
+# Page changes: 42
+Redirect permanent /dss/latest/api/public /dss/latest/publicapi
+
+# Page changes: 41
+Redirect permanent /dss/latest/advanced/managed_folders.html /dss/latest/connecting/managed_folders.html
+Redirect permanent /dss/latest/troubleshooting/forgot_password.html /dss/latest/troubleshooting/problems/cannot-login.html
+Redirect permanent /dss/latest/troubleshooting/websockets.html /dss/latest/troubleshooting/problems/websockets.html
+Redirect permanent /dss/latest/troubleshooting/logs.html /dss/latest/troubleshooting/diagnosing.html
+Redirect permanent /dss/latest/connecting/ssh_sftp_cached.html /dss/latest/connecting/scp-sftp.html
+Redirect permanent /dss/latest/connecting/ftp_cached.html /dss/latest/connecting/ftp.html
+Redirect permanent /dss/latest/connecting/http_cached.html /dss/latest/connecting/http.html
+Redirect permanent /dss/latest/connecting/sql_datasets.html /dss/latest/connecting/sql.html
+Redirect permanent /dss/latest/connecting/apinode/std_model.html /dss/latest/connecting/endpoint-std-prediction.html
+Redirect permanent /dss/latest/connecting/apinode/custom_model.html /dss/latest/connecting/endpoint-python-prediction.html
+Redirect permanent /dss/latest/connecting/apinode/data_enrich.html /dss/latest/connecting/enrich-prediction-queries.html
+Redirect permanent /dss/latest/installation/https.html /dss/latest/installation/custom_install.html
+Redirect permanent /dss/2.1/installation/reverse_proxies.html /dss/latest/installation/proxies.html
+
+# Page changes: 4.0
+
+Redirect permanent /dss/latest/advanced/security_options.html /dss/latest/security/advanced-options.html
+Redirect permanent /dss/latest/security/authorization_model.html /dss/latest/security/
+Redirect permanent /dss/latest/installation/hadoop.html /dss/latest/hadoop/installation.html
+Redirect permanent /dss/latest/installation/spark.html /dss/latest/spark/installation.html
+Redirect permanent /dss/latest/installation/hadoop_security.html /dss/latest/hadoop/secure-clusters.html
+Redirect permanent /dss/latest/api/public/client-python-examples /dss/latest/api/public/client-python/index.html
+Redirect permanent /dss/latest/api/public/introduction.html /dss/latest/api/public/rest.html
+Redirect permanent /dss/latest/installation/other_options.html /dss/latest/installation/other/index.html
+
+# Page changes: 3.1.4
+
+Redirect permanent /dss/latest/connecting/remote.html /dss/latest/connecting/index.html
+Redirect permanent /dss/latest/preparation/geo_processors.html /dss/latest/preparation/geographic.html
+Redirect permanent /dss/latest/preparation/run_hadoop.html /dss/latest/preparation/engines.html
+
+
+Redirect /dss/1.2 /display/DSS12
+Redirect /dss/1.3/troubleshooting/forgot_password /dss/1.3/troubleshooting/forgot_password.html
+
+Redirect /dss/1.4/installation/java_opts.html /dss/1.4/installation/java_env.html
+Redirect /dss/1.4/installation/advanced.html /dss/1.4/installation/index.html

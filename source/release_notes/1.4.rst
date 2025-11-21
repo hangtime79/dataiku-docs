@@ -1,0 +1,360 @@
+DSS 1.4 Relase notes
+#####################
+
+.. contents::
+    :depth: 2
+    :local:
+
+Version 1.4.5 - June 23rd, 2015
+======================================
+
+
+Important notes about migration
+-----------------------------------
+
+Please see the release notes for 1.4.0
+
+New features
+-------------
+
+* Added support for Hive 1.1
+
+Bug fixes
+------------
+
+* Fixed FTP listing for WS_FTPD
+* Fixed Apache log file format
+* Fixed "Last value" in grouping recipe
+* Updated CentOS IUS repository URL
+
+Version 1.4.4 - March 30th, 2015
+======================================
+
+Important notes about migration
+-----------------------------------
+
+Please see the release notes for 1.4.0
+
+New features and enhancements
+------------------------------
+
+* Official support for Oracle has been added.
+* Amazon Linux 2015.03 is now supported.
+
+
+Bug fixes
+----------
+
+Data preparation
+%%%%%%%%%%%%%%%%%%
+
+* Fixed Python processors in recipes over filesystem datasets (happened when no custom variables and no contribs were used)
+
+Datasets and formats
+%%%%%%%%%%%%%%%%%%%%%
+
+* Fixed ORC files with Hive 0.14+
+* Fixed explore in the Twitter dataset
+* Improved detection of Shapefiles and fixed support for uppercase-named shapefiles
+* Fixes on SAS format parser
+
+
+Version 1.4.3 - March 4th, 2015
+======================================
+
+Important notes about migration
+-----------------------------------
+
+Please see the release notes for 1.4.0
+
+Bug fixes
+----------
+
+Recipes
+%%%%%%%%%
+
+* An issue with running grouping recipe on non-SQL datasets has been fixed
+* Running SQL script recipes on PostgreSQL could fail depending on how the "psql" binary is implemented
+* Running SQL script recipes on PostgreSQL could loose the return code and all recipes always appeared to succeed whereas they did not
+* Reading datasets in R when the schema contains comments has been fixed
+
+Datasets
+%%%%%%%%%
+
+* Initial download of data in HTTP datasets has been fixed
+
+Misc
+%%%%%
+
+* The job screen now properly automatically refreshes
+* Fixed an issue with Websockets and very long log messages
+
+Version 1.4.2 - February 17th, 2015
+======================================
+
+Important notes about migration
+-----------------------------------
+
+Please see the release notes for 1.4.0
+
+New features
+-------------
+
+* A new processor has been added: "Generate combinations of numerical variables"
+* New dataset: "FTP (no cache)", which allows both read and write on FTP and does not cache input data. (see :doc:`/connecting/ftp`)
+* DSS now supports proxies for outgoing connections (FTP, HTTP, S3, Twitter). See :doc:`/installation/custom/reverse-proxy`)
+* Hadoop: Support for HDP 2.2 has been added
+
+Bug fixes
+----------
+
+* Python's write_with_schema could fail on some configurations of SQL output datasets
+* Installation of plugins on Mac OS X without JDK has been fixed
+* An issue has been fixed when running Impala on a Kerberos-enabled Hadoop cluster
+* Exception reporting has been improved in the Machine Learning part
+* Several issues have been fixed in the UI for New Cassandra Dataset.
+* Support for ``\r`` as End-Of-Line marker has been added for CSV datasets
+
+
+Version 1.4.1 - January 29th, 2015
+======================================
+
+Important notes about migration
+-----------------------------------
+
+Please see the release notes for 1.4.0
+
+
+New features
+-------------
+
+* A new reshaping processor has been added: "fold the keys of an array"
+
+Bug fixes
+-----------
+
+Hadoop support
+%%%%%%%%%%%%%%%%%%
+
+* Fixed compatibility with MapR 4.0
+* Support for MapR 2.0 and 3.0 has been removed
+
+Machine learning
+%%%%%%%%%%%%%%%%%%
+
+* Fix failures in prediction recipes with textual features
+
+Python
+%%%%%%%%%
+
+* SQL code executed in Python recipes is now be properly streamed, even for very large result sets
+
+Flow
+%%%%%
+
+* Various UI bugfixes and improvements on the grouping recipe
+* A bug has been fixed on the TimeRange dependency for MONTH-based partitioning
+* A leak of file handles has been fixed in the backend <-> job communication, which could lead to "too many open files" errors
+
+Misc
+%%%%%%
+
+* Support for Firefox 35.0 has been improved - However, pan and zoom in Flow on Firefox 35.0 remains slow
+* Some documentation links have been fixed
+
+
+Version 1.4.0 - January 13th, 2015
+======================================
+
+Important notes about migration
+-----------------------------------
+
+The automatic data migration procedure is documented in :doc:`/installation/custom/upgrade`
+
+As usual, we **strongly recommend** that you perform a full backup of your Data Science Studio data directory prior to starting the upgrade procedure.
+
+Automatic migration of data from Data Science Studio 1.3.X is supported, with the following restrictions and warnings:
+
+* The "dip.flow.activities.nthreads" parameter in dip.properties has been removed. Setting the number of activities is now done in the Administration pages (Settings > Build).
+* Referencing a dip.properties entry from a FS dataset path is not possible anymore. Use the variables expansion system.
+
+For migrations from Data Science Studio 1.2.X, please also see the release notes of version 1.3.0
+
+New features
+-------------
+
+Mac OS X
+%%%%%%%%%%
+
+* DSS is now available on Mac OS X (10.9 and above).
+
+ * Note that the OS X version is only available for experimentation and evaluation purpose, it is not supported for production usage
+ * Download and install Mac OS X version from: http://www.dataiku.com/dss/editions/community-download/
+
+Security
+%%%%%%%%%%%
+
+* You can now connect DSS to your corporate LDAP directory and use your LDAP users and groups to control access to DSS.
+  See :doc:`/security/authentication/ldap`.
+
+* DSS can now interact with Kerberos-enabled Hadoop clusters
+  See :doc:`/hadoop/secure-clusters`.
+
+Visual data preparation
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+* Transformation recipes created with the visual data preparation tool can now fully run on a Hadoop cluster. See :doc:`/preparation/engines`
+
+* BETA feature: geo processing processors (see :doc:`/preparation/geographic`)
+
+ * Reverse geocoding (from GPS coordinates to city / region / country)
+ * Zipcode-based geocoding (from zipcode to GPS coordinates)
+
+
+Data Visualization
+%%%%%%%%%%%%%%%%%%%%
+
+* You can now export charts built with DSS as Excel documents for easy embedding
+
+* Several color palettes are now available for charts. Furthermore, you can add custom color palettes
+
+* BETA feature: geo charts (see :doc:`/visualization/charts-maps`)
+
+ * Geo charts allow you to aggregate a dataset based on a column containing geo coordinates.
+ * Aggregation is made by administrative boundaries (city / region / country)
+
+New data transformation recipes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+* "Grouping" recipe: new visual tool to perform grouping and aggregations (sum, avg, first, last, ...)
+
+ * Multi-key grouping and multi-aggregations
+ * Integrated filtering
+ * Automatically runs in-database or on-Hadoop when possible.
+
+* "Split" recipe: split one input dataset into several output datasets based on the value of a column or advanced rules
+
+Datasets
+%%%%%%%%%
+
+* Support for GeoJSON files
+* Support for ESRI Shapefiles
+
+Collaboration
+%%%%%%%%%%%%%%
+
+* DSS now detects and warns when several users are working on the same dataset or recipe at the same time.
+* Edit conflicts are automatically detected and avoided
+
+Advanced usage
+%%%%%%%%%%%%%%%
+
+* New :doc:`/variables/index` system that allows you to use some shared and reusable variables in several parts of the Studio.
+
+* You can now write custom Python code for advanced partition dependencies in Flow. See :doc:`/partitions/dependencies`
+
+* The number of concurrent running activities (builds of a partition) can now be set:
+
+ * per-job
+ * per-connection
+ * globally
+
+* A command-line tool lets you mass-import all (or selected) tables of a Hive database as DSS datasets. See :doc:`/hadoop/hive`
+
+Other enhancements
+--------------------
+
+Flow
+%%%%
+
+* When aborting a job, DSS tries to cancel running SQL queries and running Hadoop jobs
+* Performance improvements for computing partition dependencies on large flows
+* Partitioning variables substitution in code recipes can now either use $DKU_XXX or ${DKU_XXX} syntax
+
+Visual data preparation
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+* The "column split" processor can now either ignore or keep empty chunks
+* The "regexp extractor" processor can now extract multiple matches
+* New processor to duplicate a column
+* New processors for advanced processing of complex content (JSON arrays and objects)
+* New processor to bin the values of a numerical column
+* "Live processing" charts can now work on a set of partitions
+
+Web apps
+%%%%%%%%%%
+
+* You can now write a filtering formula to select a subset of rows in the JS webapp API
+* Better syntax highlighting in the JS editor
+* Code folding in all code editors
+
+Data visualization
+%%%%%%%%%%%%%%%%%%%
+
+* MIN and MAX are now available as aggregations in charts
+* Legend can now be hidden
+* Smoothing of lines and areas can now be disabled
+
+Advanced usage
+%%%%%%%%%%%%%%%
+
+* The Jython environment for custom processors now includes the "json" python package
+
+Recipes
+%%%%%%%%
+
+* The R API now supports sampling of the input datasets
+
+Security
+%%%%%%%%%
+
+* The "Administrator" information is now handled by groups instead of being a simple flag on the user.
+
+Deployment
+%%%%%%%%%%%
+
+* Added support for RHEL 7 and CentOS 7
+
+Major bugfixes
+-----------------
+
+Visual data preparation
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+* Various issues around copy/paste in explore have been fixed
+* "Analyse" will not give invalid data when Infinity appears in the column
+* Parsing dates without any time information (only year/month/day) now properly respects the selected timezone
+* When editing a preparation recipe, the "Custom format" form of the "Smart date" feature has been fixed
+
+Data visualization
+%%%%%%%%%%%%%%%%%%%
+
+* Several issues around "week" and "week of year" handling for timeline axis have been fixed
+
+SQL notebook
+%%%%%%%%%%%%%
+
+* Performance with large tables has been improved
+* Error reporting has been improved
+
+Datasets
+%%%%%%%%%
+
+* Hidden / Useless files (like Hadoop success markers) are now properly ignored everywhere
+* Counting records now works on MongoDB datasets
+
+Machine learning
+%%%%%%%%%%%%%%%%%
+
+* Training recipes now properly work on paritiotned datasets
+* The "heatmap" in clustering results is now properly updated when switching between models
+
+Collaboration
+%%%%%%%%%%%%%%%
+
+* Cropping of transparent PNG for insights and projects icon now works properly
+
+Misc
+%%%%%
+
+* An issue when changing the network of the host while DSS is running has been fixed

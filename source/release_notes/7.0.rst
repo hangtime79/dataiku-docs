@@ -1,0 +1,547 @@
+DSS 7.0 Release notes
+#####################
+
+.. contents::
+    :depth: 3
+    :local:
+
+Migration notes
+================
+
+Migration paths to DSS 7.0
+----------------------------
+
+    * From DSS 6.0: Automatic migration is supported, with the restrictions and warnings described in :ref:`releases_notes.7.0.limitations`
+
+    * From DSS 5.1: In addition to the restrictions and warnings described in :ref:`releases_notes.7.0.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`5.0 -> 5.1 </release_notes/5.1>`, :doc:`5.1 -> 6.0 </release_notes/6.0>`
+
+    * From DSS 5.0: In addition to the restrictions and warnings described in :ref:`releases_notes.7.0.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`5.0 -> 5.1 </release_notes/5.1>`, :doc:`5.1 -> 6.0 </release_notes/6.0>`
+
+    * From DSS 4.3: In addition to the restrictions and warnings described in :ref:`releases_notes.7.0.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`4.3 -> 5.0 </release_notes/5.0>`, :doc:`5.0 -> 5.1 </release_notes/5.1>`, :doc:`5.1 -> 6.0 </release_notes/6.0>`
+
+    * From DSS 4.2: In addition to the restrictions and warnings described in :ref:`releases_notes.7.0.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`4.2 -> 4.3 </release_notes/4.3>`, :doc:`4.3 -> 5.0 </release_notes/5.0>`, :doc:`5.0 -> 5.1 </release_notes/5.1>`, :doc:`5.1 -> 6.0 </release_notes/6.0>`
+
+    * From DSS 4.1: In addition to the restrictions and warnings described in :ref:`releases_notes.7.0.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`4.1 -> 4.2 </release_notes/4.2>`, :doc:`4.2 -> 4.3 </release_notes/4.3>`, :doc:`4.3 -> 5.0 </release_notes/5.0>`, :doc:`5.0 -> 5.1 </release_notes/5.1>`, :doc:`5.1 -> 6.0 </release_notes/6.0>`
+
+    * From DSS 4.0: In addition to the restrictions and warnings described in :ref:`releases_notes.7.0.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`4.0 -> 4.1 </release_notes/4.1>`, :doc:`4.1 -> 4.2 </release_notes/4.2>`, :doc:`4.2 -> 4.3 </release_notes/4.3>`, :doc:`4.3 -> 5.0 </release_notes/5.0>`, :doc:`5.0 -> 5.1 </release_notes/5.1>`, :doc:`5.1 -> 6.0 </release_notes/6.0>`
+
+    * Migration from DSS 3.1 and below is not supported. You must first upgrade to 5.0. See :doc:`/release_notes/5.0`
+
+How to upgrade
+----------------
+
+It is strongly recommended that you perform a full backup of your DSS data directory prior to starting the upgrade procedure.
+
+For automatic upgrade information, see :doc:`/installation/custom/upgrade`.
+
+Pay attention to the warnings described in :ref:`releases_notes.7.0.limitations`.
+
+
+.. _releases_notes.7.0.limitations:
+
+
+Limitations and warnings
+--------------------------
+
+Automatic migration from previous versions (see above) is supported, but there are a few points that need manual attention.
+
+Fix for typed variables in Python
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In DSS 5.1 and 6.0, a regression affected `dataiku.get_custom_variables(typed=True)`. This regression was fixed in DSS 7.0, so variables typing will be restored. This may affect workarounds that you may have setup in order to work around the regression.
+
+"origin" as remote name
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+DSS 7.0 introduces a new Git integration for projects, with vastly enhanced features like multiple branches and pulling from Git remotes.
+
+In order to introduce this, DSS 7.0 also introduces a unified name for Git remotes. DSS will now only consider the remote named "origin" (the "standard" Git naming). As a result, if you had already added Git remotes with a different name, you may need to re-add it to your projects, following the instructions in :doc:`/collaboration/version-control`.
+
+
+Deprecation notice
+-------------------
+
+DSS 7.0 deprecates support for some features and versions. Support for these will be removed in a later release.
+
+* Support for "Hive CLI" execution modes for Hive is deprecated and will be removed in a future release. We recommend that you switch to HiveServer2. Please note that "Hive CLI" execution modes are already incompatible with User Isolation Framework.
+
+* Support for Microsoft HDInsight is now deprecated and will be removed in a future release. We recommend that users plan a migration toward a Kubernetes-based infrastructure.
+
+* Support for Machine Learning through Vertica Advanced Analytics is now deprecated and will be removed in a future release. We recommend that you switch to In-memory based machine learning models. In-database scoring of in-memory-trained machine learnings will remain available.
+
+* Support for Hive SequenceFile and RCFile formats is deprecated and will be removed in a future release.
+
+* As a reminder from 6.0, support for Spark 1 (1.6) is deprecated. We strongly advise you to migrate to Spark 2. All Hadoop distributions can use Spark 2. Support for Spark 1 will be removed in DSS 8
+
+* As a reminder from 6.0, support for Pig is deprecated. We strongly advise you to migrate to Spark.
+
+
+Version 7.0.3 - July, 15th, 2020
+=====================================
+
+DSS 7.0.3 is a bug fix release.  For a summary of major changes in 7.0, see below
+
+Elastic AI
+-------------
+
+* AWS: Fixed support of push to ECR when using AWS CLI version 2
+* Fixed "Use Hadoop delegation tokens" checkbox
+* Fixed race conditions with Kubernetes when creating large amounts of pods or on highly loaded clusters
+
+Data preparation and ETL
+-------------------------
+
+* Fixed issues with SQL translation of "Find and replace" and other steps
+* Fixed inconsistent display of the Analyze box action buttons
+* Fixed sort recipe on Teradata
+
+Automation
+-----------
+
+* Fixed deleted recipes still sometimes appearing in Flow after bundle switch
+* Fixed Python porobes on managed folders
+* Fixed export table button on metrics column view
+
+Statistics
+-----------
+
+* Improved UX for the PCA card
+
+Collaboration and Flow
+-----------------------
+
+* Fixed error sending notifications when a user is mentioned in a discussion
+* Fixed right-column display of plugin recipes when selecting multiple items in the Flow
+* Fixed building of multiple datasets from datasets list
+* Fixed zoom issues on Flow
+
+Coders experience
+------------------
+
+* Fixed code samples UI for Jupyter
+* Fixed editor height for RMarkdown
+
+Machine Learning
+-----------------
+
+* Fixed inconsistent behavior of the "Publish" button
+* Fixed blank partial dependencies plots with special characters in column names
+* Fixed listing of columns for time-aware split if a column was removed by the preparation script
+* Fixed retraining of ensemble models with some specific processing such as feature reduction
+* Fixed creation of evaluation recipes based on datasets with per-user credentials
+* Fixed deep learning with Python 3
+* Fixed display of hyperparameter table
+
+Data Visualization and dashboards
+-----------------------------------
+
+* Fixed line charts being cropped or disappearing in dashboards
+* Fixed exporting of dashboards on macOS
+* Fixed broken format on dashboard export (abnormal margins and page splits)
+
+Datasets
+---------
+
+* Fixed creation of partitioned external datasets on ElasticSearch
+* Improved errors for Spark on Snowflake datasets with bad parameters
+
+Security
+---------
+
+* Fixed passwords visible in logs when using presets in "manually defined" mode
+
+Misc
+----
+
+* Fixed inconsistent author names in ``dss_commits`` internal dataset
+* Fixed ``dsscli project-import`` with a Python 3.6 base env
+* Added ability to select plugin recipes directly from a saved model
+* Fixed deletion of saved model from the Flow with drop data enabled
+* Added a sanity check for proper install dir permissions with UIF
+
+
+
+Version 7.0.2 - April, 22nd, 2020
+=====================================
+DSS 7.0.2 is a bug fix release.  For a summary of major changes in 7.0, see below
+
+Datasets
+------------
+* **New feature** Added support for BigQuery clustered tables and native partitioning
+* In column analysis, the top values count is now parameterizable
+* In column analysis, added display of distinct values in when using the 'whole data' mode
+* Added support for Azure Blob Storage containers with files and folders having the same name
+* Fixed the "Internal stats" dataset if previously-stored scenarios used Hipchat reporters
+
+ML
+--------
+* **New feature**: More efficient performance presets for Visual Machine Learning. Get better result faster.
+* Made the number of bins for "hashing" categorical feature preprocessing configurable
+* Added a configurable range limit for correlation mode of feature reduction
+* Improved compatibility of row level interpretability in ICE mode with Python 3 (now take most important variables)
+* Fixed MAPE aggregated results on partitioned models
+* Fixed scroll down in XGBoost algorithm page
+* Fixed error handling for XGBoost when trained on Python 3
+* Fixed retraining of partitioned models on automation node or upon project import, if the original model data had not been exported
+* Fixed scoring recipes with row level interpretability on small datasets
+* Fixed scoring and evaluation recipes with "proba percentiles" enabled when run on Python 3
+
+Coding
+------------
+
+* Improved behavior of project duplication for branching projects, now defaults to only copying uploaded datasets
+* ``model.get_predictor()`` is now usable on partitioned models
+* SQLExecutor2 is now usable in Python recipes on BigQuery datasets
+
+* Made ``dataiku.sql`` compatible with Python 3
+* Fixed stop of Jupyter kernels with Python 3 base environment in UIF mode
+* Added an API to delete an API deployer infra
+
+Visual recipes
+---------------
+* Fixed resource leaks when using the "Python function" preparation step
+* Fixed the TopN recipe on a date field on BigQuery
+* Fixed formula step on BigQuery when column contains uppercase letters
+* Fixed join recipe on BigQuery when one of the datasets does not have project key as prefix
+* Improved consistency of unbounded window behavior between stream engine and SQL engines
+* Fixed per-user-credentials for Spark-Snowflake fast path
+* Relaxed some restrictions on the computed column names when run with SQL engine
+
+Scenarios
+----------
+
+* Fixed sending of Slack or Teams messages from Python scenarios
+* Added protection against memory overruns in case of SQL triggers returning large result sets
+
+Kubernetes
+-------------
+
+* Fixed a rare case where jobs could fail on highly-loaded Kubernetes clusters
+* Fixed Jupyter notebooks on Kubernetes when the cluster needs to auto-scale because no resources are available
+
+Flow
+-------------
+* Fixed "explicit-only" rebuild mode with Spark and SQL pipelines
+* Added statistics worksheets information in the flow
+
+Statistics
+------------
+
+* Fixed conclusions based on the p-value interpretation
+* Better display of the statistics tab on non built datasets
+
+Hadoop
+------------
+* Added support of EMR 5.29
+* Fixed support of SparkSQL validation on CDH 6.3 and Java 9+
+* Fixed Hive recipes validation in some specific Hive configuration setups, notably when used with IBM BIGSQL
+
+Plugins
+-------------
+
+* Restored "Update from Git" for plugins in "installed" mode (in addition to dev mode)
+* Fixed plugin algorithms on UIF installation mode
+* Improved code recipe to plugin conversion
+* Made python based custom field compatible with MULTISELECT field type
+
+Webapps
+-----------
+* Added support for multi-process Bokeh webapps
+
+Misc
+----------
+* Better handling of cases where projects are deleted on disk instead of through DSS
+* Fixed failure while copying subflow with HDFS datasets in a new project
+* Fixed mail attachment limit size widget in ressource control screen
+* Displayed all tags and users in the projects list instead of the ones defined in the current project folder
+* Fixed possibility to use variables in 'webhookUrl' field of the Microsoft Team scenario reporter
+
+Version 7.0.1 - March, 13th, 2020
+=====================================
+DSS 7.0.1 is a bugfix release.  For a summary of major changes in 7.0, see below
+
+Datasets
+------------
+* Fixed 'Export Table' option of dataset metrics in 'column view' display mode
+* Fixed column width resizing in dataset explore tab
+
+Recipes
+-------------
+
+* Fixed the translation of the 'log' DSS formula when run on SQL databases
+* Fixed the dkuReadDataset R function that could, in case of error, hide the real error message
+* Fixed support for S3 to Redshift fast-path with S3 connections having restrictions on writable paths
+
+Statistics
+-------------
+* Fixed statistics computation on Kubernetes
+* Fixed UI issues with statistics on migrated DSS instances
+
+Kubernetes
+-------------
+* Better validation of cluster name when creating a Kubernetes cluster from plugin
+
+
+Machine learning
+-------------------
+* Added computation of the aggregated score on partitioned models when a custom score is used
+* Added computation of the aggregated score on multiclass partitioned models when the 'Log loss' metric is used
+* Fixed usage of the native Python processor when defined in the script section of an analysis
+* Fixed display of the starting time when training partitioned models
+
+Flow
+-------------------
+* Improved display of unbuilt datasets when using flow filters
+* Improved display of partitioned models when using flow views
+* Improved display of plugin names in the right panel
+* Fixed preview of folder content in the right panel
+
+Misc
+-------------
+* Fixed DSS objects link creation in DSS objects descriptions on Firefox
+* Various fixes around multi selection of list items
+* Fixed issue when moving project to folder by drag and drop
+* Fixed the 'send report' scenario step when targeting a dataset
+* Fixed abort of SQL notebook query when using the 'regular statement' option
+
+Plugins
+-------------
+* Fixed language selection when creating a plugin component
+* Make chart filters available for custom charts
+
+Version 7.0.0 - March, 2nd, 2020
+=====================================
+
+DSS 7.0.0 is a major upgrade to DSS with major new features.
+
+New features
+-------------
+
+Interactive statistics
+%%%%%%%%%%%%%%%%%%%%%%%
+
+Dataiku DSS now features a dedicated interface for performing exploratory data analysis (EDA) on datasets. EDA is useful for analyzing datasets and summarizing their main characteristics. Common tasks in EDA include visual data exploration, statistical testing, detecting correlations, and dimensionality reduction.
+
+Some of the features of interactive statistics in Dataiku DSS are:
+
+* Univariate analysis (descriptive statistics, histograms, boxplots, quantile tables, frequency tables, cross-filter, ...)
+* Bivariate analysis (scatter plots, correlation analysis, bivariate frequency tables, ...)
+* Statistical tests (mean tests, distribution tests, two-sample tests, Anova, Chi-Square, ...)
+* Distribution fitting (normal, beta, exponential, mixtures, ...)
+* Kernel Density Estimations
+* Curves fitting
+* Multi-variables correlation matrix
+* Principal component analysis
+* Arbitrary grouping and filtering
+
+For more details, please see :doc:`/statistics/index`
+
+Row-level interpretability
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Dataiku DSS now includes row-level interpretability for Machine Learning models. This allows you to get a detailed explanation of why a Dataiku model made a given prediction, even when said model is a "black-box" model.
+
+Dataiku DSS features two computation methods for row-level intepretability:
+
+* ICE (individual conditional explanations)
+* Shapley values
+
+In the model results screen, you can directly view explanations for the "most extreme" predictions on the test set. You can also compute explanations on a complete dataset in the scoring recipe.
+
+For more details, please see :doc:`/machine-learning/supervised/explanations`
+
+Git integration of projects: pulling and branching
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The per-project Git integration now features several key additional features:
+
+* Pulling changes from a remote repository
+* Creating branches and switching branches
+* Creating new branches as new projects to work on multiple branches simultaneously
+
+For more details, please see :doc:`/collaboration/version-control`
+
+Fetch path and partition information in prepare recipe
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The prepare recipe now includes a new processor "Enrich with context information" that can be used to add, for each row, information about the source file and source partition.
+
+This processor is especially useful when using partitioned-by-files datasets where the file path may contain important semantic information, that was previously not retrievable.
+
+This processor only works in the "DSS" engine for prepare (i.e. it cannot be used with Spark).
+
+For more details, please see :doc:`/preparation/processors/enrich-with-record-context`
+
+Project creation macros
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+Many administrators wish to have more control on how projects are created. Examples of use cases include forcing a default code env, container runtime config, automatically creating a new code env, setting up authorizations, setting up UIF settings, creating a Hive database, ...
+
+This led many administrators to deny project creation to users, leading to higher administrative burden for administrators.
+
+With project creation macros, administrators can delegate the creation of projects to users, but the project will be created using administrator-controlled code, in order to perform additional actions or setup.
+
+For more details, please see :doc:`/concepts/projects/creating-through-macros`
+
+Other notable enhancements
+---------------------------
+
+Resize columns
+%%%%%%%%%%%%%%%
+
+It is now possible to resize columns in the Explore and Prepare views.
+
+Retry in scenarios
+%%%%%%%%%%%%%%%%%%%%
+
+It is now possible to confiure each scenario step to retry a given number of times, with a configurable delay between retries.
+
+Signing of SAML requests
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Dataiku DSS now supports signing SAML requests, for the cases where the SAML IdP requires it.
+
+OAuth flow and credentials for plugins
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Plugins can now leverage a new infrastructure that allows their users to store per-user credentials, and to perform OAuth flows.
+
+This is particularly useful for plugins that need to connect to OAuth-protected data sources. With this new infrastructure, your plugin can allow each user to access his own data after performing the OAuth authentication flow through DSS.
+
+For more details, please see :doc:`/plugins/reference/params`
+
+Merge folders recipe
+%%%%%%%%%%%%%%%%%%%%%%
+
+A new visual recipe to merge the content of multiple managed folders into one "stacked" managed folder
+
+Reload button on notebooks
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The Jupyter notebook UI now features a "Force reload" button that performs the full-unload-and-reload of the notebook that is needed:
+
+* If the project libraries were modified and need to be reloaded
+* If the DSS backend had restarted and the notebook can't authenticate anymore
+* If the Hadoop delegation tokens had expired
+
+Scalable webapps on Kubernetes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Webapps can now be deployed on Kubernetes. This allows having multiple backends serving a webapp.
+
+Advanced Kubernetes exposition
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Exposing API services and webapps on Kubernetes now support more advanced exposition options and custom YAML for expositions, allowing for more flexibility in advanced Kubernetes deployments.
+
+Other enhancements and fixes
+-----------------------------
+
+
+Hadoop, Spark, Kubernetes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+* Fixed "inherit from host" network on AKS
+* Added ability to set Kubernetes version on EKS
+* Fixed potential generation of too long Kubernetes namespaces
+* Automatically set `spark.master` when using Managed-Spark-on-Kubernetes on a non-managed Kubernetes cluster
+* Added support for Hortonworks HDP 3.1.4
+* Fixed potential infinite loop when building Spark pipelines
+* Automatically cleanup pods generated when using interactive SparkSQL on Kubernetes
+* Added variables expansion in Spark configuration
+* Test of container execution configuration now properly uses the active cluster
+
+Datasets
+%%%%%%%%
+
+* BigQuery: Added support for "append"
+* GCS: Fixed slow read
+* GCS: Added proxy support
+* PostgreSQL: Fixed ability to use custom JDBC URL
+* FTP: Fixed file format detection
+* MySQL: Fixed duplicate column names in SQL notebook table list
+
+Webapps
+%%%%%%%%
+
+* Flask webapp backend can now be multithreaded and multiprocessed. This allows greatly increasing the concurrency when the webapp performs blocking API calls but does not consume CPU (for example, if the webapp is waiting for a scenario to complete running)
+* Fixed History tab
+* Fixed restart of Bokeh webapps in dashboards
+
+Data preparation
+%%%%%%%%%%%%%%%%
+
+* Fixed possible wrongful detection of "bigint" storage type instead of "string", even in the presence of 0-leading values
+* Fixed SQL translation for column renamer when doing renames like A->B, B->C
+
+Visual recipes
+%%%%%%%%%%%%%%%
+
+* Sync recipe: GCS to BigQuery fast-path: added support for data stored in mono-regional locations
+* Sync recipe: Redshift to S3 fast-path: fixed support for `@` in column names
+
+Coding recipes
+%%%%%%%%%%%%%%
+
+* Fixed Hive->Impala and Impala->Hive conversion actions
+
+Machine learning
+%%%%%%%%%%%%%%%%%%
+
+* Fixed strict conformance of generated PMML models
+* Fixed impact coding when "impute missing" is set to "drop rows"
+* Fixed ability to run Evaluation recipe with Keras Deep Learning models on Kubernetes
+* Added "revert design to this session" for clustering models
+* Fixed XGBoost early stopping when the best iteration is the first one
+* Fixed support for Tensorboard with Tensorflow >= 1.10
+
+Python API
+%%%%%%%%%%%
+
+* Fixed regression on `dataiku.get_custom_variables(typed=True)` - type will now be preserved
+* Added `dataiku.Project().get_variables` and `dataiku.Project().set_variables` to get/set project variables in a recipe in a way that will be directly reflected
+* Fixed `insights.save_plotly`, `insights.save_bokeh`, ... in Python 3
+* Added API to obtain credentials for a connection directly in Python code (if authorized)
+* Added API to delete a scenario
+* Added API to delete a file from a managed folder
+* Made it possible to work on developing plugin recipes and clusters outside of DSS
+
+R API
+%%%%%%
+
+* Added `dkuGetProjectVariables` and `dkuSetProjectVariables` to get/set project variables in a recipe in a way that will be directly reflected
+* Added API to delete a file from a managed folder
+
+
+API node & API deployer
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+* Fixed adding test queries from a dataset on a custom prediction endpoint
+
+Cloud
+%%%%%%
+
+* Fixed generation of role-assumed STS tokens with too long login names or from APIs
+
+Performance & Scalability
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+* Various performance enhancements, especially for instances with high concurrency of users
+
+Automation
+%%%%%%%%%%%%
+
+* Fixed wrongful date displayed in report mail when aborting a scenario
+* Fixed ability to clear old job logs from the UI
+
+Administration
+%%%%%%%%%%%%%%%%
+
+* Added mass actions on the Users screen
+
+Misc
+%%%%
+
+* Fixed issues where data would not be reloaded after installing a new plugin
+* Fixed adding insight from content of a managed folder
+* Enabled "drop data" by default when deleting datasets

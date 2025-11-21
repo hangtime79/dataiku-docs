@@ -1,0 +1,48 @@
+{% extends "core.tmpl" %}
+
+{% block head %}
+## prediction
+## This notebook will reproduce all the steps for a {{ prediction_type }} on  {{ dataset }}.
+## The main objective is to predict the variable {{ target }}
+{% endblock %}
+
+
+{% block prebody %}
+{% block target_variable %}
+{% endblock %}
+
+# Remove rows for which the target is unknown.
+ml_dataset = ml_dataset[~ml_dataset['__target__'].isnull()]
+
+## The dataset needs to be split into 2 new sets, one that will be used for training the model
+## and another that will be used to test its generalization capability.
+## This is a simple cross-validation strategy.
+train, valid = pdu.split_train_valid(ml_dataset, prop={{cross_val_ratio}})
+print 'Train data has %i rows and %i columns' % (train.shape[0], train.shape[1])
+print 'Validation data has %i rows and %i columns' % (valid.shape[0], valid.shape[1])
+{% endblock %}
+
+
+
+{% block modeling %}
+## Before actually creating our model, we need to split the datasets into their features and labels parts:
+train_X = train.drop('__target__', axis=1)
+valid_X = valid.drop('__target__', axis=1)
+{%if prediction_type == 'classification' %}
+train_Y = np.array(train['__target__'].astype(np.uint8))
+valid_Y = np.array(valid['__target__'].astype(np.uint8))
+{% else %}
+train_Y = np.array(train['__target__'])
+valid_Y = np.array(valid['__target__'])
+{% endif %}
+## Now we can finally create our model !
+{% block model_definition %}
+{% endblock %}
+
+## ... And train it
+%time clf.fit(train_X, train_Y)
+{% endblock %}
+
+{% block evaluation %}
+## You can measure the model's accuracy:
+{% endblock %}

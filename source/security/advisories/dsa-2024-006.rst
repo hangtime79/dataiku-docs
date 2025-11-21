@@ -1,0 +1,30 @@
+:orphan:
+
+Directory traversal during DSS provisioning by Fleet Manager
+#############################################################
+
+Information
+=============
+
+* Advisory ID: DSA-2024-006
+* CVSS Base Score: 5.3
+* CVSS String: CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N
+* Severity: Medium
+* CWE classification: CWE-27
+* Advisory Release Date: August 26th, 2024
+
+Summary
+========
+
+Until DSS 13.1.1, a path traversal issue could briefly allow an attacker with access
+to a DSS instance being provisioned by Fleet Manager to read files accessible to the nginx user.
+
+Affected Products
+==================
+
+Dataiku DSS before 13.1.1.
+
+Fix
+====
+
+Dataiku DSS 13.1.1 have been made available to customers to remediate this issue.

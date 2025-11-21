@@ -1,0 +1,29 @@
+:orphan:
+
+
+Improper display of cleartext API Node API key in API service history tab
+##########################################################################
+
+Information
+=============
+
+* Advisory ID: DSA-2025-007
+* CVSS Base Score: 2.7
+* CVSS String: AV:N/AC:L/PR:H/UI:N/S:U/C:L/I:N/A:N
+* Severity: Low
+* CWE classification: CWE-532
+
+Summary
+========
+
+In Dataiku DSS before 14.1.1, a Dataiku deployer user could see a cleartext API node API key in the API service history tab
+
+Affected Products
+==================
+
+* Dataiku DSS before 14.1.1
+
+Fix
+===
+
+Dataiku 14.1.1 have been made available to customers to remediate this issue

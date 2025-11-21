@@ -1,0 +1,18 @@
+sequenceDiagram
+    participant D as Dataiku DSS
+    participant L as Local Docker
+    participant R as Remote Docker
+    participant I as Image Registry
+
+    D->>L: Build image
+
+    D->>+L: Push image
+    L->>-I: Push image
+
+
+    D->>R: Run container
+    activate R
+    R->>I: Pull image
+    I-->>R: 
+    Note left of R: Job runs
+    deactivate R

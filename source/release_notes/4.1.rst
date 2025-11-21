@@ -1,0 +1,745 @@
+DSS 4.1 Release notes
+#####################
+
+.. contents::
+    :depth: 3
+    :local:
+
+Migration notes
+================
+
+Migration paths to DSS 4.1
+----------------------------
+
+	* From DSS 4.0: Automatic migration is supported, with the restrictions and warnings described in :ref:`releases_notes.4.1.limitations`
+
+	* From DSS 3.1: In addition to the restrictions and warnings described in :ref:`releases_notes.4.1.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`3.1 -> 4.0 </release_notes/4.0>`
+
+	* From DSS 3.0: In addition to the restrictions and warnings described in :ref:`releases_notes.4.1.limitations`, you need to pay attention to the restrictions and warnings applying your previous versions. See :doc:`3.0 -> 3.1 </release_notes/3.1>` and :doc:`3.1 -> 4.0 </release_notes/4.0>`
+
+	* From DSS 2.X: In addition to the restrictions and warnings described in :ref:`releases_notes.4.1.limitations`, you need to pay attention
+	  to the restrictions and warnings applying to your previous versions: see :doc:`2.0 -> 2.1 </release_notes/2.1>` :doc:`2.1 -> 2.2 </release_notes/2.2>` :doc:`2.2 -> 2.3 </release_notes/2.3>`,
+	  :doc:`2.3 -> 3.0 </release_notes/3.0>`, :doc:`3.0 -> 3.1 </release_notes/3.1>` and :doc:`3.1 -> 4.0 </release_notes/4.0>`
+
+	* Migration from DSS 1.X is not supported. You must first upgrade to 2.0. See :doc:`/release_notes/2.0`
+
+How to upgrade
+----------------
+
+It is strongly recommended that you perform a full backup of your DSS data directory prior to starting the upgrade procedure.
+
+For automatic upgrade information, see :doc:`/installation/custom/upgrade`.
+
+Pay attention to the warnings described in :ref:`releases_notes.4.1.limitations`.
+
+
+.. _releases_notes.4.1.limitations:
+
+Limitations and warnings
+--------------------------
+
+DSS 4.1 is a major release, which changes some underlying workings of DSS. Automatic migration from previous versions is supported, but there are a few points that need manual attention.
+
+SSH datasets
+%%%%%%%%%%%%%%
+
+If a SSH dataset had an absolute path, the migrated download recipe may fail to locate files. You will need to adjust the path in the connection versus the path in the dataset.
+
+API node
+%%%%%%%%%
+
+If you had custom pooling configuration, please contact Dataiku Support for update instructions
+
+Other
+%%%%%%
+
+* Models trained with prior versions of DSS must be retrained when upgrading to 4.1 (usual limitations on retraining models and regenerating API node packages - see :doc:`/installation/custom/upgrade`). This includes models deployed to the flow (re-run the training recipe), models in analysis (retrain them before deploying) and API package models (retrain the flow saved model and build a new package)
+
+* After installation of the new version, R setup must be replayed
+
+* We now recommend using mainly personal API keys for external applications controlling DSS, rather than project or global keys. Some operations, like creating datasets or recipes, are not always possible using non-personal API keys.
+
+* DSS 4.1 is compatible with Anaconda/Miniconda version 4.3.27 or later only. If your existing DSS instance is integrated with Anaconda Python,
+  you should check your current conda version with ``conda -V``, and if necessary upgrade your conda installation with
+  ``conda update conda``.
+
+External libraries upgrades
+----------------------------
+
+Several external libraries bundled with DSS have been bumped to major revisions. Some of these libraries  include some *backwards-incompatible* changes. You might need to upgrade your code.
+
+Notable upgrades:
+
+* pandas 0.18 -> 0.20
+* scikit-learn 0.18 -> 0.19
+
+As usual, remember that you should not change the version of Python libraries bundled with DSS. Instead, use :doc:`/code-envs/index`
+
+
+Version 4.1.5 - February, 13th 2018
+=====================================
+
+DSS 4.1.5 is a bugfix release.
+
+Notebooks
+---------
+
+* Fixed notebooks when a python/lib is defined at the project level
+
+Misc
+---------
+
+* Fixed impersonation failure of YARN jobs in multi-user-security mode with resourcemanager failover
+
+
+Version 4.1.4 - February, 8th 2018
+=====================================
+
+DSS 4.1.4 is a bugfix release.
+
+Datasets
+---------
+
+* Fixed copy action of Vertica dataset
+* Fixed metric computation on MongoDB dataset
+* Fixed build failure on exposed HDFS datasets if target project does not exist in multi-user-security mode
+
+Web apps
+--------
+
+* Fixed export/import of published webapps created after DSS 4.1
+
+Recipes
+-------
+
+* Fixed special characters management on 'contains' and 'like' operators on SQLServer and Oracle
+* Fixed window and group recipe schema overriding when a post filter is defined
+* Fixed split recipe from partitioned filesystem dataset to partitioned SQL dataset
+* Fixed insert table helper on SQL script recipe.
+
+Machine learning
+-----------------
+
+* Fixed UI of clustering scoring recipe
+* Custom variable and current project key are now accessible from custom python model
+* Fixed small differences between mllib and scikit-learn metrics
+
+Notebooks
+-----------
+
+* Fixed PySpark notebooks on YARN using virtual environments
+* Fixed usage of project level lib/python in notebooks in multi-user-security mode
+
+Misc
+-------
+
+* **New feature**: Support conda 4.4
+* **New feature**: Added ability to disable exports. See :doc:`/security/advanced-options`
+* Macro admin parameters are now settable in the scenario UI
+* Fixed possible issue with loading webapp insights
+* Fixed custom python trigger in multi-users-securit mode
+* Fixed display issue when RMarkdown reports are slow to generate
+* Fixed 'add to scenario' action of managed folders
+* Fixed folder scroll on large managed folders
+
+Version 4.1.3 - January, 8th 2018
+=====================================
+
+DSS 4.1.3 is a bugfix release.
+
+Datasets
+---------
+
+* Fixed SQL Query dataset on Teradata when the query contains unaliased expressions
+* Fixed GCS and Azure Blob Storage datasets when a bucket is forced in connection
+* Fixed dates reading bug in Parquet, whereby reading dates in year 0 would cause subsequent dates to appear as negative
+* Fixed metrics on Twitter dataset
+
+Machine Learning
+-----------------
+
+* Fixed failure of Python ensembles, that could not be used for scoring before having retrained them
+* Fixed training and evaluation failure of Python ensembles when target contained missing values
+* Fixed incorrect "raw" coefficients in linear models
+* Fixed wrongful binary classification metrics in evaluation recipe
+* Fixed failure in feature reduction by correlation to target when there are categorical variables with imputation of missing values
+* Fixed failure writing date columns in clustering recipe
+* Fixed computation issue in "difference to parent" in interactive clustering
+* Fixed sort by "difference to parent" in interactive clustering
+* Added more details about algorithms in results pages
+* Added warning when number of selected models can lead to ties for voting classifier ensembles.
+* Made ``dataiku.current_project_key()`` API usable in custom models
+* Updated Sparkling Water to 2.0.21 / 2.1.20 / 2.2.6
+
+Data preparation
+------------------
+
+* Added ability to remove outliers on dates
+* Added Column completion in "Compute distance" processor
+* Improved documentation links for reshaping processors
+* Open processors documentation in a new tab
+* Misc small UI improvements
+
+Recipes
+-------
+
+* Don't allow Spark and MR engines for partition redispatch
+* Fixed UI of postfilter with incorrect formula
+* Fixed custom aggregates in Pivot recipe
+* Window recipe on DSS engine: fixed non-dense rank within group
+* Window recipe on DSS engine: fixed negative window limits
+* Misc small UI improvements
+* Fixed occasional failure while retrieving Spark failure
+
+Coding
+-------
+
+* Fixed "write_metadata" and "create_meaning" Python APIs
+* Fixed failure to create some templates in plugins
+
+Web apps
+--------
+
+* Don't lose Python backend code when disabling backend.
+* Fixed issues with Shiny apps when DSS is behind a HTTPS reverse proxy
+
+Automation
+-----------
+
+* Fixed display issue in "Dataset modified" trigger
+* Fixed deadlock when aborting a scenario when aborted build step was run from a python step
+* Don't complain when no partition is selected in "Compute Metrics" step (means all partitions)
+
+Misc
+-----
+
+* All modals now have a "temporarily hide" button to view the Flow underneath
+* Fixed support link in error messages
+* Fixed failure saving very long project variables
+* Fixed migration issue for code envs in multi-user-security mode
+
+Version 4.1.2 - December, 12th 2017
+=====================================
+
+DSS 4.1.2 contains both bug fixes and new features.
+For the list of new features in the 4.1 branch, see release notes for 4.1.0 below
+
+Machine learning
+-----------------
+
+* **New feature**: Support for numerical vectors as input feature in Visual Machine Learning
+* Percentage display in confusion matrix
+* New performance-oriented options for MLLib
+* Fixed display of cross-validation chart for regresison models when K-fold cross test is enabled
+
+Data preparation
+-----------------
+
+* **New feature**: Stop words and stemming for German, Spanish, Portuguese, Italian and Dutch languages
+
+API node
+---------
+
+* **New feature**: New UI to define test queries and data enrichments for API node.
+* Fixed intermittent failures of R function and R prediction endpoints when left idle
+* Fixed dataset lookup endpoint mode hanging after several queries
+
+
+Flow
+-----
+
+* **New feature**: Ability to define maximum parallelism per recipe, recipe type, user, ... (See :doc:`/flow/limits`)
+* Fixed rectangular selection and dragging on Safari
+* Fixed copy of parts of Flow with "All available" partition dependency
+* Fixed "New recipe" menu when more than ~30 plugins are installed
+
+Automation
+-----------
+
+* Fixed wrongful display of some jobs as being "initiated by a scenario" whereas they were not. This could also cause leakage of backend log lines in scenario logs.
+
+Dashboard
+----------
+
+* Fix issue whereby sometimes, users couldn't view web apps they were allowed to
+* Fixed display of static insights with spaces in names
+
+Visual recipes
+--------------
+
+* Fixed split recipe in "Fully random dispatch" mode on Hive and Spark
+* Fixed UI for "equals to a date" filtering
+* Fixed support on Greenplum
+* Fix array contains operator on DSS engine
+
+Coding
+-------
+
+* Fixed "clear" API on managed folders
+* Fixed partitioned Pig recipe
+* Fixed creation of notebook templates in plugin developer
+
+Hadoop & Spark
+---------------
+
+* Allow Kerberos+SSL when using the Cloudera driver for Impala
+* Fixed support for Hadoop without any kind of Hive support
+
+Misc
+-----
+
+* **New feature**: Support for per-user-credentials together with LDAP authentication on Teradata
+* Performance improvements for large deployments
+* Don't let users enter empty project names
+* Fixed hang of custom datasets "Test & Get Schema"
+* Faster explore of partitioned SQL datasets
+* Allow pre- and post- queries in SQL query dataset
+* Fixed possible interface unresponsiveness when validating a coding recipe with "all available" partitioning, and unresponsive data source
+* Allow Markdown in plugins description
+* Various error display improvements
+* Fix usage of templates in plugins
+
+
+Version 4.1.1 - November, 20th 2017
+=====================================
+
+DSS 4.1.1 is a bugfix release. For the list of new features in the 4.1 branch, see release notes for 4.1.0 below
+
+Datasets
+---------
+
+* Fixed errors when using HTTP datasets as inputs of some visual recipes
+* Fixed spurious warning when creating an editable dataset
+* Improved error handling when creating new managed datasets
+* Added experimental support for "autocommit" execution on Microsoft SQL Server
+* Fixed write support in custom Python datasets
+
+Recipes
+--------
+
+* Fixed handling of partitioned inputs in pivot recipe
+* Fixed handling of partitioned outputs in split recipe with Hive engine
+
+Hadoop & Spark
+---------------
+
+* Fixed reading of partitioned Parquet HDFS datasets in Spark notebook
+* Fixed validation of partitioned SparkSQL recipe with Parquet HDFS inputs
+* Fixed failure to synchronize Hive metastore after manual clear of dataset
+* Fixed some buggy cases in Spark pipelines building
+* Added default setting for better out-of-the-box experience on MUS with Spark 2.2
+
+Data preparation
+-----------------
+
+* Better formatting of dates in analyze histogram
+
+Machine learning
+----------------
+
+* Fixed computation of score for multiclass when not all classes are in test set
+* Fixed selectability of models in saved model versions list
+* Fix evaluate recipe in multiclass when evaluating rows with target not seen at training.
+
+Flow and jobs
+---------------
+
+* Fixed schema propagation across Hive recipes in HiveServer2 execution mode
+* Performance enhancements in job details page
+
+Dashboards
+-----------
+
+* Fix read dashboard only permission
+
+Misc
+----
+
+* Fixed migration of scenarios with attached datasets in reporters
+* Fixed UI issues in tags edition on Firefox
+* Fixed color scale for binned XY charts
+* Exclude non-writable plugin datasets from project exports
+* Fixed memory and socket leak in jobs building
+
+Version 4.1.0 - November, 13th 2017
+=====================================
+
+DSS 4.1.0 is a major upgrade to DSS with a lot of new features. For a summary of the major new features, see: https://www.dataiku.com/learn/whatsnew
+
+New features
+-------------
+
+For coders: Multiple code environments for Python and R
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+DSS now allows you to create an arbitrary number of code environments. A code environment is a standalone and self-contained environment to run Python or R code.
+
+Each code environment has its own set of packages. Environments are independent: you can install different packages or different versions of packages in different environments without interaction between them. In the case of Python environments, each environment may also use its own version of Python. You can for example have one environment running Python 2.7 and one running Python 3.6
+
+See :doc:`/code-envs/index` for more information.
+
+For coders: Python 3 support
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+As a consequence of the multiple code environments support, you can now run Python 3 (3.4 to 3.6) for all your DSS code.
+
+For coders: Shiny and Bokeh
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+You can now write :doc:`web applications </webapps/index>` in DSS using the Shiny and Bokeh libraries that are fully natively integrated.
+
+A :doc:`Shiny web app </webapps/shiny>` uses the `Shiny <https://shiny.rstudio.com/>` R library. You write R code, both for the "server" part and "frontend" part. Using Shiny, it is easy to create interactive web apps that react to user input, without having to write any CSS or Javascript.
+
+You write your Shiny code as you would outside of DSS, and DSS takes care of hosting your webapp and making it available to users with access to your data project.
+
+
+A :doc:`Bokeh web app </webapps/bokeh>` uses the `Bokeh <http://bokeh.pydata.org/en/latest/>` Python library. You write Python code, both for the "server" part and "frontend" part. Using Bokeh, it is easy to create interactive web apps that react to user input, without having to write any CSS or Javascript (Bokeh is the Python counterpart to Shiny).
+
+You write your Bokeh code as you would outside of DSS, and DSS takes care of hosting your webapp and making it available to users with access to your data project.
+
+Mass actions and view on the Flow
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The UI capabilities of the :doc:`DSS Flow </flow/index>` have been strongly boosted.
+
+You can now:
+
+* Select multiple items (using Shift+Click, or using rectangular selections)
+* Apply a large number of mass actions on multiple items , like:
+  * Delete
+  * Clear
+  * Build
+  * Add to a scenario
+  * Change engines
+  * Change Spark configurations
+  * Change tags
+  * Change dataset types and connections
+  * ...
+* View items in the Flow using a variety of inspection layers, like:
+  * By connection
+  * By recipe engine
+  * By partitioning scheme
+  * By creation/modification date or author
+  * By Spark configuration
+  * ...
+* Copy entire parts of the Flow, either within a project or between projects
+
+Filtering on the Flow
+%%%%%%%%%%%%%%%%%%%%%%%
+
+In addition to the above mentioned mass actions capabilities, you can now filter the flow view by tags, users,
+types and modification dates. This allows you to focus on your part of the Flow while not being distracted by
+the rest of the Flow, and is particularly useful for large projects.
+
+For coders: RMarkdown
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Code reports allow you to write code that will be rendered as beautiful reports that you can download, attach by mail or render on the dashboard. R Markdown reports can be used to generate documents based on your project's data.
+
+`R Markdown <http://rmarkdown.rstudio.com/>`_ is an extension of the `markdown <https://en.wikipedia.org/wiki/Markdown>`_ language that enable you to easily mix formatted text with code written in several languages (in particular R or Python).
+
+When editing your R Markdown report in DSS, you can "build" it to generate the output document. This document can be displayed, published into the dashboard, downloaded in various document formats, or attached to emails.
+
+See :doc:`/R/rmarkdown` for more information.
+
+For coders: custom charts on the dashboard
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Through the new "static insights" mechanism, it is now possible to easily display on the DSS dashboard charts or other arbitrary files produced using Python or R code directly on the DSS dashboard.
+
+See :doc:`static insights in Python <devguide:api-reference/python/static-insights>` and :doc:`static insights in R </R-api/static_insights>`
+
+This notably includes charts created with:
+
+* :doc:`Plot.ly </python/plotly>`
+* :doc:`Matplotlib </python/matplotlib>`
+* :doc:`Bokeh </python/bokeh>`
+* :doc:`Ggplot </python/ggplot>`
+
+For data scientists: Auto-ML features
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The capabilities of DSS to automatically optimize machine learning models have been greatly improved:
+
+* Real-time models comparison charts to see the progress of your grid search optimization
+* Support for random search
+* Time-boundable search
+* Interruptible and resumable search
+* Plot the impact of any hyperparameter on the model's performance and training time
+
+Many more parameters can now be optimized in all algorithms.
+
+More support has been added for custom cross-validation strategies. Code samples are available for one-click setup of LeaveOneOut / LeavePOut strategies.
+
+The UI has been overhauled to make it clearer how to try more parameters, and to better document various options.
+
+For data scientists: Grid search in MLLib models
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+DSS previously had support for hyperparameters optimization for Python (in-memory) models. This capability has been extended to MLLib models.
+
+For data scientists: Ensemble models
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+You can now select multiple models and create an ensemble model out of them.
+
+Ensembling can be done using:
+
+* Linear stacking (for regression models) or logistic stacking (for classification problems)
+* Prediction averaging or median (for regression problems)
+* Majority voting (for classification problems)
+
+For analysts: Pivot recipe
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The pivot recipe lets you build pivot tables, with advanced control over the rows, columns and aggregations.
+It supports execution of the pivot on external systems, like SQL databases, Spark, Hive or Impala.
+
+The pivot recipe supports advanced features like limiting the number of pivoted columns, multi-key pivot, ...
+
+See :doc:`/other_recipes/pivot` for more information.
+
+
+For analysts: Sort recipe
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+For analysts: New "Split" recipe
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+For analysts: Distinct recipe
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+For analysts: "Top N" recipe
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The “Top N” recipe allows you to retrieve the first and last N rows of subsets with the same grouping keys values.
+The rows within a subset are ordered by the columns you specify. It can be performed on any dataset in DSS, whether it’s a SQL dataset or not.
+
+See :doc:`/other_recipes/topn` for more information
+
+R models in API node
+%%%%%%%%%%%%%%%%%%%%%%
+
+You can now write custom model predictions in R and expose them on the DSS API node.
+DSS will automatically handle deployment, distribution, high availability and scalability of your R model, written using any R package
+
+See :doc:`/apinode/endpoint-r-prediction` for more information
+
+Arbitrary Python or R functions in the API node
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In addition to custom prediction models in Python or R, you can now expose arbitrary functions in the DSS API node.
+DSS will automatically handle deployment, distribution, high availability and scalability of your functions.
+
+See :doc:`/apinode/endpoint-python-function` and :doc:`/apinode/endpoint-r-function` for more information
+
+SQL queries in the API node
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+You can expose a parametrized SQL query as a DSS API node endpoint.  Calling the endpoint with a set of parameters
+will execute the SQL query with these parameters.
+
+The DSS API node automatically handles pooling connections to the database, high availability and scalability for execution of your query.
+
+See :doc:`/apinode/endpoint-sql-query` for more information
+
+Datasets lookup in the API node
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The "dataset(s) lookup" endpoint offers an API for searching records in a DSS dataset by looking it up using lookup keys.
+
+For example, if you have a "customers" dataset in DSS, you can expose a "dataset lookup" endpoint where you can pass
+in the email address and retrieve other columns from the matching customer.
+
+See :doc:`/apinode/endpoint-dataset-lookup` for more information
+
+Index external tables in DSS catalog
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+It is now possible to scan and index DSS connections. The DSS catalog will then contain items for every table in the remote connection. You can search tables by connection, schema, name, columns, descriptions, ... You can preview tables, see if they are already imported as DSS datasets, and import them easily.
+
+Folders and uploads everywhere
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Managed folders and uploaded datasets can now be stored on any "files-aware" location supported by DSS (local filesystem, HDFS, S3, GCS, Azure Blob, FTP, SFTP).
+
+
+New HTTP / FTP / SCP / SFTP support
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The support for these protocols has been completely overhauled:
+
+* The old cache can now be completely bypassed.
+* You can now use the :doc:`Download recipe </other_recipes/download>` to cache files from a remote location to another location (which can be local or remote)
+* SFTP datasets are now writable
+
+
+New chart features
+%%%%%%%%%%%%%%%%%%%%
+
+DSS 4.1 comes with several major improvements to the data visualization features:
+
+* Ability to create animated charts, animated by another dimension
+* Ability to create "sub-charts", broken down by another dimension
+* More control on legend position, legend for continuous colors
+* Support for displaying geometry directly on maps
+* Customizable color palettes
+* Diverging color palettes
+* Customizable map backgrounds
+* Compute charts using Hive
+
+Attach more things to scenario emails
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In :doc:`DSS scenarios </scenarios/index>` you can send email reports at the end of a scenario.
+
+You can now attach to these email reports multiple items:
+
+* The data of a dataset, in any format supported by DSS format exporters
+* A file from a managed folder
+* The full content of a managed folder
+* An export of a :doc:`RMarkdown report </R/rmarkdown>`
+* An export of a :doc:`Jupyter noteboook </notebooks/index>`
+* The log file of the scenario
+
+A mail can have multiple attachments.
+
+Other notable enhancements
+---------------------------
+
+Edit recipes in notebook
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+You can now easily edit a Python or R recipe (regular or Spark) in a Jupyter notebook, and go back to the recipe from the notebook/
+
+Code editor enhancements
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In all places where you can edit code in DSS, you can now:
+
+* Customize the theme of the code editor (go to your user profile)
+* Customize font and font size
+* Customize some key mappings
+
+In addition, code editors now support many more features:
+
+* Code folding
+* Auto close of brackets and tags
+* Multiple cursors
+
+Managed folder browser
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+The browser for managed folder has been strongly enhanced and now allows you full control and modificability of the folder content.
+
+You can also directly unzip Zip files in a managed folder
+
+Plugin and libraries editor
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The plugin and libraries editor is now much more powerful, feature multi-files edition, direct creation of all component types, move/rename capabilities.
+
+
+Plugin edition for non-administrators
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+It is now possible for administrators to delegate to non-administrators the right to create plugins and edit code libraries
+
+Spark 2.2
+%%%%%%%%%%
+
+DSS now includes support for Spark 2.2
+
+SQL code formatter
+%%%%%%%%%%%%%%%%%%%%
+
+"Concat" aggregates in grouping and window recipes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+You can now aggregate string columns by creating a concatenation of all values (or all distinct values) in the grouping and window recipes.
+
+Better support for empty datasets
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Until now, an empty SQL dataset (table exists but has 0 rows, or SQL query returns 0 rows) was considered
+ as "not ready" and could not be used in the Flow. This is now a configurable dataset.
+
+Native TDCH support
+%%%%%%%%%%%%%%%%%%%
+
+DSS includes TDCH support in the sync recipe for fast transfers:
+
+* Teradata to HDFS
+* HDFS to Teradata
+
+This includes interaction with other Hadoop Filesystems, as HDFS datasets (S3, ...)
+
+Plugins
+%%%%%%%%%
+
+* Plugins can now contain "FS providers" to define new kinds of "file-aware" datasets and managed folders
+* Plugins can now contain templates for webapps and code reports
+* Plugins can now contain custom palettes and map backgrounds for charts
+
+Misc (datasets)
+%%%%%%%%%%%%%%%%%
+
+* DSS has beta support for IBM DB2.
+* DSS has beta support for Exasol
+* You can now check schema consistency on all files in a dataset
+* :doc:`Relocation settings </connecting/relocation>` are now available for many more types of datasets
+* Checking if a SQL query dataset is ready is now much faster
+* Uploaded datasets can now be partitioned
+* Improved error and status reporting in datasets screens
+
+Misc (webapps)
+%%%%%%%%%%%%%%%
+
+Improvements in the webapps mechanism make it more robust to copy a project containing a webapp within a DSS instance
+
+Misc (recipes)
+%%%%%%%%%%%%%%%
+
+* You won't get prompted to update the schema anymore of an output dataset when it's empty (happens automatically)
+
+Misc (charts)
+%%%%%%%%%%%%%%
+
+* Added support for filter by date in SQL Server
+* Ability to reorder charts
+* Option not to replace missing values by 0 (notably in line charts)
+
+Misc (data preparation)
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+* Columns of integers containing 0-leading values will now be considered as Text
+* When both integer and decimal are possible, but some values are not valid integers, DSS will now properly choose decimal
+* Forced meanings are better preserved across preparation recipes, fixing some invalid "switch to numeric" behaviors
+
+Misc (administration)
+%%%%%%%%%%%%%%%%%%%%%%%
+
+* Connections are not tested automatically anymore, avoiding cases where you could get locked out for using a wrong password
+* The DSS temporary directories have been cleaned up to make it easier to understand what takes some space
+
+Notable bug fixes
+-------------------
+
+Datasets
+%%%%%%%%%%
+
+* You can now download multiple files in a HTTP dataset
+* HTTP dataset now supports SSL SNI
+* Other stability fixes for HTTP datasets
+* Fixed intermittent "Address already in use" issue with custom Python datasets
+
+Recipes
+%%%%%%%%%
+
+* Preferred engine is now taken into account for split, filter and sync recipe
+
+Automation
+%%%%%%%%%%%
+
+* Fixed setting global variables from a custom scenario Python step
+* Fixed Scenario.get_definition() in Python API client

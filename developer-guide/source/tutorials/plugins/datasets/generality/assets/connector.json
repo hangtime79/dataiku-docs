@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "label": "Generate random data",
+    "description": "Generate random data",
+    "icon": "icon-puzzle-piece"
+  },
+  "readable": true,
+  "writable": false,
+  "params": [
+    {
+      "name": "size",
+      "label": "Number of records",
+      "type": "INT",
+      "description": "",
+      "minInt": 1,
+      "maxInt": 10000,
+      "defaultValue": 10,
+      "mandatory": true
+    },
+    {
+      "name": "columns",
+      "label": "Column names",
+      "type": "STRINGS",
+      "description": "List of columns that will be generated",
+      "mandatory": true
+    },
+    {
+      "name": "column_types",
+      "label": "Column types",
+      "type": "STRINGS",
+      "description": "Type of the columns (in the same order). Only String, number, boolean are possible. Default type: string.",
+      "mandatory": false
+    }
+  ]
+}

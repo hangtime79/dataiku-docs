@@ -1,0 +1,20 @@
+# hayagriva bibliography syntax
+# https://github.com/typst/hayagriva/blob/main/tests/data/basic.yml
+
+arxiv: &arxiv
+  type: Repository
+  archivePrefix: arXiv
+  title: arXiv
+
+SHAP:
+  type: Article
+  title: A Unified Approach to Interpreting Model Predictions
+  author:
+    - Scott Lundberg
+    - Su-In Lee
+  date: 2017
+  serial-number:
+    serial: 1705.07874
+    doi: 10.48550/arXiv.1705.07874
+  url: "https://arxiv.org/abs/1705.07874"
+  parent: *arxiv

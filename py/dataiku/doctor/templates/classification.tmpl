@@ -1,0 +1,87 @@
+{% extends "prediction.tmpl" %}
+
+{% block target_variable %}
+## We are now going to handle the target variable and store it in a new variable:
+target_map = {{ target_map }}
+ml_dataset['__target__'] = ml_dataset['{{target}}'].map(str).map(target_map)
+del ml_dataset['{{ target }}']
+{% endblock %}
+
+
+# Train model
+
+{% block model_definition %}
+
+{% if algorithm == "RANDOM_FOREST_CLASSIFICATION" %}
+{% if modeling_params.rf_estimators  == 0 %}
+from dataiku.doctor import RandomForestClassifierIML
+clf = RandomForestClassifierIML(
+    n_jobs={{ modeling_params.rf_njobs }},
+    random_state=1337,
+    max_depth={{ modeling_params.rf_max_tree_depth if modeling_params.rf_max_tree_depth > 0 else None }},
+    min_samples_leaf={{ modeling_params.rf_min_samples_leaf }},
+    verbose=2)
+{% else %}
+from sklearn.ensemble import RandomForestClassifier
+clf = RandomForestClassifier(n_estimators={{ modeling_params.rf_estimators }},
+    n_jobs={{ modeling_params.rf_njobs }},
+    random_state=1337,
+    max_depth={{ modeling_params.rf_max_tree_depth if modeling_params.rf_max_tree_depth > 0 else None }},
+    min_samples_leaf={{ modeling_params.rf_min_samples_leaf }},
+    verbose=2)
+{% endif %}
+{% elif algorithm == "LOGISTIC_REGRESSION" %}
+from sklearn.linear_model import LogisticRegression
+clf = LogisticRegression(penalty="{{ modeling_params.logit_penalty }}",random_state=1337)
+{% elif algorithm == "SVC_CLASSIFICATION" %}
+from sklearn.svm import SVC
+clf = SVC(C={{ modeling_params.C }},
+          kernel='{{ modeling_params.kernel }}',
+          gamma={{ modeling_params.gamma }},
+          coef0={{ modeling_params.coef0 }},
+          tol={{ modeling_params.tol }},
+          probability=True,
+          max_iter={{ modeling_params.max_iter }})
+{% elif algorithm == "SGD_CLASSIFICATION" %}
+from sklearn.linear_model import SGDClassifier
+clf= SGDClassifier(alpha={{ max(modeling_params.alpha, 0.001) }},
+    l1_ratio=modeling_params.l1_ratio,
+    loss='{{ modeling_params.loss }}',
+    penalty='{{ modeling_params.penalty }}',
+    shuffle=True,
+    n_iter = 5,
+    n_jobs=modeling_params.n_jobs)
+{% elif algorithm == "SCIKIT_MODEL" %}
+{{modeling_params['scikit_clf']}}
+{% else %}
+# Algorithm unsupported !
+{% endif %}
+{% endblock %}
+
+
+{% block prediction %}
+## The model is now being trained, we can apply it to our validation set:
+%time _predictions = clf.predict(valid_X)
+%time _probas = clf.predict_proba(valid_X)
+predictions = pd.Series(data=_predictions, index=valid_X.index, name='predicted_value')
+cols = [
+    u'probability_of_value_%s' % label
+    for (_, label) in sorted([(int(label_id), label) for (label, label_id) in target_map.iteritems()])
+]
+probabilities = pd.DataFrame(data=_probas, index=valid_X.index, columns=cols)
+
+# Build scored dataset
+results_valid = valid_X.join(predictions, how='left')
+results_valid = results_valid.join(probabilities, how='left')
+results_valid = results_valid.join(valid['__target__'], how='left')
+results_valid = results_valid.rename(columns= {'__target__': '{{ target }}'})
+{% endblock %}
+
+
+{% block evaluation %}
+## You can measure the model's accuracy:
+from dataiku.doctor.utils.metrics import mroc_auc_score
+print 'AUC value:', mroc_auc_score(valid_Y, _probas)
+{% endblock %}
+
+

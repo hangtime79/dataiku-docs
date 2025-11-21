@@ -1,0 +1,211 @@
+@font-face {
+    font-family: "Fabrikat Regular";
+    src: url('https://pages.dataiku.com/hubfs/font-fabrikat-new/Fabrikat%20Regular.woff2') format('woff2'), url('https://pages.dataiku.com/hubfs/font-fabrikat-new/Fabrikat%20Regular.woff') format('woff'), url('https://pages.dataiku.com/hubfs/font-fabrikat-new/Fabrikat%20Regular.ttf') format('truetype')
+}
+
+.scroll-current {
+}
+
+.mobile-panel-trigger {
+    display: none;
+    z-index: 1;
+    top: 7px;
+    right: 20px;
+    background: white;
+    border: none;
+    padding: 12px;
+    margin: 0;
+    border-radius: 3px;
+}
+
+.mobile-panel-trigger span {
+    display: block;
+    height: 3px;
+    width: 24px;
+    margin-top: 4px;
+    background: var(--teal-official);
+    -webkit-transition: background 150ms ease-out;
+    transition: background 150ms ease-out;
+}
+
+.mobile-panel-trigger span:first-child {
+    margin-top: 0;
+}
+
+
+/* 67em from mobile-header when mobile banner is shown*/
+@media (max-width: 67em) {
+}
+
+@media (max-width: 1199px) {
+    body.mobilenav-is-open #headnav {
+        height: 100%;
+        -ms-transform: translateX(-75%);
+        -moz-transform: translateX(-75%);
+        -webkit-transform: translateX(-75%);
+        transform: translateX(-75%);
+    }
+
+    body.mobilenav-is-open {
+        overflow: hidden;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    body.mobilenav-is-open #mainnav {
+        height: auto;
+    }
+}
+
+@media (min-width: 1200px) {
+    .mobile-panel-trigger {
+        display: none;
+    }
+}
+
+@media (max-width: 1312px) {
+    aside.toc-drawer {
+        z-index: 950!important;
+    }
+}
+
+
+article[role="main"] div > p, article[role="main"] div li > p {
+    text-align: justify;
+    hyphens: auto;
+    word-break: break-word;
+}
+
+article[role="main"] figure, article[role="main"] figure figcaption p, article[role="main"] div.figure p.caption {
+    font-weight: 300;
+    text-align: center;
+    padding-bottom: .625rem;
+}
+
+article[role="main"] h1, article[role="main"] h2, article[role="main"] h3, article[role="main"] h4, article[role="main"] h5, article[role="main"] h6 {
+    border-radius: 0;
+}
+
+article[role="main"] h2 {
+    margin-top: 24px;
+}
+
+article[role="main"] h3 {
+    margin-top: 16px;
+    text-decoration: underline var(--color-foreground-border) 0.5px;
+}
+
+article[role="main"] h4 {
+    margin-top: 16px;
+    text-decoration: underline dotted var(--color-foreground-border) 0.5px;
+}
+
+article[role="main"] div.table-wrapper.docutils th p {
+    margin: .25rem .12rem;
+}
+
+article[role="main"] div.table-wrapper.docutils .text-left {
+    text-align: left;
+}
+
+article[role="main"] div.table-wrapper.docutils .text-right {
+    text-align: right;
+}
+
+article[role="main"] div.table-wrapper.docutils .text-center {
+    text-align: center;
+}
+
+article[role="main"] div.table-wrapper.docutils tr.row-odd {
+    background-color: var(--color-table-header-background);
+}
+
+article[role="main"] div.table-wrapper.autosummary {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    table-layout: fixed;
+}
+
+article[role="main"] div.table-wrapper.autosummary table.autosummary {
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+}
+
+article[role="main"] div.table-wrapper.autosummary table.autosummary tr.row-odd {
+    background-color: var(--color-table-header-background);
+}
+
+
+article[role="main"] table.autosummary td {
+    width: auto;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    text-overflow: ellipsis;
+}
+
+article[role="main"] table.autosummary colgroup col {
+    width: auto !important;
+}
+
+article[role="main"] table.autosummary td p {
+    text-align: left;
+}
+
+
+article[role="main"] div.no-copybutton > div.highlight > button.copybtn {
+    display: none;
+}
+
+div:has(> table.dataframe) {
+    overflow: auto;
+}
+
+/* Global shape of the page */
+.page {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.announcement {
+    background-color: var(--dark-teal);
+    color: var(--white);
+}
+
+.announcement a {
+    color: var(--gold);
+}
+
+.announcement-content {
+    overflow: auto;
+    text-overflow: ellipsis;
+}
+
+/* Styles for Google search custom (gse) */
+/* Adjust the position of the custom Google search results overlay to avoid overlapping with the fixed header */
+.gsc-results-wrapper-overlay {
+    top: inherit!important;
+    height: calc(0.8*(100% - 115px))!important;
+}
+
+.gsc-control-cse {
+  border: none !important;
+  background-color: rgba(255,255,255,0) !important;
+}
+
+.gsc-input-box {
+  border-radius: 5px !important;
+  background-color: white !important;
+}
+
+input.gsc-input {
+  background-color: white !important;
+  color: var(--dark-blue);
+}
+
+.gs-per-result-labels {
+  color: var(--black);
+}
+
+/* End of styles for GSE */

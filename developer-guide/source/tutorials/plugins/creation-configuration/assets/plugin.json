@@ -1,0 +1,14 @@
+{
+    "id": "dev-setup-demonstration",
+    "version": "0.0.1",
+    "meta": {
+        "label": "Developer advocacy -- Plugin",
+        "description": "This plugin aims to demonstrate how to set up a developer environment. It also shows some simple configuration possibilities.",
+        "author": "Dataiku developer advocay team",
+        "icon": "icon-lemon",
+        "recipesCategory": "visual",
+        "tags": ["Developer", "devadvocacy team", "tutorials", "Dev enviroment"], //for example: ["Machine Learning", "NLP"]
+        "url": "http://developer.dataiku.com/",
+        "licenseInfo": "Apache Software License"
+    }
+}

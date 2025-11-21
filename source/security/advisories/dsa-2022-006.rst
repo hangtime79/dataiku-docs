@@ -1,0 +1,30 @@
+:orphan:
+
+Multiple access control issues
+###############################
+
+Information
+=============
+
+* Advisory ID: DSA-2022-006
+* CVSS String: CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N
+* CVSS Base Score: 5.3 (Medium)
+* CWE classification: CWE-284
+
+Summary
+========
+
+Multiple low-impact access control issues could allow unprivileged users to access low-confidentiality information that they should not be able to access.
+
+Affected Products
+==================
+
+* Dataiku DSS in versions prior to 10.0.8
+
+Fix
+===
+
+Dataiku DSS 10.0.8 has been made available to customers to remediate this issue
+
+
+.. note:: covers 96623, 96629, 96622, 96620, 92577

@@ -1,0 +1,29 @@
+:orphan:
+
+
+Time-of-Check / Time-of-Use issue in UIF mechanism
+###################################################
+
+Information
+=============
+
+* Advisory ID: DSA-2025-008
+* CVSS Base Score: 4.1
+* CVSS String: CVSS:3.1/AV:L/AC:H/PR:H/UI:N/S:U/C:N/I:H/A:N
+* Severity: Medium
+* CWE classification: CWE-367
+
+Summary
+========
+
+In Dataiku DSS before 14.2.0, a TOCTOU vulnerability could allow Dataiku administrators to escalate privileges on the underlying Linux OS. Only administrators could leverage the issue.
+
+Affected Products
+==================
+
+* Dataiku DSS before 14.2.0
+
+Fix
+===
+
+Dataiku 14.2.0 have been made available to customers to remediate this issue

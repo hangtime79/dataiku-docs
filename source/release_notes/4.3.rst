@@ -1,0 +1,357 @@
+DSS 4.3 Release notes
+#####################
+
+.. contents::
+    :depth: 3
+    :local:
+
+Migration notes
+================
+
+Migration paths to DSS 4.3
+----------------------------
+
+    * From DSS 4.2: Automatic migration is supported, with the restrictions and warnings described in :ref:`releases_notes.4.3.limitations`
+
+    * From DSS 4.1: In addition to the restrictions and warnings described in :ref:`releases_notes.4.3.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`4.0 -> 4.1 </release_notes/4.1>` and :doc:`4.1 -> 4.2 </release_notes/4.2>`
+
+    * From DSS 4.0: In addition to the restrictions and warnings described in :ref:`releases_notes.4.1.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`4.0 -> 4.1 </release_notes/4.1>` and :doc:`4.1 -> 4.2 </release_notes/4.2>`
+
+    * From DSS 3.1: In addition to the restrictions and warnings described in :ref:`releases_notes.4.1.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`3.1 -> 4.0 </release_notes/4.0>` and :doc:`4.0 -> 4.1 </release_notes/4.1>` and :doc:`4.1 -> 4.2 </release_notes/4.2>`
+
+    * From DSS 3.0: In addition to the restrictions and warnings described in :ref:`releases_notes.4.1.limitations`, you need to pay attention to the restrictions and warnings applying your previous versions. See :doc:`3.0 -> 3.1 </release_notes/3.1>`, :doc:`3.1 -> 4.0 </release_notes/4.0>` and :doc:`4.0 -> 4.1 </release_notes/4.1>` and :doc:`4.1 -> 4.2 </release_notes/4.2>`
+
+    * From DSS 2.X: In addition to the restrictions and warnings described in :ref:`releases_notes.4.1.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions: see :doc:`2.0 -> 2.1 </release_notes/2.1>` :doc:`2.1 -> 2.2 </release_notes/2.2>` :doc:`2.2 -> 2.3 </release_notes/2.3>`, :doc:`2.3 -> 3.0 </release_notes/3.0>`, :doc:`3.0 -> 3.1 </release_notes/3.1>`, :doc:`3.1 -> 4.0 </release_notes/4.0>` and :doc:`4.0 -> 4.1 </release_notes/4.1>` and :doc:`4.1 -> 4.2 </release_notes/4.2>`
+
+    * Migration from DSS 1.X is not supported. You must first upgrade to 2.0. See :doc:`/release_notes/2.0`
+
+Deprecation notice
+----------------------------
+
+DSS 4.3 deprecates support for some OS and Hadoop distributions. Support for these will be removed in a later release.
+
+Support for the following OS versions are deprecated and will be removed in a later release:
+
+* Redhat/Centos/Oracle Linux 6 versions strictly below 6.8
+* Redhat/Centos/Oracle Linux 7 versions strictly below 7.3
+* Ubuntu 14.04
+* Debian 7
+
+Support for the following Java versions is deprecated and will be removed in a later release:
+
+* Java 7
+
+Support for the following R versions is deprecated and will be removed in a later release:
+
+* R versions strictly below 3.4
+
+Support for the following Hadoop distribution versions are deprecated and will be removed in a later release:
+
+* Cloudera distribution for Hadoop versions strictly below 5.9
+* HDP versions strictly below 2.5
+* EMR versions strictly below 5.7
+
+How to upgrade
+----------------
+
+It is strongly recommended that you perform a full backup of your DSS data directory prior to starting the upgrade procedure.
+
+For automatic upgrade information, see :doc:`/installation/custom/upgrade`.
+
+Pay attention to the warnings described in :ref:`releases_notes.4.3.limitations`.
+
+
+.. _releases_notes.4.3.limitations:
+
+Limitations and warnings
+--------------------------
+
+Automatic migration from previous versions is supported, but there are a few points that need manual attention.
+
+
+Retrain of machine-learning models
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+* Models trained with prior versions of DSS should be retrained when upgrading to 4.3 (usual limitations on retraining models and regenerating API node packages - see :doc:`/installation/custom/upgrade`). This includes models deployed to the flow (re-run the training recipe), models in analysis (retrain them before deploying) and API package models (retrain the flow saved model and build a new package)
+
+* After installation of the new version, R setup must be replayed
+
+
+Version 4.3.4 - August 13th, 2018
+=================================
+
+DSS 4.3.4 is a bugfix release
+
+Recipes
+-------
+
+* Sync: Fixed Azure Blob Storage to Azure Data Warehouse fast path if 'container' field is empty in Blob storage connection
+* Sync: Fixed Redshift-to-S3 fast path with non equals partitioning dependencies.
+
+
+RMarkdown
+----------
+
+* Fixed truncated display in RMarkdown reports view
+* Fixed 'Create RMarkdown export step' scenario step when the view format is the same that the download format
+* Fixed RMarkdown attachments in scenario mails that could send stale versions of reports
+* Multi-user-security: add ability for regular users (i.e. without "Write unsafe code") to write RMarkdown reports 
+* Multi-user-security: Fixed RMarkdown reports snapshots
+* Fixed 'New snapshot' button on RMarkdown insight
+
+Hadoop
+--------
+
+* Fixed Hadoop installation script on Redhat 6
+* Fixed usage of advanced properties in Impala connections
+
+Misc
+-----
+
+* Allowed regular users (i.e. without "Write unsafe code") to edit project-level Python libraries 
+* Allowed passing the desired type of output to the 'dkuManagedFolderDownloadPath' R API function
+* Prevent possible memory overflow when computing metrics
+
+Version 4.3.3 - July 18th, 2018
+=================================
+
+DSS 4.3.3 is a bugfix release
+
+Datasets
+---------
+* Fixed recipes which have an external Cassandra dataset as input.
+
+Charts
+---------
+* Fixed bad ordering labels on scatterplot charts
+
+Flow
+-----
+
+* Fixed issue with highlighting on the first view of a Flow
+
+Machine learning
+-----------------
+
+* Fixed error when using feature selection by correlation to target together with classification problems
+  and categorical variables with missing values imputation
+
+Recipes
+---------
+
+* Suggest joins with the first dataset in join recipes
+* Fixed display of Pig recipes validation errors
+* Fixed support of Pig recipes with multiple outputs
+
+Security
+---------
+* Fixed insufficient privilege validation for file uploads
+* Fixed non-impersonated code escalation through API Node dev server.
+
+Misc
+---------
+
+* Fixed error when reverting changes using "Revert this change only" mode.
+* Fixed possible deadlock when using Impala
+
+
+Version 4.3.2 - June 26th, 2018
+=================================
+DSS 4.3.2 is a bugfix release
+
+Datasets
+---------
+
+* **New feature**: added ability to forbid uploads into the DSS data directory
+* **New feature**: added to set the default target connection for upload datasets
+* **New feature**: added ability to configure uploads prefix on HDFS
+* Fixed upload datasets on HDFS connections in Multi User Security mode.
+* Added support for MySQL driver >= 8
+
+Machine Learning
+-----------------
+
+* Fixed possible disappearance of metrics on the model page.
+
+Recipes
+---------
+
+* Support for reading datasets above 2GB in R recipes.
+
+Misc
+---------
+
+* Added scenario actions to start and stop a cluster
+* Fixed creation of conda R code environments with conda >= 4.3.27
+* Improved flow filters when filtering on machine learning elements
+
+
+Version 4.3.1 - June 11th, 2018
+=================================
+
+DSS 4.3.1 is a bugfix release.
+
+Hadoop & Spark
+--------------
+
+* Better error display for some Hive errors
+
+Flow
+-----
+
+* Fixed wrongful project boundary crossing when building recursive cross-projects Flows
+* Fixed UI issue creating Jobs database dataset
+
+Clusters
+---------
+
+* Make metrics computation use the proper cluster when running in a scenario-specific cluster
+* Added some protection against invalid values in the "default cluster" field
+
+Notebooks
+---------
+
+* Fixed UI issue with SQL autocompletion
+
+Machine Learning
+-----------------
+
+* Fixed link in "Train complete" notification
+* Fixed issues with migration from 4.1 of GBT models that were deployed in "no-reoptimize" mode
+* Fixed small UI issues
+
+Misc
+----
+
+* Fixed Java 9 and Java 10 support issues
+
+
+Version 4.3.0 - June 4th, 2018
+=====================================
+
+DSS 4.3.0 is a major upgrade to DSS with significant new features. For a summary of the major new features, see: https://www.dataiku.com/learn/whatsnew
+
+New features
+-------------
+
+API Deployer
+%%%%%%%%%%%%%%
+
+The API Deployer empowers Data Scientists to self-manage model deployments and rollbacks, from dev to production, on premises or in the cloud.
+
+The API Deployer is the centralized UI through which you can:
+
+* Manage your fleet of API nodes
+* Deploy new API services to your API nodes
+* Monitor the health and status of your API nodes
+* Manage the lifecycle of your APIs from development to production.
+
+The API Deployer can control an arbitray number of API nodes, and can dynamically deploy new API Nodes as containers through the use of Kubernetes (which allows you to deploy either on-premises, or on a serverless stack on the cloud).
+
+Please see :doc:`/apinode/index` for more information.
+
+Dynamic EMR clusters
+%%%%%%%%%%%%%%%%%%%%%
+
+This feature is based on the "multiple Hadoop clusters" feature, and is provided by an experimental plugin.
+
+Through the use of this plugin, DSS can now create, destroy, and scale up and down EMR clusters. It is possible to assign different EMR clusters to various projects, and you can also build setups where you create volatile EMR clusters for running a scenario for full elastic usage approaches.
+
+Please see :doc:`/hadoop/dynamic-emr` for more information.
+
+Reorder columns in data preparation
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+As part of a "Prepare" recipe, you can now reorder column by dragging and dropping them. Columns reordering can also be performed in bulk and in the "columns" view of the Prepare recipe.
+
+Fast load from Azure Blob Storage to Azure Datawarehouse
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+DSS now has an optimized engine for the "Sync" recipe to load data in Azure Datawarehouse from Azure Blob Storage.
+
+Fast unload from Redshift to S3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+DSS now has an optimized engine for the "Sync" recipe to unload data from Amazon Redshift to Amazon S3.
+
+Macro roles
+%%%%%%%%%%%%
+
+The "Macros" system that allows you to use and define custom actions in a plugin has been enhanced and can now display contextual actions. For example a "import schema" macro can now be displayed in the "Actions" menu of the dataset.
+
+Support for multiple Hadoop clusters
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+A single DSS instance can now connect to multiple Hadoop clusters and submit jobs to them.
+
+Please see :doc:`/hadoop/multi-clusters` for more information.
+
+Other notable enhancements
+---------------------------
+
+Keep zoom and position in Flow
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The Flow view now remembers your position and zoom level when going back to the Flow for easier navigation in large flows.
+
+Fast scoring for XGBoost models
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+XGBoost models are now using DSS optimized scoring engine. The effect is especially important for the API node, where using a XGBoost model can now be dozens of times faster.
+
+More options for XGBoost models
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The booster type, objective function, and tree building methods are now customizable. Booster and objective function can be grid-searched.
+
+API endpoints calling other API endpoints
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+A common use-case is to have an API Service with several endpoints (for example several prediction models), and to have an additional "dispatcher" code endpoint that orchestrates the other endpoints.
+
+Users only directly query the dispatcher endpoint, and this dispatcher endpoint in turns needs to query the other endpoints of the same API Service.
+
+DSS now has new Python APIs to facilitate this kind of use cases. Please see :doc:`/apinode/api/endpoints-api` for more information.
+
+Enhanced support for large number of plugins
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The "New dataset" and "New recipe" menu have been overhauled to better display on instances with a very large number of plugins installed.
+
+Performance
+%%%%%%%%%%%%
+
+* Large Flows will now display faster
+* Data exports can now run in external processes so as not to put load on the main DSS backend server.
+
+Spark
+%%%%%
+
+* Added support for Spark 2.3
+
+Misc
+%%%%%
+
+* Added support for vector features in the API node
+* Export of charts to images now use high resolution images
+
+Notable bug fixes
+-------------------
+
+Machine learning
+%%%%%%%%%%%%%%%%%
+
+* Fixed failures when using a date column as a categorical feature
+* Fixed failures scoring models on Spark with boolean columns
+
+Flow
+%%%%%
+
+* Fixed an issue when the input of a Flow is an empty managed folder
+* Fixed various issues related to recipes that output both partitioned and unpartitioned datasets
+* Fixed links to foreign saved models in the recipes Input/Output tab
+
+API Node
+%%%%%%%%%
+
+* It is now possible to run test queries in the API Node development server even if your service has authentication enabled.

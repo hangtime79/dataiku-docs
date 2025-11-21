@@ -1,0 +1,29 @@
+:orphan:
+
+XSS in Sanity Checks
+######################
+
+Information
+=============
+
+* Advisory ID: DSA-2025-003
+* CVSS Base Score: 7.6
+* CVSS String: CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:H/I:H/A:L
+* Severity: High
+* CWE classification: CWE-79
+
+Summary
+========
+
+In Dataiku DSS before 13.5.4, improper sanitization could lead to a stored XSS when displaying some sanity checks
+
+
+Affected Products
+==================
+
+* Dataiku DSS before 13.5.4
+
+Fix
+===
+
+Dataiku DSS 13.5.4 has been made available to customers to remediate this issue

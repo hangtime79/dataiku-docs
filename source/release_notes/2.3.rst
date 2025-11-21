@@ -1,0 +1,449 @@
+DSS 2.3 Relase notes
+#####################
+
+.. contents::
+    :depth: 2
+    :local:
+
+
+Migration notes
+================
+
+For automatic upgrade information, see :doc:`/installation/custom/upgrade`
+
+.. warning::
+
+	Migration to DSS 2.3 from DSS 1.X is not supported. You should first migrate to the latest
+	2.0.X version. See :doc:`/release_notes/2.0`
+
+* Automatic migration from Data Science Studio 2.2.X and 2.1.X is supported, with the following restrictions and warnings:
+
+	* The usual limitations on retraining models and regenerating API node packages apply (see :doc:`/installation/custom/upgrade` for more information)
+
+* Automatic migration from Data Science Studio 2.0.X is supported, with the previous restrictions and warnings, and, in addition, the ones outlined in :doc:`2.1`
+
+Version 2.3.5 - May 23rd, 2016
+===================================
+
+DSS 2.3.5 is a bugfix and minor enhancements release. For a summary of new features in DSS 2.3.0, see below.
+
+Hadoop & Spark
+----------------
+
+* Preserve the "hive.query.string" Hadoop configuration key in Hive notebook
+* Clear error message when trying to use Geometry columns in Spark
+
+Machine learning
+------------------
+
+* Fix wrongly computed multiclass metrics
+* Much faster multiclass scoring for MLLib
+* Fix multiclass AUC when only 2 classes appear in test set
+* Fix tooltip issues in the clustering scatter plot
+
+API Node
+---------
+
+* Fix typo in custom HTTP header that could lead to inability to parse the response
+* Fix the INSEE enrichment processor
+* Fix excessive verbosity
+
+Data preparation
+-----------------
+
+* Fix DateParser in multi-columns mode when some of the columns are empty
+* Modifying a step comment now properly unlocks the "Save" button
+
+Visual recipes
+---------------
+
+* Fix split recipe on "exotic" boolean values (Yes, No, 1, 0, ...)
+
+Charts
+-------
+
+* Add percentage mode on pie/donut chart
+
+Misc
+--------
+
+* Enforce hierarchy of files to prevent possible out-of-datadir reads
+* Fix support for nginx >= 1.10
+
+Version 2.3.4 - April 28th, 2016
+===================================
+
+DSS 2.3.4 is a bugfix and minor enhancements release. For a summary of new features in DSS 2.3.0, see below.
+
+Hadoop
+-------
+
+* Add support for CDH 5.7 and Hive-on-Spark
+
+Data preparation
+-----------------
+
+* Fix "flag" processorso perating on "columns pattern" mode
+* Fix a UI issue with date facets
+* Add a few missing country names
+* Fix modulo operator on large numericals (> 2^31)
+
+Recipes
+--------
+
+* Window recipe: fix typing of custom aggregations
+
+Flow
+-----
+
+* Fix an issue that could lead to Abort not working properly on jobs
+
+Version 2.3.3 - April 7th, 2016
+===================================
+
+DSS 2.3.3 is a bugfix release. For a summary of new features in DSS 2.3.0, see below.
+
+Spark & Hadoop
+----------------
+
+* Fixed support for Hive in MapR-ecosystem versions 1601 and above
+* Added support for Spark 1.6
+* Fixed ````select now()``` in Impala notebook
+
+Data preparation
+-----------------
+
+* Fixed misinterpretation of numbers like "017" as octal in the "Nest" processor
+* The variables will now be interpreted in the context of the current preparation, not
+  the context of the input dataset
+* Fixed UI flickering
+* Fixed wrong "dirty" (i.e. not saved) state in the UI when there is a group in the recipe
+* Fixed bad state for the "prefix" option of the Unnest processor
+
+Recipes
+--------
+
+* SQL recipe: Fixed conversion from SQL notebook
+* Window recipe: Fixed data types for cumulative distribution
+* Stack recipe: Fixed custom schema definition in Stack recipe
+* Stack recipe: Fixed postfiler on filesystem-based datasets
+* Join recipe: Fixed "join on string contains" on Greenplum
+* Join recipe: Fixed computed date columns on Oracle
+* Join recipe: Fixed possible issue with cross-project joins on Hive
+* Filter recipe: Fixed boolean conditions on filesystem-based datasets
+* Group recipe: Fixed grouping in stream engine with empty values in integer columns
+* Group recipe: Fixed grouping on custom key in stream engine
+* Group recipe: Fixed UI issue when removing all grouping keys
+* All visual recipes: Fixed filters in multi-word column names
+* Sync recipe: Fixed partitioned to non-partitioned dataset creation
+* All recipes: Fixed UI for the time-range partitions dependency
+
+APIs
+-----
+
+* Python: fixed ```iter_tuples(columns=)``` which did not take columns into account
+
+Machine Learning
+-----------------
+
+* Fixed mishandling of accentuated values, leading them to appear as "Others" in dummy-encoded columns
+* Fixed clustering scoring recipe if no name was given to any cluster
+* Fixed wrong description of the metric used for classification threshold optimization
+* Fixed possible migration / settings issue in Ridge regression
+
+Misc
+------
+
+* Fixed tags flow view in projects with foreign datasets
+* Fixed export of dataframe from Jupyter noteboook
+* Fixed user/group dialogs in LDAP mode
+* Fixed an occasional deadlock
+
+Version 2.3.2 - March 1st, 2016
+======================================
+
+DSS 2.3.2 is a bugfix release. For a summary of new features in DSS 2.3.0, see below.
+
+Machine Learning
+-----------------
+
+* Spark engine: Add support for probabilities in Random forest
+* Spark engine: Improve stability of results for models
+* Spark engine: Fix casting of output integers to doubles
+* Python engine: Fix a code error in Jupyter notebook export
+
+
+Data preparation
+-----------------
+
+* Fix fuzzy join hanging in rare conditions
+* Fix custom Python steps when there are custom variables with quotes
+* Fix deploying analysis on other dataset
+
+Recipes
+--------
+
+* Split: Fix support for adding custom variables to output dataset
+* Split: Fix UI reloading that could lead to broken recipe
+* Stack: Fix on Spark engine
+
+Visualization
+--------------
+
+* Fix occasional issue with "Publish" button on Firefox
+
+Webapps
+-------
+
+* Fix support for filterExpression in JS API
+
+Misc
+-----
+
+* Fix export of non-partitioned dataset after export of partitioned dataset with explicit partitions list
+* Small UI fixes
+
+Version 2.3.1 - February 16th, 2016
+======================================
+
+DSS 2.3.1 is a bugfix release. For a summary of new features in DSS 2.3.0, see below.
+
+Installation
+-------------
+
+* Disable IPv6 listening (introduced in 2.3.0) by default
+
+Datasets
+--------
+
+* Fix RemoteFiles dataset
+
+Data Wrangling
+---------------
+
+* Fix running on Hadoop and Spark with "Remove rows on bad meaning" processor
+* Fix a case where the data quality bars were not properly updated
+* Fix formatting issue in latitude/longitude for GeoIP processor
+* Add a few missing countries to the Countries detector
+
+Spark
+------
+
+* Default to repartitioning non-HDFS datasets in fewer partitions to avoid consuming
+  too many file handles
+
+Data Catalog
+-------------
+
+* Fix some prefix search cases with uppercase identifiers
+
+Machine Learning
+------------------
+
+* Fixed filtering of features in settings screens
+* Don't show "Export notebook" option for MLLib models
+
+Charts
+------
+
+* Hide useless size parameter for filled admin maps
+
+Misc
+-----
+
+* Show tabs explicitly in code editors
+* Add code samples for webapps
+
+
+Version 2.3.0 - Feburary 11th 2016
+=====================================
+
+DSS 2.3.0 is a major upgrade to DSS with exciting improvements.
+
+For a summary of the major new features, see: https://www.dataiku.com/learn/whatsnew
+
+New features
+-------------
+
+Visual data preparation, reloaded
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Our visual data preparation component is a major focus of DSS 2.3, with numerous large improvements:
+
+* You can now group, color and comment all script steps
+
+* It is now possible to color the cells of the data table by their values, to easily locate co-occurences, or columns changing together.
+
+* The Python and Formula editors are now much easier to use.
+
+* The Formula language has been strongly enriched, making it a very powerful, but still very easy to use tool. See :doc:`/formula/index` and our new Howto for more information.
+
+* The Quick Column View provides an immediate overview of all columns, and allows you to navigate very simply across columns.
+
+* The header at the top of the table now always precisely tells you what you are seing and the impact of your preparation on your data.
+
+* Many processors are now multi-column able, including the ability to select all columns, or all columns matching a pattern.
+
+* It is now possible to temporarily hide some columns
+
+* Hit Shift+V to view "long" values in a data table cell, including JSON formatting and folding
+
+* The redesigned UI makes it much clearer to navigate your preparation steps and data table.
+
+Schemas edition and user-defined meanings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+If it now possible to edit the schemas of datasets directly in the Exploration screen.
+
+You can now define your own meanings, either declaratively, through values lists or through patterns. User-defined meanings are available everywhere you need them, bringing easy documentation to your data projects. For more informations, see :doc:`/schemas/index`
+
+Data Catalog
+%%%%%%%%%%%%%%
+
+Since the very first versions, DSS let you search within your project. Thanks to the new Data Catalog, you now have an extremely powerful instance-wide search. Even if you have dozens of projects, you'll be able to find easily all DSS objects, with deep search (search a dataset by column name, a recipe by comments in the code, ...).
+
+The Data Catalog provides a faceted search and fully respects applicative security.
+
+Flow tools and views
+%%%%%%%%%%%%%%%%%%%%%
+
+The new Flow views system is an advanced productivity tool, especially designed for large projects. It provides additional "layers" onto the Flow:
+
+* Color by tag name and easily propagate tags
+* Recursively check and propagate schema changes across a Flow
+* Check the consistency of datasets and recipes across a project.
+
+New SQL / Hive / Impala notebook
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The SQL / Hive / Impala notebook now features a "multi-cells" mechanism that lets you work on several queries at once, without having to juggle several notebooks or search endlessly in the history.
+
+You can also now add comments and descriptions, to transform your SQL notebooks into real data stories.
+
+Contextual help
+%%%%%%%%%%%%%%%%%%
+
+* DSS now includes helper tooltips to guide you through the UI
+* The Help menu now features a contextual search in our documentation
+
+Other notable enhancements
+--------------------------
+
+Plugins
+%%%%%%%%%%%%
+
+You can now automatically install the plugin dependencies. Plugin authors can also declare custom installation scripts, if the installation of your plugin is not a simple matter of installing Python or R packages.
+
+Data preparation
+%%%%%%%%%%%%%%%%%
+
+* New processor for converting "french decimals" (1 234,23) or "US decimals" (1,234.23) to "regular decimals" (1234.23)
+* New processors to clear cells on number range or with a value
+* New processors to flag records on number range or with a value
+* New processor to count occurences of a string or pattern within a cell
+* Added support of full names in "US State" meaning
+* Added more mass actions
+
+Hadoop
+%%%%%%%
+
+* (Hortonworks only) Tez sessions are now reused in the SQL notebook
+
+Machine learning
+%%%%%%%%%%%%%%%%%%%
+
+* Coefficients are now displayed in Ordinary Least Squares regression
+
+Datasets
+%%%%%%%%%%
+
+* Support for ElasticSearch 2.X
+* Experimental support for append mode on Elasticsearch
+
+Recipes
+%%%%%%%%
+
+* Shell: now supports variables
+* Split: can now split on the result of a formula
+* Can now define custom additional configuration and statements in "Visual recipes on SQL / Hive / Impala"
+
+API
+%%%%%%%%%%%%
+
+* The public API now includes a set of methods to interact with user-defined meanings.
+* R API: now automatically handles lists in resulting dataframes
+
+Infrastructure / Packaging
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+* Environment ulimit is now checked when starting
+* DSS now checks whether server ports are busy at startup
+
+
+Notable bug fixes
+-----------------
+
+Datasets
+%%%%%%%%%
+
+* Counting records on SQL query datasets is now possible
+* MongoDB: dates support has been fixed
+* MySQL: fixed handling of null dates
+* MongoDB empty columns are now properly shown
+
+Data preparation
+%%%%%%%%%%%%%%%%%
+
+* Currency converter now works properly with input date columns
+* "Step preview" doesn't change output dataset schema anymore
+* Copying a preparation recipe with a Join step now generates proper Flow
+* Formula dates support has been improved
+* Fixed sort by cardinality in columns view
+* Hidden clustering buttons in explore view
+
+Charts
+%%%%%%%
+
+* Exporting "Grouped XY" charts to Excel has been fixed
+* Fixed issues on charts created by a "Deploy script"
+
+Hadoop
+%%%%%%%
+
+* The hproxy process now starts properly if the Hive metastore is unreachable
+* After a metastore failure, the hproxy now recovers properly
+* Partitioned recipes on Impala engine have been fixed
+
+Machine learning
+%%%%%%%%%%%%%%%%%%
+
+* Fixed an UI bug on confusion matrix
+
+Recipes
+%%%%%%%%
+
+* Managed Folders properly appear in search results
+* Grouping: drag and drop when 0 keys has been fixed
+* Stack: "schema union" mode now works properly on Vertica
+* Window: fixed lead/lag on dates in Vertica
+* Don't accept to run a failing join recipe on filesystem datasets with quotes in columns
+
+Notebooks
+%%%%%%%%%%%%
+
+* Fixed various bugs related to Abort in SQL notebooks
+* Fixed code samples in SQL notebooks
+* Upgraded Jupyter
+
+API
+%%%%
+
+* Project admin permission now properly grants all other project permissions
+* R API: now displays a proper error when trying to write non-existent dataset
+* R API: fixed writing of data.table object
+
+Infrastructure / Packaging
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+* Java startup options are now properly set on all processes
+* DSS now works properly when you have an http_proxy environment variable

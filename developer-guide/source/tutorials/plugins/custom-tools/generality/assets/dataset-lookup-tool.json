@@ -1,0 +1,9 @@
+{
+    "id": "dataset-lookup",
+    "meta": {
+        "label": "Dataset Lookup",
+        "description": "Provide a name, job title and company of a customer, given the customer's ID"
+    },
+    "params" : [
+    ]
+}

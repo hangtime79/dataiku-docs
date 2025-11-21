@@ -1,0 +1,28 @@
+:orphan:
+
+Improper privilege enforcement on project import
+################################################
+
+Information
+=============
+
+* Advisory ID: DSA-2023-008
+* CVSS Base Score: 8.8
+* CVSS String: CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H
+* Severity: High
+* CWE classification: CWE-281
+
+Summary
+========
+
+A user who has privileges to import projects (or bundles on automation nodes) could execute an imported scenario as another user.
+
+Affected Products
+==================
+
+* Dataiku DSS before 12.1.3
+
+Fix
+===
+
+Dataiku DSS 12.1.3 has been made available to customers to remediate this issue

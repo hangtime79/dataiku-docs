@@ -1,0 +1,30 @@
+:orphan:
+
+Incorrect type validation in image preview
+###############################################
+
+Information
+=============
+
+* Advisory ID: DSA-2025-002
+* CVSS Base Score: 7.6
+* CVSS String: CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:H/I:H/A:L
+* Severity: High
+* CWE classification: CWE-1287
+
+Summary
+========
+
+In Dataiku DSS before 13.5.0, improper type validation could lead to stored XSS
+when previewing an image stored in a managed folder
+
+
+Affected Products
+==================
+
+* Dataiku DSS before 13.5.0
+
+Fix
+===
+
+Dataiku DSS 13.5.0 has been made available to customers to remediate this issue

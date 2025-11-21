@@ -1,0 +1,30 @@
+:orphan:
+
+Access control issue on saving project permissions
+#####################################################
+
+Information
+=============
+
+* Advisory ID: DSA-2021-006
+* CVSS Base Score: 6.7
+* CVSS String: CVSS:3.0/AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:L/A:L
+* Severity: Medium
+* CWE classification: CWE-284
+
+Summary
+========
+
+In Dataiku DSS before 9.0.6, insufficient access control could allow project administrators to modify permissions of other projects that they were not allowed to access.
+
+Affected Products
+==================
+
+* Dataiku DSS 8 and previous versions
+* Dataiku DSS 9, before 9.0.6
+* Dataiku DSS 10, before 10.0.2
+
+Mitigation
+===========
+
+Dataiku DSS 9.0.6 and 10.0.2 have been made available to customers to remediate this issue

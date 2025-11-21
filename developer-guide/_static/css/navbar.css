@@ -1,0 +1,280 @@
+
+/* empty content to simulate the space taken by the banner.
+    As the banner is in absolute position,
+     the banner is not taken into account when positioning
+ */
+.nav-overlay {
+    height: 115px;
+}
+
+@media (max-width: 67em) {
+    .nav-overlay {
+        height: calc(115px - var(--header-height));
+    }
+
+}
+
+/* For a global perspective, the page is only a column */
+.page {
+    display: flex;
+    flex-direction: column;
+}
+
+aside.toc-drawer {
+    z-index: 20;
+}
+
+.toc-overlay {
+    z-index: 19;
+}
+
+.headnav {
+    -ms-transition: border 200ms ease-out;
+    -moz-transition: border 200ms ease-out;
+    -webkit-transition: border 200ms ease-out;
+    transition: border 200ms ease-out;
+    font: normal 16px/1 'Source Sans Pro', sans-serif;
+    background-color: var(--dark-blue-navbar);
+    height: 115px;
+    z-index: 900;
+}
+/*
+    .header is not mandatory, just in case if we want to add something above or beyond the bar itself
+    the .header is display in row with only two children (the logo, and the navbar)
+ */
+.headnav .header {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+/*
+    How to display the logo
+ */
+.headnav .header .logo {
+    height: 51px;
+    min-width: 315px;
+}
+
+.headnav .header .logo .logo-link {
+    margin: 32px;
+}
+
+.headnav .header .logo img{
+    height: 100%;
+}
+
+/*
+    How to display the navbar.
+    The navbar is also a container with all items in it (academy, community, ...)
+    They should be displayed in row
+ */
+.headnav .navbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+    list-style-type: none;
+    margin:0 2em 0 0;
+}
+
+/*
+    Let's focus on the first items (those with title)
+ */
+.headnav .navbar .navbar-item {
+    height: inherit;
+    font-size: 16px;
+}
+
+.headnav .navbar li.navbar-item-content {
+    display: none;
+}
+
+.headnav .navbar li.navbar-item > a {
+    margin: 0 22px;
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+    height: inherit;
+    align-items: center;
+}
+
+.headnav .navbar li.navbar-item:hover {
+    background-color: var(--white);
+}
+
+.headnav .navbar li.navbar-item:hover a {
+    color: var(--black);
+}
+/* This is for adding the "down" sign next to the item*/
+.headnav .navbar li.navbar-item > a:after {
+    content: "";
+    display: inline-block;
+    vertical-align: baseline;
+    width: 8px;
+    height: 8px;
+    border-width: 0 2px 2px 0;
+    border-style: solid;
+    border-color: var(--white);
+    transform: rotate(45deg);
+    margin: 0 0 3px 10px;
+}
+
+.headnav .navbar li.navbar-item:hover > a:after {
+    border-color: var(--black);
+}
+
+.headnav .navbar .navbar-item-content {
+    background: var(--white);
+    display: none;
+    list-style: none;
+    padding-inline-start: inherit;
+    position: absolute;
+    margin: 0;
+    padding: 10px 22px;
+    box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.15);
+}
+
+.headnav .navbar .navbar-item-content .title {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.8em;
+    padding-top: 22px;
+}
+
+.headnav .navbar .navbar-item-content .subtitle {
+    font-size: 14px;
+    font-weight: normal;
+    text-wrap: nowrap;
+}
+
+.headnav .navbar .navbar-item-content li a:hover {
+    color: var(--dark-teal);
+}
+
+.headnav .navbar .navbar-item-content div.columns ul.new-column li {
+    padding-bottom: 6px;
+    padding-top: 6px;
+    line-height: 24px;
+}
+
+.navbar-item-content .columns {
+    display: flex;
+    flex-direction: row;
+}
+
+.navbar-item-content .columns ul {
+    list-style-type: none;
+    padding: 0 22px 0 0;
+}
+
+.navbar-item-content .columns ul:last-child {
+    list-style-type: none;
+    padding: 0;
+}
+
+.headnav .navbar .navbar-item-content li a {
+    color: var(--dark-blue);
+    text-decoration: none;
+}
+
+.headnav .navbar li.navbar-item:hover .navbar-item-content {
+    display: flex;
+    flex-direction: column;
+    padding-top: 0;
+}
+.headnav .navbar .navbar-item-content .new-header-sub-nav-internal {
+    display:flex;
+    flex-direction: row;
+}
+
+.column-item-highlight  img {
+    height: 141px;
+}
+
+.column-item-highlight  a {
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+}
+
+a#highlight_link > div > p {
+    color: var(--black);
+    text-decoration: none;
+}
+
+a#highlight_link > div > p:hover {
+    color: var(--dark-teal);
+}
+
+a#highlight_link > div > p:first-child {
+    font-size: 15px;
+    font-weight: 400;
+}
+
+a#highlight_link > div > p:last-child {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.8em;
+    padding-left: 30px;
+    transition: color .3s;
+}
+
+a#highlight_link > div > p:last-child::before {
+    content: "";
+    position: absolute;
+    left: 200px;
+    top: 89%;
+    width: 8px;
+    height: 8px;
+    border-width: 2px 2px 0 0;
+    border-style: solid;
+    border-color: inherit;
+    transform: rotate(45deg);
+    transition: all 0.3s;
+}
+
+a#highlight_link > div > p:last-child::after {
+    content: "";
+    position: absolute;
+    bottom: 10%;
+    left: 190px;
+    width: 15px;
+    border-width: 0 0 2px 2px;
+    border-style: solid;
+    border-color: inherit;
+    height: 10px;
+    margin-bottom: -2px;
+    transition: all 0.3s;
+}
+
+.column-item-highlight p {
+    width: 444px;
+    margin-left: 22px;
+    line-height: 1.8em;
+    color: var(--color-foreground-primary);
+}
+
+@media (max-width: 67em) {
+    .nav-overlay {
+        height: calc(115px - var(--header-height));
+    }
+
+    .sidebar-drawer {
+        z-index: 10001;
+    }
+}
+
+
+@media (max-width: 1023px) {
+    ul.custom-sub-nav {
+        display: none !important;
+    }
+    ul.navbar {
+        display: none!important;
+    }
+}

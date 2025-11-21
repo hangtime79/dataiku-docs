@@ -1,0 +1,38 @@
+{
+    "tools": [
+        {
+            "type": "function",
+            "function": {
+                "name": "get_customer_info",
+                "description": "Get customer details from the database given their ID",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "customer_id": {
+                            "type": "string",
+                            "description": "The unique identifier for the customer"
+                        }
+                    },
+                    "required": ["customer_id"]
+                }
+            }
+        },
+        {
+            "type": "function", 
+            "function": {
+                "name": "get_company_info",
+                "description": "Get company information from internet search",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "company_name": {
+                            "type": "string",
+                            "description": "Name of the company to search for"
+                        }
+                    },
+                    "required": ["company_name"]
+                }
+            }
+        }
+    ]
+}

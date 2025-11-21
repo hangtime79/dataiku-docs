@@ -1,0 +1,28 @@
+:orphan:
+
+Improper link resolution before file access
+###########################################
+
+Information
+=============
+
+* Advisory ID: DSA-2023-007
+* CVSS Base Score: 7.5
+* CVSS String: CVSS:3.0/AV:N/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H
+* Severity: High
+* CWE classification: CWE-59
+
+Summary
+========
+
+A user who has privileges to write code and leverage containerized execution could use symbolic links to gain access to restricted files.
+
+Affected Products
+==================
+
+* Dataiku DSS before 12.1.3
+
+Fix
+===
+
+Dataiku DSS 12.1.3 has been made available to customers to remediate this issue

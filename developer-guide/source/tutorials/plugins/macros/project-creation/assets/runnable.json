@@ -1,0 +1,53 @@
+{
+  "meta": {
+    "label": "Create and set up a project",
+    "description": "Project creation (from macro)",
+    "icon": "icon-thumbs-up"
+  },
+  "permissions": [
+    "ADMIN"
+  ],
+  "resultType": "JSON_OBJECT",
+  "macroRoles": [
+    {
+      "type": "PROJECT_CREATOR"
+    }
+  ],
+  "impersonate": false,
+  "params": [
+    {
+      "name": "project_name",
+      "label": "Project name",
+      "type": "STRING",
+      "description": "Name of the project",
+      "mandatory": true
+    },
+    {
+      "name": "code_envs",
+      "label": "Select a code env",
+      "description": "Default code env for the project",
+      "type": "CODE_ENV"
+    },
+    {
+      "name": "default_cluster",
+      "label": "Select a default container",
+      "type": "CLUSTER"
+    },
+    {
+      "name": "tags",
+      "label": "Additional tags",
+      "type": "STRINGS"
+    },
+    {
+      "name": "additional_wiki",
+      "label": "Do you want to add a wiki page?",
+      "type": "BOOLEAN"
+    },
+    {
+      "name": "wiki_content",
+      "label": "Wiki page",
+      "type": "TEXTAREA",
+      "visibilityCondition": "model.additional_wiki"
+    }
+  ]
+}

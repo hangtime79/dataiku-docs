@@ -1,0 +1,483 @@
+DSS 4.2 Release notes
+#####################
+
+.. contents::
+    :depth: 3
+    :local:
+
+Migration notes
+================
+
+Migration paths to DSS 4.2
+----------------------------
+
+  * From DSS 4.1: Automatic migration is supported, with the restrictions and warnings described in :ref:`releases_notes.4.2.limitations`
+
+	* From DSS 4.0: In addition to the restrictions and warnings described in :ref:`releases_notes.4.1.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`4.0 -> 4.1 </release_notes/4.1>`
+
+	* From DSS 3.1: In addition to the restrictions and warnings described in :ref:`releases_notes.4.1.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`3.1 -> 4.0 </release_notes/4.0>` and :doc:`4.0 -> 4.1 </release_notes/4.1>`
+
+	* From DSS 3.0: In addition to the restrictions and warnings described in :ref:`releases_notes.4.1.limitations`, you need to pay attention to the restrictions and warnings applying your previous versions. See :doc:`3.0 -> 3.1 </release_notes/3.1>`, :doc:`3.1 -> 4.0 </release_notes/4.0>` and :doc:`4.0 -> 4.1 </release_notes/4.1>`
+
+	* From DSS 2.X: In addition to the restrictions and warnings described in :ref:`releases_notes.4.1.limitations`, you need to pay attention
+	  to the restrictions and warnings applying to your previous versions: see :doc:`2.0 -> 2.1 </release_notes/2.1>` :doc:`2.1 -> 2.2 </release_notes/2.2>` :doc:`2.2 -> 2.3 </release_notes/2.3>`,
+	  :doc:`2.3 -> 3.0 </release_notes/3.0>`, :doc:`3.0 -> 3.1 </release_notes/3.1>`, :doc:`3.1 -> 4.0 </release_notes/4.0>` and :doc:`4.0 -> 4.1 </release_notes/4.1>`
+
+	* Migration from DSS 1.X is not supported. You must first upgrade to 2.0. See :doc:`/release_notes/2.0`
+
+How to upgrade
+----------------
+
+It is strongly recommended that you perform a full backup of your DSS data directory prior to starting the upgrade procedure.
+
+For automatic upgrade information, see :doc:`/installation/custom/upgrade`.
+
+Pay attention to the warnings described in :ref:`releases_notes.4.2.limitations`.
+
+
+.. _releases_notes.4.2.limitations:
+
+Limitations and warnings
+--------------------------
+
+DSS 4.2 is a major release, which changes some underlying workings of DSS. Automatic migration from previous versions is supported, but there are a few points that need manual attention.
+
+
+Retrain of machine-learning models
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+* Models trained with prior versions of DSS should be retrained when upgrading to 4.2 (usual limitations on retraining models and regenerating API node packages - see :doc:`/installation/custom/upgrade`). This includes models deployed to the flow (re-run the training recipe), models in analysis (retrain them before deploying) and API package models (retrain the flow saved model and build a new package)
+
+* After installation of the new version, R setup must be replayed
+
+External libraries upgrades
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Several external libraries bundled with DSS have been bumped to major revisions. Some of these libraries include some changes that may require adaptation of your code.
+
+As usual, remember that you should not change the version of Python libraries bundled with DSS. Instead, use :doc:`/code-envs/index`.
+
+
+Version 4.2.5 - May, 31th 2018
+==============================
+
+Machine learning
+-----------------
+* Fixed retraining of LASSO-LARS models
+
+
+Datasets
+-----------------
+* BigQuery: added support for latest JDBC (en majuscules) drivers version (>= 1.1.6)
+* Fixed error when browsing path of Google Cloud Storage datasets
+* Fixed explore of DB2 datasets when the compatibility mode is not MySQL
+
+
+Flow
+----
+* Fixed 'Rebuild behaviour' option on managed folders
+
+Misc
+-----------------
+* Fixed display of 'Edit metadata for' modal on the connection screen.
+* Fixed memory leak in HDFS connections on Multi-user-security instances
+
+
+Version 4.2.4 -
+==============================
+
+Internal release
+
+
+Version 4.2.3 - May, 9th 2018
+==============================
+
+Machine learning
+-----------------
+
+* **New feature**: Added ability to revert the design of a prediction task to a previously trained model
+* Fixed issues with outliers detection in MLLib clustering
+* Fixed failure training multiple MLLib clustering models at once
+* Fixed failure deploying custom MLLib clustering models
+* Fixed excessive memory consumption on linear models
+* Fixed display of interactive clustering hierarchy with high number of clusters.
+* Fixed API node version activation when using Lasso-LARS algorithm
+* Added proper error message when trying to ensemble K-fold-cross-tested models (not supported)
+
+Spark
+-----
+
+* Strong performance improvement on processing of ORC files
+
+Flow
+----
+
+* Fixed issue with recipes building both partitioned and non-partitioned datasets
+
+API
+----
+
+* Allowed changing the path of a managed folder through the public API
+
+Misc
+-----
+
+* **New feature**: Integration with collectd for system monitoring
+* Added support for Java 10
+* Fixed reset of HDFS connection settings when upgrading multi-user-security-enabled instances
+
+Security
+---------
+
+* Restricted profile pictures visibility to avoid possible information leak
+* Fixed stored XSS vulnerability
+* Fixed directory traversal vulnerability
+
+Version 4.2.2 - April, 17th 2018
+=================================
+
+Datasets
+---------
+
+* Fixed external Elasticsearch 6 datasets
+* Fixed testing of ElasticSearch datasets with "Trust any SSL certificate" option
+
+Security
+---------
+
+* Fixed missing authorization in Jupyter that could allow users to shutdown and delete unauthorized notebooks
+* Fixed missing enforcing of "Freely usable by" connection permission on SQL queries written from R scripts (using dkuSQLQueryToData)
+
+Flow
+---------
+
+* Fixed copy of Python recipes with a managed folder as output
+* Fixed other edge cases in copy of recipes
+
+Machine learning
+-----------------
+
+* Fixed lift curve with sample weights
+
+Misc
+---------
+
+* Performance improvements for formulas
+* Made it easier to write into managed folders in Multi-user-security-enabled DSS instances
+* Fixed automation node not taking into account the "Install Jupyter Support" flag for code environments
+* Fixed Python code environments on Mac (TLS issue in pip)
+* Fixed "Clean internal DBs" macro that could prevent running jobs from finishing
+* Worked-around Conda bug preventing installation of Jupyter on conda environments
+* Improved support for PingFederate SSO IdP (compatibility with default behavior)
+* Fixed Notebooks list in "Lab"
+
+
+Version 4.2.1 - April, 3rd 2018
+=================================
+
+Datasets
+---------
+
+* S3: Faster files enumeration on large directories
+* Teradata-Hadoop sync: add support for multi-user-security
+* Teradata-Hadoop sync: fixed distribution modes and added parallelism settings to all modes
+
+Machine learning
+-----------------
+
+* Fixed Jupyter notebooks export of models
+* Fixed "Redetect settings" button
+
+Flow
+----
+
+* Large performance improvements in "Check Consistency" for large flows
+
+Visual recipes
+----------------
+
+* Pivot recipe: added support for Teradata
+* Prepare recipe: fixed possible NPE on remove column processing with pattern mode.
+
+API node
+----------------
+
+* Do not fail on startup if the model need to be retrained. Instead, display an informative message
+
+Misc
+----------------
+
+* Various performance improvements
+* Fix sample fetching from the catalog on Teradata tables
+* Preliminary support for Ubuntu 18.04
+* Fix Multi-User-Security mode on SuSE 12
+* Security: Add "noopener norefer" to all links from DSS to https://dataiku.com
+* Security: Add directives to disable password autocompletion in various forms
+
+
+Version 4.2.0 - March, 21st 2018
+=====================================
+
+DSS 4.2.0 is a major upgrade to DSS with significant new features. For a summary of the major new features, see: https://www.dataiku.com/learn/whatsnew
+
+New features
+-------------
+
+Support for sample weights in visual machine learning
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+You can now define a column to be used as the sample weights column when training a machine-learning model.
+
+When a sample weights column is enabled:
+
+* Most algorithms take it into account for training
+* All performance metrics become weighted metrics for better evaluation of your model's performance
+
+"Hive" dataset (views and decimal support)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In addition to the traditional "HDFS" dataset, DSS now supports a native "Hive" dataset.
+
+When reading a "Hive" dataset, DSS uses HiveServer2 to access its data (compared to the direct access to the underlying HDFS files, with the traditional HDFS dataset).
+
+This gives access to some Hive-native features that were not possible with the HDFS dataset:
+
+* Support for Hive views (including if you don't have filesystem access to the underlying tables)
+* Support for ACID Hive tables
+* Better support for "decimal" and "date" data types
+
+The Hive dataset can be used in all visual recipes in addition to the coding Hive recipe.
+
+When importing tables from the Hive metastore, you can now select whether to import it as a HDFS or Hive dataset.
+
+Impersonation on SQL databases
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+When running DSS in multi-user-security mode (see :doc:`/user-isolation/index`), you can now use impersonation features of some enterprise databases.
+
+This gives per-user impersonation when logging into the database (i.e. connections to the database are made as the final user, not as the DSS service account), without requiring users to individually enter and store their connection credentials.
+
+This feature is available for:
+
+* :doc:`Microsoft SQL Server </connecting/sql/sqlserver>` (also added: Kerberos authentication support)
+* :doc:`Oracle  </connecting/sql/oracle>` (also added: Kerberos authentication support)
+
+
+Full support for BigQuery
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+DSS now supports both read and write for Google BigQuery
+
+Dedicated automation homepage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Automation nodes now get a dedicated home page that shows the state of all of your scenarios.
+
+API for managing and training machine-learning models
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+All machine learning models operations can now be performed using the API, and we provide a Python client for this:
+
+* Creating models
+* Modifying their settings
+* Training them
+* Retrieving details of trained models
+* Deploying trained models to DSS Flow
+* Creating scoring recipes
+
+See :doc:`devguide:api-reference/python/index`
+
+
+Other notable enhancements
+---------------------------
+
+UI and collaboration
+%%%%%%%%%%%%%%%%%%%%%%%
+
+* Improved ability to edit metadata of items, which can no be edited directly from the Flow or objects lists
+* Improved tags management UI
+* Added ability to rename a tag
+* You can now select from more cropping and stretching mode for your project homes
+
+
+Hadoop
+%%%%%%
+
+* DSS now supports EMR 5.8 to 5.11
+
+Spark
+%%%%%%
+
+* Spark pipelines now handle more kinds and cases of Flows
+* Prediction scoring recipes in Spark mode can now be part of a Spark pipeline
+
+Datasets
+%%%%%%%%%
+
+* SQL datasets can now be partitioned by multiple dimensions and not a single one anymore
+* DSS can now read CSV files with duplicate column names
+* It is now possible to ignore "unterminated quoted field" error in CSV, and keep parsing the next files
+* It is now possible to ignore broken compressed files errors in CSV, and keep parsing the next files
+* Added support for ElasticSearch 6
+* Forbid creating datasets at the root of a connection (which is very likely an error, and could lead to dropping all connection data)
+* Automatically disable Hive and Impala metrics engine if the dataset does not have associated metastore information
+
+Visual recipes
+%%%%%%%%%%%%%%%
+
+* Exporting visual recipes to SQL query now takes aliases into account
+* Added ability to compare dates in DSS Formulas
+
+Machine Learning
+%%%%%%%%%%%%%%%%%
+
+* Display Isolation Forest anomaly score in the ML UI
+
+Scenarios
+%%%%%%%%%%
+
+* It is now possible to disable steps
+* It is now possible to have steps that execute even if previous steps failed
+
+Plugins
+%%%%%%%%
+
+* It is now possible to import a plugin in DSS by cloning an existing Git repository
+* A plugin installed in DSS can now be converted to a "plugin in development" so it can be modified directly in the plugin editor
+
+Jupyter Notebook
+%%%%%%%%%%%%%%%%%%
+
+* The Jupyter Notebook (providing Python, R and Scala notebooks) has been upgraded to version 5.4
+* This provides fixes for:
+   * Saving plotly charts
+   * Displaying Bokeh charts
+
+* You do not need to restart DSS anymore to take into account new Spark settings for the Jupyter notebook
+
+Machine Learning
+%%%%%%%%%%%%%%%%%
+
+* Custom scoring functions can now receive the ``X`` input dataframe in addition to the ``y_pred`` and ``y_true`` series
+* SGD and SVM algorithms have been added for regression (they were already available for classification)
+* "For Display Only" variables are now usable in more kinds of clustering report screens
+* It is now possible to configure how many algorithms are trained in parallel (was previously always 2)
+
+Java runtime
+%%%%%%%%%%%%%%
+
+* DSS now supports Java 9
+* It is now possible to customize the GC algorithm
+* DSS now automatically configures the Java heap with a value depending on the size of the machine
+* DSS now automatically uses G1 GC on Java 8 and higher
+
+API
+%%%%
+
+* New API to create new files in development plugins
+* New API to download a development plugin as a Zip file
+* Added ability to force types in ``query_to_df`` API
+
+Administration
+%%%%%%%%%%%%%%%
+
+* JSON output for ``apinode-admin`` tool
+* Added more ability to automatically clear various temporary data
+
+Misc
+%%%%%
+
+* Added ability to use time after the current time in the "Time Range" partition dependency function
+* Various performance improvements
+* DSS now supports verifying client-side TLS/SSL certificates
+* It is now possible to configure network interfaces on which DSS listens
+
+Notable bug fixes
+-------------------
+
+Data preparation
+%%%%%%%%%%%%%%%%%
+
+* Fixed parsing of "year + week number" kind of dates
+* Fixed merge of clusters in value clustering with overlapping clusters
+* Fixed error when computing full sample analysis on a column which was not in the schema
+
+Machine Learning
+%%%%%%%%%%%%%%%%%
+
+* Fixed models on foreign (from another project) datasets
+* Fixed invalid rescaled coefficients statistics for linear models
+* Fixed Evaluate recipe when some rows are dropped by the "Drop rows" imputation method
+* Fixed "Drop rows" imputation method on the API node when using optimized scoring engine
+
+Datasets
+%%%%%%%%%%%%%
+
+* SQL datasets: Multiple issues with "date" columns in SQL have been fixed
+* SQL datasets: Add ability to read Oracle CLOB fields
+* Avro: fix reading of some Avro files with type references
+* S3: Fixed reading of some Gzip files that failed
+* Elasticsearch: on managed Elasticsearch datasets, partitioning columns for value dimensions are now typed as ``keyword`` on ES 5+, rather than ``string``, which is deprecated in ES 5 and not supported by ES 6.
+
+Visual recipes
+%%%%%%%%%%%%%%%%
+
+* Show column renamings in the "View SQL query" section of visual recipes
+* Fixed partitioning sync from SQL to HDFS using Spark engine
+* Fixed "Concat Distinct" aggregation
+* Prevent failing join with DSS engine if columns have leading or trailing whitespaces
+* Fixed "null ordering" with DSS engine
+* Fixed window on range using DSS engine with nulls in ordering column
+* Fixed export recipe on partitioned datasets (was exporting the whole dataset)
+* Copying a prepare recipe now properly initializes schema on the copied dataset
+* Fixed Grouping recipe with Spark when renaming column and using post-filtering on renamed column
+
+Multi-user-security
+%%%%%%%%%%%%%%%%%%%%
+
+* Fixed various issues with HDFS managed folders in MUS mode
+
+Coding
+%%%%%%%
+
+* Fix Hive recipe validation failure if the input dataset doesn't have an associated Hive table
+* Fixed export of Jupyter dataframe when it contains non-ascii column names
+* Fixed failure to write managed folder files when files are very small
+* Fixed "output piping" in the Shell recipe
+
+Flow
+%%%%
+
+* Added ability to process dates after the current date in the "Time Range" dependnecy function
+* Fixed building both Filesystem and SQL partitioned datasets at the same time
+
+Code reports
+%%%%%%%%%%%%%%
+
+* Fixed some cases where exports of RMarkdown reports would not display all kinds of charts.
+
+Metrics
+%%%%%%%
+
+* Don't try to use Hive or Impala for metrics if the dataset doesn't have an associated Hive table
+
+Automation
+%%%%%%%%%%%
+
+* Fixed loss of "Additional dashboard users" and Project Status when deploying on automation node
+* Fixed issues with migration of webapps on Automation node
+
+Charts
+%%%%%%%
+
+* Fixed some cases of charts not working on Hive with Tez execution engine
+
+API
+%%%%
+
+* Fixed building of managed folder using internal Python API for scenarios
+
+Plugins
+%%%%%%%%
+
+* Display columns in correct order when previewing the result of a custom dataset

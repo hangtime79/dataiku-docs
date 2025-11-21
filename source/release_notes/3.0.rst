@@ -1,0 +1,476 @@
+DSS 3.0 Relase notes
+#####################
+
+.. contents::
+    :depth: 2
+    :local:
+
+Migration notes
+================
+
+.. warning::
+
+	Migration to DSS 3.0 from a previous DSS 2.X instance requires some attention.
+
+	To migrate from DSS 1.X, you must first upgrade to 2.0. See :doc:`/release_notes/2.0`
+
+Automatic migration from Data Science Studio 2.3.X is supported, with the following restrictions and warnings:
+
+* DSS 3.0 features an improved security model. The migration aims at preserving as much as possible the previously defined permissions, but we strongly encourage you to review the permissions of users and groups after migration.
+
+* DSS 3.0 now enforces the "Reader" / "Data Analyst" / "Data Scientist" roles in the DSS licensing model. You might need to adjust the roles for your users after upgrade.
+
+* DSS now includes the XGBoost library in the visual machine learning interface. If you had previously installed older versions of the XGBoost Python library (using pip), the XGBoost algorithm in the visual machine learning interface might not work
+
+* The usual limitations on retraining models and regenerating API node packages apply (see :doc:`/installation/custom/upgrade` for more information)
+
+* After migration, all previously scheduled jobs are disabled, to ease the "2.X and 3.X in parallel" deployment models. You'll need to go to the scenarios pages in your projects to re-enable your previously scheduled jobs.
+
+Automatic migration from Data Science Studio 2.0.X, 2.1.X and 2.2.X is supported, with the previous restrictions and warnings, and, in addition, the ones outlined in :doc:`2.1`, :doc:`2.2`, :doc:`2.3`
+
+How to upgrade
+----------------
+
+It is strongly recommended that you perform a full backup of your Data Science Studio data directory prior to starting the upgrade procedure.
+
+For automatic upgrade information, see :doc:`/installation/custom/upgrade`
+
+External libraries upgrades
+----------------------------
+
+Several external libraries bundled with DSS have been bumped to major revisions. Some of these libraries  include some *backwards-incompatible* changes. You might need to upgrade your code.
+
+Notable upgrades:
+
+* Pandas 0.16-> 0.17
+* Scikit-learn 0.16 -> 0.17
+
+From scheduled jobs to scenarios
+--------------------------------
+
+The 3.0 version introduces :ref:`Scenarios <release.dss30.scenarios>`, which replace Scheduled jobs.
+
+Each scheduled job you had in 2.X, enabled or not, is transformed during the migration process into a simple scenario replicating the functionalities of that scheduled job:
+
+* the scenario contains a single build step to build the datasets that the scheduled job was building
+* the scenario contains a single time-based trigger with the same setup as the scheduled job, so that the trigger activates exactly with the same frequency and time point as the scheduled job
+
+If the scheduled job was enabled, the time-based trigger of the corresponding scenario is enabled, and conversely. The scenarios themselves are set to inactive, so that after the migration none will run. You need to activate the scenarios (for example from the scenarios' list), or take the opportunity to rearrange the work that the scheduled jobs were performing into a smaller number of scenarios; a single scenario can indeed launch multiple builds, waiting for a build to finish before launching the next one.
+
+Since a scenario will execute the build corresponding to a scheduled job only when its trigger is active and the scenario itself is active, the quickest route to get the same scheduled builds as before is to activate all scenarios.
+
+Version 3.0.5 - June 24th, 2016
+===================================
+
+This release fixes a critical bug related to Spark, plus several smaller bug fixes.
+
+Spark
+-----
+
+* Fix MLLib and Data preparation on Spark
+
+Datasets
+----------
+
+* Fix exception in JSON extractor with some specific cases of nested arrays
+
+Machine learning
+-----------------
+
+* Fix XGboost regression models when evaluation metrics is MAE, MAPE, EVS or MSE
+* Display grid search scores in regression reports
+
+API node
+---------
+
+* Fix various issues with data enrichment in "mapped" mode
+
+Webapps
+--------
+
+* Fix loading data from local/static
+
+Recipes
+--------
+
+* Fix validation of custom expressions in sample recipe
+
+Automation
+-----------
+
+* Fix migration of scenarios from DSS 2.3 with partitions
+* Better explanations as to why some scenarios are aborted
+* Fix layout issues in scenario screens
+
+Misc
+----
+
+* Fix mass tagging on Hive and Impala notebooks
+* Fixs on graph for job preview
+
+
+
+Version 3.0.4 - June 16th, 2016
+===================================
+
+This release brings a lot of bug fixes and minor features for plugins.
+
+Plugins
+--------
+
+* Add ability to introduce visual separators in settings screen
+* Add ability to hide parameters in settings screen
+* Add ability to huse custom forms in settings screen
+
+Production
+------------
+
+* Add a metric for count of non null values
+* Add more metrics in the "data validity" probe
+* Expand capabilities for custom SQL aggregations
+* Add the ability to have custom checks in plugins
+* Use proxy settings for HTTP-based reporters
+* Fix and improve settings of the "append to dataset" reporter
+
+SQL Notebook
+-------------
+
+* Make the spinner appear immediately after submitting the query
+* Fix error reporting issues
+* Fix reloading of results in multi-cells mode
+* Add support for variables expansion
+
+Recipes
+--------
+
+* Fix visual recipes running on Hive with multiple Hive DBs
+* Fix reloading of split and filtering recipe with custom variables
+
+Machine learning
+-----------------
+
+* Fix display of preparation step groups in model reports
+* Fix simple Shuffle-based cross-validation on regression models
+* Fix train-test split based on extract from two datasets with filter on test
+* Fix deploying "clustering" recipe on connections other than Filesystem
+* Add ability to disable XGBoost early stopping on regression
+
+Datasets
+---------
+
+* Fix renaming of datasets in the UI
+* Fix the Twitter dataset
+* Fix "Import data" modal in editable dataset
+* Fix reloading of schema for Redshift and other DBs
+
+Data preparation
+-----------------
+
+* Improved display of filters for small numerical values
+* Fix mass change meaning action
+* Add ability to mass revert to default meaning
+* Unselect the steps when unselecting a group
+* Fix UI issue on Firefox
+
+Charts
+-------
+
+* Add ability to have "external" legend on more charts
+* Fix several small bugs
+* Fix scale on charts with 2 Y-axis
+
+Misc
+-----
+
+* Fix issue with R installation on Redhat 6
+* Fix missing information in diagnostic tool
+* Fix import of projects with SQL notebooks from 2.X
+* Fix saving of summary info for web apps
+* Add dataset listing and schema fetching in web apps API
+
+Version 3.0.3 - May 30th, 2016
+===================================
+
+
+DSS 3.0.3 is a bugfix release. For a summary of new features in DSS 3.0, see below.
+
+Recipes
+--------
+
+* Fix bug leading to unusable join recipe in some specific cases
+* Fix performance issue in code recipes with large number of columns
+
+Metrics & Scenarios
+---------------------
+
+* Fix history charts for points with no value
+* Fix possible race condition leading to considering some jobs as failed
+
+Misc
+-----
+
+* Fix various UI issues in read-only mode
+* Fix critical login bug
+* Fix "Disconnected" overlay on Monitoring page
+
+Version 3.0.2 - May 25th, 2016
+===================================
+
+DSS 3.0.2 is a bugfix and minor enhancements release. For a summary of new features in DSS 3.0, see below.
+
+Hadoop & Spark
+----------------
+
+* Preserve the "hive.query.string" Hadoop configuration key in Hive notebook
+* Clear error message when trying to use Geometry columns in Spark
+* Fix S3 support in Spark
+
+Metrics & Checks
+------------------
+
+* Better performance for partitions list
+* Simplify and rework the way metrics are enabled and configured
+
+Automation node & scenarios
+----------------------------
+
+* Add deletion of bundles
+* Remap connections in SQL notebooks
+* Fix scenario run URL in mails
+
+Machine learning
+------------------
+
+* Fix wrongly computed multiclass metrics
+* Much faster multiclass scoring for MLLib
+* Fix multiclass AUC when only 2 classes appear in test set
+* Fix tooltip issues in the clustering scatter plot
+
+API Node
+---------
+
+* Fix typo in custom HTTP header that could lead to inability to parse the response
+* Fix the INSEE enrichment processor
+* Fix excessive verbosity
+
+Data preparation
+-----------------
+
+* Add a new processor to compute distance between geo points
+* Fix DateParser in multi-columns mode when some of the columns are empty
+* Modifying a step comment now properly unlocks the "Save" button
+
+Visual recipes
+---------------
+
+* Fix split recipe on "exotic" boolean values (Yes, No, 1, 0, ...)
+
+Charts
+-------
+
+* Add percentage mode on pie/donut chart
+
+Misc
+--------
+
+* Add new error reporting tools
+* Enforce hierarchy of files to prevent possible out-of-datadir reads
+* Fix support for nginx >= 1.10
+* Fix the ability to remove a group permission on a project
+
+Webapps
+--------
+
+* Automatically enable/disable the Save button
+* Warn if leaving with unsaved changes
+* Add history and explicit commit mode
+
+Version 3.0.1 - May 11th 2016
+==============================
+
+DSS 3.0.1 is a bugfix release. For a summary of the major new features in DSS 3.0, see: https://www.dataiku.com/learn/whatsnew
+
+Installation
+--------------
+
+* Added support for nginx >= 1.10
+
+Connectivity
+--------------
+
+* Fixed "Other SQL databases" connections
+
+Metrics & Checks
+-----------------
+
+* Fixed ordering of partitions table
+* Default probes and metrics will now be enabled on migration from 2.X
+
+Scenarios
+----------
+
+* Improved description of triggers
+
+Machine Learning
+-----------------
+
+* Removed unapplicable parameter for MLLib
+* Improve explanations about target remapping in Jupyter export
+
+Data preparation
+-----------------
+
+* Fixed migration on groups
+* Multiple ColumnRenamer processors will automatically be merged
+
+Misc
+-------------
+
+* Fixed display of Git diffs which could break
+* Fixed display of logs on Safari
+* Fixed tasks lists on projects
+* Added user-customized themes
+* "Read-only Analysts" can now fully view visual analysis screens
+* Added "project-import" and "project-export" commands to dsscli
+
+
+
+Version 3.0.0 - May 1st 2016
+=============================
+
+DSS 3.0.0 is a major upgrade to DSS with exciting new features.
+
+For a summary of the major new features, see: https://www.dataiku.com/learn/whatsnew
+
+New features
+-------------
+
+Automation deployment ("bundles")
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Dataiku DSS now comes in three flavors, called node types:
+
+* The Design node (the "classical" DSS), where you mainly design your workflows
+* The Automation node, where you run and automate your workflows
+* The API node (introduced in DSS 2.2), where you score new records in real-time using a REST API
+
+After designing your data workflow in the design node, you can package it in a consistent artefact, called a "bundle", which can the be deployed to the automation node.
+
+On the automation node, you can activate, rollback and manage all versions of your bundles.
+
+This new architecture makes it very easy to implement complex deployment use cases, with development, acceptance, preproduction and production environments.
+
+For more information, please see our product page: http://www.dataiku.com/dss/features/deployment/
+
+
+.. _release.dss30.scenarios:
+
+Scenarios
+%%%%%%%%%%%
+
+DSS has always been about rebuilding entire dataflows at once, thanks to its smart incremental reconstruction engine.
+
+With the introduction of automation scenarios, you can now automate more complex use cases:
+
+* Building a part of the flow before another one (for partitioning purposes for example)
+* Automatically retraining models if they have diverged too much.
+
+Scenarios are made up of:
+
+* Triggers, that decide when the scenario runs
+* Steps, the building blocks of your scenarios
+* Reporters, to notify the outside world.
+
+You'll find a lot of information in :doc:`/scenarios/index`
+
+
+Metrics and checks
+%%%%%%%%%%%%%%%%%%%
+
+You can now track various advanced metrics about datasets, recipes, models and managed folders. For example:
+
+* The size of a dataset
+* The average of a column in a dataset
+* The number of invalid rows for a given meaning in a column
+* All performance metrics of a saved model
+* The number of files in a managed folder
+
+In addition to these built-in metrics, you can define custom metrics using Python or SQL. Metrics are historized for deep insights into the evolution of your data flow and can be fully accessed through the DSS APIs.
+
+Then, you can define automatic data checks based on these metrics, that act as automatic sanity tests of your data pipeline. For example, automatically fail a job if the average value of a column has drifted by more than 10% since the previous week.
+
+Advanced version control
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Git-based version control is now integrated much more tightly in DSS.
+
+* View the history of your project, recipes, scenarios, ... from the UI
+* Write your own commit messages
+* Choose between automatic commit at each edit or manual commit (either by component or by project)
+
+In addition, you can now choose between having a global Git repository or a Git repository per project
+
+When viewing the history, you can get the diff of each commit, or compare two commits.
+
+Team activity dashboards
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Monitor the activity of each project thanks to our team activity dashboards.
+
+Administrator monitoring dashboards
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We've added a lot of monitoring dashboards for administrators, especially for large instances with lots of projects:
+
+* Global usage summary
+* Data size per connection
+* Tasks running on the Hadoop and Spark clusters and per database
+* Tasks running in the background on DSS
+* Authorization matrix for an overview of all effective authorizations
+
+Other notable enhancements
+--------------------------
+
+Project import/export
+%%%%%%%%%%%%%%%%%%%%%%
+
+When exporting a project, you can now export all datasets from all connections (except partitioned datasets), saved models and managed folders. When importing the project in another DSS design node, the data is automatically reloaded.
+
+This allows to export complete projects, including data.
+
+When importing projects, you can also *remap* connections, removing the need to define connections with exactly the same name as on the source DSS instance.
+
+Maintenance tasks
+%%%%%%%%%%%%%%%%%%%
+
+DSS now performs automatically several maintenance and cleanup tasks in the background.
+
+Improved security model
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We've added several new permissions for more fine-grained control. The following permissions can now be granted to each group, independently of the admin permissions:
+
+* Create projects and tutorials
+* Write "unsafe" code (that might be used to circumvent the permissions system)
+* Manage user-defined meanings
+
+In addition, users can now create personal connections without admin intervention.
+
+The administration UI now includes an authorization matrix for an overview of all effective authorizations
+
+API
+%%%%%
+
+* The public API includes new methods to interact with scenarios and metrics
+* The public API includes new methods for exporting projects
+
+Data preparation
+%%%%%%%%%%%%%%%%%
+
+* It's now possible to delete columns based on a name pattern
+
+
+Other changes
+---------------
+
+* DSS does not automatically grant Analyst access to the "first analysts group" when creating a project. After the creation of a project, only its creator (and the DSS administrators) can access it by default.

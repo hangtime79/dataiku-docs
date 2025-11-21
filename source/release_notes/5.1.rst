@@ -1,0 +1,941 @@
+DSS 5.1 Release notes
+#####################
+
+.. contents::
+    :depth: 3
+    :local:
+
+Migration notes
+================
+
+Migration paths to DSS 5.1
+----------------------------
+
+    * From DSS 5.0: Automatic migration is supported, with the restrictions and warnings described in :ref:`releases_notes.5.1.limitations`
+
+    * From DSS 4.3: In addition to the restrictions and warnings described in :ref:`releases_notes.5.1.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`4.2 -> 4.3 </release_notes/4.3>` and :doc:`4.3 -> 5.0 </release_notes/5.0>`
+
+    * From DSS 4.2: In addition to the restrictions and warnings described in :ref:`releases_notes.5.1.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`4.2 -> 4.3 </release_notes/4.3>` and :doc:`4.3 -> 5.0 </release_notes/5.0>`
+
+    * From DSS 4.1: In addition to the restrictions and warnings described in :ref:`releases_notes.5.1.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`4.1 -> 4.2 </release_notes/4.2>` and :doc:`4.2 -> 4.3 </release_notes/4.3>` and :doc:`4.3 -> 5.0 </release_notes/5.0>`
+
+    * From DSS 4.0: In addition to the restrictions and warnings described in :ref:`releases_notes.5.1.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`4.0 -> 4.1 </release_notes/4.1>`, :doc:`4.1 -> 4.2 </release_notes/4.2>` and :doc:`4.2 -> 4.3 </release_notes/4.3>` and :doc:`4.3 -> 5.0 </release_notes/5.0>`
+
+    * Migration from DSS 3.1 and below is not supported. You must first upgrade to 5.0. See :doc:`/release_notes/5.0`
+
+How to upgrade
+----------------
+
+It is strongly recommended that you perform a full backup of your DSS data directory prior to starting the upgrade procedure.
+
+For automatic upgrade information, see :doc:`/installation/custom/upgrade`.
+
+Pay attention to the warnings described in :ref:`releases_notes.5.1.limitations`.
+
+
+.. _releases_notes.5.1.limitations:
+
+Limitations and warnings
+--------------------------
+
+Automatic migration from previous versions (see above) is supported, but there are a few points that need manual attention.
+
+Upgrade of Python packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The following Python packages have been upgraded in the builtin environment:
+
+* pandas (0.20 -> 0.23)
+* numpy (1.13 -> 1.15)
+* scikit-learn (0.19 -> 0.20)
+* xgboost (0.72 -> 0.80)
+
+The pandas dependency is also upgraded in code environments.
+
+Importantly, the ``dataiku`` Python package is not compatible with pandas 0.20 anymore. You must upgrade to pandas 0.23.
+
+Rebuild of code environments
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Due to the upgraded dependency on pandas, it is necessary to update all previous Python code environments.
+
+In most cases, you simply need, for each code environment, to go to the code environment page and click on the "Update" button (since the pandas 0.23 requirement is part of the base packages).
+
+Retraining of machine-learning models
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+* XGBoost models trained with prior versions of DSS must be retrained when upgrading to 5.1. This includes models deployed to the flow (re-run the training recipe), models in analysis (retrain them before deploying) and API package models (retrain the flow saved model and build a new package)
+
+* "Isolation forests" models trained with prior versions of DSS and using "In-memory" engine must be retrained when upgrading to 5.1. This includes models deployed to the flow (re-run the training recipe), models in analysis (retrain them before deploying) and API package models (retrain the flow saved model and build a new package)
+
+Multi-user-security configuration file move
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+For improved security, the security module configuration file for Multi-User-Security has been moved from ``DATADIR/security/security-config.ini`` to ``/etc/dataiku-security/INSTALL_ID/security-config.ini``.
+
+DSS will automatically move the file upon upgrade, so you don't need to perform any operation. However, any further update must be done on the ``/etc/dataiku-security/INSTALL_ID/security-config.ini``. For more information, and details about INSTALL_ID, see the :doc:`MUS setup documentation </user-isolation/initial-setup>`.
+
+Dashboard exports
+%%%%%%%%%%%%%%%%%%
+
+Like with any upgrade, the Dashboards export feature must be reinstalled after upgrade. For more details, on how to reinstall this feature please see :doc:`/installation/custom/graphics-export`
+
+Support removal notice
+-----------------------
+
+DSS 5.1 removes support for Python 3.4. This constraint is caused by external libraries (notably pandas) that have removed the support for Python 3.4. Python 3.4 is also out of support upstream.
+
+It is not possible to switch the version of Python used by code environments. If you have code environments using Python 3.4, you'll need to (for each Python 3.4 code env):
+
+* Install Python 3.6
+* Delete the Python 3.4 code env
+* Create a Python 3.6 code env with the same name and same packages
+
+Deprecation notice
+-------------------
+
+DSS 5.1 deprecates support for some features and versions. Support for these will be removed in a later release.
+
+* The prepare recipe running on the Hadoop Mapreduce engine is deprecated. We strongly advise you to use the Spark engine instead.
+
+Version 5.1.7 - October 30th, 2019
+======================================
+
+Notebooks
+-----------------
+* Fixed usage of dataiku api when executing notebook in containers
+
+
+Performance
+-----------------
+* Fixed possible deadlock when using in memory login sessions
+
+Misc
+-----------------
+* Fixed suggested jupyter package version when using conda code environment in Multi User Security
+
+
+Version 5.1.6 - September 16th, 2019
+======================================
+
+Datasets
+---------
+
+* Explore: Performance improvement for analyze on SQL datasets
+* Fixed various errors on S3 related to charset detection
+* Fixed wrongful inference of column length for DATE columns on Oracle
+
+Recipes
+-----------------
+
+* Data preparation: Fixed binning processor with decimal bins
+* Data preparation: Fixed SQL engine with step groups
+* Fixed error when translating wrongful formulas to SQL or Hive
+* Fixed setting of a column to a user-defined meaning in schema screen
+
+
+Machine learning
+-----------------
+
+* Fixed red middle line on regression error scatter plot
+* Fixed display issue when retraining models with KFold cross-test
+* Fixed display update when changing prediction type
+* Improved error handling when a saved model has no active version
+* Fixed dropping of rows in API node (non-optimized scoring)
+* Update subpopulation analysis result when binary classification threshold is modified
+* Fixed training with recalibration
+* Added ability to modify KFold cross-test option in training recipe
+* Fixed feature hashing for clustering
+* Fixed seed handling in KFold cross-test
+
+Hadoop & Spark
+---------------
+
+* Added support for CDH 6.2
+* Added support for H2O Sparkling Water on Spark 2.4
+
+Notebooks
+---------
+
+* Fixed loading of libraries on notebooks running in containers
+
+Administration
+--------------
+
+* Fixed erasure of LDAP groups when editing local groups of a user
+
+Automation
+----------
+
+* Fixed SQL probe with datasets with very large number of columns
+* Properly catch errors in SQL script steps
+* Added mass action on scenario steps
+* Fixed deletion of triggers
+* Added ability to set custom java.mail options on the mail reporter
+* Fixed dsscli scenario-runs-list with empty trigger names
+* Fixed default code for Python scenarios
+
+Performance and scalability
+----------------------------
+
+* Fixed potentially blocking call when changing a storage type from "Explore" view
+* Fixed external runtime databases with very large job definitions
+* Increased maximum number of connections on nginx (fixed potential "network errors")
+* Added automatic redirect to home article when going to wiki URL
+
+Misc
+----
+
+* Fixed flow display in corner case
+* Fixed support for Java 11
+* Fixed 404 on meanings page
+
+Version 5.1.5 - July 4th, 2019
+=====================================
+
+DSS 5.1.5 is a minor release. For a summary of major changes in 5.1, see below.
+
+Datasets
+--------
+
+* Fixed type detection with values like " 12345"
+* Added safeties and warnings against deleting everything in a connection by clearing an exteranl dataset
+* Fixed rare condition where scrolling in a dataset in explore view could cause an error
+* Made Excel export more resilient to temporary files deletion
+* Fixed listing of partitions on partitioned Teradata datasets
+
+Hadoop & Spark
+---------------
+
+* Added support for custom UDF in Scala recipes when used in a Spark pipeline
+* Added support for EMR 5.23
+* Fixed ability to import a project containing HDFS-uploaded data on MUS-enabled DSS
+* Fixed selection of cluster when listing fields in Hive notebooks
+* Fixed selection of cluster when creating a new Hive dataset
+
+Coding
+------
+
+* Added the ability to write datasets from Shiny webapps and R notebooks when MUS is in use
+* Added ``dkuManagedFolderPathDetails`` in R API.
+
+API designer & deployer
+------------------------
+
+* Implemented ECR pre-push hook for easy publication of API services on EKS
+* Fixed API designer when importing foreign libraries from other projects
+
+Charts
+------
+
+* Fixed specification of custom values in custom palettes
+
+
+Machine learning
+-----------------
+
+* Fixed deletion of model from the model page
+
+Data preparation
+-----------------
+
+* Fixed documentation for pseudonymization processor
+
+Security
+--------
+
+* Added encryption of LDAP password in configuration
+* Added encryption of Azure shared keys in configuration
+* Fixed XSS in the projects graph view
+* Fixed nginx configuration injection
+
+Misc
+----
+
+* Performance and responsiveness improvements during initial data catalog indexing
+* Fixed ability to click on project name on authorization matrix
+* Fixed potential import error
+
+Version 5.1.4 - June 3rd, 2019
+=====================================
+
+DSS 5.1.4 is a minor release. For a summary of major changes in 5.1, see below.
+
+Flow
+-----
+
+* **New feature**: Automatic mode for schema propagation tool
+* Fixed display of activity times when aborting a job
+
+Machine learning
+-----------------
+
+* **New feature**: Ability to duplicate a machine learning task
+* Fixed potential training failure in containerized execution mode
+* Allow setting containerized execution mode in all modes of the training recipe
+* Fixed UI in enrichments section of API designer
+* Fixed UI in "filter with formula" of the Train/Test split
+* Added partition filter when doing SQL scoring of partitioned dataset
+* Fixed scoring of ensembles if all submodels of the ensemble ignore a record
+* Features generation: Fixed interaction of Text and Categorical feature
+* Added constraint on scipy version to fix incompatibility with new versions
+
+Data preparation
+-----------------
+
+* **New feature**: Pseudonymization processor
+* Fixed renaming to existing column in "optimized Spark" engine
+* Fixed handling of numerical columns with empty strings in PostgreSQL engine
+* Fixed severe performance degradation with "Find/Replace" processor in "Complete value" mode with lots of replacements in SQL engine
+* Fixed display of formula errors
+
+Recipes
+--------
+
+* Sync: Properly disabled fast path from BigQuery to GCS if the BigQuery dataset is in "query" mode (instead of failing)
+* Grouping: fixed display issues when adding computed columns
+
+Datasets
+---------
+
+* Fixed ability to update schema when changing the settings of a newly-created dataset
+* Clearer error when failing to delete a Snowflake table if the schema is incorrect
+* Properly allow managed datasets on SSH/SFTP connections
+* Fixed removal of data for uploaded datasets
+
+Notebooks
+---------
+
+* Fixed 404 after copy of a notebook
+* Fixed ability to use notebooks after a project duplication
+* Fixed display of code samples when using a code environment
+
+Hadoop & Spark
+---------------
+
+* Fixed user credentials for Impala
+* Fixed performance issues with Spark pipelines in some edge cases
+* Added ability to blacklist some properties when using multiple clusters and Hive (could prevent using Hive over non-HDFS filesystems)
+
+Automation
+----------
+
+* **New feature**: Ability to duplicate a scenario
+
+API
+----
+
+* Fixed "clusters" public API
+* Fixed refresh of impersonation rules through the General settings API
+* Prevent usage of too recent requests versions that are not compatible with Dataiku API client
+* Send a proper HTTP 201 code when creating a user, group or code env
+
+Administration
+---------------
+
+* Fixed sort of log files in Maintenance section
+* Fixed list of user profiles in LDAP profile mapping
+
+Performance and stability
+--------------------------
+
+* Strong performance improvements of permissions update with large number of projects and users
+* Performance improvements for home page
+* Further performance improvements for home page in "external metadata" mode
+* Strong performance improvements for job status page for jobs with thousands of activities
+* Fixed potential instance lockup when testing partition dependencies on a non-responding dataset
+
+Miscellaneous
+--------------
+
+* **New feature**: Redirect to original URL after SSO login
+* Fixed scrolling in article history
+* Wait enough time before performing dashboard export to prevent empty charts
+* Fixed moving file to a new subfolder in a managed folder
+* Improved error reporting for project duplication
+* Fixed import of bundle on automation node as non-admin if the original user didn't exist on automation node
+* Index column descriptions in the data catalog
+
+Version 5.1.3 - April 11th, 2019
+=============================================
+
+DSS 5.1.3 is a minor release. For a summary of major changes in 5.1, see below
+
+Machine learning
+-----------------
+
+* **New feature**: Subpopulation analysis - Try it in the results screen of prediction models
+* **New feature**: Ability to retain settings when changing the target variable or prediction type
+* **New feature**: Ability to copy feature handling settings across ML tasks
+* Significant performance improvements for scoring of deep learning models
+* Fixed support of recent Keras versions
+* Fixed race conditions that could cause issues with large grids
+* Fixed wrongful train and test set record counts in presence of multiline records
+* Fixed display of best hyperparameters for logistic regression
+* Fixed scoring of XGBoost models with multiclass classification
+* Fixed ability to disable a custom model
+* Fixed possible training failure when using PCA on very small datasets
+* Added support for Python 3 for tensorboard
+* Added the ability to use custom Keras objects in deep learning models
+* Faster random forest training when "skip expensive reports" is enabled
+* Fixed scoring discrepancies in XGBoost regression when using Optimized engine
+
+Hadoop & Spark
+---------------
+
+* **New feature**: Added compatibility with Hortonworks HDP 3.1
+* **New feature**: Experimental support for ADLS gen2
+* **New feature**: Experimental support for Spark-on-Kubernetes with multi-user-security
+* Fixed ability to use Spark-over-S3 with a S3 dataset when the S3 connection specifies a mandatory bucket
+* Added ability to perform variable expansion in Spark configurations
+* Fixed support of ORC files with dates on Hortonworks HDP 3
+* Fixed missing "Additional JARs" field in Spark configuration UI
+
+Flow
+----
+
+* Fixed several bugs in the "Propagate schema" tool
+* Made the "Propagate schema" tool more efficient using mass actions
+* Fixed "Check consistency" tools in presence of visual recipes running on SQL engine
+* Fixed "new webapp" dialog from the Flow
+* Fixed "Spark pipelines" Flow view with Split recipes
+
+Data preparation
+----------------
+
+* Fixed "concatenate" step when ujsing prepeare-on-SQL with PostgreSQL
+* Fixed timestamp-related issues when using prepare-on-SQL with Vertica
+* Fixed failure with "String transformation" processor when using native Spark implementation
+* Fixed "cell content" popup sticking around
+* Fixed Geographical join processor when the joined dataset has missing values
+
+Visual recipes
+---------------
+
+* **New feature**: Snowflake to S3 fast sync
+* Fixed issue with Pivot recipe and scientific notation
+* Fixed display of generated SQL query for split recipe
+* Fixed display issues with custom aggregations in grouping and window recipes
+* Fixed issue when removing filters in split recipe
+* Fixed HTTP/HTTPS URL at domain root in Download recipe
+
+Datasets & Connections
+-----------------------
+
+* **New feature**: Added ability to detect charset of text files (notably UTF-16)
+* Fixed simultaneous computation of quantile and min/max metrics on Vertica
+* Fixed display of some "Column statistics" metrics
+* Improved feedback when clearing a dataset
+* Fixed "substring" filter reverting to "full string" mode
+
+SQL Notebooks
+--------------
+
+* Improved auto-save to make it faster and more resilient to various operations
+* Fixed bug in error tracking across cells
+* Added more information about previous runs in cell history and cell display
+* Fixed reloading of previous run metadata when coming back to a notebook
+
+Coding and APIs
+----------------
+
+* Fixed various bugs with RStudio integration
+* Fixed bug that could cause conda to destroy the Jupyter notebook server
+* Fixed warning when using Python 3.6.6 or higher
+* Fixed listing of external Git branches for Git references mistakenly requiring admin privileges
+* Added the ability to get and set the "short description" in a project's metadata through the API
+* Added an API to create a managed dataset
+* Fixed ``get_status`` on ``DSSCluster`` in Python API client
+* Fixed ability to create conda-powered R code environments without Jupyter support
+
+Automation
+----------
+
+* Fixed attaching folder contents to a scenario email
+
+Security
+--------
+
+* Fixed CSRF issue in image and attachment uploads
+* Fixed reflected XSS issue in image upload
+
+API designer & API deployer
+----------------------------
+
+* Fixed duplicate data when using "bundled" enrichment or lookup and multiple enrichments on the same dataset
+* Improved performance of enrichments and lookups when the project contains many datasets with many columns
+
+Misc
+-----
+
+* Improved webapp creation user experience
+* Fixed deep-linking in Wiki articles
+* Fixed saving of "Palette type" in charts
+* Added sort of groups list when granting access to a project
+* Added sort of connections list in "Run SQL" scenario step
+* Fixed detection of OpenJDK 11
+* Fixed full-screen mode on dashboard exports
+* Improved performance and scalability when deleting datasets
+* Improved performance for notebooks listing with many notebooks
+* Don't make the navigation bar disappear when the license is expired
+* Fixed error message when entering an invalid license
+
+Version 5.1.2 - March 1st, 2019
+================================
+
+DSS 5.1.2 is a minor release. For a summary of major changes in 5.1, see below
+
+Machine Learning
+-----------------
+
+* **New feature**: Partial dependency plots are now available for all algorithms, computable on test set
+* **New feature**: Partial dependency plots for categorical variables showing all categories at once
+* **New feature**: Ability to view distribution on partial dependency plots
+* Numerous other improvements on partial dependency plots
+* Fixed machine learning in projects importing libraries from other projects
+* Fixed edge cases leading to scoring discrepancies between engines with doubles as categories
+* Fixed display of L1/L2 regularization controls on multiclass logistic regression
+* Fixed UI bug in sample weight controls
+* Fixed UI bug in endpoints tuning controls
+* Isolation forest: added ability to set contamination parameter at a finer-grained level
+* Fixed optimized scoring of XGBoost models with gamma objective function
+* Fixed wrong grid search scores display with class weights
+
+Collaboration
+-------------
+
+* **New feature**: Added ability to always go back to the last home screen (home, all projects, all dashboards, ...)
+* Improved error reporting when reading datasets with wrong cross-project permissions
+* Added delay before sending Wiki notifications to Slack/... to avoid sending too many notifications
+* Fixed registration of Enterprise trial
+* Fixed "list branches" button for non-admins
+
+Coding
+-------
+
+* Fixed various issues with new "using Python API outside of DSS" capabilities
+
+Spark & Hadoop
+---------------
+
+* Fixed cross-project Spark pipelines
+* Fixed class loading issue on CDH 6.0.1
+
+Flow
+----
+
+* Strongly improved "computing dependencies" performance for forced recursive build of complex flows
+
+Data visualization
+-------------------
+
+* Added remembering of zoom level in map charts
+
+Scenarios
+----------
+
+* Fixed computation issue in temporal triggers that could cause scenarios to stop triggering
+* Added a warning when leaving a scenario page with unsaved changes
+
+Datasets
+---------
+
+* Added support for Greenplum 5.0
+* Fixed percentile metrics with SparkSQL engine
+
+Recipes
+--------
+
+* Fixed failures in prepare recipe in some specific formula cases
+* Fixed issue with external Teradata datasets containing dates in visual recipes
+* Added support for single-file inputs in S3-to-Snowflake fast path
+
+Containers
+-----------
+
+* Fixed containerized Python kernels on Python 3 code environments
+* Fixed containerized Python recipe execution when code contains non-ASCII string literals
+* Fixed interrupt of containerized Jupyter kernels
+* Fixed support for EKS ingress for API node deployments with load balancer
+
+Security
+---------
+
+* Added protection against filesystem access through SQLite or H2 connections
+* Fixed possible leak of dataset data in frontend log files
+* Fixed possible code execution through malicious project imports
+
+Version 5.1.1 - February 13th, 2019
+====================================
+
+DSS 5.1.1 is a minor release. For a summary of major changes in 5.1, see below
+
+Machine learning
+-----------------
+
+* Fixed error in Isolation forest when no anomaly was found
+* Fixed support for calibration in K-Fold cross-test mode
+* Fixed training recipes in "train on 100% of the data" mode
+* Fixed possible error when training on containers
+
+Datasets
+---------
+
+* Fixed a display issue in metrics
+* A metrics dataset showing checks will now be named "_checks"
+* Fixed computation of percentile metrics on Spark
+
+Webapps
+-------
+
+* Improved the default code sample for standard webapps
+* Fixed Shiny plugin webapps
+* Fixed permissions when copying a webapp
+
+Hadoop & Spark
+---------------
+
+* **New feature**: Added support for CDH 6.1
+* **New feature**: Added experimental support for Spark 2.4
+* Added special option to handle cases where the Hive staging dir is in a non-standard location
+
+Wiki
+-----
+
+* **New feature**: Added automatic generation of a table of contents to Wiki articles
+* Fixed contributor tooltips
+* Improved Git commit messages for Wiki actions
+* Improved notifications for article renamings
+* Added ability to remove attachments in folder view
+* Added automatic scroll in the taxonomy when opening a Wiki page
+* Fixed update of the timeline after a save
+* Fixed links to items when changing the key of a project (through export/import)
+
+API node
+--------
+
+* Fixed issue with enrichments in custom R prediction endpoints
+
+Code
+----
+
+* Fixed container execution that could fail depending on the number of cores of the machine / number of recipes being run
+* Fixed container execution of recipes when running on a code environment without Jupyter support
+* Fixed container execution with code environments on automation node
+* Fixed warnings when reading datasets in R
+* Fixed notebooks when importing libraries from other projects
+* Improved default package sets for conda, no more requiring external repositories
+* Added missing exported functions in the R package
+
+Collaboration
+--------------
+
+* Added default template to the Slack reporter
+* Fixed error appearing after pushing a project to Git remotes
+* Improved highlighting in the new Jobs UI
+* Fixed timer in Jobs UI
+
+Security
+--------
+
+* Enforced connections permissions on "Execute SQL" scenario steps
+* Fixed XSS vulnerabilities
+* Fixed possible file tampering through visual recipes
+* Fixed SQL injection in Metrics datasets
+* Fixed vulnerability in license registration workflow
+
+Misc
+----
+
+* Improved auto-generated titles on some charts
+* Fixed version number on login page
+* Fixed dead documentation links
+
+Version 5.1.0 - January 29th, 2019
+=====================================
+
+DSS 5.1.0 is a very major upgrade to DSS with major new features.
+
+New features
+-------------
+
+Git integration for plugins editor
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The plugin editor now features full Git integration, allowing you to view the history of a plugin, revert changes, and to push and pull changes from a remote Git repository.
+
+For more details, please see our `tutorial <https://knowledge.dataiku.com/latest/plugins/development/tutorial-version-management-git.html>`__ and :doc:`reference </plugins/reference/git-editor>`.
+
+Import code libraries from Git
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In the library editor of each project, you can now import code from external Git repositories. For example, if you have code that has been developed outside of DSS and is available in a Git repository (for example, a library created by another team), you can import this repository (or a part of it) in the project libraries, and use it in any code capability of DSS (recipes, notebooks, web apps, ...).
+
+This code can then be updated from the external Git repository, either manually or automatically.
+
+For more details, please see our `tutorial <https://knowledge.dataiku.com/latest/code/shared/tutorial-git-repo-clone.html>`__ and :doc:`reference </collaboration/import-code-from-git>`.
+
+More code reuse capabilities
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Combined with the ability to import code libraries from Git, new features for code reuse have been added:
+
+* R code can now use per-project libraries, just like Python code.
+* For both Python and R code, you can now have multiple libraries folders per project
+* For both Python and R code, you can now use the libraries of one project in another project
+
+For more details, please see :doc:`reusing Python code </python/reusing-code>` and :doc:`reusing R code </R/reusing-code>`
+
+Prepare recipe in-database (SQL)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+A subset of preparation processors can now be translated to SQL queries. When a prepare recipe contains translatable processors, it can be executed fully in-database, which can provide speed-ups up to hundreds of times.
+
+For more details, please see :doc:`/preparation/engines`.
+
+Lightning-fast prepare recipe on Spark
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+DSS now includes a new engine for data preparation on Spark that can provide significant performance boosts.
+
+A subset of preparation processors are compatible with the optimized Spark engine, which will be used automatically whenever possible. When non-compatible processors are present, DSS automatically falls back to the previous engine.
+
+For more details, please see :doc:`/preparation/engines`.
+
+Containerized execution of notebooks
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Notebooks (Python and R) can now be run in Docker and Kubernetes
+
+For more details, please see :doc:`/notebooks/containerized-notebooks`.
+
+GDPR capabilities
+%%%%%%%%%%%%%%%%%%%
+
+A new plugin allows you to enforce a number of GDPR-related rules on projects:
+
+* Track which datasets and projects contain personal data
+* Enforce rules on how datasets containing personal data can be used (exported, used for machine learning, shared, ...)
+* Propagate "personal data" flags when creating new datasets
+* Track purpose and consent for datasets
+
+For more details, please see our `tutorial <https://knowledge.dataiku.com/latest/use-cases/plugins/gdpr/tutorial-index.html>`__ and `the plugin page <https://www.dataiku.com/dss/plugins/info/gdpr.html>`_.
+
+Databricks
+%%%%%%%%%%%%%%
+
+DSS now features an experimental and limited integration with Databricks to leverage Databricks as a Spark execution engine. Please contact your Dataiku Account Executive for more details.
+
+Web apps as plugins
+%%%%%%%%%%%%%%%%%%%
+
+Web apps can now be turned into plugins. This allows you to have reusable and instantiable web apps.
+
+Some use cases notably include making custom visualizations for datasets.
+
+For more details, please see our `tutorial <https://knowledge.dataiku.com/latest/plugins/example-components/tutorial-example-webapp.html>`__ and :doc:`reference </plugins/reference/webapps>`.
+
+Use Dataiku libs and develop code outside of DSS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+You can now use the Dataiku Python and R libraries outside of DSS in order to develop code for DSS (recipes, webapps, ...) outside of DSS and in your favorite IDE.
+
+For more details, please see :doc:`using Python API outside of DSS <devguide:tutorials/devtools/python-client/index>` and :doc:`using R API outside of DSS </R-api/outside-usage>`
+
+Folding the Flow view
+%%%%%%%%%%%%%%%%%%%%%%
+
+You can now :doc:`hide parts of the Flow </flow/folding>` in order to improve the readability of very large flows. You can easily hide all parts of a flow upstream/downstream of a single node.
+
+External hosting of runtime databases
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+DSS maintains a number of databases, called the "runtime databases" that store some additional information, which is mostly "non-primary" information (i.e. which can be rebuilt), like history of jobs, metrics, state of datasets, timelines, discussions, ...
+
+By default, the runtime databases are hosted internally by DSS, using an embedded database engine (called H2). You can also move the runtime databases to an external PostgreSQL server. Moving the runtime databases to an external PostgreSQL server improves resilience, scalability and backup capabilities.
+
+For more details, please see :doc:`/operations/runtime-databases`.
+
+Exporting the Flow as an image
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+You can now export the Flow of a project as an image or a PDF.
+
+For more details, please see :doc:`/flow/graphics-export`.
+
+Probability calibration
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+When training a classification model, you can now choose to apply a calibration of the predicted probabilities.
+
+The purpose of calibrating probabilities is to bring the actual frequency of classes occurrence as close as possible to the predicted probability of such occurrence.
+
+For more details, please see :doc:`/machine-learning/supervised/settings`.
+
+Models export as PMML and POJO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+You can now export a trained model as a PMML file for scoring with any PMML-compatible scorer.
+
+You can also export trained models as a set of Java classes for extremely efficient scoring in any JVM application.
+
+For more details, please see :doc:`/machine-learning/models-export`.
+
+Duplicate projects
+%%%%%%%%%%%%%%%%%%%
+
+You can now easily :doc:`duplicate a DSS project </concepts/projects/duplicate>`, optionally duplicating the content of some datasets.
+
+RStudio integration
+%%%%%%%%%%%%%%%%%%%%%
+
+In addition to the ability to :doc:`use the DSS R API outside of DSS </R-api/outside-usage>`, DSS now features several integration points with RStudio:
+
+* Ability to develop code for DSS (recipes, ...) directly in RStudio
+* RStudio Desktop/Server addins for easy connection to DSS and download/upload of recipes
+* Embedding of the RStudio Server UI in DSS
+* Easy configuration of RStudio Server for connection with DSS
+
+For more details, please see our `how-to <https://knowledge.dataiku.com/latest/code/work-environment/how-to-rstudio.html>`__ and :doc:`reference </R/rstudio>`.
+
+Other notable enhancements
+---------------------------
+
+Copy-paste preparation steps
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+You can now :doc:`copy and paste preparation steps </preparation/copy-steps>`, either within a single preparation recipe or across preparation recipes, or even across DSS instances.
+
+Copy-paste scenario steps
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+You can now :doc:`copy and paste scenario steps </scenarios/copy-steps>`, either within a single scenario or across scenarios, or even across DSS instances.
+
+Support for CDH 6
+%%%%%%%%%%%%%%%%%%
+
+DSS now supports CDH 6.0 and 6.1
+
+For more details, please see :doc:`/hadoop/distributions/cdh`
+
+New capabilities for Snowflake
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+DSS now supports a fast-path to sync from S3 to Snowflake.
+
+For more details, please see :doc:`/connecting/sql/snowflake`.
+
+
+Setting distribution / primary index on Teradata, Redshift and Greenplum
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Additional options are now available for these databases:
+
+* Ability to control the :doc:`primary index for Teradata datasets </connecting/sql/teradata>`
+* Ability to control the :doc:`distribution keys for Greenplum datasets </connecting/sql/greenplum>`
+* Ability to control the :doc:`distribution and sort keys for Redshift datasets </connecting/sql/redshift>`
+
+
+Support for impersonation on Teradata
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+You can now use the "proxyuser" mechanism of Teradata to impersonate end-users for all database access.
+
+For more details, please see :doc:`/connecting/sql/teradata`
+
+Support for custom query banding on Teradata
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In order to provide for better audit, it can be interesting to add in the Query band of your Teradata queries information about the queries that are being performed.
+
+DSS now lets you easily do that and track which users and jobs, ... perform Teradata queries.
+
+For more details, please see :doc:`/connecting/sql/teradata`.
+
+
+More ability to use remote Git repositories
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In addition to the ability to :doc:`use Git for plugin development </plugins/reference/git-editor>` and to :doc:`import code libraries from Git </collaboration/import-code-from-git>`, including ability to use remotes, using remotes for :doc:`project version control </collaboration/version-control>` will now work in all cases where the regular Git command line works.
+
+More graceful handling of wide SQL tables
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+When reading external SQL tables, DSS will now fetch the exact size of string fields and propagate them to the table definition, in order to make for smaller downstream datasets.
+
+With some databases like MySQL or Teradata that limit the total size of the row, DSS will now more gracefully warn you of possible incompatibilities instead of preventing some recipes creations.
+
+Per-project libraries for R
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Support for per-project libraries has been added for R (just like for Python).
+
+New Jobs UI
+%%%%%%%%%%%%%
+
+The Jobs UI has been redesigned and now includes a greatly enhanced Flow view to help you understand at a glance what a job is doing and how that interacts with other jobs.
+
+New APIs
+%%%%%%%%%
+
+New APIs (REST and Python) have been introduced to:
+
+* :doc:`Query the status and engines of recipes <devguide:api-reference/python/recipes>`
+* :doc:`Import Hive and SQL tables from connections to DSS datasets <devguide:api-reference/python/tables-import>`.
+
+Java 11
+%%%%%%%%%
+
+DSS now supports Java 11.
+
+Other enhancements and fixes
+-----------------------------
+
+Visual recipes
+%%%%%%%%%%%%%%%
+
+* The join recipe now supports < and > operators (in addition to <= and >=)
+
+Datasets
+%%%%%%%%%%
+
+* A potential memory overrun when listing too many partitions has been fixed
+* GCS: Fixed issue with datasets whose size was a multiple of 4MB
+* "Cell value" metric now works properly even in the presence of other metrics
+* Reduced the number of "getBucketLocation" AWS API calls
+* Added support for XLSM files
+
+Code
+%%%%%
+
+* It is now possible to use datasets in a Python or R recipe, even if they are not declared as inputs or outputs.  For example:
+
+.. code-block:: python
+
+  dataset = dataiku.Dataset("mydataset_that_is_not_in_input", ignore_flow=True)
+  df = dataset.get_dataframe()
+
+
+* Various bugs on SQL code formatter have been fixed
+
+Data preparation
+%%%%%%%%%%%%%%%%%%
+
+* CJK characters can now be used as literals in the Python processor
+
+Dashboards
+%%%%%%%%%%%
+
+* It is now possible to export dashboards on a machine without outgoing Internet connection (after initial setup)
+
+Machine learning
+%%%%%%%%%%%%%%%%%
+
+* Don't try to use Optimized scoring when a custom text preprocessing is in effect
+* It is now possible to tune the scoring batch size when using the Local (Python) engine for scoring
+
+Misc
+%%%%%
+
+* Clear job logs macro now removes the job folders instead of just emptying them
+* It is now possible to run a DSS UI that does zero connections to the outside world

@@ -1,0 +1,29 @@
+:orphan:
+
+Session credential disclosure
+########################################################
+
+Information
+=============
+
+* Advisory ID: DSA-2022-012
+* CVSS String: CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H
+* CVSS Base Score: 8.8 (High)
+* CWE classification: CWE-200
+
+Summary
+========
+
+It was discovered that a user's internal session credential was mistakenly written to a location that can be obtained by attackers who have access to the same project as the victim. This could lead to account takeover.
+
+Affected Products
+==================
+
+* Dataiku DSS 9 and older versions
+* Dataiku DSS 10 before 10.0.9
+* Dataiku DSS 11 before 11.0.3
+
+Fix
+===
+
+Dataiku DSS 10.0.9 and Dataiku DSS 11.0.3 have been made available to customers to remediate this issue

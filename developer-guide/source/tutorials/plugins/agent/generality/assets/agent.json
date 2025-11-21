@@ -1,0 +1,16 @@
+{
+  "meta": {
+    "label": "Custom agent tutorial",
+    "description": "DevAdvocacy -- Custom Agent Tutorial",
+    "icon": "fas fa-magic"
+  },
+  "supportsImageInputs": false,
+  "params": [
+    {
+      "name": "dataset_name",
+      "label": "Customer SQL Dataset",
+      "type": "DATASET",
+      "mandatory": true
+    }
+  ]
+}

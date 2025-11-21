@@ -1,0 +1,501 @@
+DSS 2.1 Relase notes
+#####################
+
+.. contents::
+    :depth: 2
+    :local:
+
+
+Migration notes
+================
+
+.. warning::
+
+	Migration to DSS 2.1 from DSS 1.X is not officially supported. You should first migrate to the latest
+	2.0.X version. See :doc:`/release_notes/2.0`
+
+Automatic migration from Data Science Studio 2.0.X is supported, with the following restrictions and warnings:
+
+* The "Auto Mirrors" feature, which was deprecated since DSS 1.3 has been removed
+* In the Webapp builder, the deprecated API ``dataiku_load_dataset`` and ``dataiku_dataset_object`` have been removed
+* If you had any webapps that did not authorize any dataset, the API key associated to this webapp is not usable anymore. You will need to create a new webapp if you want to authorize datasets.
+* If you previously used Impala (in notebooks or charts), you will need to reconfigure Impala connectivity. See :doc:`/hadoop/impala`
+* Following an upgrade of the IPython notebook, graphing features must be enabled manually in older Python notebooks.
+* After upgrade, you will need to follow again the procedure to :doc:`Install R integration </installation/custom/r>`
+
+Getting charts in migrated Python notebooks
+---------------------------------------------
+
+In DSS 1.X and 2.0, DSS used an older version of the IPython notebook that had graphing features "magically enabled". DSS 2.1 includes a more recent version of the Jupyter notebook. This new version requires manual activation of the graphing features in the notebook.
+
+Notebooks created directly in DSS 2.1 come with a snippet that automatically enables them.
+
+To enable them on migrated notebooks, simply add a cell at the top of your notebook containing:
+
+.. code-block:: python
+
+	%pylab inline
+
+
+Version 2.1.4 - October 29th 2015
+=====================================
+
+DSS 2.1.4 is a bugfix release.
+
+Datasets
+---------
+
+* Fix UI for partitioned ElasticSearch datasets
+* Fix possible issue in writing to partitioned ElasticSearch datasets
+
+UI
+---
+
+* Fix small issues in the "Run" button of recipes
+
+Flow
+-----
+
+* Improve handling of datasets being written while being used:
+  Now, if a dataset is being written while being used as input of a recipe,
+  DSS will properly remember the status of the source dataset at the beginning
+  of the recipe, and will thus properly retrigger build if the dataset was
+  modified during the previous recipe execution
+
+Recipes
+--------
+
+* Fix UI for the "Time range" dependency when the output is not
+  partitioned
+* Improve the results of partitioning tests
+
+Charts
+-------
+
+* Fix approximate computation of quantiles in boxplots
+* Fix case sensitivity issue in Vertica live-processing charts
+
+
+Version 2.1.3 - October 20th 2015
+=====================================
+
+DSS 2.1.3 is a bugfix release.
+
+Installation
+-------------
+
+* Add support for Amazon Linux 2016.x and Ubuntu 15.10
+* Improve installation R on Redhat / CentOS
+* Make installation of R integration on Mac OS X more robust
+* Fix publication of Jupyter notebooks to dashboard
+
+Spark
+------
+
+* Fix loading of non-Filesystem datasets (like SQL tables)
+* Fix loading of Parquet files with complex types (arrays, maps, structs)
+* Fix scoring recipes with Random Forest algorithm
+
+Charts
+------
+
+* Fix processing of charts on HDFS when Impala is not installed
+* Fix aggregation on filtered grid geo charts
+* Fix display of records on grid geo charts
+* Fix handling of "No value" on grid geo charts
+* Fix display of filtered record count on scatter plots
+
+R
+--
+
+* Fix handling of CSV files with multi-line fields
+* General cleanup
+
+UI
+---
+
+* Fix UI glitch in lists editor
+* Fix display of preparation recipe on Chrome 46.
+* Fix schema update modal when a very large number were modified
+
+Version 2.1.2 - October 6th 2015
+=====================================
+
+DSS 2.1.2 is a bugfix release.
+
+Installation
+-------------
+
+* Fix migration from 2.0.X for webapps that had 0 dataset enabled.
+
+Flow and recipes
+------------------
+
+* Code recipes can now have a partitioned dataset as input and a folder as output
+* Fix handling of column types in the Split recipe > "Dispatch values of a column"
+
+Datasets
+---------
+
+* Elastic Search
+
+	* fix failure reading indices with very large number of shards
+	* fix handling of sampling.
+	* close scroll handles on the server as soon as possible, avoids excessive resource consumption on the server
+
+Spark
+------
+
+* Fix support for Spark 1.5.1
+
+Machine learning
+-----------------
+
+* Fix optimization of regression models based on RSME score
+
+
+Version 2.1.1 - October 2nd 2015
+=====================================
+
+DSS 2.1.1 is a bugfix release.
+
+.. warning::
+
+	For migration from previous versions, please see the DSS 2.1.0 release notes
+
+Installation
+-------------
+
+* Fix support for Debian 7 in deps checker
+* Add support for Amazon Linux 2015.09
+* Fix migration of Webapp API keys in some cases
+* Fix migration of ColumnRenamer processor on analysis
+* Fix R automatic installation support for Debian 8
+
+Visual preparation
+------------------
+
+* Fix numerical filters
+
+Spark
+------
+
+* Drop rows where target is null
+* Drop missing now also handles Infinity
+
+Hadoop
+-------
+
+* Fix occasional failure of prepare recipes on Hadoop when starting many preparation recipes at once.
+
+UI
+--
+
+* Fix scrolling in filesystem dataset schema
+* Fix aspect ratio of User pictures
+* Fix "Add checklist" button on project pages
+
+
+Version 2.1.0 - September 29th 2015
+=====================================
+
+DSS 2.1.0 is a major upgrade that brings a wealth of new features and improvements.
+
+For a summary of the major new features, see: https://learn.dataiku.com/whatsnew
+
+New features
+-------------
+
+Spark integration
+%%%%%%%%%%%%%%%%%%
+
+DSS now features full integration with Apache Spark, the next-generation distributed analytic framework.
+
+The integration of Spark in DSS 2.1 is pervasive and extends to all of the following features, which are now Spark-enabled:
+
+* Visual data preparation
+* "VisualSQL" recipes (Grouping, Joining, Stacking)
+* Guided machine learning in analysis
+* Training and prediction in Flow
+* PySpark recipe
+* SparkR recipe
+* SparkSQL recipe
+* PySpark-enabled notebook
+* SparkR-enabled notebook
+
+All DSS data sources can be handled using Spark. As always in DSS, you can mix technologies freely, both Spark-enabled and traditional
+
+For more information about Spark integration, see :doc:`/spark/index`
+
+Plugins
+%%%%%%%%%%
+
+Plugins let you extend the features of DSS. You can add new kinds of datasets, recipes, visual preparation processors, custom formula functions, and more.
+
+Plugins can be downloaded from the official Dataiku community site, or created by you and shared with your team.
+
+Public API
+%%%%%%%%%%%%
+
+DSS now includes a REST API to programmatically manage DSS from any HTTP-capable language.
+
+To learn more about this API, see :doc:`/publicapi/index`
+
+Enhanced charts
+%%%%%%%%%%%%%%%%%%
+
+The charts module of DSS has been vastly enhanced:
+
+* New chart types
+
+	* Scatterplots
+	* Horizontal bar charts
+	* Pie and donut charts
+	* Boxplots
+	* Pivot table (text view) and colored pivot table
+	* Geographic scatter map
+	* "Grid" map (fixed-width aggregation grid)
+	* (Experimental) 2D distribution plot
+
+* Brand new user experience. It is now much easier to understand what's going in your chart, and to switch dimensions and measures.
+
+* Improved presentation of date axis
+
+* All charts can now have semi-transparency
+
+* New computation mode for aggregated charts: "Percentage scale" (% of the total)
+
+* Tooltips now provide the ability to drill-down and exclude values
+
+
+New R integration and Jupyter notebook
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The bundled IPython notebook has been upgraded. DSS now includes Jupyter 4.0
+
+This is a major new release of IPython/Jupyter, with lots of improvements, and the support for multiple languages.
+
+The bundled Jupyter now comes builtin with a brand new R kernel, with vastly improved features over the previous R integration:
+
+* Syntax highlighting
+* Auto-completion (just hit Tab)
+* Much improved error handling
+
+In addition, DSS features a new R API. See :doc:`/R-api/index` for more details.
+
+Editable datasets
+%%%%%%%%%%%%%%%%%%%%
+
+Editable datasets are a new kind of dataset in DSS, which you can directly create and modify in the DSS UI, ala Excel or Google Spreadsheets.
+
+They can be used for example to create referentials, configuration datasets, ...
+
+Editable datasets can be imported from any file, or another dataset.
+
+
+"Managed folders"
+%%%%%%%%%%%%%%%%%%%
+
+DSS comes with a large number of supported formats, machine learning engines, ... But sometimes you want to do more.
+
+DSS code recipes (Python and R) can now read and write from "Managed Folders", handles on filesystem-hosted folders, where you can store any kind of data.
+
+DSS will not try to read or write structured data from managed folders, but they appear in Flow and can be used for dependencies computation. Furthermore, you can upload and download files from the managed folder using the DSS API.
+
+Here are some example use cases:
+
+* You have some files that DSS cannot read, but you have a Python library which can read them: upload the files to a manged folder, and use your Python library in a Python recipe to create a regular dataset
+
+* You want to use Vowpal Wabbit to create a model. DSS does not have full-fledged integration in VW. Make a first Python recipe that has a managed folder as output, and write the saved VW model in it. Write another recipe that reads from the same managed folder to make a prediction recipe
+
+* Anything else you might think of. Thanks to managed folders, DSS can help you even when it does not know about your data.
+
+
+Impala recipe
+%%%%%%%%%%%%%%%
+
+Previously, DSS could use Impala:
+
+* For charts creation
+* In the Impala notebook
+
+You can now also use Impala in a new Impala recipe to benefit from the speed of this engine for aggregations on HDFS.
+
+Impala is also available as an engine for "VisualSQL" (Grouping, Join, Stack) recipes
+
+Shell recipe
+%%%%%%%%%%%%%
+
+There are times when you just need to:
+
+* Run a shell command
+* Stream a dataset through a shell command (stdin/stdout)
+
+The shell recipe lets you do just that.
+
+Code snippets
+%%%%%%%%%%%%%
+
+In all modules of DSS where you can write code, you now have the ability to insert code snippets. DSS comes builtin with lots of useful snippets, and you can also write your own and share them with your team.
+
+Elasticsearch dataset
+%%%%%%%%%%%%%%%%%%%%%%
+
+DSS now has full read-write support for ElasticSearch datasets
+
+
+Easter eggs
+%%%%%%%%%%%%
+
+Will you find all our new easter eggs ?
+
+Other major enhancements
+-------------------------
+
+Multiple SQL statements support
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Every module of DSS where you can write SQL code now support multiple statements.
+
+For example, in the SQL Query recipe, you can now add statements before the main "SELECT" statement. This can allow you to issue some SET statements to tune the optimizer, or to create stored procedures.
+
+In other words, you can now declare and call a stored procedure in a SQL Query recipe.
+
+This also applies for the pre-write and post-write statements. For example, you can now create multiple indexes.
+
+Running SQL, Hive and Impala from Python and R recipes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+SQL is the most pervasive way to make data analysis queries. However, doing advanced logic, like loops, conditions, ... is often difficult in SQL. There are some options like stored queries, but they require learning new languages.
+
+DSS now lets you run SQL queries directly from a Python recipe. This lets you:
+
+* sequence several SQL queries
+* dynamically generate some new SQL queries to execute in the database
+* use SQL to obtain some aggregated data for further numerical processing in Python
+* ...
+
+To learn more, see :doc:`devguide:api-reference/python/sql`
+
+"Repartitioning" mode
+%%%%%%%%%%%%%%%%%%%%%%
+
+Thanks to "repartitioning" mode, you can now:
+
+* start with a non-partitioned files-based dataset where a column could act as a partitioning column
+* create a "repartitioning-enabled" sync or prepare recipe to transform it to a partitioned dataset
+* Build in a single pass all partitions of the target dataset
+
+"Append" mode
+%%%%%%%%%%%%%%
+
+Several recipes and datasets now support "Append" instead of "Overwrite" in target datasets.
+
+While we do not recommend to use this for general-purpose datasets, it can be useful in some cases, like for example create a "history" dataset as output of a recipe, writing a new line each time the recipe is run.
+
+HDP 2.3 support
+%%%%%%%%%%%%%%%%
+
+DSS is now compatible with Hadoop HDP 2.3.0
+
+Misc
+%%%%%
+
+* Visual preparation
+
+	* Added detection of US states in Preparation recipes
+	* New processor to concatenate arrays
+	* The column renamer processor can now perform multiple renames
+	* New mass actions to lowercase/uppercase/simplify many column names
+	* Find/Replace processor can now work on all columns at once
+
+* Machine learning
+
+	* Analysis: Machine Learning training does not start automatically anymore, giving you an opportunity to review the settings prior to initial training.
+
+
+* Custom formula: new random() function
+
+* Automatic R integration installation, no more manual steps
+
+* UX
+
+	* All recipes now share a more common and more consistent layout, with the Run button always present on the most important tab.
+
+	* When creating managed datasets, you now have more options to preconfigure the dataset based on common formats, or using known partitioning schemes
+
+	* Better build dataset modal, with more clear explanation of the build modes
+
+Notable bug fixes
+-----------------
+
+UI
+%%%
+
+* Fixed various scrolling and drag-and-drop issues
+* Fix renaming of datasets when the name was already used
+* Fix project home display for readers
+* Fixed job preview when training a model
+* It's now possible to choose a different SQL port
+* Improved behavior of exports
+* Fixed tagging of analysis
+* Fixed DSS disconnection when very long log lines are transferred
+
+Charts
+%%%%%%%%
+
+* Fixed an issue with date range filters
+* Fixed a bug that could happen with numerical axis and small values
+* Fixed issue in geo chart when the value of the aggregation is 0
+* Fixed various issues in legend, especially with "Mixed columns/lines" charts
+
+Hadoop
+%%%%%%%
+
+* [HDP only] Fixed Hive recipes on readonly HDFS datasets
+* Fixed/Added support for native Snappy and LZO datasets
+* Fixed EXPLAIN statements in notebook for Hive
+* The command-line tool to import Hive databases now supports partitioning
+
+SQL and VisualSQL recipes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+* Added ability to disable the "LIMIT" in statements for some operations that don't support it (e.g. tuple mover operations on Vertica)
+* Fixed cases where the "limit" statement could get disabled
+* Fixed issues with Join recipe on Oracle
+* Grouping recipe: fixed issue with "LAST" aggregations function
+* Fixed typing of MIN/MAX on non-string columns
+* Grouping recipe can now use faster stream engine when computing COUNT
+
+
+Machine learning
+%%%%%%%%%%%%%%%%%
+
+* Fixed Gradient Boostring Tree in kfold mode with multiple losses
+* Fixed Lasso regression in AutoCV mode
+* SGD classification can now use sparse matrixes
+* Fixed error when imputation was disabled for all numerical features
+* Fixed error when using feature hashing on a numerical feature
+* Fixed broken models when RSMLE can't be computed
+* Fixed some errors in notebook export
+
+Reliability
+%%%%%%%%%%%%%
+
+* Using "Compute number of records" on large datasets does not lock the studio anymore
+* Fixed a deadlock leading to the whole notification system ceasing to work
+* Fixed the infamous "error during execution of add command" issue with the internal Git repository
+* Fixed several cases where long operations could be performed while holding a lock on the DSS configuration (like Hive validation or aborting Impala queries)
+* DSS diagnosis now includes more useful information
+
+Datasets
+%%%%%%%%%
+
+* Fixed detection of Excel dates
+* Fixed detection of UTF-8 BOMs
+
+Misc
+%%%%%
+
+* Shapefiles that require Vecmath now display a proper informative message
+* We now display proper warning messages when using non-Hive-compatible HDFS dataset names

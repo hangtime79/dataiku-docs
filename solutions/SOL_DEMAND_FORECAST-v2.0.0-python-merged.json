@@ -1,0 +1,1257 @@
+[
+  {
+    "name": "annotated-types",
+    "version": "0.7.0",
+    "lic": null,
+    "printedName": "annotated-types",
+    "homepage": "https://github.com/annotated-types/annotated-types",
+    "repository": "https://github.com/annotated-types/annotated-types/tree/v0.7.0",
+    "copyright_line": "Copyright (c) 2022 the contributors",
+    "copyright_url": "https://github.com/annotated-types/annotated-types/blob/v0.7.0/LICENSE",
+    "author": "annotated-types",
+    "license_url": "https://github.com/annotated-types/annotated-types/blob/v0.7.0/LICENSE",
+    "license_type": "MIT",
+    "license_txt": "annotated-types_0.7.0.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Shivani Chaudhary"
+  },
+  {
+    "name": "certifi",
+    "version": "2025.10.5",
+    "lic": null,
+    "printedName": "python-certifi",
+    "homepage": "https://github.com/certifi/python-certifi",
+    "repository": "https://github.com/certifi/python-certifi",
+    "copyright_line": null,
+    "copyright_url": null,
+    "author": "Kenneth Reitz",
+    "license_url": "https://github.com/certifi/python-certifi/blob/master/LICENSE",
+    "license_type": "MPL-2.0",
+    "license_txt": null,
+    "note": "no copyright found",
+    "_source": null,
+    "reviewer": "Guillaume Cassand"
+  },
+  {
+    "name": "charset-normalizer",
+    "version": "3.4.3",
+    "lic": null,
+    "printedName": "charset-normalizer",
+    "homepage": "https://charset-normalizer.readthedocs.io/en/stable/",
+    "repository": "https://github.com/jawah/charset_normalizer/tree/3.4.3",
+    "copyright_line": "Copyright (c) 2025 TAHRI Ahmed R.",
+    "copyright_url": "https://github.com/jawah/charset_normalizer/blob/3.4.3/LICENSE",
+    "author": "jawah",
+    "license_url": "https://github.com/jawah/charset_normalizer/blob/3.4.3/LICENSE",
+    "license_type": "MIT",
+    "license_txt": null,
+    "note": null,
+    "_source": null,
+    "reviewer": "Abdelmajid Boubrik"
+  },
+  {
+    "name": "click",
+    "version": "8.3.0",
+    "lic": null,
+    "printedName": "click",
+    "homepage": "https://click.palletsprojects.com",
+    "repository": "https://github.com/pallets/click/tree/8.3.0",
+    "copyright_line": "Copyright 2014 Pallets",
+    "copyright_url": "https://github.com/pallets/click/blob/8.3.0/LICENSE.txt",
+    "author": "pallets",
+    "license_url": "https://github.com/pallets/click/blob/8.3.0/LICENSE.txt",
+    "license_type": "BSD-3-Clause",
+    "license_txt": "click_8.3.0.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Divya Thomas"
+  },
+  {
+    "name": "cloudpickle",
+    "version": "1.5.0",
+    "lic": null,
+    "printedName": "Cloudpickle",
+    "homepage": "https://github.com/cloudpipe/cloudpickle",
+    "repository": "https://github.com/cloudpipe/cloudpickle/tree/v1.5.0",
+    "copyright_line": "Copyright (c) 2015, Cloudpickle contributors.Copyright (c) 2012, Regents of the University of California.Copyright (c) 2009 PiCloud, Inc. http://www.picloud.com.All rights reserved.",
+    "copyright_url": "https://github.com/cloudpipe/cloudpickle/blob/v1.5.0/LICENSE",
+    "author": null,
+    "license_url": "https://github.com/cloudpipe/cloudpickle/blob/v1.5.0/LICENSE",
+    "license_type": "BSD-3-Clause",
+    "license_txt": "cloudpickle_1.5.0.txt",
+    "note": null,
+    "_source": [
+      {
+        "filename": "cloudpickle",
+        "path": "python310"
+      },
+      {
+        "filename": "cloudpickle",
+        "path": "python39"
+      }
+    ],
+    "reviewer": "Mohamed Dadoune"
+  },
+  {
+    "name": "cmdstanpy",
+    "version": "1.2.5",
+    "lic": null,
+    "printedName": "CmdStanPy",
+    "homepage": "https://github.com/stan-dev/cmdstanpy",
+    "repository": "https://github.com/stan-dev/cmdstanpy/tree/v1.2.5",
+    "copyright_line": "Copyright (c) 2019, Stan Developers and their Assignees",
+    "copyright_url": "https://github.com/stan-dev/cmdstanpy/blob/v1.2.5/LICENSE.md",
+    "author": "stan-dev",
+    "license_url": "https://github.com/stan-dev/cmdstanpy/blob/v1.2.5/LICENSE.md",
+    "license_type": "BSD-3-Clause",
+    "license_txt": "cmdstanpy_1.2.5.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Guillaume Cassand"
+  },
+  {
+    "name": "contourpy",
+    "version": "1.3.3",
+    "lic": null,
+    "printedName": "contourpy",
+    "homepage": "https://contourpy.readthedocs.io/",
+    "repository": "https://github.com/contourpy/contourpy/tree/v1.3.3",
+    "copyright_line": "Copyright (c) 2021-2025, ContourPy Developers.",
+    "copyright_url": "https://github.com/contourpy/contourpy/blob/v1.3.3/LICENSE",
+    "author": "contourpy",
+    "license_url": "https://github.com/contourpy/contourpy/blob/v1.3.3/LICENSE",
+    "license_type": "BSD-3-Clause",
+    "license_txt": "contourpy_1.3.3.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Louis Dorard"
+  },
+  {
+    "name": "cycler",
+    "version": "0.12.1",
+    "lic": null,
+    "printedName": "cycler",
+    "homepage": "https://github.com/matplotlib/cycler/blob/v0.12.1/README.rst",
+    "repository": "https://github.com/matplotlib/cycler/tree/v0.12.1",
+    "copyright_line": "Copyright (c) 2015, matplotlib project All rights reserved.",
+    "copyright_url": "https://github.com/matplotlib/cycler/blob/v0.12.1/LICENSE",
+    "author": "matplotlib",
+    "license_url": "https://github.com/matplotlib/cycler/blob/v0.12.1/LICENSE",
+    "license_type": "BSD-3-Clause",
+    "license_txt": null,
+    "note": null,
+    "_source": [
+      {
+        "filename": "cycler",
+        "path": "python310"
+      },
+      {
+        "filename": "cycler",
+        "path": "python311"
+      },
+      {
+        "filename": "cycler",
+        "path": "python39"
+      }
+    ],
+    "reviewer": "Georgia Kouyalis"
+  },
+  {
+    "name": "Cython",
+    "version": "3.1.4",
+    "lic": null,
+    "printedName": "cython",
+    "homepage": "https://cython.org",
+    "repository": "https://github.com/cython/cython/tree/3.1.4",
+    "copyright_line": "2025 Stefan Behnel, Robert Bradshaw, Dag Sverre Seljebotn, Greg Ewing, William Stein, Gabriel Gellner, et al.",
+    "copyright_url": "https://github.com/cython/cython/blob/90f246f3ee5a4b6aade4e5abfec700c52fe27c70/docs/conf.py#L18",
+    "author": "Stefan Behnel, Robert Bradshaw, Dag Sverre Seljebotn, Greg Ewing, William Stein, Gabriel Gellner, et al.",
+    "license_url": "https://github.com/cython/cython/blob/3.1.4/LICENSE.txt",
+    "license_type": "Apache-2.0",
+    "license_txt": "Cython_3.1.4.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Nicolas Vallée"
+  },
+  {
+    "name": "Flask",
+    "version": "2.2.5",
+    "lic": null,
+    "printedName": "Flask",
+    "homepage": "https://flask.palletsprojects.com",
+    "repository": "https://github.com/pallets/flask/tree/2.2.5",
+    "copyright_line": "Copyright 2010 Pallets",
+    "copyright_url": "https://github.com/pallets/flask/blob/2.2.5/LICENSE.rst",
+    "author": "pallets",
+    "license_url": "https://github.com/pallets/flask/blob/2.2.5/LICENSE.rst",
+    "license_type": "BSD-3-Clause",
+    "license_txt": null,
+    "note": null,
+    "_source": null,
+    "reviewer": "Rémi Hernandez"
+  },
+  {
+    "name": "fonttools",
+    "version": "4.60.1",
+    "lic": null,
+    "printedName": "fonttools",
+    "homepage": "https://fonttools.readthedocs.io/en/latest/",
+    "repository": "https://github.com/fonttools/fonttools/tree/4.60.1",
+    "copyright_line": "Copyright (c) 2017 Just van Rossum",
+    "copyright_url": "https://github.com/fonttools/fonttools/blob/4.60.1/LICENSE",
+    "author": "fonttools",
+    "license_url": "https://github.com/fonttools/fonttools/blob/4.60.1/LICENSE",
+    "license_type": "MIT",
+    "license_txt": "fonttools_4.60.1.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Fabien Daoulas"
+  },
+  {
+    "name": "gluonts",
+    "version": "0.16.2",
+    "lic": null,
+    "printedName": "GluonTS - Probabilistic Time Series Modeling in Python",
+    "homepage": "https://ts.gluon.ai",
+    "repository": "https://github.com/awslabs/gluonts/tree/v0.16.2",
+    "copyright_line": "Copyright 2018-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved. ",
+    "copyright_url": "https://github.com/awslabs/gluonts/blob/v0.16.2/NOTICE",
+    "author": "awslabs",
+    "license_url": "https://github.com/awslabs/gluonts/blob/v0.16.2/LICENSE",
+    "license_type": "Apache-2.0",
+    "license_txt": "gluonts_0.16.2.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Guillaume Cassand"
+  },
+  {
+    "name": "graphviz",
+    "version": "0.8.4",
+    "lic": null,
+    "printedName": "Graphviz",
+    "homepage": "https://graphviz.readthedocs.io",
+    "repository": "https://github.com/xflr6/graphviz/tree/0.8.4",
+    "copyright_line": "Copyright (c) 2013-2018 Sebastian Bank",
+    "copyright_url": "https://github.com/xflr6/graphviz/blob/0.8.4/LICENSE.txt",
+    "author": "xflr6",
+    "license_url": "https://github.com/xflr6/graphviz/blob/0.8.4/LICENSE.txt",
+    "license_type": "MIT",
+    "license_txt": "graphviz_0.8.4.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "David Behar"
+  },
+  {
+    "name": "holidays",
+    "version": "0.81",
+    "lic": null,
+    "printedName": "holidays",
+    "homepage": "https://pypi.org/project/holidays",
+    "repository": "https://github.com/vacanza/holidays/tree/v0.81",
+    "copyright_line": "Copyright (c) Vacanza Team and individual contributors (see CONTRIBUTORS file)\nCopyright (c) dr-prodigy <dr.prodigy.github@gmail.com>, 2017-2023\nCopyright (c) ryanss <ryanssdev@icloud.com>, 2014-2017",
+    "copyright_url": "https://github.com/vacanza/holidays/blob/v0.81/LICENSE",
+    "author": "Vacanza Team",
+    "license_url": "https://github.com/vacanza/holidays/blob/v0.81/LICENSE",
+    "license_type": "MIT",
+    "license_txt": "holidays_0.81.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Fabien Daoulas"
+  },
+  {
+    "name": "idna",
+    "version": "3.10",
+    "lic": null,
+    "printedName": "idna",
+    "homepage": "https://pypi.org/project/idna/",
+    "repository": "https://github.com/kjd/idna/tree/v3.10",
+    "copyright_line": "Copyright (c) 2013-2024, Kim Davies and contributors.",
+    "copyright_url": "https://github.com/kjd/idna/blob/v3.10/LICENSE.md",
+    "author": "Kim Davies",
+    "license_url": "https://github.com/kjd/idna/blob/v3.10/LICENSE.md",
+    "license_type": "BSD",
+    "license_txt": "idna_3.10.txt",
+    "note": null,
+    "_source": [
+      {
+        "filename": "idna",
+        "path": "python310"
+      },
+      {
+        "filename": "idna",
+        "path": "python311"
+      },
+      {
+        "filename": "idna",
+        "path": "python39"
+      }
+    ],
+    "reviewer": "Yves Darmaillac"
+  },
+  {
+    "name": "importlib_resources",
+    "version": "6.5.2",
+    "lic": null,
+    "printedName": "importlib_resources",
+    "homepage": "https://docs.python.org/3/library/importlib.html#module-importlib.resources",
+    "repository": "https://github.com/python/importlib_resources/tree/v6.5.2",
+    "copyright_line": "© Copyright 2001 Python Software Foundation.",
+    "copyright_url": "https://github.com/python/importlib_resources/blob/v6.5.2/LICENSE",
+    "author": "python",
+    "license_url": "https://github.com/python/importlib_resources/blob/v6.5.2/LICENSE",
+    "license_type": "Apache-2.0",
+    "license_txt": null,
+    "note": null,
+    "_source": null,
+    "reviewer": "Guillaume Cassand"
+  },
+  {
+    "name": "itsdangerous",
+    "version": "2.0.1",
+    "lic": null,
+    "printedName": "ItsDangerous",
+    "homepage": "https://itsdangerous.palletsprojects.com",
+    "repository": "https://github.com/pallets/itsdangerous/tree/2.0.1",
+    "copyright_line": "Copyright 2011 Pallets",
+    "copyright_url": "https://github.com/pallets/itsdangerous/blob/2.0.1/LICENSE.rst",
+    "author": "pallets",
+    "license_url": "https://github.com/pallets/itsdangerous/blob/2.0.1/LICENSE.rst",
+    "license_type": "BSD-3-Clause",
+    "license_txt": null,
+    "note": null,
+    "_source": null,
+    "reviewer": "Guillaume Cassand"
+  },
+  {
+    "name": "Jinja2",
+    "version": "3.1.6",
+    "lic": null,
+    "printedName": "Jinja2",
+    "homepage": "https://jinja.palletsprojects.com",
+    "repository": "https://github.com/pallets/jinja/tree/3.1.6",
+    "copyright_line": "Copyright 2007 Pallets",
+    "copyright_url": "https://github.com/pallets/jinja/blob/3.1.6/LICENSE.txt",
+    "author": "pallets",
+    "license_url": "https://github.com/pallets/jinja/blob/3.1.6/LICENSE.txt",
+    "license_type": "BSD-3-Clause",
+    "license_txt": "Jinja2_3.1.6.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Louis Dorard"
+  },
+  {
+    "name": "joblib",
+    "version": "1.5.2",
+    "lic": null,
+    "printedName": "joblib",
+    "homepage": "http://joblib.readthedocs.org",
+    "repository": "https://github.com/joblib/joblib/tree/1.5.2",
+    "copyright_line": "Copyright (c) 2008-2021, The joblib developers.",
+    "copyright_url": "https://github.com/joblib/joblib/blob/1.5.2/LICENSE.txt",
+    "author": "joblib",
+    "license_url": "https://github.com/joblib/joblib/blob/1.5.2/LICENSE.txt",
+    "license_type": "BSD-3-Clause",
+    "license_txt": "joblib_1.5.2.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Guillaume Cassand"
+  },
+  {
+    "name": "kiwisolver",
+    "version": "1.4.9",
+    "lic": null,
+    "printedName": "Kiwi",
+    "homepage": "https://kiwisolver.readthedocs.io/en/latest/",
+    "repository": "https://github.com/nucleic/kiwi/tree/1.4.9",
+    "copyright_line": "Copyright (c) 2013-2025, Nucleic Development Team",
+    "copyright_url": "https://github.com/nucleic/kiwi/blob/1.4.9/LICENSE",
+    "author": "nucleic",
+    "license_url": "https://github.com/nucleic/kiwi/blob/1.4.9/LICENSE",
+    "license_type": "BSD-3-Clause",
+    "license_txt": null,
+    "note": null,
+    "_source": null,
+    "reviewer": "Guillaume Cassand"
+  },
+  {
+    "name": "lightgbm",
+    "version": "4.6.0",
+    "lic": null,
+    "printedName": "LightGBM",
+    "homepage": "https://lightgbm.readthedocs.io/en/latest/",
+    "repository": "https://github.com/microsoft/LightGBM/tree/v4.6.0",
+    "copyright_line": "Copyright (c) Microsoft Corporation",
+    "copyright_url": "https://github.com/microsoft/LightGBM/blob/v4.6.0/LICENSE",
+    "author": null,
+    "license_url": "https://github.com/microsoft/LightGBM/blob/v4.6.0/LICENSE",
+    "license_type": "MIT",
+    "license_txt": "lightgbm_4.6.0.txt",
+    "note": null,
+    "_source": [
+      {
+        "filename": "lightgbm",
+        "path": "python310"
+      },
+      {
+        "filename": "lightgbm",
+        "path": "python311"
+      },
+      {
+        "filename": "lightgbm",
+        "path": "python39"
+      }
+    ],
+    "reviewer": "Malick Konaté"
+  },
+  {
+    "name": "MarkupSafe",
+    "version": "2.1.5",
+    "lic": null,
+    "printedName": "MarkupSafe",
+    "homepage": "https://markupsafe.palletsprojects.com",
+    "repository": "https://github.com/pallets/markupsafe/tree/2.1.5",
+    "copyright_line": "Copyright 2010 Pallets",
+    "copyright_url": "https://github.com/pallets/markupsafe/blob/2.1.5/LICENSE.rst",
+    "author": "pallets",
+    "license_url": "https://github.com/pallets/markupsafe/blob/2.1.5/LICENSE.rst",
+    "license_type": "BSD-3-Clause",
+    "license_txt": null,
+    "note": null,
+    "_source": null,
+    "reviewer": "David Behar"
+  },
+  {
+    "name": "matplotlib",
+    "version": "3.10.6",
+    "lic": null,
+    "printedName": "matplotlib",
+    "homepage": "https://matplotlib.org/stable/",
+    "repository": "https://github.com/matplotlib/matplotlib/tree/v3.10.6",
+    "copyright_line": "2012–2025 The Matplotlib development team.",
+    "copyright_url": "https://matplotlib.org/stable/project/license.html",
+    "author": "matplotlib",
+    "license_url": "https://matplotlib.org/stable/project/license.html",
+    "license_type": "BSD",
+    "license_txt": null,
+    "note": null,
+    "_source": null,
+    "reviewer": "Nicolas Vallée"
+  },
+  {
+    "name": "mxnet",
+    "version": "1.9.1",
+    "lic": null,
+    "printedName": "Apache MXNet for Deep Learning",
+    "homepage": "https://mxnet.apache.org",
+    "repository": "https://github.com/apache/incubator-mxnet/tree/1.9.1",
+    "copyright_line": "Copyright 2017-2021 The Apache Software Foundation",
+    "copyright_url": "https://github.com/apache/mxnet/blob/1.9.1/NOTICE",
+    "author": "apache",
+    "license_url": "https://github.com/apache/mxnet/blob/1.9.1/LICENSE",
+    "license_type": "Apache-2.0",
+    "license_txt": "mxnet_1.9.1.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Guillaume Cassand"
+  },
+  {
+    "name": "numpy",
+    "version": "1.26.4",
+    "lic": null,
+    "printedName": "NumPy",
+    "homepage": "https://numpy.org",
+    "repository": "https://github.com/numpy/numpy/tree/v1.26.4",
+    "copyright_line": "Copyright (c) 2005-2023, NumPy Developers.",
+    "copyright_url": "https://github.com/numpy/numpy/blob/v1.26.4/LICENSE.txt",
+    "author": "numpy",
+    "license_url": "https://github.com/numpy/numpy/blob/v1.26.4/LICENSE.txt",
+    "license_type": "BSD-3-Clause",
+    "license_txt": "numpy_1.26.4.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Guillaume Cassand"
+  },
+  {
+    "name": "nvidia-nccl-cu12",
+    "version": "2.28.3",
+    "lic": null,
+    "printedName": "nvidia-nccl-cu12",
+    "homepage": "https://developer.nvidia.com/cuda-zone",
+    "repository": "https://developer.nvidia.com/cuda-zone",
+    "copyright_line": "Copyright © 2025 NVIDIA Corporation",
+    "copyright_url": null,
+    "author": "Nvidia CUDA Installer Team",
+    "license_url": null,
+    "license_type": "NVIDIA Proprietary Software",
+    "license_txt": null,
+    "note": null,
+    "_source": null,
+    "reviewer": "Guillaume Cassand"
+  },
+  {
+    "name": "packaging",
+    "version": "25.0",
+    "lic": "1",
+    "printedName": "packaging",
+    "homepage": "https://packaging.pypa.io/",
+    "repository": "https://github.com/pypa/packaging/tree/25.0",
+    "copyright_line": "Copyright (c) Donald Stufft and individual contributors.All rights reserved.",
+    "copyright_url": "https://github.com/pypa/packaging/blob/25.0/LICENSE.BSD#L1-L2",
+    "author": "Donald Stufft",
+    "license_url": "https://github.com/pypa/packaging/blob/25.0/LICENSE.APACHE",
+    "license_type": "Apache-2.0",
+    "license_txt": "packaging_25.0.txt",
+    "note": null,
+    "_source": [
+      {
+        "filename": "packaging",
+        "path": "python310"
+      },
+      {
+        "filename": "packaging",
+        "path": "python311"
+      },
+      {
+        "filename": "packaging",
+        "path": "python39"
+      }
+    ],
+    "reviewer": "Abderrahmane Amine"
+  },
+  {
+    "name": "packaging",
+    "version": "25.0",
+    "lic": "2",
+    "printedName": "packaging",
+    "homepage": "https://packaging.pypa.io/",
+    "repository": "https://github.com/pypa/packaging/tree/25.0",
+    "copyright_line": "Copyright (c) Donald Stufft and individual contributors.All rights reserved.",
+    "copyright_url": "https://github.com/pypa/packaging/blob/25.0/LICENSE.BSD#L1-L2",
+    "author": "Donald Stufft",
+    "license_url": "https://github.com/pypa/packaging/blob/25.0/LICENSE.BSD",
+    "license_type": "BSD-2-Clause",
+    "license_txt": "packaging_25.0.txt",
+    "note": null,
+    "_source": [
+      {
+        "filename": "packaging",
+        "path": "python310"
+      },
+      {
+        "filename": "packaging",
+        "path": "python311"
+      },
+      {
+        "filename": "packaging",
+        "path": "python39"
+      }
+    ],
+    "reviewer": "Abderrahmane Amine"
+  },
+  {
+    "name": "pandas",
+    "version": "2.3.3",
+    "lic": null,
+    "printedName": "Pandas",
+    "homepage": "https://pandas.pydata.org/",
+    "repository": "https://github.com/pandas-dev/pandas/tree/v2.3.3",
+    "copyright_line": "Copyright (c) 2008-2011, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team All rights reserved.  Copyright (c) 2011-2023, Open source contributors.",
+    "copyright_url": "https://github.com/pandas-dev/pandas/blob/v2.3.3/LICENSE",
+    "author": null,
+    "license_url": "https://github.com/pandas-dev/pandas/blob/v2.3.3/LICENSE",
+    "license_type": "BSD-3-Clause",
+    "license_txt": null,
+    "note": null,
+    "_source": null,
+    "reviewer": "Guillaume Cassand"
+  },
+  {
+    "name": "patsy",
+    "version": "1.0.1",
+    "lic": null,
+    "printedName": "patsy",
+    "homepage": "https://github.com/pydata/patsy",
+    "repository": "https://github.com/pydata/patsy/tree/v1.0.1",
+    "copyright_line": "    Copyright (C) 2011-2012, Patsy Developers. All rights reserved.\n          copyright notice, this list of conditions and the following",
+    "copyright_url": "https://github.com/pydata/patsy/blob/v1.0.1/LICENSE.txt",
+    "author": "pydata",
+    "license_url": "https://github.com/pydata/patsy/blob/v1.0.1/LICENSE.txt",
+    "license_type": "BSD-2-Clause",
+    "license_txt": "patsy_1.0.1.txt",
+    "note": null,
+    "_source": [
+      {
+        "filename": "patsy",
+        "path": "python310"
+      },
+      {
+        "filename": "patsy",
+        "path": "python311"
+      },
+      {
+        "filename": "patsy",
+        "path": "python39"
+      }
+    ],
+    "reviewer": "Rustin Crandall"
+  },
+  {
+    "name": "pillow",
+    "version": "11.3.0",
+    "lic": null,
+    "printedName": "pillow",
+    "homepage": "https://python-pillow.org/",
+    "repository": "https://github.com/python-pillow/Pillow/blob/11.3.0/",
+    "copyright_line": "    Copyright © 1997-2011 by Secret Labs AB    Copyright © 1995-2011 by Fredrik Lundh and contributors    Copyright © 2010 by Jeffrey A. Clark and contributors",
+    "copyright_url": "https://github.com/python-pillow/Pillow/blob/11.3.0/LICENSE#L8",
+    "author": "python-pillow",
+    "license_url": "https://github.com/python-pillow/Pillow/blob/11.3.0/LICENSE",
+    "license_type": "MIT-CMU",
+    "license_txt": "pillow_11.3.0.txt",
+    "note": null,
+    "_source": [
+      {
+        "filename": "pillow",
+        "path": "python310"
+      },
+      {
+        "filename": "pillow",
+        "path": "python311"
+      },
+      {
+        "filename": "pillow",
+        "path": "python39"
+      }
+    ],
+    "reviewer": "Li-Heng Fu"
+  },
+  {
+    "name": "pip",
+    "version": "25.2",
+    "lic": null,
+    "printedName": "pip",
+    "homepage": "https://pip.pypa.io/",
+    "repository": "https://github.com/pypa/pip/tree/25.2",
+    "copyright_line": "Copyright (c) 2008-present The pip developers (see AUTHORS.txt file)",
+    "copyright_url": "https://github.com/pypa/pip/blob/25.2/LICENSE.txt",
+    "author": "Python Packaging Authority",
+    "license_url": "https://github.com/pypa/pip/blob/25.2/LICENSE.txt",
+    "license_type": "MIT",
+    "license_txt": "pip_25.2.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Quentin Groshens"
+  },
+  {
+    "name": "pmdarima",
+    "version": "2.0.4",
+    "lic": null,
+    "printedName": "pmdarima",
+    "homepage": "https://www.alkaline-ml.com/pmdarima",
+    "repository": "https://github.com/alkaline-ml/pmdarima/tree/v2.0.4",
+    "copyright_line": "Copyright (c) 2017 Taylor G Smith",
+    "copyright_url": "https://github.com/alkaline-ml/pmdarima/blob/v2.0.4/LICENSE",
+    "author": "alkaline-ml",
+    "license_url": "https://github.com/alkaline-ml/pmdarima/blob/v2.0.4/LICENSE",
+    "license_type": "MIT",
+    "license_txt": "pmdarima_2.0.4.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Guillaume Cassand"
+  },
+  {
+    "name": "prophet",
+    "version": "1.1.7",
+    "lic": null,
+    "printedName": "Prophet",
+    "homepage": "https://facebook.github.io/prophet",
+    "repository": "https://github.com/facebook/prophet/tree/v1.1.7",
+    "copyright_line": "Copyright (c) Facebook, Inc. and its affiliates.",
+    "copyright_url": "https://github.com/facebook/prophet/blob/v1.1.7/LICENSE",
+    "author": "facebook",
+    "license_url": "https://github.com/facebook/prophet/blob/v1.1.7/LICENSE",
+    "license_type": "MIT",
+    "license_txt": "prophet_1.1.7.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Guillaume Cassand"
+  },
+  {
+    "name": "pyaml",
+    "version": "25.7.0",
+    "lic": null,
+    "printedName": "pretty-yaml",
+    "homepage": "https://github.com/mk-fg/pretty-yaml",
+    "repository": "https://github.com/mk-fg/pretty-yaml/tree/25.7.0",
+    "copyright_line": " Copyright (C) 2012 Mike Kazantsev <mk.fraggod@gmail.com>",
+    "copyright_url": "https://github.com/mk-fg/pretty-yaml/blob/25.7.0/COPYING",
+    "author": "mk-fg",
+    "license_url": "https://github.com/mk-fg/pretty-yaml/blob/25.7.0/COPYING",
+    "license_type": "WTFPL",
+    "license_txt": "pyaml_25.7.0.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Shivani Chaudhary"
+  },
+  {
+    "name": "pydantic",
+    "version": "2.11.10",
+    "lic": null,
+    "printedName": "pydantic",
+    "homepage": "https://docs.pydantic.dev",
+    "repository": "https://github.com/pydantic/pydantic/tree/v2.11.10",
+    "copyright_line": "Copyright (c) 2017 to present Pydantic Services Inc. and individual contributors",
+    "copyright_url": "https://github.com/pydantic/pydantic/blob/v2.11.10/LICENSE",
+    "author": "pydantic",
+    "license_url": "https://github.com/pydantic/pydantic/blob/v2.11.10/LICENSE",
+    "license_type": "MIT",
+    "license_txt": "pydantic_2.11.10.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Malick Konaté"
+  },
+  {
+    "name": "pydantic_core",
+    "version": "2.33.2",
+    "lic": null,
+    "printedName": "pydantic-core",
+    "homepage": "https://docs.pydantic.dev/latest/",
+    "repository": "https://github.com/pydantic/pydantic-core/tree/v2.33.2",
+    "copyright_line": "Copyright (c) 2022 Samuel Colvin",
+    "copyright_url": "https://github.com/pydantic/pydantic-core/blob/v2.33.2/LICENSE",
+    "author": "pydantic",
+    "license_url": "https://github.com/pydantic/pydantic-core/blob/v2.33.2/LICENSE",
+    "license_type": "MIT",
+    "license_txt": "pydantic_core_2.33.2.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Rémi Hernandez"
+  },
+  {
+    "name": "pyparsing",
+    "version": "3.2.5",
+    "lic": null,
+    "printedName": "pyparsing",
+    "homepage": "https://github.com/pyparsing/pyparsing",
+    "repository": "https://github.com/pyparsing/pyparsing/tree/3.2.5",
+    "copyright_line": null,
+    "copyright_url": null,
+    "author": "pyparsing",
+    "license_url": "https://github.com/pyparsing/pyparsing/blob/3.2.5/LICENSE",
+    "license_type": "MIT",
+    "license_txt": "pyparsing_3.2.5.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Li-Heng Fu"
+  },
+  {
+    "name": "python-dateutil",
+    "version": "2.9.0.post0",
+    "lic": "1",
+    "printedName": "dateutil - powerful extensions to datetime",
+    "homepage": "http://labix.org/python-dateutil",
+    "repository": "https://github.com/dateutil/dateutil/tree/2.9.0.post0",
+    "copyright_line": "Copyright 2017- Paul Ganssle <paul@ganssle.io>\nCopyright 2017- dateutil contributors (see AUTHORS file)",
+    "copyright_url": "https://github.com/dateutil/dateutil/blob/2.9.0.post0/LICENSE",
+    "author": null,
+    "license_url": "https://github.com/dateutil/dateutil/blob/2.9.0.post0/LICENSE",
+    "license_type": "Apache-2.0",
+    "license_txt": "python-dateutil_2.9.0.post0.txt",
+    "note": null,
+    "_source": [
+      {
+        "filename": "python_dateutil",
+        "path": "python310"
+      },
+      {
+        "filename": "python_dateutil",
+        "path": "python311"
+      },
+      {
+        "filename": "python_dateutil",
+        "path": "python39"
+      }
+    ],
+    "reviewer": "Quentin Groshens"
+  },
+  {
+    "name": "python-dateutil",
+    "version": "2.9.0.post0",
+    "lic": "2",
+    "printedName": "dateutil - powerful extensions to datetime",
+    "homepage": "http://labix.org/python-dateutil",
+    "repository": "https://github.com/dateutil/dateutil/tree/2.9.0.post0",
+    "copyright_line": "Copyright (c) 2003-2011 - Gustavo Niemeyer <gustavo@niemeyer.net>\nCopyright (c) 2012-2014 - Tomi Pieviläinen <tomi.pievilainen@iki.fi>\nCopyright (c) 2014-2016 - Yaron de Leeuw <me@jarondl.net>\nCopyright (c) 2015-                 - Paul Ganssle <paul@ganssle.io>\nCopyright (c) 2015-                 - dateutil contributors (see AUTHORS file)",
+    "copyright_url": "https://github.com/dateutil/dateutil/blob/2.9.0.post0/LICENSE",
+    "author": null,
+    "license_url": "https://github.com/dateutil/dateutil/blob/2.9.0.post0/LICENSE",
+    "license_type": "BSD-3-Clause",
+    "license_txt": "python-dateutil_2.9.0.post0.txt",
+    "note": null,
+    "_source": [
+      {
+        "filename": "python_dateutil",
+        "path": "python310"
+      },
+      {
+        "filename": "python_dateutil",
+        "path": "python311"
+      },
+      {
+        "filename": "python_dateutil",
+        "path": "python39"
+      }
+    ],
+    "reviewer": "Quentin Groshens"
+  },
+  {
+    "name": "pytz",
+    "version": "2025.2",
+    "lic": null,
+    "printedName": "pytz",
+    "homepage": "http://pythonhosted.org/pytz",
+    "repository": "https://github.com/stub42/pytz/blob/release_2025.2",
+    "copyright_line": "Copyright (c) 2003-2019 Stuart Bishop <stuart@stuartbishop.net>",
+    "copyright_url": "https://github.com/stub42/pytz/blob/release_2025.2/LICENSE.txt",
+    "author": "Stuart Bishop",
+    "license_url": "https://github.com/stub42/pytz/blob/release_2025.2/LICENSE.txt",
+    "license_type": "MIT",
+    "license_txt": "pytz_2025.2.txt",
+    "note": null,
+    "_source": [
+      {
+        "filename": "pytz",
+        "path": "python310"
+      },
+      {
+        "filename": "pytz",
+        "path": "python311"
+      },
+      {
+        "filename": "pytz",
+        "path": "python39"
+      }
+    ],
+    "reviewer": "Louis Dorard"
+  },
+  {
+    "name": "PyYAML",
+    "version": "6.0.3",
+    "lic": null,
+    "printedName": "PyYAML",
+    "homepage": "https://github.com/yaml/pyyaml",
+    "repository": "https://github.com/yaml/pyyaml/tree/6.0.3",
+    "copyright_line": "Copyright (c) 2017-2021 Ingy döt Net\nCopyright (c) 2006-2016 Kirill Simonov",
+    "copyright_url": "https://github.com/yaml/pyyaml/blob/6.0.3/LICENSE",
+    "author": "yaml",
+    "license_url": "https://github.com/yaml/pyyaml/blob/6.0.3/LICENSE",
+    "license_type": "MIT",
+    "license_txt": "PyYAML_6.0.3.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Fabien Daoulas"
+  },
+  {
+    "name": "requests",
+    "version": "2.32.5",
+    "lic": null,
+    "printedName": "requests",
+    "homepage": "https://requests.readthedocs.io/en/latest/",
+    "repository": "https://github.com/psf/requests/tree/v2.32.5",
+    "copyright_line": "Copyright 2019 Kenneth Reitz",
+    "copyright_url": "https://github.com/psf/requests/blob/v2.32.5/NOTICE",
+    "author": "psf",
+    "license_url": "https://github.com/psf/requests/blob/v2.32.5/LICENSE",
+    "license_type": "Apache-2.0",
+    "license_txt": "requests_2.32.5.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Guillaume Cassand"
+  },
+  {
+    "name": "scikit-learn",
+    "version": "1.5.2",
+    "lic": null,
+    "printedName": "scikit-learn",
+    "homepage": "https://scikit-learn.org",
+    "repository": "https://github.com/scikit-learn/scikit-learn/tree/1.5.2",
+    "copyright_line": "Copyright (c) 2007-2023 The scikit-learn developers.All rights reserved.",
+    "copyright_url": "https://github.com/scikit-learn/scikit-learn/blob/1.5.2/COPYING",
+    "author": null,
+    "license_url": "https://github.com/scikit-learn/scikit-learn/blob/1.5.2/COPYING",
+    "license_type": "BSD-3-Clause",
+    "license_txt": "scikit-learn_1.5.2.txt",
+    "note": null,
+    "_source": [
+      {
+        "filename": "scikit_learn",
+        "path": "python310"
+      },
+      {
+        "filename": "scikit_learn",
+        "path": "python311"
+      },
+      {
+        "filename": "scikit_learn",
+        "path": "python39"
+      }
+    ],
+    "reviewer": "Yves Darmaillac"
+  },
+  {
+    "name": "scikit-optimize",
+    "version": "0.10.2",
+    "lic": null,
+    "printedName": "Scikit-Optimize",
+    "homepage": "http://scikit-optimize.readthedocs.io/",
+    "repository": "https://github.com/holgern/scikit-optimize/tree/v0.10.2",
+    "copyright_line": "Copyright (c) 2016-2024 The scikit-optimize developers.",
+    "copyright_url": "https://github.com/holgern/scikit-optimize/blob/v0.10.2/LICENSE",
+    "author": "holgern",
+    "license_url": "https://github.com/holgern/scikit-optimize/blob/v0.10.2/LICENSE",
+    "license_type": "BSD-3-Clause",
+    "license_txt": "scikit-optimize_0.10.2.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Guillaume Cassand"
+  },
+  {
+    "name": "scipy",
+    "version": "1.13.1",
+    "lic": null,
+    "printedName": "scipy",
+    "homepage": "https://scipy.org",
+    "repository": "https://github.com/scipy/scipy/tree/v1.13.1",
+    "copyright_line": "Copyright (c) 2001-2002 Enthought, Inc. 2003-2024, SciPy Developers.All rights reserved.",
+    "copyright_url": "https://github.com/scipy/scipy/blob/v1.13.1/LICENSE.txt",
+    "author": "scipy",
+    "license_url": "https://github.com/scipy/scipy/blob/v1.13.1/LICENSE.txt",
+    "license_type": "BSD-3-Clause",
+    "license_txt": "scipy_1.13.1.txt",
+    "note": null,
+    "_source": [
+      {
+        "filename": "scipy",
+        "path": "python310"
+      },
+      {
+        "filename": "scipy",
+        "path": "python311"
+      },
+      {
+        "filename": "scipy",
+        "path": "python39"
+      }
+    ],
+    "reviewer": "Nicolas Mauhé"
+  },
+  {
+    "name": "setuptools",
+    "version": "80.9.0",
+    "lic": null,
+    "printedName": "setuptools",
+    "homepage": "https://pypi.org/project/setuptools/",
+    "repository": "https://github.com/pypa/setuptools/tree/v80.9.0",
+    "copyright_line": null,
+    "copyright_url": null,
+    "author": "Python Packaging Authority",
+    "license_url": "https://github.com/pypa/setuptools/blob/v80.9.0/LICENSE",
+    "license_type": "MIT",
+    "license_txt": "setuptools_80.9.0.txt",
+    "note": "no copyright info found",
+    "_source": null,
+    "reviewer": "Guillaume Cassand"
+  },
+  {
+    "name": "six",
+    "version": "1.17.0",
+    "lic": null,
+    "printedName": "six",
+    "homepage": "https://six.readthedocs.io/",
+    "repository": "https://github.com/benjaminp/six/tree/1.17.0",
+    "copyright_line": "Copyright (c) 2010-2020 Benjamin Peterson",
+    "copyright_url": "https://github.com/benjaminp/six/blob/1.17.0/LICENSE",
+    "author": null,
+    "license_url": "https://github.com/benjaminp/six/blob/1.17.0/LICENSE",
+    "license_type": "MIT",
+    "license_txt": "six_1.17.0.txt",
+    "note": null,
+    "_source": [
+      {
+        "filename": "six",
+        "path": "python310"
+      },
+      {
+        "filename": "six",
+        "path": "python311"
+      },
+      {
+        "filename": "six",
+        "path": "python39"
+      }
+    ],
+    "reviewer": "Guillaume Cassand"
+  },
+  {
+    "name": "stanio",
+    "version": "0.5.1",
+    "lic": null,
+    "printedName": "StanIO",
+    "homepage": "https://github.com/stan-dev/stanio",
+    "repository": "https://github.com/stan-dev/stanio/tree/v0.5.1",
+    "copyright_line": "Copyright 2023 Simons Foundation",
+    "copyright_url": "https://github.com/stan-dev/stanio/blob/v0.5.1/LICENSE",
+    "author": "stan-dev",
+    "license_url": "https://github.com/stan-dev/stanio/blob/v0.5.1/LICENSE",
+    "license_type": "BSD-3-Clause",
+    "license_txt": "stanio_0.5.1.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Guillaume Cassand"
+  },
+  {
+    "name": "statsmodels",
+    "version": "0.14.5",
+    "lic": null,
+    "printedName": "statsmodels",
+    "homepage": "http://www.statsmodels.org/devel/",
+    "repository": "https://github.com/statsmodels/statsmodels/tree/v0.14.5",
+    "copyright_line": "Copyright (C) 2006, Jonathan E. Taylor\nCopyright (c) 2006-2008 Scipy Developers.\nCopyright (c) 2009-2018 statsmodels Developers.",
+    "copyright_url": "https://github.com/statsmodels/statsmodels/blob/v0.14.5/LICENSE.txt",
+    "author": null,
+    "license_url": "https://github.com/statsmodels/statsmodels/blob/v0.14.5/LICENSE.txt",
+    "license_type": "BSD",
+    "license_txt": "statsmodels_0.14.5.txt",
+    "note": null,
+    "_source": [
+      {
+        "filename": "statsmodels",
+        "path": "python310"
+      },
+      {
+        "filename": "statsmodels",
+        "path": "python311"
+      },
+      {
+        "filename": "statsmodels",
+        "path": "python39"
+      }
+    ],
+    "reviewer": "Abderrahmane Amine"
+  },
+  {
+    "name": "threadpoolctl",
+    "version": "3.6.0",
+    "lic": null,
+    "printedName": "Thread-pool Controls",
+    "homepage": "https://github.com/joblib/threadpoolctl/",
+    "repository": "https://github.com/joblib/threadpoolctl/tree/3.6.0",
+    "copyright_line": "Copyright (c) 2019, threadpoolctl contributors",
+    "copyright_url": "https://github.com/joblib/threadpoolctl/blob/3.6.0/LICENSE",
+    "author": "Thomas Moreau",
+    "license_url": "https://github.com/joblib/threadpoolctl/blob/3.6.0/LICENSE",
+    "license_type": "BSD-3-Clause",
+    "license_txt": "threadpoolctl_3.6.0.txt",
+    "note": null,
+    "_source": [
+      {
+        "filename": "threadpoolctl",
+        "path": "python310"
+      },
+      {
+        "filename": "threadpoolctl",
+        "path": "python311"
+      },
+      {
+        "filename": "threadpoolctl",
+        "path": "python39"
+      }
+    ],
+    "reviewer": "Rustin Crandall"
+  },
+  {
+    "name": "toolz",
+    "version": "0.12.1",
+    "lic": null,
+    "printedName": "toolz",
+    "homepage": "http://toolz.readthedocs.org/",
+    "repository": "https://github.com/pytoolz/toolz/tree/0.12.1",
+    "copyright_line": "Copyright (c) 2013 Matthew Rocklin",
+    "copyright_url": "https://github.com/pytoolz/toolz/blob/0.12.1/LICENSE.txt",
+    "author": "pytoolz",
+    "license_url": "https://github.com/pytoolz/toolz/blob/0.12.1/LICENSE.txt",
+    "license_type": "BSD-3-Clause",
+    "license_txt": "toolz_0.12.1.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Mohamed Dadoune"
+  },
+  {
+    "name": "tqdm",
+    "version": "4.67.1",
+    "lic": null,
+    "printedName": "tqdm",
+    "homepage": "https://tqdm.github.io/",
+    "repository": "https://github.com/tqdm/tqdm/blob/v4.67.1",
+    "copyright_line": " MPL-2.0 2015-2024 (c) Casper da Costa-Luis   [casperdcl](https://github.com/casperdcl)",
+    "copyright_url": "https://github.com/tqdm/tqdm/blob/v4.67.1/LICENCE",
+    "author": null,
+    "license_url": "https://github.com/tqdm/tqdm/blob/v4.67.1/LICENCE",
+    "license_type": "MPL-2.0",
+    "license_txt": null,
+    "note": null,
+    "_source": null,
+    "reviewer": "Guillaume Cassand"
+  },
+  {
+    "name": "typing-inspection",
+    "version": "0.4.2",
+    "lic": null,
+    "printedName": "typing-inspection",
+    "homepage": "https://typing-inspection.pydantic.dev",
+    "repository": "https://github.com/pydantic/typing-inspection/tree/v0.4.2",
+    "copyright_line": "Copyright (c) Pydantic Services Inc. 2025 to present",
+    "copyright_url": "https://github.com/pydantic/typing-inspection/blob/v0.4.2/LICENSE",
+    "author": "pydantic",
+    "license_url": "https://github.com/pydantic/typing-inspection/blob/v0.4.2/LICENSE",
+    "license_type": "MIT",
+    "license_txt": "typing-inspection_0.4.2.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Guillaume Cassand"
+  },
+  {
+    "name": "typing_extensions",
+    "version": "4.15.0",
+    "lic": null,
+    "printedName": "Typing Extensions",
+    "homepage": "https://typing-extensions.readthedocs.io/en/latest/#",
+    "repository": "https://github.com/python/typing_extensions/tree/4.15.0",
+    "copyright_line": "Copyright (c) 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023 Python Software Foundation; All Rights Reserved",
+    "copyright_url": "https://github.com/python/typing_extensions/blob/4.15.0/LICENSE",
+    "author": "python",
+    "license_url": "https://github.com/python/typing_extensions/blob/4.15.0/LICENSE",
+    "license_type": "PSF-2.0",
+    "license_txt": "typing_extensions_4.15.0.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Rémi Hernandez"
+  },
+  {
+    "name": "tzdata",
+    "version": "2025.2",
+    "lic": null,
+    "printedName": "tzdata",
+    "homepage": "https://tzdata.readthedocs.io",
+    "repository": "https://github.com/python/tzdata/tree/2025.2",
+    "copyright_line": "Copyright (c) 2020, Paul Ganssle (Google)",
+    "copyright_url": "https://github.com/python/tzdata/blob/2025.2/LICENSE",
+    "author": "Paul Ganssle",
+    "license_url": "https://github.com/python/tzdata/blob/2025.2/LICENSE",
+    "license_type": "Apache-2.0",
+    "license_txt": "tzdata_2025.2.txt",
+    "note": null,
+    "_source": [
+      {
+        "filename": "tzdata",
+        "path": "python310"
+      },
+      {
+        "filename": "tzdata",
+        "path": "python311"
+      },
+      {
+        "filename": "tzdata",
+        "path": "python39"
+      }
+    ],
+    "reviewer": "Romain Menini"
+  },
+  {
+    "name": "urllib3",
+    "version": "2.5.0",
+    "lic": null,
+    "printedName": "urllib3",
+    "homepage": "https://urllib3.readthedocs.io/",
+    "repository": "https://github.com/urllib3/urllib3/tree/2.5.0",
+    "copyright_line": "Copyright (c) 2008-2020 Andrey Petrov and contributors (see CONTRIBUTORS.txt)",
+    "copyright_url": "https://github.com/urllib3/urllib3/blob/2.5.0/LICENSE.txt",
+    "author": "Andrey Petrov",
+    "license_url": "https://github.com/urllib3/urllib3/blob/2.5.0/LICENSE.txt",
+    "license_type": "MIT",
+    "license_txt": "urllib3_2.5.0.txt",
+    "note": null,
+    "_source": [
+      {
+        "filename": "urllib3",
+        "path": "python310"
+      },
+      {
+        "filename": "urllib3",
+        "path": "python311"
+      },
+      {
+        "filename": "urllib3",
+        "path": "python39"
+      }
+    ],
+    "reviewer": "Nicolas Vallée"
+  },
+  {
+    "name": "Werkzeug",
+    "version": "3.0.6",
+    "lic": null,
+    "printedName": "Werkzeug",
+    "homepage": "https://werkzeug.palletsprojects.com",
+    "repository": "https://github.com/pallets/werkzeug/tree/3.0.6",
+    "copyright_line": "Copyright 2007 Pallets",
+    "copyright_url": "https://github.com/pallets/werkzeug/blob/3.0.6/LICENSE.txt",
+    "author": "pallets",
+    "license_url": "https://github.com/pallets/werkzeug/blob/3.0.6/LICENSE.txt",
+    "license_type": "BSD-3-Clause",
+    "license_txt": "Werkzeug_3.0.6.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Guillaume Cassand"
+  },
+  {
+    "name": "wheel",
+    "version": "0.45.1",
+    "lic": null,
+    "printedName": "wheel",
+    "homepage": "https://github.com/pypa/wheel",
+    "repository": "https://github.com/pypa/wheel/tree/0.45.1",
+    "copyright_line": "Copyright (c) 2012 Daniel Holth <dholth@fastmail.fm> and contributors",
+    "copyright_url": "https://github.com/pypa/wheel/blob/0.45.1/LICENSE.txt",
+    "author": null,
+    "license_url": "https://github.com/pypa/wheel/blob/0.45.1/LICENSE.txt",
+    "license_type": "MIT",
+    "license_txt": "wheel_0.45.1.txt",
+    "note": null,
+    "_source": [
+      {
+        "filename": "wheel-0.45.1",
+        "path": "__virtualenv__"
+      }
+    ],
+    "reviewer": "Li-Heng Fu"
+  },
+  {
+    "name": "xgboost",
+    "version": "2.1.4",
+    "lic": null,
+    "printedName": "XGBoost",
+    "homepage": "https://github.com/dmlc/xgboost",
+    "repository": "https://github.com/dmlc/xgboost/tree/v2.1.4",
+    "copyright_line": "© Contributors, 2021. Licensed under an Apache-2 license.",
+    "copyright_url": "https://github.com/dmlc/xgboost/blob/v2.1.4/README.md",
+    "author": null,
+    "license_url": "https://github.com/dmlc/xgboost/tree/v2.1.4/LICENSE",
+    "license_type": "Apache-2.0",
+    "license_txt": null,
+    "note": null,
+    "_source": null,
+    "reviewer": "Guillaume Cassand"
+  }
+]

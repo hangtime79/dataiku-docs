@@ -1,0 +1,28 @@
+:orphan:
+
+Host blacklist bypass
+######################
+
+Information
+=============
+
+* Advisory ID: DSA-2022-019
+* CVSS Base Score: 8.1
+* CVSS String: CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:N
+* Severity: High
+* CWE classification: CWE-284
+
+Summary
+========
+
+In Dataiku DSS before 11.1.0, insufficient acces control could allow attackers to bypass the HTTP host blacklist
+
+Affected Products
+==================
+
+* Dataiku DSS before 11.1.0
+
+Fix
+===
+
+Dataiku DSS 11.1.0 has been made available to customers to remediate this issue

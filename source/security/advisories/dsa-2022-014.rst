@@ -1,0 +1,30 @@
+:orphan:
+
+Insufficient access control to projects list and information
+##############################################################
+
+Information
+=============
+
+* Advisory ID: DSA-2022-014
+* CVSS String: CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N
+* CVSS Base Score: 4.3 (Medium)
+* CWE classification: CWE-200
+
+Summary
+========
+
+It was discovered that some DSS endpoints that could disclose the list of projects and some basic information about projects (such as number of datasets, recipes, ...) did not perform sufficient access control. This could lead to disclosing the projects list to authenticated users.
+
+
+Affected Products
+==================
+
+* Dataiku DSS 9 and older versions
+* Dataiku DSS 10 before 10.0.9
+* Dataiku DSS 11 before 11.0.3
+
+Fix
+===
+
+Dataiku DSS 10.0.9 and Dataiku DSS 11.0.3 have been made available to customers to remediate this issue

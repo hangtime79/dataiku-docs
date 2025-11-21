@@ -1,0 +1,149 @@
+DSS 1.1 Release notes
+#######################
+
+Version 1.1.5 - July 14th, 2014
+====================================
+
+Please see the 1.1.0 release notes for information about Migrations from 1.0.X
+
+Bug fixes
+-------------
+
+* Fixed issue in timestamps system (introduced in 1.1.3) that caused flow to mistakenly consider datasets as out-of-date and needing rebuild.
+* Improve the way timestamps are computed for managed SQL datasets. This avoids possible OutOfMemory errors with complex SQL-based flows, especially with N->1 partition dependencies (like sliding days)
+
+Version 1.1.4 - July 9th, 2014
+=================================
+
+Please see the 1.1.0 release notes for information about Migrations from 1.0.X
+
+New features
+--------------
+
+* Support for Apache Cassandra
+* Enhancements
+* Each MapReduce job started from a Pig recipe will now have a proper name (recipe name + output partition)
+
+Bug fixes
+------------
+
+* Fix various issues with pinlets layout on pinboard
+* Fix encoding issue with Python recipe in "write_tuples" mode
+* Don't fail ElasticSearch synchronization if a column of type "map" contains bad data (invalid JSON / duplicate keys)
+* Fix custom Unicode characters in CSV separators
+
+Version 1.1.3 - July 1st, 2014
+=================================
+
+Please see the 1.1.0 release notes for information about Migrations from 1.0.X
+
+Enhancements
+-------------
+
+* New storage system for Flow states. Recomputation of Flow dependencies is now much faster in presence of a large number of partitions
+
+Bug fixes
+--------------
+
+* Fix publication to pinboard of "web app" insights
+* Excel extractor: Fix formatting of dates in formula-computed cells
+* Fix scroll in various list screens
+* Improve data preparation behaviour on Firefox
+* Fix various interface bugs
+
+Version 1.1.2 - June 17th, 2014
+=================================
+
+Please see the 1.1.0 release notes for information about Migrations from 1.0.X
+
+Bug fixes
+-----------
+
+* Python processes for models now automatically select their ports to avoid possible port conflicts
+* Scrollbar in SQL notebook history has been fixed
+* SQL script recipes that contain multi-lines PL/PGSQL stored procedures have been fixed
+* The Redetect button of models now always properly works
+* The Hive recipe validator now properly handles numerical ${hiveconf:} expansions
+* The "Create insight" button in dataset menu has been fixed
+
+Version 1.1.1 - June 6th, 2014
+================================
+
+Please see the 1.1.0 release notes for information about Migrations from 1.0.X
+
+Bug fixes
+-----------
+
+* Fix an issue with the same recipe name in different projects
+* Fix Hive schema detection in SELECT DISTINCT queries
+* Fixes around edition of preparation script titles
+* Fix custom JDBC properties
+
+Version 1.1.0 - May 23rd, 2014
+=================================
+
+Important notes about migration
+-----------------------------------
+
+Automatic migration of data from Data Science Studio 1.0.X is supported, with the exception of the "Models" parts. Models created with Data Science Studio 1.0.X cannot be used with DSS 1.1
+
+The automatic data migration procedure is documented in :doc:`/installation/custom/upgrade`
+
+After upgrading, the modification dates of datasets and recipes will not be correct until you edit them.
+
+After upgrading, your datasets will be considered as out of date and rebuilds will be required
+
+The "dku build" command now requires a "fully qualified" dataset name, ie PROJECTKEY.datasetName
+
+The following deprecated features have been removed : "simple partition deps" in recipes JSON and "schemaInherits" in datasets JSON
+
+As usual, we strongly recommend that you perform a full backup of your Data Science Studio data directory prior to starting the upgrade procedure.
+
+New features
+--------------
+
+General
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+* A new projects system was introduced to ease working and collaborating on multiple projects within Data Science Studio
+* New collaboration features (tags, descriptions, timelines &  activity feeds, notifications and comments) lets you easily collaborate with your team
+* A brand new navigation system provides a smoother user experience and better productivity
+
+Insights
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+* You can now create "insights" from visual charts, datasets, IPython notebooks and custom HTML visualizations
+* Insights can be published on the "Pinboard", where collaborators can view them and interact with the data analysts
+
+Data preparation
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+* A new rendering system makes it much faster to work with datasets with hundreds of columns.
+* Custom formula editor is much simpler to use
+* New UX, documentation for all processors
+
+Machine Learning
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Our guided machine learning has been completely overhauled. It supports a vast choice of algorithms and parameters. You now have the ability to perform many runs and easily compare them. When you are satisfied with a model that you created, you are just one click away from using it in your Data Flow for semi-automatic prediction or even re-training.
+
+Notebooks
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+SQL notebooks can now use Impala. Impala databases are automatically detected without any configuration. Furthermore, Impala databases are automatically refreshed when a HDFS dataset is built by Data Science Studio
+
+Flow and recipes
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+* New rebuild modes have been introduced : force-rebuild of all datasets recursively, and "lenient rebuild" : out-of-dates datasets are not recomputed, only non-existing datasets are
+* Much faster Hive metastore synchronization with many partitions: metastore synchronization is now incremental. The synchronization process also detects schema changes and performs a full resync in that case
+
+Visual analytics
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+* When performing Visualization on a SQL dataset (provided that you don't use sampling but the whole dataset), visualization will natively use the SQL database for optimized computations.
+
+Major bugs fixed
+------------------
+
+* Several SQL type mapping issues were fixed

@@ -1,0 +1,10 @@
+sequenceDiagram
+    participant D as Dataiku DSS
+    participant R as Remote Docker
+
+    D->>R: Build image
+
+    D->>R: Run container
+    activate R
+    Note left of R: Job runs
+    deactivate R

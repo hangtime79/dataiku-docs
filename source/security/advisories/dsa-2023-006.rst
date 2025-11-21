@@ -1,0 +1,28 @@
+:orphan:
+
+Insufficient access control on active web content via static insights
+#######################################################################
+
+Information
+=============
+
+* Advisory ID: DSA-2023-006
+* CVSS Base Score: 7.3
+* CVSS String: CVSS:3.0/AV:N/AC:L/PR:L/UI:R/S:U/C:H/I:H/A:N
+* Severity: High
+* CWE classification: CWE-269
+
+Summary
+========
+
+It was discovered that a user who has privilege to write code but not privilege to write active web content could still cause active web content to be displayed to other users through the usage of static insights.
+
+Affected Products
+==================
+
+* Dataiku DSS before 12.1.1
+
+Fix
+===
+
+Dataiku DSS 12.1.1 has been made available to customers to remediate this issue

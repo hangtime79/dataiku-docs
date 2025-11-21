@@ -1,0 +1,28 @@
+:orphan:
+
+Missing authentication on internal API call
+###########################################
+
+Information
+=============
+
+* Advisory ID: DSA-2022-022
+* CVSS Base Score: 5.3
+* CVSS String: CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N
+* Severity: Medium
+* CWE classification: CWE-284
+
+Summary
+========
+
+In Dataiku DSS before 11.1.2, an API call listing meanings was not authenticated
+
+Affected Products
+==================
+
+* Dataiku DSS before 11.1.2
+
+Fix
+===
+
+Dataiku DSS 11.1.2 has been made available to customers to remediate this issue

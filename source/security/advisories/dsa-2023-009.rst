@@ -1,0 +1,28 @@
+:orphan:
+
+Directory Traversal in cluster logs retrieval endpoint
+###########################################################
+
+Information
+=============
+
+* Advisory ID: DSA-2023-009
+* CVSS Base Score: 4.9
+* CVSS String: CVSS:3.0/AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:N/A:N
+* Severity: Medium
+* CWE classification: CWE-27
+
+Summary
+========
+
+Before DSS 12.3.2, a directory traversal via the cluster management interface could lead to arbitrary file access
+
+Affected Products
+==================
+
+* Dataiku DSS before 12.3.2
+
+Fix
+===
+
+Dataiku DSS 12.3.2 has been made available to customers to remediate this issue

@@ -1,0 +1,31 @@
+:orphan:
+
+Remote code execution in API designer
+######################################
+
+Information
+=============
+
+* Advisory ID: DSA-2022-011
+* CVSS String: CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H or CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H (context-dependent)
+* CVSS Base Score: 9.8 (Critical) or 8.8 (High) (context-dependent)
+* CWE classification: CWE-284
+
+Summary
+========
+
+It was discovered that a non-random internal credential could allow an attacker to execute code on the DSS API Designer component, if they are able to access its internal port.
+
+In the vast majority of setups, this internal port can only be accessed by authenticated users of DSS. In some rare setups where this port is open, this would be accessible by non-authenticated users.
+
+Affected Products
+==================
+
+* Dataiku DSS 9 and older versions
+* Dataiku DSS 10 before 10.0.9
+* Dataiku DSS 11 before 11.0.3
+
+Fix
+===
+
+Dataiku DSS 10.0.9 and Dataiku DSS 11.0.3 have been made available to customers to remediate this issue

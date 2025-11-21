@@ -1,0 +1,9 @@
+{
+    "id": "internet-search",
+    "meta": {
+        "label": "Internet search",
+        "description": "Provide general information about a company, given the company's name."
+    },
+    "params" : [
+    ]
+}

@@ -1,0 +1,37 @@
+{
+    "meta" : {
+        // label: name of the parameter set as displayed, should be short
+        "label": "Parameter set devadv-parameter-custom-llm",
+        // description: longer string to help end users understand what these parameter correspond to
+        "description": "Long text to see where it is used",
+        // icon: must be one of the FontAwesome 5.15.4 icons, complete list here at https://fontawesome.com/v5/docs/
+        "icon": "fas fa-puzzle-piece"
+    },
+
+    /* if users are allowed to fill the values for an instance of this parameter
+       set directly in the plugin component using it, as opposed to only be allowed
+       to select already defined presets (default value, can be changed in plugin
+       settings)
+    */
+    "defaultDefinableInline": true,
+    /* if users are allowed to define presets at the project level in addition
+       to the instance level (default value, can be changed in plugin settings) */
+    "defaultDefinableAtProjectLevel": true,
+
+    "pluginParams": [
+    ],
+
+    "params": [
+        {
+            "name": "param_set_api_key",
+            "label": "OpenAI API Key",
+            "type": "CREDENTIAL_REQUEST",
+            "credentialRequestSettings": {
+                "type": "SINGLE_FIELD"
+            },
+            "description": "The OpenAI api key",
+            "mandatory": true
+
+        }
+    ]
+}

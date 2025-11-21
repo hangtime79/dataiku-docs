@@ -1,0 +1,149 @@
+To set up OIDC integration, you need:
+
+* to register a new OIDC Client (sometimes called an 'application') for |DKU_APP| in your identity provider,
+* to configure |DKU_APP| with the parameters of the identity provider as well as the parameters corresponding to the OIDC client created earlier,
+* to configure which of the user attributes returned by the IDP is to be used as the |DKU_APP| username, and optionally configure rewrite rules to extract the |DKU_APP| username from the chosen user attribute.
+
+These steps are individually detailed below.
+
+
+Registering a service provider entry for |DKU_APP| on the identity provider.
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The exact steps for this depend on the identity provider platform which you plan to connect to, and should be performed
+by your IDP administrator. This entry may also be called an "OIDC application". You will sometimes be asked to select the type of application,
+which would be in our case a `web application`.
+
+You will typically need:
+
+* to setup the OIDC client to use the `authorization code` grant flow,
+* a client ID,
+* a client secret,
+
+.. note::
+	The OIDC client needed by |DKU_APP| is a confidential client (opposite of public client). Meaning |DKU_APP| is able to protect the client secret, by exchanging the authorization code (and using the secret in the request) from the backend.
+
+* setup the redirect URI `BASE_URL/login/openid-redirect-uri/`,
+
+.. note::
+	This URL must be configured as `BASE_URL/login/openid-redirect-uri/`, where BASE_URL is the URL through which |DKU_APP| users access this |DKU_APP| instance.
+
+	For example, if |DKU_APP| is accessed at `https://dataiku.mycompany.corp/`, the OIDC redirect uri must be defined as `https://dataiku.mycompany.corp/login/openid-redirect-uri/`.
+
+	Note that some identity providers require the redirect URI to use the HTTPS scheme.
+
+* associate some OIDC scopes to the OIDC client. Some IDPs refer to these as permissions, like `user.read`. You will need to setup the scope `openid` as well as some identity claims. 
+  You must ensure that |DKU_APP| is able to access and retrieve all the user attributes needed to identify the corresponding user in |DKU_APP|.
+
+.. note::
+	|DKU_APP| will need to map to an existing user from one of the user claims. It's important that you allow |DKU_APP| to retrieve a claim that is easily mappable to the username.
+	A good candidate is `email`, of which you can strip the part after '@' to compose a unique identifier for usernames.
+
+Configuring |DKU_APP| for OIDC authentication.
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+OIDC configuration is in the "Settings / Security & Audit / User login & provisioning / SSO" screen.
+
+Select "Enable", choose protocol "OIDC".
+
+IDP configuration
+"""""""""""""""""""
+
+Contact your IDP administrator to retrieve this information or check your IDP documentation.
+
+The easiest way to setup the IDP configuration is using the well-known endpoint: The OIDC standard defines an endpoint, called well-known, to discover the IDP configuration.
+|DKU_APP| lets you enter the well-known endpoint of your IDP and fetch the rest of the configuration for you.
+If you don't know the well-known endpoint, you can still enter the other configurations manually, the well-known input being optional. 
+
+* **Well-known URL**: Optional, defines the well-known endpoint, which is a URI ending with `/.well-known/openid-configuration`. Click `Fetch IDP configuration` to auto-complete the rest of the IDP configuration.
+* **Issuer**: The issuer is a URI to identify the IDP. It is used in particular to verify that the ID token was signed by the right IDP. Per specification, the issuer is a URI, for which you can append the path `/.well-known/openid-configuration` to get the IDP well-known endpoint.
+
+.. note::
+	Tips: If you have an example of a valid ID token, you can read its content with `jwt.io <https://jwt.io>`_ and find the issuer value behind the `iss` claim. You can then build up the well-known URI by appending `/.well-known/openid-configuration` to it.
+
+* **Authorization endpoint**: The authorization endpoint is used to redirect the user to the IDP for the authentication.
+* **Token endpoint**: The token endpoint is used by |DKU_APP| to exchange the authorization code with an ID token. This endpoint will be called from the backend of |DKU_APP|. If |DKU_APP| is behind a proxy, please make sure |DKU_APP| is able to call this endpoint.
+* **JWKs URI**: The JWKs URI is a way for the IDP to specify all its public keys. This is used by |DKU_APP| to verify the signature of the ID token.
+
+Examples of well-known endpoints:
+
+* **Google**: https://accounts.google.com/.well-known/openid-configuration
+* **Azure**: https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration
+* **Okta**: https://common.okta.com/.well-known/openid-configuration
+* **Keycloak**: https://your-keycloak-instance/auth/realms/your-realm/.well-known/openid-configuration
+
+.. note::
+	In some case, the well-known can be the same for everyone, like for google. In other scenario, the IDP will generate a dedicated one for your application, like Okta or Azure for which it is configured by tenant.
+
+
+OIDC Client configuration
+""""""""""""""""""""""""""""""""""""""
+
+In the previous section, you created an OIDC client. Use this client to complete the following section:
+
+* **Token endpoint auth method**: This is the authentication method that |DKU_APP| will use to specify the credentials during the token exchange. Most of the time, when supporting client secret, the IDP will allow either of the two methods. Leave this field by default if you are unsure, as it will most likely work.
+* **Client ID**: the client ID generated by the IDP. In the IDP portal, it could be named `application id`. Refer to your IDP documentation for more details on how to retrieve your client ID.
+* **Client secret**: The client secret your IDP generated for this client. Sometimes, it is not generated by default by your IDP (like Azure). In this case, look for a section 'secrets' in your IDP setup for the OIDC client.
+* **Scope**: Specify the scope that |DKU_APP| needs to use during the login flow. As a minima, it should contain `openid`. The scope contains a list of scopes separated by spaces.
+
+.. note::
+	The scope is essential for doing the mapping with the username, as it defines the user claims the IDP needs to send back to |DKU_APP|. We recommend to add either `email` or/and `profile`, two common scopes supported by most IDPs. Most IDPs will mandate that you add some dedicated permissions before associating those scopes to your OIDC client. See your IDP documentation for more details.
+
+.. note::
+	The list of scopes supported by your IDP is listed in the well-known, under the attribute `claims_supported`. Even if they are supported, you will still need to authorise the OIDC client to use those scopes, via your IDP portal.
+
+Examples of scopes by IDPs
+""""""""""""""""""""""""""""
+
+For Google, Azure, Okta and Keycloak, the simplest scope is `email`, which will return two claims - `email` and `email_verified`. Set in `Identifier claim key` the claim `email`.
+
+Azure, Okta and Keycloak also support another claim called `preferred_username`, which is returned as part of the `profile` scope.
+
+Resources:
+
+* `Google documentation <https://developers.google.com/identity/protocols/oauth2/openid-connect#an-id-tokens-payload>`_
+* `Azure documentation <https://docs.microsoft.com/en-us/azure/active-directory/develop/id-tokens>`_
+* `Okta documentation <https://developer.okta.com/docs/reference/api/oidc/#scope-values>`_
+* `Keycloak documentation <https://www.keycloak.org/docs/latest/securing_apps/>`_ (search for `principal-attribute` in the page)
+
+
+Mapping to the |DKU_APP| user
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+When |DKU_APP| successfully retrieves the ID token from the IDP, it needs to map it to a user in |DKU_APP|. The ID token will contain user claims that depend on the scope you defined earlier. The following two fields will help |DKU_APP| map the ID token to a |DKU_APP| user:
+
+* **Identifier claim key**: Depending on the scope you configured, the IDP will return different user claims. Define here the one you want to use to map to the corresponding username in |DKU_APP|. One easy way that works for most IDP, is to use the `email` and then strip the part after the '@'.
+* **Login remapping rules**: Map a claim received from the IDP to your username format. Example: stripping the part after '@' in an email. You may not need this field if your IDP is returning a user claim that matches exactly the username (it's the case of keycloak if you use the `preferred_username` claim for example). 
+
+.. warning::
+	The Login remapping rules are evaluated in order. If you have multiple rules and their regexes overlap (ie `^(.*)@mycompany.corp$` and `^(.*)$`), make sure the most specific one is defined first.
+
+.. note::
+	Example of mapping if you choose the `email` as identifier claim: `^(.*)@mycompany.corp$` -> `$1`
+
+.. note::
+	|DKU_APP| logs all the claims received from the IDP in the backend log file, which may help configuring the `Identifier claim key` and the mapping for it.
+
+User Supplier
+^^^^^^^^^^^^^
+
+DSS SSO implementation is able to supply users from an SSO context. Meaning you can configure DSS to auto-provision or synchronize users when a user authenticates via SSO.
+
+Once you have enabled the `Login-time provisioning` and/or `Login-time resync` options, you must configure the mapping between
+the ID token (the identity provider's response to DSS) and the representation of an identity in DSS. See your OpenID identity provider's documentation or contact your identity provider's administrator for the required information.
+
+Testing OIDC SSO
+^^^^^^^^^^^^^^^^
+
+* Configure OIDC integration as described above
+* Access the |DKU_APP| URL from another browser or an anonymous window
+* You should be redirected to the IDP for authentication, then back to the |DKU_APP| redirect URL, then to the |DKU_APP| homepage
+* If login fails, check the logs for more information
+
+.. important::
+
+	Once SSO has been enabled, if you access the root |DKU_APP| URL, SSO login will be attempted. If SSO login fails, you will only 
+	see an error.
+
+	You can still use the regular login/password login by going to the ``/login/`` URL on |DKU_APP|. This allows you to still log in 
+	using a local account if SSO login is dysfunctional.

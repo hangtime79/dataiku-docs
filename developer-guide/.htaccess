@@ -1,0 +1,5 @@
+RewriteEngine on
+
+Redirect permanent /getting-started/outside-usage.html /tutorials/devtools/python-client/index.html
+Redirect permanent /getting-started/inside-usage.html /tutorials/devtools/python-client/index.html
+Redirect permanent /getting-started/introduction-python-apis.html /getting-started/dataiku-python-apis/index.html

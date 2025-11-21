@@ -1,0 +1,194 @@
+def DIP_REPO_FOLDER = "dip"
+def DSS_LAUNCHER_REPO_FOLDER = "dss-launcher"
+def DSS_STORIES_REPO_FOLDER = "dku-story"
+def DKU_GIS_REPO_FOLDER = "dataiku-getitstarted" // cloud
+def DIP_PYTHON_API_FOLDER = "src/main/python"
+def DIP_LAMBDA_FOLDER = "lambda/src/main/python/dataiku/apinode"
+def DIP_SPEC_FOLDER = "spec"
+def DIP_R_API_FOLDER = "src/main/R"
+def PYSPARK_2_FOLDER_FROM_DOCKER_IMAGE = "spark2x/python"
+def RSPARK_2_FOLDER_FROM_DOCKER_IMAGE = "spark2x"
+def JENKINS_HOME = "/home/jenkins"
+def DSS_STAGING_URL = "http://dss-doc-staging.dku.sh/"
+def FOLDER_FOR_BUILT_DSSDOC = "/data/www/dss-doc-staging.dku.sh/htdocs"
+def BRANCH_NAME_ESCAPED = "${BRANCH_NAME}".replaceAll("/", "_")
+def DSS_DOC_PATH = "${FOLDER_FOR_BUILT_DSSDOC}/" + BRANCH_NAME_ESCAPED
+def PIPELINE_SCRIPTS = "pipeline/scripts/"
+def PY4J_LIB = "lib/py4j-0.10.7-src.zip"
+
+pipeline {
+    agent { label "dss-doc-staging" }
+    parameters {
+        string(name: "dipBranchName", defaultValue: "release/14", description: "Branch name in the dip repository")
+        string(name: "launcherBranchName", defaultValue: "main", description: "Branch name in the launcher repository")
+        string(name: "storiesBranchName", defaultValue: "release/14.2", description: "Branch name in the stories repository")
+        string(name: "getItStartedBranchName", defaultValue: "master", description: "Branch name in the dataiku-getitstarted repository")
+        booleanParam(name: "buildRefDocDevGuide", defaultValue: true, description: "Whether to build reference documentation and developer guide")
+        booleanParam(name: "buildAppNotes", defaultValue: true, description: "Whether to build app-notes")
+        booleanParam(name: "buildRApi", defaultValue: false, description: "Whether to build R API")
+        booleanParam(name: "buildRestApi", defaultValue: false, description: "Whether to build REST API")
+        booleanParam(name: "buildJavaApi", defaultValue: false, description: "Whether to build Java API")
+    }
+    options {
+        timestamps()
+        buildDiscarder(logRotator(numToKeepStr: '20'))
+        disableConcurrentBuilds()
+    }
+    stages {
+        stage("Checkout DIP repository") {
+            steps {
+                checkout([$class           : 'GitSCM', branches: [[name: params.dipBranchName]],
+                          extensions       : [[$class: 'RelativeTargetDirectory', relativeTargetDir: DIP_REPO_FOLDER],
+                                              [$class: 'WipeWorkspace'],
+                                              [$class: 'CloneOption', depth: 1, noTags: false, reference: '', shallow: true]],
+                          userRemoteConfigs: [[credentialsId: 'jenkins-dataiku', url: 'https://github.com/dataiku/dip.git']]])
+            }
+        }
+        stage("Checkout Launcher repository") {
+            steps {
+                checkout([$class           : 'GitSCM', branches: [[name: params.launcherBranchName]],
+                          extensions       : [[$class: 'RelativeTargetDirectory', relativeTargetDir: DSS_LAUNCHER_REPO_FOLDER],
+                                              [$class: 'WipeWorkspace'],
+                                              [$class: 'CloneOption', depth: 1, noTags: false, reference: '', shallow: true]],
+                          userRemoteConfigs: [[credentialsId: 'jenkins-dataiku', url: 'https://github.com/dataiku/dss-launcher.git']]])
+            }
+        }
+        stage("Checkout Stories repository") {
+            steps {
+                checkout([$class           : 'GitSCM', branches: [[name: params.storiesBranchName]],
+                          extensions       : [[$class: 'RelativeTargetDirectory', relativeTargetDir: DSS_STORIES_REPO_FOLDER],
+                                              [$class: 'WipeWorkspace'],
+                                              [$class: 'CloneOption', depth: 1, noTags: false, reference: '', shallow: true]],
+                          userRemoteConfigs: [[credentialsId: 'jenkins-dataiku', url: 'https://github.com/dataiku/dku-story.git']]])
+            }
+        }
+        stage("Checkout Dataiku GetItStarted (Cloud) repository") {
+            steps {
+                checkout([$class           : 'GitSCM', branches: [[name: "master"]],
+                          extensions       : [[$class: 'RelativeTargetDirectory', relativeTargetDir: DKU_GIS_REPO_FOLDER],
+                                              [$class: 'WipeWorkspace'],
+                                              [$class: 'CloneOption', depth: 1, noTags: false, reference: '', shallow: true]],
+                          userRemoteConfigs: [[credentialsId: 'qa-jenkins-dip-to-cloud', url: 'https://github.com/dataiku/dataiku-getitstarted/']]])
+            }
+        }
+        stage("Build documentation") {
+            agent {
+                docker {
+                    label "dss-doc-staging"
+                    image "${DKU_DOCKER_JENKINS_BUILDER_IMAGE}"
+                    args "-v ${FOLDER_FOR_BUILT_DSSDOC}:${FOLDER_FOR_BUILT_DSSDOC}"
+                    reuseNode true
+                }
+            }
+            stages {
+                stage("Build reference documentation and developer guide") {
+                    when { expression { return params.buildRefDocDevGuide } }
+                    steps {
+                        script {
+                            def pythonPath = "PYTHONPATH=$WORKSPACE/$DIP_REPO_FOLDER/$DIP_PYTHON_API_FOLDER/:$WORKSPACE/python/" +
+                                    ":$JENKINS_HOME/$PYSPARK_2_FOLDER_FROM_DOCKER_IMAGE/" +
+                                    ":$JENKINS_HOME/$PYSPARK_2_FOLDER_FROM_DOCKER_IMAGE/$PY4J_LIB" +
+                                    ":$WORKSPACE/$DIP_REPO_FOLDER/$DIP_LAMBDA_FOLDER/"
+                            withEnv([pythonPath]) {
+                                sh """rm -rf ./venv-3.8
+                                          python3.8 -m venv ./venv-3.8
+                                          . ./venv-3.8/bin/activate
+                                          pip install -r ./requirements.txt
+                                          mkdir -p "${DSS_DOC_PATH}/dss-doc"
+                                          mkdir -p "${DSS_DOC_PATH}/developer-guide"
+                                          DKUINSTALLDIR="${WORKSPACE}/${DIP_REPO_FOLDER}" DSSLAUNCHERDIR="${WORKSPACE}/${DSS_LAUNCHER_REPO_FOLDER}" DSSSTORIESDIR="${WORKSPACE}/${DSS_STORIES_REPO_FOLDER}" DKUGETITSTARTEDDIR="${WORKSPACE}/${DKU_GIS_REPO_FOLDER}" make clean build
+                                          cp -rf build/html/* "${DSS_DOC_PATH}/dss-doc"
+                                          cd ./developer-guide
+                                          make clean html
+                                          cp -rf build/html/* "${DSS_DOC_PATH}/developer-guide" """
+                            }
+                        }
+                    }
+                }
+                stage("Build app-notes") {
+                    when { expression { return params.buildAppNotes } }
+                    steps {
+                        script {
+                            sh """. ${JENKINS_HOME}/.bashrc
+                                      cd ./app-notes
+                                      make clean all
+                                      mkdir -p $DSS_DOC_PATH/app-notes
+                                      cp -rf build/* $DSS_DOC_PATH/app-notes"""
+                        }
+                    }
+                }
+                stage("Build R API documentation") {
+                    when { expression { return params.buildRApi } }
+                    steps {
+                        script {
+                            sh """. ${JENKINS_HOME}/.bashrc
+                                      cd $WORKSPACE/$DIP_REPO_FOLDER
+                                      make R"""
+                        }
+                        script {
+                            for (folder in ['dataiku', 'dataiku.spark2', 'dataiku.sparklyr']) {
+                                sh """. ${JENKINS_HOME}/.bashrc
+                                          export SPARK_HOME=$JENKINS_HOME/$RSPARK_2_FOLDER_FROM_DOCKER_IMAGE/
+                                          cd $WORKSPACE/$DIP_REPO_FOLDER/$DIP_R_API_FOLDER/$folder
+                                          make build-html-doc
+                                          mkdir -p $DSS_DOC_PATH/r_api/$folder
+                                          cp -rf html-doc/* $DSS_DOC_PATH/r_api/$folder"""
+                            }
+                        }
+                    }
+                }
+                stage("Build Java API documentation") {
+                    when { expression { return params.buildJavaApi } }
+                    steps {
+                        script {
+                            sh """cd $WORKSPACE/$DIP_REPO_FOLDER
+                                  make backend
+                                  cd $WORKSPACE/$DIP_REPO_FOLDER/$DIP_SPEC_FOLDER
+                                  make java
+                                  mkdir -p ${DSS_DOC_PATH}/spec
+                                  cp -r html* ${DSS_DOC_PATH}/spec"""
+                        }
+                    }
+                }
+            }
+        }
+        stage("Build Rest API") {
+            when { expression { return params.buildRestApi } }
+            steps {
+                script {
+                    sh """chmod +x $WORKSPACE/$PIPELINE_SCRIPTS/aglio
+                              PATH=$WORKSPACE/$PIPELINE_SCRIPTS:$PATH
+                              cd $WORKSPACE/$DIP_REPO_FOLDER/$DIP_SPEC_FOLDER/
+                              make rest
+                              mkdir -p ${DSS_DOC_PATH}/spec
+                              cp -r html* ${DSS_DOC_PATH}/spec"""
+                }
+            }
+        }
+    }
+    post {
+        success {
+            script {
+                def now = new Date()
+                def jobName = "${env.JOB_NAME}"
+                Jenkins.instance.getItemByFullName(jobName).description =
+                        """<b>The documents are located at <a href="${DSS_STAGING_URL}${BRANCH_NAME_ESCAPED}/">
+                        ${DSS_STAGING_URL}${BRANCH_NAME_ESCAPED}/</a><br>
+                        Last time generated ${now.format("dd MMM yyyy HH:mm", TimeZone.getTimeZone('UTC'))} UTC<br>
+                        DIP branch ${params.dipBranchName}<b>"""
+            }
+        }
+        always {
+            script {
+                def PRMessage = ""
+                if (currentBuild.result == "SUCCESS") {
+                    PRMessage += "* The documents are placed here ${DSS_STAGING_URL}${BRANCH_NAME_ESCAPED}/\n"
+                }
+                PRMessage += "* Build finished: ${env.BUILD_URL}\n* Commit ID: ${env.GIT_COMMIT}\n* Build result: ${currentBuild.result}\n"
+                if (env.CHANGE_ID) {
+                    pullRequest.comment(PRMessage)
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,203 @@
+[
+  {
+    "name": "kaleido",
+    "version": "0.2.1",
+    "lic": null,
+    "printedName": "Kaleido",
+    "homepage": "https://github.com/plotly/Kaleido",
+    "repository": "https://github.com/plotly/Kaleido/tree/v0.2.1",
+    "copyright_line": "Copyright (c) 2020 Plotly, Inc",
+    "copyright_url": "https://github.com/plotly/Kaleido/blob/v0.2.1/LICENSE.txt",
+    "author": null,
+    "license_url": "https://github.com/plotly/Kaleido/blob/v0.2.1/LICENSE.txt",
+    "license_type": "MIT",
+    "license_txt": null,
+    "note": null,
+    "_source": null,
+    "reviewer": "Guillaume Cassand"
+  },
+  {
+    "name": "numpy",
+    "version": "1.22.4",
+    "lic": null,
+    "printedName": "Numpy",
+    "homepage": "https://numpy.org",
+    "repository": "https://github.com/numpy/numpy/tree/v1.22.4",
+    "copyright_line": "Copyright (c) 2005-2022, NumPy Developers.\n       copyright notice, this list of conditions and the following",
+    "copyright_url": "https://github.com/numpy/numpy/blob/v1.22.4/LICENSE.txt",
+    "author": "numpy",
+    "license_url": "https://github.com/numpy/numpy/blob/v1.22.4/LICENSE.txt",
+    "license_type": "BSD",
+    "license_txt": "numpy_1.22.4.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Guillaume Cassand"
+  },
+  {
+    "name": "packaging",
+    "version": "25.0",
+    "lic": "1",
+    "printedName": "packaging",
+    "homepage": "https://packaging.pypa.io/",
+    "repository": "https://github.com/pypa/packaging/tree/25.0",
+    "copyright_line": "Copyright (c) Donald Stufft and individual contributors.All rights reserved.",
+    "copyright_url": "https://github.com/pypa/packaging/blob/25.0/LICENSE.BSD#L1-L2",
+    "author": "Donald Stufft",
+    "license_url": "https://github.com/pypa/packaging/blob/25.0/LICENSE.APACHE",
+    "license_type": "Apache-2.0",
+    "license_txt": "packaging_25.0.txt",
+    "note": null,
+    "_source": [
+      {
+        "filename": "packaging",
+        "path": "python310"
+      },
+      {
+        "filename": "packaging",
+        "path": "python311"
+      },
+      {
+        "filename": "packaging",
+        "path": "python39"
+      }
+    ],
+    "reviewer": "Abderrahmane Amine"
+  },
+  {
+    "name": "packaging",
+    "version": "25.0",
+    "lic": "2",
+    "printedName": "packaging",
+    "homepage": "https://packaging.pypa.io/",
+    "repository": "https://github.com/pypa/packaging/tree/25.0",
+    "copyright_line": "Copyright (c) Donald Stufft and individual contributors.All rights reserved.",
+    "copyright_url": "https://github.com/pypa/packaging/blob/25.0/LICENSE.BSD#L1-L2",
+    "author": "Donald Stufft",
+    "license_url": "https://github.com/pypa/packaging/blob/25.0/LICENSE.BSD",
+    "license_type": "BSD-2-Clause",
+    "license_txt": "packaging_25.0.txt",
+    "note": null,
+    "_source": [
+      {
+        "filename": "packaging",
+        "path": "python310"
+      },
+      {
+        "filename": "packaging",
+        "path": "python311"
+      },
+      {
+        "filename": "packaging",
+        "path": "python39"
+      }
+    ],
+    "reviewer": "Abderrahmane Amine"
+  },
+  {
+    "name": "pip",
+    "version": "25.2",
+    "lic": null,
+    "printedName": "pip",
+    "homepage": "https://pip.pypa.io/",
+    "repository": "https://github.com/pypa/pip/tree/25.2",
+    "copyright_line": "Copyright (c) 2008-present The pip developers (see AUTHORS.txt file)",
+    "copyright_url": "https://github.com/pypa/pip/blob/25.2/LICENSE.txt",
+    "author": "Python Packaging Authority",
+    "license_url": "https://github.com/pypa/pip/blob/25.2/LICENSE.txt",
+    "license_type": "MIT",
+    "license_txt": "pip_25.2.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Quentin Groshens"
+  },
+  {
+    "name": "plotly",
+    "version": "5.14.1",
+    "lic": null,
+    "printedName": "Plotly",
+    "homepage": "https://plotly.com/python/",
+    "repository": "https://github.com/plotly/plotly.py/tree/v5.14.1",
+    "copyright_line": "Copyright (c) 2016-2024 Plotly Technologies Inc.",
+    "copyright_url": "https://github.com/plotly/plotly.py/blob/v5.14.1/LICENSE.txt",
+    "author": "plotly",
+    "license_url": "https://github.com/plotly/plotly.py/blob/v5.14.1/LICENSE.txt",
+    "license_type": "MIT",
+    "license_txt": null,
+    "note": null,
+    "_source": null,
+    "reviewer": "Hadrien Hamel"
+  },
+  {
+    "name": "scipy",
+    "version": "1.7.3",
+    "lic": null,
+    "printedName": "SciPy",
+    "homepage": "https://scipy.org",
+    "repository": "https://github.com/scipy/scipy/tree/v1.7.3",
+    "copyright_line": "Copyright (c) 2001-2002 Enthought, Inc.  2003-2019, SciPy Developers.",
+    "copyright_url": "https://github.com/scipy/scipy/blob/v1.7.3/LICENSE.txt",
+    "author": "scipy",
+    "license_url": "https://github.com/scipy/scipy/blob/v1.7.3/LICENSE.txt",
+    "license_type": "BSD-3-Clause",
+    "license_txt": "scipy_1.7.3.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Guillaume Cassand"
+  },
+  {
+    "name": "setuptools",
+    "version": "80.9.0",
+    "lic": null,
+    "printedName": "setuptools",
+    "homepage": "https://pypi.org/project/setuptools/",
+    "repository": "https://github.com/pypa/setuptools/tree/v80.9.0",
+    "copyright_line": null,
+    "copyright_url": null,
+    "author": "Python Packaging Authority",
+    "license_url": "https://github.com/pypa/setuptools/blob/v80.9.0/LICENSE",
+    "license_type": "MIT",
+    "license_txt": "setuptools_80.9.0.txt",
+    "note": "no copyright info found",
+    "_source": null,
+    "reviewer": "Guillaume Cassand"
+  },
+  {
+    "name": "tenacity",
+    "version": "9.1.2",
+    "lic": null,
+    "printedName": "Tenacity",
+    "homepage": "http://tenacity.readthedocs.io",
+    "repository": "https://github.com/jd/tenacity/tree/9.1.2",
+    "copyright_line": "Copyright 2016-2018 Julien Danjou # Copyright 2017 Elisey Zanko # Copyright 2016 Étienne Bersac # Copyright 2016 Joshua Harlow # Copyright 2013-2014 Ray Holder",
+    "copyright_url": "https://github.com/jd/tenacity/blob/e8d5f3b91b4da34e799c9aeff29e3ee3631047c4/tenacity/__init__.py",
+    "author": "jd",
+    "license_url": "https://github.com/jd/tenacity/blob/9.1.2/LICENSE",
+    "license_type": "Apache-2.0",
+    "license_txt": "tenacity_9.1.2.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Guillaume Cassand"
+  },
+  {
+    "name": "wheel",
+    "version": "0.45.1",
+    "lic": null,
+    "printedName": "wheel",
+    "homepage": "https://github.com/pypa/wheel",
+    "repository": "https://github.com/pypa/wheel/tree/0.45.1",
+    "copyright_line": "Copyright (c) 2012 Daniel Holth <dholth@fastmail.fm> and contributors",
+    "copyright_url": "https://github.com/pypa/wheel/blob/0.45.1/LICENSE.txt",
+    "author": null,
+    "license_url": "https://github.com/pypa/wheel/blob/0.45.1/LICENSE.txt",
+    "license_type": "MIT",
+    "license_txt": "wheel_0.45.1.txt",
+    "note": null,
+    "_source": [
+      {
+        "filename": "wheel-0.45.1",
+        "path": "__virtualenv__"
+      }
+    ],
+    "reviewer": "Li-Heng Fu"
+  }
+]

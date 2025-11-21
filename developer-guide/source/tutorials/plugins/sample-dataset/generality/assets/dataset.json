@@ -1,0 +1,30 @@
+{
+  "meta": {
+    "label": "Developer advocacy Dataset sample",
+    "description": "This dataset, provided by the Developer advocates, will help you to run the GenAI tutorials.",
+    "icon": "far fa-lemon",
+    "rowCount": 5
+  },
+  "columns": [
+    {
+      "name": "id",
+      "type": "string",
+      "comment": "Unique identifier"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "comment": "Name of the person"
+    },
+    {
+      "name": "job",
+      "type": "string",
+      "comment": "Position of the person"
+    },
+    {
+      "name": "company",
+      "type": "string",
+      "comment": "Company "
+    }
+  ]
+}

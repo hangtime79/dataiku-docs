@@ -1,0 +1,2 @@
+#!/bin/sh -eu
+docker run --rm -v "$(pwd):/docs" humangeo/aglio "$@"

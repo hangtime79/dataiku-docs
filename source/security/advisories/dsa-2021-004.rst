@@ -1,0 +1,30 @@
+:orphan:
+
+Access control issue on changing dataset connections
+#####################################################
+
+Information
+=============
+
+* Advisory ID: DSA-2021-004
+* CVSS Base Score: 4.3
+* CVSS String: CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N
+* Severity: Medium
+* CWE classification: CWE-284
+
+Summary
+========
+
+In Dataiku DSS before 9.0.6, insufficient access control could allow logged-in attackers to modify the connection of datasets they were not allowed to modify
+
+Affected Products
+==================
+
+* Dataiku DSS 8 and previous versions
+* Dataiku DSS 9, before 9.0.6
+* Dataiku DSS 10, before 10.0.2
+
+Mitigation
+===========
+
+Dataiku DSS 9.0.6 and 10.0.2 have been made available to customers to remediate this issue

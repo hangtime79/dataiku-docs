@@ -1,0 +1,17 @@
+**.pyc
+/build/
+/app-notes/build/
+**~
+.DS_Store
+.sublime-project
+.sublime-workspace
+.idea/
+.vscode/
+.python-version
+env/
+developer-guide/build/
+venv/
+.env
+.venv
+source/thirdparty-elems/*
+source/thirdparty/dss_merged.rst

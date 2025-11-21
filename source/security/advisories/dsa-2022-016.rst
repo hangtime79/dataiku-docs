@@ -1,0 +1,29 @@
+:orphan:
+
+Credentials disclosure through path traversal
+################################################
+
+Information
+=============
+
+* Advisory ID: DSA-2022-016
+* CVSS String: CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H
+* CVSS Base Score: 8.8 (High)
+* CWE classification: CWE-23
+
+Summary
+========
+
+It was discovered that a path traversal issue could lead to the disclosure of sensitive information in the Dataiku configuration folder, including credentials.
+
+Affected Products
+==================
+
+* Dataiku DSS 9 and older versions
+* Dataiku DSS 10 before 10.0.9
+* Dataiku DSS 11 before 11.0.3
+
+Fix
+===
+
+Dataiku DSS 10.0.9 and Dataiku DSS 11.0.3 have been made available to customers to remediate this issue

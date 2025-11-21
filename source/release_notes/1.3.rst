@@ -1,0 +1,162 @@
+DSS 1.3 Relase notes
+#####################
+
+Version 1.3.2 - November 12th, 2014
+=====================================
+
+For information about migration, please see the 1.3.0 release notes.
+
+Bug fixes
+----------
+
+Core
+%%%%%
+
+* Support for RH 6.6 and above, CentOS 6.6 and above
+
+Datasets
+%%%%%%%%%%
+
+* Fixed various issues with Cassandra datasets
+
+Flow
+%%%%%
+
+* Fixed UI for sliding_days depednency
+* Fixed ';' splitting in Hive recipes
+* Fixed handling of multi-dimension-partitioning in scheduler
+* Fixed "explicit" rebuild of datasets
+
+Version 1.3.1 - October 27th, 2014
+=====================================
+
+For information about migration, please see the 1.3.0 release notes.
+
+Bug fixes
+----------
+
+Datasets
+%%%%%%%%%%
+
+* Fixed writing to S3 datasets when target data did not already exist
+* Fixed writing CSV datasets with Unicode-encoded separators
+
+Machine learning
+%%%%%%%%%%%%%%%%%%
+
+* Fixed logistic regression in multiclass mode
+* Fixed a target remapping issue that could lead to incomplete result screens for multiclass models with null values
+* Fixed the ability to switch from regression to multiclass model
+* Fixed the model comparison screen
+
+Misc
+%%%%%
+
+* Fixed sizing issue that could lead to unreadable categorical analysis on numerical columns
+
+Version 1.3.0 - October 23rd, 2014
+======================================
+
+Important notes about migration
+-----------------------------------
+
+The automatic data migration procedure is documented in :doc:`/installation/custom/upgrade`
+
+As usual, we **strongly recommend** that you perform a full backup of your Data Science Studio data directory prior to starting the upgrade procedure.
+
+Automatic migration of data from Data Science Studio 1.2.X is supported, with the following restrictions and warnings:
+
+* It is strongly recommended to retrain all machine learning models as new features have been added. Non-retrained models might fail to display or to be usable in scoring.
+* JSON datasets now have built-in protections against huge files. You might need to tweak the nested arrays limits in the Dataset settings screen
+* The old job logs are not available anymore in the UI after migrating. They are still available on disk, though.
+
+For migrations from Data Science Studio 1.1.X, please also see the release notes of version 1.2.0
+
+New features
+-------------
+
+Please also see our Blog Post for more information.
+
+General
+%%%%%%%%%%%
+
+* New R support
+
+	* R recipe to read and write datasets using our new :doc:`R API </code_recipes/r>`.
+	* R notebook for interactive work
+
+* Visual editor for complex types
+
+Datasets and connection
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+* DSS now has support for many new Hadoop-related formats
+
+	* Parquet
+	* Sequence File
+	* RC File
+	* ORC File
+
+	All these can be used in Hive recipes, notebooks and (for some of them) Pig recipes and Impala notebooks
+
+* Avro support has been greatly expanded and now supports nested complex types. Avro datasets can now be used for Hive recipes.
+
+* Complex types are now properly preserved when writing to MongoDB.
+
+Machine Learning
+%%%%%%%%%%%%%%%%%%%%%%
+
+* We have introduced brand new clustering results screen. They will help you understand in much more details and with new visualizations what differenciates your clusters
+
+* Support for Text features has been added. Text features are processed using the Bag of Words model.
+
+* Random Forests models will now automatically adapt the number of trees to the optimal number.
+
+* You can now write your own models in Python and use them in the visual interface
+
+* Large performance enhancements for scoring recipes.
+
+Flow and recipes
+%%%%%%%%%%%%%%%%%%%%%%
+
+* New "Preview" mode for jobs
+
+	* You can now see which datasets will be rebuilt and why
+	* You can disable some parts of a job if you want to ignore it
+
+* You can now see which datasets are being built and have links to latest/current jobs from the Flow screen
+
+* You can now edit schema and check consistency directly from the recipe screens
+
+* New :doc:`Time Range </partitions/dependencies>` dependencies function brings much more flexibility for time partitioned datasets.
+
+* You can now "write-protect" a dataset so that its already computed partitions are never automatically recomputed. This is especially useful for some slow recipes or when you use partitioning for historization.
+
+* Python recipe can now read and write datasets of any size. Writing was previously limited by the size of the disk of the DSS host
+
+Notebooks
+%%%%%%%%%%%%%%%%%%%%%%
+
+* New R notebook for interactive work on DSS datasets with R
+
+* In IPython notebook, you can now request samples of the dataset. Only the sample will be loaded.
+
+Insights
+%%%%%%%%%%%
+
+* "Dataset" insights now feature preview of the dataset directly from within the Pinboard.
+
+* New JS API for Web app insights. You can now request subsamples of the datasets from your Web apps.
+
+Enhancements
+-------------
+
+Flow
+%%%%
+
+* Better validation and checks on variable substitutions
+
+Major bugfixes
+-----------------
+
+* Under certain circumstances, training recipes produced invalid results

@@ -1,0 +1,19 @@
+Compatibility
+^^^^^^^^^^^^^^^^^^^^
+
+|DKU_APP| has been successfully tested against the following SAML identity providers:
+
+* OKTA
+* PingFederate PingIdentity (see note below)
+* Azure Active Directory
+* Google G.Suite
+* Microsoft Active Directory Federation Service (tested against Windows 2012 R2)
+* Auth0
+* Keycloak
+
+.. note::
+
+	For AD FS, it is mandatory to configure at least one claim mapping rule which maps to "Name ID", even if another attribute is used
+	as the |DKU_APP| login attribute.
+
+	|DKU_APP| does not support SAML encryption.

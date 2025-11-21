@@ -1,0 +1,29 @@
+:orphan:
+
+Insufficient permission checks in code envs API
+#######################################################
+
+Information
+=============
+
+* Advisory ID: DSA-2024-005
+* CVSS Base Score: 6.5
+* CVSS String: CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:H/A:N
+* Severity: Medium
+* CWE classification: CWE-284
+* Advisory Release Date: July 8th, 2024
+
+Summary
+========
+
+Until DSS 12.6.5, some code env API calls did not perform enough permission checks, which could allow authenticated-but-not-permissioned users to act on code envs through the API.
+
+Affected Products
+==================
+
+Dataiku DSS before 12.6.5, and 13.0.0
+
+Fix
+====
+
+Dataiku DSS 12.6.5 and 13.0.1 have been made available to customers to remediate this issue.

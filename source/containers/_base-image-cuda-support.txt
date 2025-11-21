@@ -1,0 +1,36 @@
+Building an image with CUDA support
+-----------------------------------
+
+The base image that is built by default does not have CUDA support and cannot use NVidia GPUs.
+
+CUDA support can be added to an image by:
+
+- installing CUDA system-wide (in ``/usr/local/cuda/``) in the base image (see below)
+- installing CUDA system-wide in the code env image using container runtime additions
+- installing CUDA in the code env (in ``/opt/dataiku/code-env/``) by requiring CUDA libraries (including ``nvidia-cuda-runtime``)
+
+To enable CUDA system-wide in the base image add the ``--with-cuda`` option to the command line:
+
+.. parsed-literal::
+
+	./bin/dssadmin build-base-image --type |base-image-type| --with-cuda
+
+We recommend that you give this image a specific tag using the ``--tag`` option and keep the default base image "pristine". We also recommend that you add the DSS version number in the image tag.
+
+.. parsed-literal::
+
+	./bin/dssadmin build-base-image --type |base-image-type| --with-cuda --tag dataiku-|base-image-type|-base-cuda:X.Y.Z
+
+where X.Y.Z is your DSS version number
+
+.. note::
+
+	* This image contains CUDA 11.8 and CuDNN 8.7 by default on AlmaLinux 9. You can use ``--cuda-version X.Y`` to specify another DSS-provided version
+	  (9.0, 10.0, 10.1, 10.2, 11.0, 11.2 and 11.8 are available on AlmaLinux 8, 11.8 only on AlmaLinux 9).
+	  If you require other CUDA versions, you have to create a custom image.
+	* Depending on which CUDA version is installed in the base image you will need to use
+	  the `corresponding tensorflow version <https://www.tensorflow.org/install/source#gpu>`_.
+
+.. warning::
+
+	After each upgrade of DSS, you must rebuild all base images and :doc:`update code envs </containers/code-envs>`.

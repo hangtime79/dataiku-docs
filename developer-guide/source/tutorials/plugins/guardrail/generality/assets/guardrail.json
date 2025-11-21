@@ -1,0 +1,53 @@
+/* This file is the descriptor for custom guardrail devadv-tutorial */
+{
+  "meta": {
+    "label": "Custom guardrail tutorial",
+    "description": "This is the description of the custom guardrail devadv-tutorial"
+  },
+
+  // Whether this guardrail can operate on LLM queries
+  "operatesOnQueriesBasedOnParameterName": "usesInstructions",
+  "operatesOnQueriesBasedOnParameterValue": "true",
+  // Whether this guardrail can operate on LLM responses
+  "operatesOnResponsesBasedOnParameterName": "rewriteAnswer",
+  "operatesOnResponsesBasedOnParameterValue": "true",
+
+  // Whether this guardrail can retry processing of responses after a failure
+  "mayRequestRetryOnResponses": false,
+  // Whether this guardrail can reply directly to queries, skipping the rest of the guardrail pipeline
+  "mayRespondDirectlyToQueries": false,
+
+  "params": [
+    {
+      "name": "usesInstructions",
+      "type": "BOOLEAN",
+      "label": "Operate on queries",
+      "defaultValue": "false"
+    },
+    {
+      "name": "instructions",
+      "type": "STRING",
+      "label": "Instruction to add to each query",
+      "defaultValue": "Please answer in one sentence.",
+      "visibilityCondition": "model.usesInstructions"
+    },
+    {
+      "name": "rewriteAnswer",
+      "type": "BOOLEAN",
+      "label": "Add extra formatting option to the answer",
+      "defaultValue": "false"
+    },
+    {
+      "name": "llm",
+      "type": "LLM",
+      "label": "LLM to use for rewriting",
+      "visibilityCondition": "model.rewriteAnswer"
+    },
+    {
+      "name": "extraFormatting",
+      "type": "STRING",
+      "label": "Additional instructions to format the answer",
+      "visibilityCondition": "model.rewriteAnswer"
+    }
+  ]
+}

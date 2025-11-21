@@ -1,0 +1,29 @@
+:orphan:
+
+Missing authentication on get-global-tags-info endpoint
+#######################################################
+
+Information
+=============
+
+* Advisory ID: DSA-2024-004
+* CVSS Base Score: 5.3
+* CVSS String: CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N
+* Severity: Medium
+* CWE classification: CWE-27
+* Advisory Release Date: May 31st, 2024
+
+Summary
+========
+
+Until DSS 12.6.3, the ``/dip/api/global-tags/get-global-tags-info`` endpoint did not require authentication
+
+Affected Products
+==================
+
+Dataiku DSS before 12.6.3
+
+Fix
+====
+
+Dataiku DSS 12.6.3 has been made available to customers to remediate this issue.

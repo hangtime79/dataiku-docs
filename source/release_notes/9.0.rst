@@ -1,0 +1,1152 @@
+DSS 9.0 Release notes
+#####################
+
+.. contents::
+    :depth: 3
+    :local:
+
+Migration notes
+================
+
+Migration paths to DSS 9.0
+----------------------------
+
+    * From DSS 8.0: Automatic migration is supported, with the restrictions and warnings described in :ref:`releases_notes.9.0.limitations`
+
+    * From DSS 7.0: Automatic migration is supported. In addition to the restrictions and warnings described in :ref:`releases_notes.9.0.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`7.0 -> 8.0 </release_notes/8.0>`
+
+    * From DSS 6.0: Automatic migration is supported. In addition to the restrictions and warnings described in :ref:`releases_notes.9.0.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`6.0 -> 7.0 </release_notes/7.0>`, :doc:`7.0 -> 8.0 </release_notes/8.0>`
+
+    * From DSS 5.1: Automatic migration is supported. In addition to the restrictions and warnings described in :ref:`releases_notes.9.0.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`5.1 -> 6.0 </release_notes/6.0>`, :doc:`6.0 -> 7.0 </release_notes/7.0>`, :doc:`7.0 -> 8.0 </release_notes/8.0>`
+
+    * From DSS 5.0: Automatic migration is supported. In addition to the restrictions and warnings described in :ref:`releases_notes.9.0.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`5.0 -> 5.1 </release_notes/5.1>`, :doc:`5.1 -> 6.0 </release_notes/6.0>`, :doc:`6.0 -> 7.0 </release_notes/7.0>`, :doc:`7.0 -> 8.0 </release_notes/8.0>`
+
+    * From DSS 4.3: Automatic migration is supported. In addition to the restrictions and warnings described in :ref:`releases_notes.9.0.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`4.3 -> 5.0 </release_notes/5.0>`, :doc:`5.0 -> 5.1 </release_notes/5.1>`, :doc:`5.1 -> 6.0 </release_notes/6.0>`, :doc:`6.0 -> 7.0 </release_notes/7.0>`, :doc:`7.0 -> 8.0 </release_notes/8.0>`
+
+    * From DSS 4.2: Automatic migration is supported. In addition to the restrictions and warnings described in :ref:`releases_notes.9.0.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`4.2 -> 4.3 </release_notes/4.3>`, :doc:`4.3 -> 5.0 </release_notes/5.0>`, :doc:`5.0 -> 5.1 </release_notes/5.1>`, :doc:`5.1 -> 6.0 </release_notes/6.0>`, :doc:`6.0 -> 7.0 </release_notes/7.0>`, :doc:`7.0 -> 8.0 </release_notes/8.0>`
+
+    * From DSS 4.1: Automatic migration is supported. In addition to the restrictions and warnings described in :ref:`releases_notes.9.0.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`4.1 -> 4.2 </release_notes/4.2>`, :doc:`4.2 -> 4.3 </release_notes/4.3>`, :doc:`4.3 -> 5.0 </release_notes/5.0>`, :doc:`5.0 -> 5.1 </release_notes/5.1>`, :doc:`5.1 -> 6.0 </release_notes/6.0>`, :doc:`6.0 -> 7.0 </release_notes/7.0>`, :doc:`7.0 -> 8.0 </release_notes/8.0>`
+
+    * From DSS 4.0: Automatic migration is supported. In addition to the restrictions and warnings described in :ref:`releases_notes.9.0.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`4.0 -> 4.1 </release_notes/4.1>`, :doc:`4.1 -> 4.2 </release_notes/4.2>`, :doc:`4.2 -> 4.3 </release_notes/4.3>`, :doc:`4.3 -> 5.0 </release_notes/5.0>`, :doc:`5.0 -> 5.1 </release_notes/5.1>`, :doc:`5.1 -> 6.0 </release_notes/6.0>`, :doc:`6.0 -> 7.0 </release_notes/7.0>`, :doc:`7.0 -> 8.0 </release_notes/8.0>`
+
+    * Migration from DSS 3.1 and below is not supported. You must first upgrade to 5.0. See :doc:`/release_notes/5.0`
+
+How to upgrade
+----------------
+
+It is strongly recommended that you perform a full backup of your DSS data directory prior to starting the upgrade procedure.
+
+For automatic upgrade information, see :doc:`/installation/custom/upgrade`.
+
+Pay attention to the warnings described in :ref:`releases_notes.9.0.limitations`.
+
+
+.. _releases_notes.9.0.limitations:
+
+
+Limitations and warnings
+--------------------------
+
+Automatic migration from previous versions (see above) is supported. Please pay attention to the following removal and deprecation notices.
+
+* API change: :meth:`dataikuapi.dss.apideployer.DSSAPIDeployerService.import_version`. This method does not take `version_id` as a parameter anymore
+
+Support removal
+---------------
+
+Some features that were previously announced are deprecated are now removed or unsupported.
+
+* Support for RedHat 6, CentOS 6 and Oracle Linux 6 is removed
+
+* Support for Amazon Linux 2017.XX is removed
+
+* Support for Spark 1 (1.6) is removed. We strongly advise you to migrate to Spark 2. All supported Hadoop distributions can use Spark 2.
+
+* Support for Pig is removed
+
+* Support for Machine Learning through Vertica Advanced Analytics is removed We recommend that you switch to In-memory based machine learning models. In-database scoring of in-memory-trained machine learnings will remain available
+
+* Support for Hive SequenceFile and RCFile formats is removed
+
+Deprecation notice
+-------------------
+
+DSS 9.0 deprecates support for some features and versions. Support for these will be removed in a later release.
+
+* Support for Ubuntu 16.04 LTS is deprecated and will be removed in a future release
+
+* Support for Debian 9 is deprecated and will be removed in a future release
+
+* Support for SuSE 12 SP2, SP3 and SP4 is deprecated and will be removed in a future release. SuSE 12 SP5 remains supported
+
+* Support for Amazon Linux 1 is deprecated and will be removed in a future release.
+
+* Support for Hortonworks HDP 2.5 and 2.6 is deprecated and will be removed in a future release. These platforms are not supported anymore by Cloudera.
+
+* Support for Cloudera CDH 5 is deprecated and will be removed in a future release. These platforms are not supported anymore by Cloudera.
+
+* Support for EMR below 5.30 is deprecated and will be removed in a future release.
+
+* Support for Elasticsearch 1.x and 2.x is deprecated and will be removed in a future release.
+
+* As a reminder from DSS 7.0, support for "Hive CLI" execution modes for Hive is deprecated and will be removed in a future release. We recommend that you switch to HiveServer2. Please note that "Hive CLI" execution modes are already incompatible with User Isolation Framework.
+
+* As a reminder from DSS 7.0, Support for Microsoft HDInsight is now deprecated and will be removed in a future release. We recommend that users plan a migration toward a Kubernetes-based infrastructure.
+
+Version 9.0.7 - January 28th, 2022
+=====================================
+
+DSS 9.0.7 is a bugfix and security release
+
+Recipes
+-------------
+
+* Prepare recipe: Fixed formula preview
+* Code recipes: Fixed access to Flow variables
+
+Flow
+----
+
+* Fixed flow graph disappearing from job page at each refresh for large flows
+
+Projects
+---------
+
+* Fixed "Code env selection" settings resetting to default when the tab is open.
+
+Cloud Stacks
+--------------
+
+* Fixed scheduled snapshots not taking changes of snapshot settings into account
+
+Miscellaneous
+--------------
+
+* Fixed invalid actions displayed on the home page of the automation node when there are no projects
+
+Security
+---------
+
+* Cloud Stacks deployments only: fixed  :doc:`"Pwnkit" vulnerability </security/advisories/dsa-2022-001>`
+
+
+Version 9.0.6 - December 16th, 2021
+=====================================
+
+Datasets
+-------------
+
+* **New feature** Added per user login for Google Cloud Storage (OAuth)
+* **New feature** Added per user login for BigQuery (OAuth)
+* When creating a dataset from file names with Unicode characters (including CJK), an equivalent ASCII dataset name is automatically generated
+* Fixed possible UI overlapping between different custom exporters
+
+Machine Learning
+------------------
+
+* Fixed creation of cluster recipes on foreign datasets
+
+Hadoop, Spark, Elastic AI
+--------------------------
+
+* **New feature**: Added support for CDP Private Cloud Base 7.1.7
+* Added the ability to import EMR-created tables from Glue as S3 datasets when not using EMR with DSS
+* Fixed failure of Spark recipes when project variables contain Unicodes characters (including CJK)
+* Fixed SparkSQL recipe validation failure when the code contains Unicode characters (including CJK)
+* Fixed issue with Kubernetes namespace policies
+* Fixed direct write to Snowflake from Spark with OAuth authentication and variables
+
+Dashsboards
+-------------
+
+* Fixed truncation of large dashboard exports
+
+Cloud Stacks
+-------------
+
+* **New feature**: Azure: Added ability to create a subnet that does not cover the entire vnet
+* **New feature**: Azure: Support for static private IP for Fleet Manager
+* **New feature**: Azure: Support for static private IP for DSS instances
+* **New feature**: Azure: Added ability to create resources in a specific resource group instead of always using the vnet resource group
+* **New feature**: Azure: Added ability to fully control the name of created resources (machines, disks, network interface, ...)
+* **New feature**: AWS: Added support for Hong Kong, Osaka, Milan and Bahrain regions
+
+Flow
+-----
+
+* Fixed Flow filtering with flow zones and exposed objects
+
+Recipes
+--------
+
+* Prepare recipe: "Simplify column names" now automatically translates Unicode characters (including CJK) to equivalent ASCII
+* Prepare recipe: Snowflake: Fixed date parsing with timezone being sensitive to the JDBC session timezone
+* Code recipes: When creating the recipe with input or output managed folder with Unicode names (including CJK), generate an equivalent ASCII variable name for the starter code
+* **New feature**: Join recipe: Preview of input columns
+* Join recipe: Better warnin at recipe validation when there are unusable characters in column names
+* SQL recipe: Fixed usage of explicit DKU_END_STATEMENT
+* Fixed possible failure with Snowflake/Synapse/BigQuery auto-fast-paths with date columns
+* Fixed failure with Snowflake auto-fast-path and incomplete configuration
+
+API
+----
+
+* Added ability to modify containerization settings of code envs
+* Fixed creation of prepare recipe with existing outputs from the Python public API
+* Fixed the direction argument of the SelectQuery.order_by method
+* Fixed invalid removal of default Flow zone through the API
+
+Notebooks and webapps
+----------------------
+
+* Fixed changing name of a SQL notebooks when created from the side panel
+* Fixed possible issue when saving standard webapps
+* Fixed write to Snowflake/Synapse/BigQuery auto-fast-path from Jupyter notebooks and webapps
+* Fixed failure of webapps when the project variables contain Unicodes characters (including CJK)
+
+Performance and scalability
+-----------------------------
+
+* Improved performance of flow zones listing
+* Improved performance on home page with large number of project folders
+* Fixed leak of Python processes from custom filesystem providers such as Sharepoint
+* Fixed memory leak in Cloud Stacks for Azure
+* Fixed failure on dashboards for datasets with large number of charts
+* Added pagination on users list and UIF rules screens
+* Improved CPU consumption of eventserver reporting
+
+Security
+----------
+
+* Fixed :doc:`access control issue on downloading project exports </security/advisories/dsa-2021-003>`
+* Fixed :doc:`access control issue with changing datasets connections </security/advisories/dsa-2021-004>`
+* Fixed :doc:`access control issue on dashboards listing </security/advisories/dsa-2021-005>`
+* Fixed :doc:`access control issue on saving project permissions </security/advisories/dsa-2021-006>`
+
+Misc
+-----
+
+* Dataiku Applications: Added an option to hide the "Switch to project view" button
+* Added ability for non-admins to create plugin code envs if they have plugin development rights
+
+Version 9.0.5 - October 13th, 2021
+==================================
+
+DSS 9.0.5 is a significant new release with both new features, performance enhancements and bugfixes.
+
+Datasets, managed folders and connections
+-------------------------------------------
+
+* **New feature**: Improved "New dataset" screen with ability to hide irrelevant dataset types
+* Fixed creation of personal Teradata connections
+* Fixed possible out of memory issue with 'Internal stats' datasets with very large number of scenario runs
+* Fixed display of the dataset metric edit tab when having mutiple custom probes
+* Fixed experimental "Missing partitions as empty" option for filesystem like datasets
+* Fixed UI bug when switching connection while creating a new managed dataset
+* Fixed possible loss of data when deleting a line after adding a column in the editable dataset
+* Fixed the "Clear dataset" button from the "Check schema consistency" widget in dataset settings
+* Fixed user selection dropdown on project list
+* Added SVG support to managed folder file preview
+* Fixed suspport for files selection in managed folders with custom filesystems (such as Sharepoint, Box.com, ...)
+* Removed incorrect warning message when using automatic fast-write with Redshift
+* Fixed reload of settings when switching between custom views in a managed folder
+
+Snowflake
+-------------
+
+* Prepare recipe: Added support for runnning the Numbers extractor and Number Binner processors in-database
+* Prepare recipe: Added support for runnning the User-Agent classifier and Visitor ID generation processors in-database
+* Prepare recipe: Added support for runnning UNIX timestamp parser and TextSimplifier processors in-database
+* Added auto-fast-path (without intermediate dataset) write to Snowflake for Google Cloud Storage and Azure Blob Storage
+* Fixed "contains" formula function
+* Fixed Azure Blob to Snowflake sync for single-file datasets
+* Fixed UI when switching between global and per-user credentials
+* Fixed Cloud storages to Snowflake fast path not taking file inclusion/exclusion filters into account
+* Added support for refreshing OAuth tokens for long Spark jobs
+* Snowflake-S3 fast path: Added support for using S3 connections running in "Assumed role" mode
+
+BigQuery
+------------------
+
+* **New feature**: Support for "Automatic fast write" for writing into BigQuery without having to create an intermediate GCSS dataet
+* Fixed support for strings containing double quotes in nested/repeated fields
+* Fixed support for nested types in the stack recipe
+* Fixed reset of settings when changing the connection in the dataset settings
+
+Geo
+--------
+
+* **New feature**: Added native support for PostGIS (PostgreSQL Geography extension) types (read and write). This makes it possible to natively write geography queries and types
+* **New feature**: Added native support for Snowflake geographic types (read and write). This makes it possible to natively write geography queries and types
+
+Hadoop and Spark
+-----------------
+* Fixed Hive validation on CDP 7.1.6
+* Spark on Kubernetes: Fixed PySpark UDF without a code env when builtin Python env is Python 3.6
+
+Recipes
+--------
+* **New feature**: Prepare recipe: Added a new processor that compute the average value of several other columns
+* Prepare recipe: do not run a formula step in SQL if one of the operator is not implemented for the current DB
+* Prepare recipe: fixed currency conversion processor on Spark
+* Prepare recipe: updated French holidays database
+* Prepare recipe: Fixed round processor when chained with other processors when run in database
+* Download recipe: Fixed support of URL containing escaped space characters
+* Window recicpe: Fixed error on DSS engine when using negative limit values
+* Window recipe: Fixed error on DSS engine with limit flowing rows to -1 and setting aggregation to last
+* App-as-recipe: Fixed possible hang of scenarios when using app-as-recipe
+* Added a warning when using "+" operator in a formula on non numerical columns
+
+Webapps
+-----------
+* Fixed usage of project libs in containerized Shiny webapps
+* Fixed Shiny webapps not using the selected default code env
+* Fixed Webapp URL with Ingress exposition mode
+* Fixed initialization of the assets folder when creating a Dash webapp
+* Fixed the "Run backend as" webapp setting field on UIF instances
+
+Charts
+----------
+* Fixed display of charts when grouping by a column with high cardinality ( > 10000 distinct values)
+* Fixed handling of "null" values on Oracle
+
+Scenario
+------------
+* Fixed automatic schema propagation scenario step when the flow has managed folders
+* Fixed issue with scenario editor when scenario variables contain invalid JSON
+* Fixed possible hang when a scenario is instantly aborted after being started
+
+Machine Learning
+-----------------
+
+* Fixed Tensorboard view when training in containers
+* Fixed Distribution of hyper-parameters search over Kubernetes with instance or project libs
+* Fixed unexpected extra bin in lift chart for binary classification using sample weights
+* Fixed diagnostics on model accuracy which was using the sample weights from the test set instead of the train set
+* Diagnostics: Fixed the balance check computation for multiclass
+* Fixed "multiple users editing analysis" warning when reimporting a project exported from the same instance
+* Fixed the available options for exporting linear coefficients
+* Fixed the "Updated" time information of API Deployments on infra and services pages
+* Fixed Python sample in API Deployer when using a custom API Service id
+* Fixed the predictor API with partitioned models
+
+Flow
+-------------
+* Added a Flow view to display the "Last build time” of datasets
+* Fixed schema propagation with partitioned Flows
+* Fixed the "dataset needs to be rebuilt" behavior of schema propagation
+* **Performance**: Improved performance when moving in a big flow
+* **Performance**: Improved performance when scrolling when a Flow Zone is highlighted
+* **Performance**: Improved overall performance when no filter is set
+
+Collaboration
+----------------
+
+* Fixed search bar on homepage
+* Prevent repetitive display of the conflict popup after discarding it
+* Fixed tooltip on modification / creation time of dss objects
+* Fixed UI flickering when mentioning a user in a discussion
+* Harmonized Design and Automation nodes home pages
+* **Performance**: Improved performance for project folders with high number of users
+
+
+Cloud Stacks and Elastic AI
+-----------------------------
+
+* **New feature**: Dataiku Cloud Stacks is now available on Azure
+* Cloud Stacks on AWS: Enabled snapshots by default
+* Cloud Stacks: Added ability to use the host IP instead of hostname for communication between pods and DSS (for dysfunctional DNS cases)
+* AKS clusters: Added support for vnets deployed in another resource group
+* AKS clusters: Added support for deploying workers in a another resource group
+* AKS clusters: Added support for multiple availability zones
+* AKS clusters: Added support for user-assigned managed identity
+* EKS clusters: Added ability to expose services through ALB
+* Elastic AI: Update Ingress for Kubernetes versions above 1.19
+
+
+Administration and maintenance
+-----------------------------------
+
+* Fixed wrong display of already-finished scenarios in the "Running tasks" screen
+* Improved the dssadmin build-code-env-images tool
+* Added API endpoint to get global usage summary
+* Improved reporting of non fatal errors or warning when importing projects through dsscli
+* Fixed build of Python 2.7 Conda code environments
+* Fixed DSS not restarting after manually cleaning the cache directory
+
+
+Plugins development
+--------------------
+
+* Added ability to update dynamic choices on autoconfig forms when another field is updated
+* Fixed python-based SELECT parameters for plugin presets in project settings
+
+
+Security
+---------
+
+* Fixed stored XSS
+* Fixed Webhook reporters ignoring host blacklisting
+
+Misc
+----------
+
+* Added an option to drop managed folder data when deleting projects
+* Fixed links to documentation in tooltips
+* Fixed "Create meaning" modal with large number of values
+* Fixed sorting of connections in drop down lists
+* Fixed rare random failures of plugin datasets and macros
+* Fixed the image tile content rescaling in dashboards
+
+
+Version 9.0.4 - June 21st, 2021
+==================================
+
+DSS 9.0.4 is a significant new release with both new features, performance enhancements and bugfixes.
+
+Snowflake integration
+---------------------
+
+* **New feature** Experimental support for leveraging Snowflake Java UDF for faster (up to 3x faster) in-database scoring of ML models. Requires Snowflake Java UDF (preview) on Snowflake side.
+* **New feature** Experimental support for leveraging Snowflake Java UDF for exporting ML models to Snowflake functions that can be reused by any Snowflake user or client application. Requires Snowflake Java UDF (preview) on Snowflake side.
+* **New feature** Experimental support for leveraging Snowflake Java UDF for data preparation, allowing push down of the following processors:  String transformer, Currency extractor, Filter on bad meaning, Query string parsing, Holidays flagging, GeoIP resolution
+* **New feature** Experimental support for direct fast write into Snowflake from any recipe, without having to sync through cloud storage anymore
+* **New feature** Fast load and fast unload from/to Google Cloud Storage
+* **New feature** Fast load from Azure Blob to Snowflake in Parquet format
+* Increased max colum names length to the maximum supported by Snowflake, 251
+
+
+Datasets & Formats
+-------------------
+
+* Redshift: **New feature** Experimental support for direct fast write into Redshift from any recipe, without having to sync through S3 anymore
+* Synapse: **New feature** Experimental support for direct fast write into Synapse from any recipe, without having to sync through Azure Blob anymore
+* Synapse: **New feature** Ability to set distribution policy in the UI
+* Synapse: Fixed issue with table creation on partitioned datasets
+* BigQuery: **New feature** Added ability to read and write nested and repeated fields
+* BigQuery: Experimental alternate mode to interact with BigQuery, providing ability to read data samples without incurring the cost of a full scan
+* BigQuery: Experimental support for displaying query cost estimation in notebook
+* ElasticSearch: **New feature** Added ability to use a custom query DSL filter
+* ElasticSearch: **New feature** Experimental support for index patterns (for reading)
+* S3: Fixed issue with partitioned datasets with spaces in partition names
+* **New feature**: Added ability to import table definitions from an external Hive-compatible metastore, such as a Databricks metastore
+* Improved "skip first line" detection for CSV files
+* Improved detection of schema for CSV files with empty column names
+* Added ability to override Parquet message style when DSS fails to recognize it
+* Fixed ability to create a dataset from the files of a shared managed folder
+* Fixed display of query in "SQL query" datasets
+
+Machine Learning
+-----------------
+
+* **New feature**: Added stop words for Afrikaans, Albanian, arabic, Armenian, Basque, Bengali, Bulgarian, Catalan, Chinese, Croatian, Czech, Danish, Dutch, Estonian, Finnish, German, Greek, Gujarati, Hebrew, Hindi, Hungarian, Icelandic, Indonesian, Irish, Italian, Japanese, Korean, Latvian, Lithuanian, Macedonian, Malayalam, Marathi, Nepali, Norwegian, Persian, Polish, Portuguese, Romanian, Russian, Sanskrit, Serbian, Sinhala, Slovak, Slovenian, Spanish, Swedish, Tagalog, Tamil, Tatar, Telugui, Thai, Turkish, Ukrainian, Urdu, Vietamese, Yoruba - These are available in "Simplify Text", "Tokenize text", "Analyze text" and Text feature handling
+* **New plugin**: Plugin Model error analysis adds a Saved model custom view to highlight the samples mostly contributing to a predictive model’s errors
+* Fixed class weights with XGBoost
+* Update the available code samples when changing prediction type
+* Fixed possible breakage of models when the preparation script contained a "filter on date range" processor
+* Fixed issue with duplicating ML Tasks
+* Fixed wrong result of SQL scoring with numerical columns stored as strings
+* Fixed various small numerical inconsistencies in SQL scoring
+* Fixed issues with colors in clustering models reports
+* Fixed display of custom scores in binary classification model reports
+
+Coding and API
+---------------
+
+* Added ability to specify strings that Pandas should consider as "NA" (i.e. make it possible not to consider the "NA" string as being a NA value)
+* Added ability to autodetect ElasticSearch dataset settings
+* Added API for Model Documentation Generator
+* Fixed creation of values-based meanings with Python 3
+* Fixed ``dataiku.Folder.upload_file`` method with binary files and Python 3
+* Fixed mangling of name when importing a notebook with CJK characters in the name
+* Fixed bad interaction between "Edit recipe in notebook" and notebooks imported from Git
+* Copying notebooks will now clear the "associated recipe"
+* Fixed link to editor settings from library editor
+* Fixed ability to use scenario-level variables in code recipes
+* Fixed issues with "Git references" in code libraries
+* Fixed conversion of notebooks with Markdown cells to recipes
+* Improved the API for setting values of numerical hyperparameters on ML tasks
+* When creating a code environment, go directly to its page
+* Fixed display issue when deleting a code env while being on the code env page
+* Added search in all code env dropdowns
+
+Flow
+----
+
+* **Performance**: Strongly improved display performance of Flow page for very large flows with many zones and many projects in the instance
+* **Performance**: Strongly improved display performance for "Jobs" page with very large flows
+* Fixed display of Flow if you enter a wrongful pattern in a Flow filter
+* Fixed recipes being moved to the default zone when moving them
+* Fixed bad error display when trying to rebuild a write-protected dataset
+* Removed bogus ability to edit tags on shared datasets
+* Removed bogus ability to edit tags in the quick Flow navigator
+* Fixed display of "collapsed" Flow zones
+* Fixed failures copying flows or subflows with SQL recipes
+
+Data preparation
+-----------------
+
+* Pattern generator: Improved support for detecting non-ASCII text
+* Fixed support for `val("column", default_value)` in formula
+* Formula editor: fixed support for regular expressions
+* Formula editor: fixed support for datePart function
+* Fixed support for default value on `strval` for SQL engine
+* Fixed handling of null values in "min" and "max" formula functions
+* Fixed the "real Python" mode of the Python processor when running on Spark
+* Fixed issue in the "Impute missing values" processor
+* Fixed the help tooltip for "Force numerical range" processor
+
+
+Plugins and extensibility
+--------------------------
+
+* Fixed duplicate columns appearing in "column name" fields
+* Fixed various other issues with column name autocompletion
+* Fixed dynamic select choices for custom views (managed folders and models)
+* Fixed dynamic select choices for "create cluster" scenario step
+* Fixed dynamic select choices for PRESET fields
+* Fixed dynamic select choices in custom Kubernetes exposition plugins
+* Added ability to use presets in custom Kubernetes exposition plugins
+* Automatically commit plugin.json at first commit
+* Fixed typo when reverting plugin to a previous revision
+
+Collaboration & Applications
+------------------------------
+
+* Fixed disappearing "users", "creation" and "last modification" fields in catalog
+* Strongly increased maximum character limit of Wiki pages
+* Fixed missing scroll in profile page
+* Experimental ability to hide unwanted recipes (legacy Hadoop, R, Scala, ...)
+* Fixed Wiki export when working on a machine without users namespaces enabled
+* Fixed Dataiku Applications flooding the logs
+* Dataiku Applications: added the "is a Dataiku application" visual indicator in all project listing pages
+
+Deployer
+---------
+
+* Added ability to ignore SSL certificate validation for design-node-to-deployer communication
+* Various UI fixes
+
+Automation and scenarios
+-------------------------
+
+* Fixed wrongful display of "Created on" in the "Triggers" page of Automation monitoring
+* Fixed small display issues in Triggers page
+
+Cloud Stacks
+-------------
+
+* Better default volume sizes and volume resizing strategies for high-activity and high-volumetry instances
+* Added ability to define tags at fleet creation, that will be propagated both at instance and network levels
+* AWS: Added ability to encrypt the root EBS volume. Default to encrypting both root and data EBS volumes
+* AWS: Added ability to use a custom CMK for encrypting root and data EBS volumes on Fleet Manager instance
+* AWS: Install the AWS Systems Manager agent on both Fleet Manager and DSS images
+* AWS: Default to automatically creating the security groups
+* AWS: Upgrade eksctl for compatibility with latest EKS versions
+* AWS: Fixed startup failures after too many reprovisionings of an instance
+* Additional hardening of the runtime images following CIS Benchmark guidelines
+
+Streaming
+----------
+
+* Fixed support for continuous Python recipes when UIF is enabled
+* Fixed ability to create a continuous sync recipe directly from the streaming endpoint
+
+Dashboards
+-----------
+
+* Fixed dashboards PDF export sometimes being clipped
+* Fixed display of preview of files in "file from managed folder" insight
+
+
+Elastic AI
+-----------
+
+* Fixed TLS termination with nginx ingress
+* Added more transient errors that are recognized as non fatal while monitoring Kubernetes jobs
+* Fixed startup failure with custom Kubernetes exposition plugins
+* Fixed support for webapps on Kubernetes
+
+Security
+---------
+
+* Added an audit event when opening a Jupyter notebook
+* Added encryption of client secret fields in Azure Blob, SQL Server and Synapse connections
+* Fixed bad redirect to HTTP when fetching credentials for 3rd-party services with OAuth
+* Fixed display of error upon failure to acquire an OAuth2 authorization code
+* Fixed :doc:`stored XSS in objects titles </security/advisories/dsa-2021-002>`
+
+Misc
+-----
+
+* Fixed typo when switching project to another branch
+* Fixed UI issue in export recipe
+* Fixed migration issue when a DSS 9 project had been imported to a DSS 8 instance and this instance is then added to DSS 9
+* Fixed bug when multiple DSS instances use the same PostgreSQL database and schema for runtime databases
+* Fixed failure to display data after migration to DSS 9 when some kinds of date filters were present
+* Fixed Excel export of charts when some kinds of date filters were present
+* Fixed default settings for "Push to editable" recipe
+* Fixed eventserver not refreshing the token when using a S3 connection with "Assume role"
+
+Version 9.0.3 - May 10th, 2021
+================================
+
+DSS 9.0.3 is a bugfix release. We recommend that you upgrade to DSS 9.0.3
+
+Flow
+----
+
+* Fixed inability to create recipes based on shared datasets
+* Fixed various errors in recipe edition screens
+
+Scenarios
+----------
+
+* Fixed display issue in Automation Monitoring "Triggers" page
+
+Version 9.0.2 - May 4th, 2021
+==================================
+
+DSS 9.0.2 is a significant new release with both new features, performance enhancements and many bugfixes. Note that we recommend that you upgrade to 9.0.3 rather than 9.0.2
+
+Datasets and connections
+-------------------------
+
+* **New feature** Added OAuth2 login for Snowflake
+* **New feature** Added OAuth2 login for Azure Blob
+* Azure Blob: Made the "client secret" field hidden
+* MongoDB: Removed connection details from logs
+* BigQuery: Fixed metrics computation on BigQuery "SQL Query" datasets
+* SCP: Fixed write to managed folders based on SCP connections
+* Google Cloud Storage: Fixed PDF preview in managed folders
+* Fixed preview of images with specials characters in their file names in managed folders
+
+Visual recipes
+------------------------
+
+* **New feature**: Prepare: Added support for SQL pushdown of "inc" formula function (add to dates) to BigQuery and Snowflake
+* **New feature**: Prepare: Added support for SQL pushdown of "coalesce" formula function to BigQuery and Snowflake
+* **New feature**: Prepare: Added support for SQL pushdown of "rand" formula function to BigQuery and Snowflake
+* **New feature**: Prepare: Added support for SQL pushdown of trigonometric functions to Snowflake
+* **Performance**: Sync and Prepare: Strongly improved performance on large partitioned datasets (notably S3 / Azure Blob / Google Cloud Storage)
+* **Performance**: Join: Improved performance of DSS engine with non-equijoin conditions
+* Prepare: Fixed issue with SQL pushdown of "concat" formula function with Snowflake and NULL values
+* Prepare: Fixed possible SQL pushdown issue with formula processor
+* Prepare: Added ability to trim white spaces in "Find and replace"
+* Prepare: Fixed issue with SQL pushdown of date parsing on Snowflake with numeric columns
+* Prepare: Fixed issue when setting 'cast output' to None in Formula step
+* Prepare: Fixed formula validation issue with column names starting with numbers
+* Prepare: UX enhancements on "Pattern detector" and "Smart date"
+
+Hadoop and Spark
+---------------------
+
+* **New feature** Added support for Cloudera Data Platform CDP Private Cloud Base (CDH 7)
+* **New feature** Added support to direct writes from Spark to S3 with SSE-KMS encryption
+
+Deployer
+--------------------
+
+* **Performance**: Improved performance of Deployer dashboards with large number of deployments
+* Fixed deployment dialog being stuck when a warning happens during bundle activation
+* Fixed sticky tooltip for performance charts in API deployer
+
+Collaboration
+--------------
+* **New feature** Central tracking of project reporters in admin monitoring
+* **Performance**: Improved performance of home page on Firefox
+* Fixed a bug when importing a project containing API services that use a code environment with remapping 
+* Fixed wrongful URLs in navigation bar when duplicating projects
+
+Dataiku Applications
+------------------------
+
+* **New feature** The labels of the 'run button' and 'edit variables application' tiles are now customizable
+* Added possibility to mass delete application instances
+* By default app instances are now hidden in the 'all projects' list
+* In application designer always prompt for saving when updating the test instance
+* Improved error message for 'download file from folder' tile
+* Improved error handling for application-as-recipes
+* Fixed 'Append instead of overwrite' in application-as-recipes
+
+Flow
+-------------------------
+
+* **Performance**: Strongly improved network and UI performance when creating or opening recipes in projects with large flows or large number of columns
+* **Performance**: Strongly improved performance of "Computing job dependencies" for very large flows and flows with large number of "branches"
+* **Performance**: Strongly improved performance of "Computing job dependencies" for partitioned flows where "all available" and "latest available" are used for building multiple partitions 
+* Fixed possible crash when using flow zones
+* When copying a recipe, the new recipe now appears in the same zone than the original recipe
+* Fixed "Set auto count of records" action
+
+Machine Learning
+-------------------------
+
+* **Performance**: Individual explanations: Improved performance with large number of categories and for text features
+* **Performance**: Improved memory usage for ML training
+* Individual explanations: Fixed scoring recipe with computation of Individual explanations and 'output probabilities' disabled
+* Preprocessing: Fixed "MINMAX" mode of feature rescaling 
+* Preprocessing: Fixed display of feature generation
+* Preprocessing: Fixed wrong stop words usage for Saved models training
+* SQL scoring: fixed issue with rejected features
+* Interactive scoring: Fixed empty categorical dropdown for some preprocessing
+* Interactive scoring: Fixed first loading of threshold on Firefox
+* Interactive scoring: Fixed issue with UIF
+* Custom algorithms: Added ability to display regression coefficients for custom linear models
+* Custom algorithms: Fixed possible failure when scoring with explanations
+* Custom views: Made Saved model custom views exportable in the dashboard
+* Custom views: Made available for analysis models (in addition to saved models)
+* Partitioned models: Fixed race condition for partitioned training recipe
+* Partitioned models: Fixed detection of unused partitions of partitioned models when partition name contains extended charsets
+* Partitioned models: Fixed display of insight for partitioned models
+* Partitioned models: Fixed duplicated tabs
+* Notebook export: Added support for instance weights
+* Model Document Generation: Fixed issue with models coming from imported or duplicated projects
+* Fixed training in edge cases of numeric features with few values including invalid values on Python 3
+* Fixed discrepancy between Java scoring and SQL batch scoring on models trained with Python 3
+* Made the seed of the hyper-parameter search independent from the seed of the train-test split
+* Rounded display of threshold when evaluating a binary classification model
+* Fixed scoring recipe with multiclass prediction and python scoring if "Output probabilities" is disabled
+* Removed non compatible exponential loss training option for Gradient Boosted Tree on multiclass
+* PMML export: Added back support for dummy-encoded categorical features
+* PMML export: Improved consistency between PMML models and DSS scoring
+* PMML export: Added support for models with "treat missing as regular" for categorical features
+* PMML export: Added support for Extra Trees algorithm
+* PMML export: Explicitly list drop rows as incompatible preprocessing for PMML
+* API: Enforced PMML compatibility check
+* API: Added helpers to manage time-based prediction
+
+Scenarios
+---------------
+
+* **New feature** Central tracking of scenario reporters on automation monitoring
+* **New feature**: Ability to configure the max number of results for "Execute SQL"
+* Fixed infinite loop with monthly triggers running "on first week"
+* Made webhooks reporter appear as failed if the webhook gets a non-2XX HTTP return code
+* Fixed connection remapping for "Execute SQL" steps during bundle activation
+* Fixed Python API methods 'add_monthly_trigger' and 'add_periodic_trigger'
+* Fixed addition of newly-created scenarios in catalog
+
+
+Notebooks
+----------------------
+* **New feature**: Support for installing Jupyter nbextensions
+* When deleting a notebook, unload it first
+* Fixed adding new tags to notebooks
+* Fixed unloading notebooks of users with a dot in their name
+* Fixed "Explain" in SQL notebooks with very large queries
+
+
+Coding
+-------------------------
+* Javascript client: Fixed Javascript dataiku.getSchema.getColumnNames() method
+* API: Added API to get project creation and last modification dates
+* API: Fixed "DSSFuture" API in Python client
+* Webapps: Fixed Bokeh webapps behind a reverse proxy
+* SQL recipes: Added ability to access recipe inputs by position rather than name
+
+Cloud Stacks
+-------------
+
+* Added support for static private IP for nodes
+* Fixed display of the "Clusters" tab in Deployer node
+* Fixed support of special characters in passwords
+
+Security 
+----------
+
+* Added the 'require authentication' option at webapp levels for plugin webapps
+* Fixed "admin-connection-save" audit log entry
+* Upgraded Nginx version in container images to avoid a Nginx 1.16 vulnerability ([CVE-2019-20372])
+
+Misc
+-----
+
+* Large update of the administrative boundaries for reverse geocoding and administrative charts (notably fixing an issue with some US states)
+* **Performance**: Performance enhancement for the "Line chart" with "Interrupt line" mode
+* Fixed UI issue in "Enrichments" page of API designer
+* Improved handling of errors in statistics screen
+* Fixed leak of folders in /tmp when UIF is enabled
+
+
+Version 9.0.1 - April 6th, 2021
+======================================
+
+DSS 9.0.1 is a significant new release with both performance enhancements and bugfixes
+
+Datasets and connections
+-------------------------
+
+* Azure Synapse: Fixed "contains" formula function and visual operator
+* Snowflake: Added support for explain plans
+* Azure Blob: Fixed issue with restrictive ACLs on parent folders of datasets
+* Delta Lake: Fixed preview of large Delta datasets
+
+Deployer
+--------
+
+* Fixed failure when re-deploying API services from pre-existing infrastructures and deployments from DSS 7.0
+* Fixed project list search in Project Deployer
+* When bundle preload fails, keep the failure logs visible
+* Improved error message readability in the health status of a deployment
+* Improved Deployer integration in the Global Finder
+* Fixed inability to import projects in case of failure during code env remapping
+
+Machine learning
+----------------------
+
+* Regression Fixed scatter plot when model is trained in Python 3
+
+Performance and scalability
+-----------------------------
+
+* **Performance**: Improved performance when a very large number of scenarios start at the same time
+* **Performance**: Improved performance of automation home page with high number of projects and scenario runs
+* **Performance**: Improved performance of project home page with high number of scenario runs
+* **Performance**: Improved performance of scenario page with high number of runs
+* **Performance**: Improved performance of automation monitoring pages with high number of runs
+* **Performance**: Reduced resource consumption of backend with very large number of triggers
+* **Performance**: Reduced resource consumption of backend with very large number of "Build" scenario steps
+* **Performance**: Reduced resource consumption of backend with very large number of connected users
+
+Prepare recipe
+------------------
+* UI and UX improvements on the smart pattern generator
+* UI and UX improvements on the smart date modal
+
+Coding
+--------------
+
+* New feature: Added an API for listing and managing Jupyter notebooks
+
+Cloud stacks
+----------------
+
+* Made public IP optional on Fleet Manager CloudFormation template
+* Added EBS encryption for the Fleet Manager EBS
+
+Notebooks
+----------
+
+* SparkSQL notebook: fixed issues with very large Parquet datasets
+
+
+Misc
+----
+
+* Added support for Microsoft Edge browser
+* Fixed possible failures of the "clear scenario logs" macro
+* Fixed possible upgrade failure when time-based triggers contained invalid settings
+
+Version 9.0.0 - March 1st, 2021
+=====================================
+
+DSS 9.0.0 is a major upgrade to DSS with major new features.
+
+New features
+-------------
+
+Unified Deployer
+%%%%%%%%%%%%%%%%%
+
+The :doc:`DSS Deployer </deployment/index>` provides a unified environment for fully-managed production deployments of both projects and API services. It allows you to have a central view of all of your production assets, to manage CI/CD pipelines with testing/preproduction/production stages, and is fully API-drivable.
+
+For more details, please see :doc:`/deployment/index`.
+
+Interactive scoring and What-if
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Interactive scoring is a simulator that enables any AI builder or consumer to run “what-if” analyses (i.e., qualitative sensibility analyses) to get a better understanding of what impact changing a given feature value has on the prediction by displaying in real time the resulting prediction and the individual prediction explanations. 
+
+For more details, please see :doc:`/machine-learning/supervised/interactive-scoring`.
+
+Dash Webapps
+%%%%%%%%%%%%%
+
+Dash by Plotly is a framework for easily building rich web applications. DSS now includes the ability to write, deploy and manage Dash webapps. Dash joins Flask, Bokeh and Shiny as webapps building frameworks to help data scientists go much further than simple dashboards and provide full interactivity to users.
+
+For more details, please see :doc:`/webapps/dash`.
+
+Fuzzy join recipe
+%%%%%%%%%%%%%%%%%%
+
+A very frequent data wrangling use case is to join datasets with "almost equal" data. The new "fuzzy join" recipe is dedicated to joins between two datasets when join keys don't match exactly. It handles inner, left, right and outer fuzzy joins, and handles text, numerical and geographic fuzziness.
+
+For more details, please see :doc:`/other_recipes/fuzzy-join`
+
+
+Smart Pattern Builder
+%%%%%%%%%%%%%%%%%%%%%
+
+In Data Preparation, you can now highlight a part of a cell in order to automatically generate suggestions to extract information "similar" to the one you highlighted. You can then add other examples to guide the automated pattern builder of DSS, and choose the pattern that provides you with the best results.
+
+.. TODO: link
+
+Visual ML Diagnostics
+%%%%%%%%%%%%%%%%%%%%%%
+
+ML Diagnostics help you detect common pitfalls while training models, such as overfitting, leakage, insufficient learning and such. It can suggest possible improvements.
+
+For more details, please see :doc:`/machine-learning/diagnostics`
+
+Model assertions
+%%%%%%%%%%%%%%%%%
+
+Model assertions streamline and accelerate the model evaluation process, by automatically checking that predictions for specified subpopulations meet certain conditions. You can automatically compare "expected predictions" on segments of your test data with the model's output. DSS will check that the model's predictions are aligned with your business judgment.
+
+For more details, please see :doc:`/machine-learning/supervised/ml-assertions`
+
+
+Distributed Hyperparameters Search
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+It is now possible to distribute the training of a single model over multiple containers. Dataiku will automatically distribute all the points of the hyperparameter search. The distribution happens transparently, leveraging Kubernetes. No additional setup is required.
+
+Distributed hyperparamter search permits vastly increased depth and precision of hyperparameter search while keeping an acceptable time for training.
+
+.. TODO: link
+
+Git push and pull for notebooks
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+It is now possible to fetch Jupyter notebooks from existing Git repositories, and to push them back to their origin. Pulls and pushes can be made notebook-per-notebook or for a group of notebooks.
+
+For more details, please see :doc:`/collaboration/import-notebooks-from-git`
+
+Wiki Export
+%%%%%%%%%%%%
+
+Wikis can now be exported to PDF, either on a per-article basis or globally.
+
+For more details, please see :doc:`/collaboration/wiki`
+
+Model Fairness report
+%%%%%%%%%%%%%%%%%%%%%%
+
+Evaluating the fairness of machine learning models has been a topic of both academic and business interest in recent years. Before prescribing any resolution to the problem of model bias, it is crucial to learn more about how biased a model is, by measuring some fairness metrics. The model fairness report provides you with assistance in this measurement task.
+
+For. more details, please see :doc:`/machine-learning/supervised/model-fairness-report`
+
+Streaming (experimental)
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+DSS now features an experimental real-time processing framework, notably targeting Kafka and Spark Structured Streaming.
+
+For more details, please see :doc:`/streaming/index`
+
+Delta Lake reading (experimental)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+DSS now features experimental support for directly reading the latest version of Delta Lake datasets.
+
+For more details, please see :doc:`/connecting/formats/deltalake`
+
+Other notable enhancements
+---------------------------
+
+Azure Synapse support
+%%%%%%%%%%%%%%%%%%%%%
+
+DSS now officially supports Azure Synapse (dedicated SQL pools)
+
+For more details, please see :doc:`/connecting/sql/synapse`
+
+Date Preparation
+%%%%%%%%%%%%%%%%%%
+
+DSS brings a lot of new capabilities for date preparation:
+
+* New visual prepare processors for incrementing or truncating dates, and for finding differences between dates
+* New ability to delete, keep or flag rows based on various time intervals
+* Better date filtering capabilities for Explore view
+
+For more details, please see :doc:`/preparation/dates`
+
+Formula editor
+%%%%%%%%%%%%%%%
+
+The formula editor has been strongly enhanced with better code completion, inline help for all functions and features, and better examples.
+
+For more details, please see :doc:`/formula/index`
+
+Spark 3
+%%%%%%%%
+
+DSS now supports Spark 3.
+
+If using :doc:`Dataiku Cloud Stacks for AWS </installation/cloudstacks-aws/index>` or :doc:`Elastic AI for Spark </containers/index>`, Spark 3 is builtin.
+
+It is also now possible to use ``SparkSession`` in Pyspark code 
+
+Python 3.7
+%%%%%%%%%%%
+
+DSS now supports Python 3.7
+
+You can now create Python 3.7 code envs. In addition, on Linux distributions where Python 3.7 is the default, DSS will automatically use it.
+
+In addition, new DSS setups will now use Python 3.6 or Python 3.7 as the default builtin environment.
+
+In Python 3.7, ``async`` is promoted to a reserved keyword and thus cannot be used as a keyword argument in a method or a function anymore. As a consequence, the DSS ``Scenario`` API is replacing the ``async`` keyword argument, formerly used in some methods, by the ``asynchronous`` keyword argument. Please make sure to update uses of the ``Scenario`` class accordingly if running Python scenarios or Python scenario steps with Python 3.7.
+
+Impacted methods are: ``run_scenario``, ``run_step``, ``build_dataset``, ``build_folder``, ``train_model``, ``invalidate_dataset_cache``, ``clear_dataset``, ``clear_folder``, ``run_dataset_checks``, ``compute_dataset_metrics``, ``synchronize_hive_metastore``, ``update_from_hive_metastore``, ``execute_sql``, ``set_project_variables``, ``set_global_variables``, ``run_global_variables_update``, ``create_jupyter_export``, ``package_api_service``.
+
+Builtin Snowflake driver
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+DSS now comes with the Snowflake JDBC driver and native Spark connector builtin. You do not need to install JDBC drivers for Snowflake anymore.
+
+Enhanced "time-based" trigger
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The time-based trigger in scenario has been strongly enhanced with the following capabilities:
+
+* Ability to show and handle triggering times in all timezones, not only server timezone
+* Ability to run every X hours instead of only every hour
+* Ability to run every X days instead of only every day
+* Ability to run every X week instead of only every week
+* Ability to run every X months instead of only every month
+* For once every X month triggers, ability to run on "last Monday" or "third Tuesday"
+* Ability to set a starting date for a trigger
+
+Enhanced cross-connection and no-input SQL recipes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+SQL recipes can now work without an input dataset. The recipe will run in the connection of the output dataset.
+
+For SQL recipes with both inputs and outputs, it is now possible to enable "cross-connection" handling while using
+the connection of the output (previously, only inputs could be selected).
+
+Addition of individual users to projects
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+You can now grant access to projects to individual users, in addition to groups.
+
+Pan/Zoom control in Flow
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+You can now zoom and pan on the flow with the keyboard, and zoom and reset the zoom with dedicated buttons.
+
+Variables expansion support in "Build" 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The "Build" dialog now supports variables expansion for partitioned datasets
+
+Variables expansion support in "Explicit values" 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The "Explicit Values" partition dependency function now supports variables expansion
+
+Schema reload and propagation as scenario steps
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In many situations, it is expected that the schema of a Flow input dataset will change frequently, and that these
+changes should be accepted and their impacts propagated without further manual intervention.
+
+In order to ease the situations, DSS 9 introduces two new scenario steps:
+
+* "Reload dataset schema" to reload the schema of an input dataset from the underlying data source
+* "Propagate schema" to perform an automated schema propagation across the Flow.
+
+These steps should usually be used before a recursive Build step.
+
+Experimental read support for kdb+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Dataiku now features experimental support for reading from :doc:`/connecting/kdbplus`
+
+Other enhancements and fixes
+-----------------------------
+
+Datasets
+%%%%%%%%%
+
+* Snowflake: the JDBC driver and Spark connector are now preinstalled and do not need manual installation anymore
+* Snowflake: added post-connect statements
+* Snowflake: added support for Snowflake -> S3 fast-path when the target bucket mandates encryption
+* Vertica: fixed partitioning outside of the default schema
+* PostgreSQL: the builtin PostgreSQL has been updated to a more recent version, which notably fixes issues with importing tables on PostgreSQL 12
+* S3: It is now possible to force "path-style" rather than "virtualhost-style" S3 access. This is mainly useful for "S3-compatible" storages.
+* BigQuery: fixed ability to use "high throughput" mode for the JDBC driver
+
+Flow
+%%%%
+
+* Added detection of changes in editable datasets, which will now properly trigger rebuilds
+* Fixed missing refresh of "Building" indicator with flow zones
+* Fixed wrong "current" flow zone remembered when browsing
+
+Visual recipes
+%%%%%%%%%%%%%%%
+
+* Prepare on Snowflake: fixed handling of accentuated column names
+* Fixed handling of "contains" formula operator on Impala when the string to match contains ``_``
+* Fixed "Use an existing folder" on download recipe
+* Added variables expansion on "Flag rows where formula matches" processor
+
+Machine Learning
+%%%%%%%%%%%%%%%%%
+
+* The Evaluation recipe can now output the cost matrix gain
+* PMML export now supports dummy-encoded variables
+* Custom models can now access the list of feature names
+* Fixed failure scoring on SQL with numerical features stored as text
+* Text features: fixed stop words when training in containers
+* Fixed warning in Jupyter when exporting a model to a Jupyter notebook
+* Added ability to define a class inline for a custom model
+* Switched XGBoost feature importances to use the "gain" method (library default since version 0.82)
+
+Elastic AI and Kubernetes
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+* AKS: fixed node pool creation with a zero minimum number of nodes
+* AKS: added ability to select the system node pool
+* Disabling an already-disabled Kubernetes-based API deployment will not fail anymore
+* Fixed webapps on Kubernetes leaking "Deployment" objects in Kubernetes
+* Fixed possible failures deploying webapps due to invalid Kubernetes labels
+* Fixed possible failures running Spark pipelines due to invalid Kubernetes labels
+* Added support for CUDA 11 when building base images
+* Fixed validation of Hive recipes containing "UNION ALL" on HDP 3 and EMR
+
+Collaboration
+%%%%%%%%%%%%%%
+
+* Fixed "Back" button when going to the catalog
+* Fixed tags filtering with spaces in tag names
+* Fixed links to DSS items when putting a wiki page on the home page
+* Fixed display of Scala notebooks in Catalog
+
+Automation
+%%%%%%%%%%%
+
+* Display in project home page when triggers are disbaled
+* Added ability for administrators to force the SMTP sender, preventing users from setting it
+* Performance improvements on "Automation monitoring" pages
+
+Coding
+%%%%%%%%%%
+
+* Fixed handling of records containing ``\r`` in Python when using ``write_dataframe``
+* Fixed code env rebuilding if the code env folder had been removed
+* Fixed "with_default_env" on project settings class
+* Fixed ability to delete a code env if a broken dataset exists
+
+Charts
+%%%%%%
+
+* Added a safety against potential memory overruns when requesting too high number of bins
+* Fixed sort with null values on PostgreSQL
+
+Notebooks
+%%%%%%%%%%%
+
+* SQL notebooks: added explain plans directly in SQL notebooks
+* Jupyter: Fixed "File > New" and "File > Copy" actions
+* Fixed renamed notebooks not appeareding in "recent elements"
+* Fixed icon of SQL notebooks in "recent elements"
+
+Misc
+%%%%
+
+* RMarkdown: fixed support for project libraries
+* Fixed erroneous behavior of the browser's "Back" button when going

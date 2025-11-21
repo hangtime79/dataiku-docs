@@ -1,0 +1,23 @@
+html.writer-html4 .rst-content dl:not(.docutils) dl.property,
+html.writer-html5 .rst-content dl[class]:not(.option-list):not(.field-list):not(.footnote):not(.glossary):not(.simple) dl.property {
+    display: block;
+}
+
+.rst-content {
+    overflow-wrap: anywhere;
+}
+
+/* override code display so that it scrolls when it overflows the page (i.e. on OPALS) */
+.rst-content code {
+    display: inline-block;
+    line-height: 1.2;
+    vertical-align: middle;
+}
+
+/* override overflow-wrap: anywhere on full page view as it overbreaks words in columns with relatively little content 
+ * below 828px in full page view, table overflow starts to get hidden */
+@media (min-width: 828px) {
+    .rst-content table td, .rst-content table th {
+        overflow-wrap: normal
+    }
+}

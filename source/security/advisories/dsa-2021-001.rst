@@ -1,0 +1,27 @@
+:orphan:
+
+Stored XSS in object titles
+##############################################
+
+Information
+=============
+
+* Advisory ID: DSA-2021-001
+* CVSS Base Score: 8.8
+* Severity: High
+* CWE classification: CWE-79
+
+Summary
+========
+
+In Dataiku DSS before 8.0.7, insufficient input sanitization could lead to a stored XSS in the "title" fields of projects and other Dataiku objects.
+
+Affected Products
+==================
+
+Dataiku DSS in versions before 8.0.7
+
+Mitigation
+===========
+
+Dataiku DSS 8.0.7 has been made available to customers to remediate this issue

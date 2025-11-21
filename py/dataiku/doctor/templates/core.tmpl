@@ -1,0 +1,320 @@
+### {{ title }}
+
+##### Notebook automatically generated from your Model
+
+###### Generated on {{ now }}
+
+{% block head %}
+{% endblock %}
+
+
+{% block imports %}
+## Let's start with importing the required libs :
+import dataiku
+import numpy as np
+import pandas as pd
+import sklearn as sk
+import dataiku.core.pandasutils as pdu
+from dataiku.doctor.preprocessing import PCA
+from collections import defaultdict, Counter
+{% endblock %}
+
+## And tune pandas display options:
+pd.set_option('display.width', 3000)
+pd.set_option('display.max_rows', 200)
+pd.set_option('display.max_columns', 200)
+
+
+###### Importing base data
+
+## The first step is to get our machine learning dataset:
+
+input_columns = {{input_columns}}
+%time ml_dataset = dataiku.Dataset('{{ dataset }}').get_dataframe(columns=input_columns)
+print 'Base data has %i rows and %i columns' % (ml_dataset.shape[0], ml_dataset.shape[1])
+# Five first records",
+ml_dataset.head(5)
+
+###### Initial data management
+
+## The preprocessing aims at making the dataset compatible with modeling.
+## At the end of this step, we will have a matrix of float numbers, with no missing values.
+## We'll reuse the schema and the preprocessing steps defined in Models.
+##
+## Let's coerce categorical columns into unicode, numerical features into floats.
+
+categorical_features = {{ categorical_features }}
+numerical_features = {{ numerical_features }}
+text_features = {{ text_features }}
+from dataiku.doctor.utils import datetime_to_epoch
+for feature in categorical_features:
+    ml_dataset[feature] = ml_dataset[feature].astype('unicode')
+for feature in text_features:
+    ml_dataset[feature] = ml_dataset[feature].astype('unicode')
+for feature in numerical_features:
+    if ml_dataset[feature].dtype == np.dtype('<M8[ns]'):
+        ml_dataset[feature] = datetime_to_epoch(ml_dataset[feature])
+    else:
+        ml_dataset[feature] = ml_dataset[feature].astype('double')
+
+{% block profiling_copy %}
+{% endblock %}
+
+## The preprocessing aims at making the dataset compatible with modeling.
+## At the end of this step, we will have a matrix of float numbers, with no missing values.
+## We'll reuse the schema and the preprocessing steps defined in Models.
+
+{% if deduplication.enabled %}
+    ## Let's start with deduplication
+    feature = {{ deduplication.deduplicate_on }}
+    {% if feature == "__ALL__" %}
+        ml_dataset = ml_dataset.drop_duplicates()
+    {% else %}
+        ml_dataset = ml_dataset.drop_duplicates("{{feature}}")
+    {% endif %}
+{% else %}
+## ( Deduplication not required, skipping... )
+{% endif %}
+
+
+
+{% block prebody %}
+{% endblock %}
+
+
+{% block preprocessing %}
+###### Features preprocessing
+
+## The first thing to do at the features level is to handle the missing values.
+## Let's reuse the settings defined in the model
+
+drop_rows_when_missing = {{ handle_missing.drop_rows_when_missing }}
+flag_when_missing = {{ handle_missing.flag_when_missing }}
+impute_when_missing = {{ handle_missing.impute_when_missing }}
+
+# Features for which we drop rows with missing values"
+for feature in drop_rows_when_missing:
+    train = train[train[feature].notnull()]
+    {% if is_supervized %}valid = valid[valid[feature].notnull()]{% endif %}
+    print 'Dropped missing records in %s' % feature
+
+# Features for which we replace the feature by a 'flag feature' indicating whether the value was present"
+for feature in flag_when_missing:
+    train['notMissing_' + feature] = train[feature].map(lambda x: 0 if pd.isnull(x) else 1).astype(np.uint8)
+    del train[feature]
+    {% if is_supervized %}
+    valid['notMissing_' + feature] = valid[feature].map(lambda x: 0 if pd.isnull(x) else 1).astype(np.uint8)
+    del valid[feature]
+    {% endif %}
+    print 'Flagged missing values in feature %s' % feature
+
+# Features for which we impute missing values"
+for feature in impute_when_missing:
+    if feature['impute_with'] == 'MEAN':
+        v = train[feature['feature']].mean()
+    elif feature['impute_with'] == 'MEDIAN':
+        v = train[feature['feature']].median()
+    elif feature['impute_with'] == 'CREATE_CATEGORY':
+        v = 'NULL_CATEGORY'
+    elif feature['impute_with'] == 'MODE':
+        v = train[feature['feature']].value_counts().index[0]
+    train[feature['feature']] = train[feature['feature']].fillna(v)
+    {% if is_supervized %}valid[feature['feature']] = valid[feature['feature']].fillna(v){% endif %}
+    print 'Imputed missing values in feature %s with value %s' % (feature['feature'], unicode(str(v), 'utf8'))
+
+## We can now handle the categorical features (still using the settings defined in Models):
+
+
+{% if categorical_processing.DUMMIFY %}
+
+## Let's dummify the following features.
+
+LIMIT_DUMMIES = 10
+
+categorical_to_dummify = {{ categorical_processing.DUMMIFY }}
+
+def select_dummy_values(df, features):
+    dummy_values = {}
+    for feature in categorical_to_dummify:
+        values = [
+            value
+            for (value, _) in Counter(train[feature]).most_common(LIMIT_DUMMIES)    
+        ]
+        dummy_values[feature] = values
+    return dummy_values
+
+DUMMY_VALUES = select_dummy_values(train, categorical_to_dummify)
+
+def dummify_dataframe(df):
+    for (feature, dummy_values) in DUMMY_VALUES.items():
+        for dummy_value in dummy_values:
+            dummy_name = '%s_value_%s' % (feature, unicode(dummy_value, 'utf8'))
+            df[dummy_name] = (df[feature] == dummy_value).astype(float)
+        del df[feature]
+        print 'Dummified feature %s' % feature
+
+dummify_dataframe(train)
+{% if is_supervized %}
+dummify_dataframe(valid)
+{% endif %}
+
+{% endif %}
+
+
+{% if categorical_processing.IMPACT %}
+
+## Let's impact code the following featuress.
+
+categorical_to_impact_code = {{ categorical_processing.method.IMPACT }}
+
+# impact coding
+from dataiku.notebook import ImpactCoding
+
+impact_coding = ImpactCoding('{{ categorical_processing.impact_method }}', m=10)  # tune m
+train = pd.concat([train, impact_coding.fit_transform(train[categorical_to_impact_code], train['__target__'])], axis=1)
+for feature in categorical_to_impact_code:
+    del train[feature]
+{% if is_supervized %}
+valid = pd.concat([valid, impact_coding.transform(valid[categorical_to_impact_code])], axis=1)
+for feature in categorical_to_impact_code:
+    del valid[feature]
+{% endif %}
+for feature in categorical_to_impact_code:
+    print 'Impact Coded feature %s ' % feature
+
+{% endif %}
+
+## Rescaling features
+
+{% if rescale_features %}
+rescale_features = {{ rescale_features }}
+for (feature_name, rescale_method) in rescale_features.items():
+    if rescale_method == 'minmax':
+        _min = train[feature_name].min()
+        _max = train[feature_name].max()
+        scale = _max - _min
+        shift = _min
+    else:
+        shift = train[feature_name].mean()
+        scale = train[feature_name].std()
+    if scale == 0.:
+        del train[feature_name]
+        {% if is_supervized %}del valid[feature_name]{% endif %}
+        print 'Feature %s was dropped because it has no variance' % feature_name
+    else:
+        print 'Rescaled %s' % feature_name
+        train[feature_name] = (train[feature_name] - shift).astype(np.float64) / scale
+        {% if is_supervized %}valid[feature_name] = (valid[feature_name] - shift).astype(np.float64) / scale{% endif %}
+
+{% else %}
+# Rescaling is not required
+{% endif %}
+
+{% if text_features %}
+
+# Text Features
+
+from sklearn.feature_extraction.text import HashingVectorizer
+from sklearn.decomposition  import TruncatedSVD
+
+text_svds = {}
+for text_feature in text_features:
+    n_components = 50
+    text_svds[text_feature] = TruncatedSVD(n_components=n_components)
+    s = HashingVectorizer(n_features=100000).transform(train[text_feature])
+    text_svds[text_feature].fit(s)
+    train_transformed = text_svds[text_feature].transform(s)
+    {% if is_supervized %}
+    valid_transformed = text_svds[text_feature].transform(HashingVectorizer(n_features=100000).transform(valid[text_feature]))
+    {% endif %}
+    for i in xrange(0, n_components):
+        train[text_feature + ":text:" + str(i)] = train_transformed[:,i]
+        {% if is_supervized %}
+        valid[text_feature + ":text:" + str(i)] = valid_transformed[:,i]
+        {% endif %}
+    train.drop(text_feature, axis=1, inplace=True)
+    {% if is_supervized %}
+    valid.drop(text_feature, axis=1, inplace=True)
+    {% endif %}
+{% endif %}
+
+
+{% endblock %}
+
+
+{% block extract_target %}
+{% endblock %}
+
+
+{% block dimension_reduction %}
+
+###### Dimension Reduction
+
+## Finally, the last step before training the dimensionality reduction using a Principal Components Analysis.
+{% if reduce.enabled %}
+
+# Looking for the number of components to keep
+pca = PCA({{ reduce.kept_variance }}, normalize=True,)
+# Training the PCA
+pca.fit(train)
+
+# Apply it on train set
+
+{% if is_supervized %}
+# Stick the target back into the train dataset
+train = pca.transform(train).join(target_train)
+# Apply it on validation set
+valid = pca.transform(valid).join(target_valid)
+{% endif%}
+{% else %}
+# disabled in this model
+{% endif %}
+
+{% endblock %}
+
+###### Modeling
+
+
+{% block modeling %}
+{% endblock %}
+
+## Build up our result dataset
+{% block prediction %}
+{% endblock %}
+
+
+{% block feature_importance %}
+{% if enable_feature_selection %}
+## Let's have a look at feature importances
+feature_importances_data = []
+features = train_X.columns
+for feature_name, feature_importance in zip(features, clf.feature_importances_):
+    feature_importances_data.append({
+        'feature': feature_name,
+        'importance': feature_importance
+    })
+
+# Plot the results
+pd.DataFrame(feature_importances_data)\
+    .set_index('feature')\
+    .sort('importance')[-10::]\
+    .plot(title='Top 10 most important variables',
+          kind='barh',
+          figsize=(10, 6),
+          color='#348ABD',
+          alpha=0.6,
+          lw='1',
+          edgecolor='#348ABD',
+          grid=False,)
+{% endif %}
+{% endblock %}
+
+###### Results
+
+{% block evaluation %}
+{% endblock %}
+
+
+## That's it. It's now up to you to tune your preprocessing, your algo, and your analysis !
+##
+

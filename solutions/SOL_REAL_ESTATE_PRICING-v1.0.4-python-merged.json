@@ -1,0 +1,443 @@
+[
+  {
+    "name": "certifi",
+    "version": "2025.10.5",
+    "lic": null,
+    "printedName": "python-certifi",
+    "homepage": "https://github.com/certifi/python-certifi",
+    "repository": "https://github.com/certifi/python-certifi/tree/2025.10.05",
+    "copyright_line": null,
+    "copyright_url": null,
+    "author": "Kenneth Reitz",
+    "license_url": "https://github.com/certifi/python-certifi/blob/2025.10.05/LICENSE",
+    "license_type": "MPL-2.0",
+    "license_txt": null,
+    "note": "no copyright found",
+    "_source": null,
+    "reviewer": "Guillaume Cassand"
+  },
+  {
+    "name": "click",
+    "version": "8.1.8",
+    "lic": null,
+    "printedName": "Click",
+    "homepage": "https://click.palletsprojects.com",
+    "repository": "https://github.com/pallets/click/tree/8.1.8",
+    "copyright_line": "Copyright 2014 Pallets",
+    "copyright_url": "https://github.com/pallets/click/blob/8.1.8/LICENSE.txt",
+    "author": "pallets",
+    "license_url": "https://github.com/pallets/click/blob/8.1.8/LICENSE.txt",
+    "license_type": "BSD-3-Clause",
+    "license_txt": "click_8.1.8.txt",
+    "note": null,
+    "_source": [
+      {
+        "filename": "click",
+        "path": "python39"
+      }
+    ],
+    "reviewer": "Rustin Crandall"
+  },
+  {
+    "name": "Flask",
+    "version": "2.1.3",
+    "lic": null,
+    "printedName": "Flask",
+    "homepage": "https://flask.palletsprojects.com",
+    "repository": "https://github.com/pallets/flask/tree/2.1.3",
+    "copyright_line": "Copyright 2010 Pallets",
+    "copyright_url": "https://github.com/pallets/flask/blob/2.1.3/LICENSE.rst",
+    "author": "pallets",
+    "license_url": "https://github.com/pallets/flask/blob/2.1.3/LICENSE.rst",
+    "license_type": "BSD-3-Clause",
+    "license_txt": null,
+    "note": null,
+    "_source": null,
+    "reviewer": "Quentin Groshens"
+  },
+  {
+    "name": "geographiclib",
+    "version": "1.52",
+    "lic": null,
+    "printedName": "GeographicLib",
+    "homepage": "https://geographiclib.sourceforge.io/",
+    "repository": "https://geographiclib.sourceforge.io/1.52/python",
+    "copyright_line": "Copyright (c) 2008-2023, Charles Karney",
+    "copyright_url": "https://geographiclib.sourceforge.io/html/LICENSE.txt",
+    "author": "Charles Karney",
+    "license_url": "https://geographiclib.sourceforge.io/html/LICENSE.txt",
+    "license_type": "MIT",
+    "license_txt": null,
+    "note": null,
+    "_source": null,
+    "reviewer": "Divya Thomas"
+  },
+  {
+    "name": "geojson",
+    "version": "2.5.0",
+    "lic": null,
+    "printedName": "geojson",
+    "homepage": "https://pypi.python.org/pypi/geojson/",
+    "repository": "https://github.com/jazzband/geojson/tree/2.5.0",
+    "copyright_line": "Copyright © 2014, contributors of python-geojson",
+    "copyright_url": "https://github.com/jazzband/geojson/blob/2.5.0/LICENSE.rst",
+    "author": "jazzband",
+    "license_url": "https://github.com/jazzband/geojson/blob/2.5.0/LICENSE.rst",
+    "license_type": "BSD-3-Clause",
+    "license_txt": "geojson_2.5.0.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Louis Dorard"
+  },
+  {
+    "name": "geopy",
+    "version": "2.2.0",
+    "lic": null,
+    "printedName": "geopy",
+    "homepage": "https://geopy.readthedocs.io/",
+    "repository": "https://github.com/geopy/geopy/tree/2.2.0",
+    "copyright_line": "Copyright (c) 2006-2018 geopy authors",
+    "copyright_url": "https://github.com/geopy/geopy/blob/2.2.0/LICENSE",
+    "author": "geopy",
+    "license_url": "https://github.com/geopy/geopy/blob/2.2.0/LICENSE",
+    "license_type": "MIT",
+    "license_txt": "geopy_2.2.0.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Killa Rodriguez"
+  },
+  {
+    "name": "importlib_metadata",
+    "version": "8.7.0",
+    "lic": null,
+    "printedName": "importlib_metadata",
+    "homepage": "https://importlib-metadata.readthedocs.io",
+    "repository": "https://github.com/python/importlib_metadata/tree/v8.7.0",
+    "copyright_line": "Copyright © Jason R. Coombs",
+    "copyright_url": "https://github.com/python/importlib_metadata/blob/v8.7.0/LICENSE",
+    "author": "python",
+    "license_url": "https://github.com/python/importlib_metadata/blob/v8.7.0/LICENSE",
+    "license_type": "Apache-2.0",
+    "license_txt": null,
+    "note": null,
+    "_source": null,
+    "reviewer": "Guillaume Cassand"
+  },
+  {
+    "name": "itsdangerous",
+    "version": "2.2.0",
+    "lic": null,
+    "printedName": "ItsDangerous",
+    "homepage": "https://itsdangerous.palletsprojects.com",
+    "repository": "https://github.com/pallets/itsdangerous/tree/2.2.0",
+    "copyright_line": "Copyright 2011 Pallets",
+    "copyright_url": "https://github.com/pallets/itsdangerous/blob/2.2.0/LICENSE.txt",
+    "author": "pallets",
+    "license_url": "https://github.com/pallets/itsdangerous/blob/2.2.0/LICENSE.txt",
+    "license_type": "BSD-3-Clause",
+    "license_txt": "itsdangerous_2.2.0.txt",
+    "note": null,
+    "_source": [
+      {
+        "filename": "itsdangerous",
+        "path": "python310"
+      },
+      {
+        "filename": "itsdangerous",
+        "path": "python311"
+      },
+      {
+        "filename": "itsdangerous",
+        "path": "python39"
+      }
+    ],
+    "reviewer": "Hela Othmani"
+  },
+  {
+    "name": "Jinja2",
+    "version": "3.1.6",
+    "lic": null,
+    "printedName": "Jinja2",
+    "homepage": "https://jinja.palletsprojects.com",
+    "repository": "https://github.com/pallets/jinja/tree/3.1.6",
+    "copyright_line": "Copyright 2007 Pallets",
+    "copyright_url": "https://github.com/pallets/jinja/blob/3.1.6/LICENSE.txt",
+    "author": "pallets",
+    "license_url": "https://github.com/pallets/jinja/blob/3.1.6/LICENSE.txt",
+    "license_type": "BSD-3-Clause",
+    "license_txt": "Jinja2_3.1.6.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Louis Dorard"
+  },
+  {
+    "name": "joblib",
+    "version": "1.5.2",
+    "lic": null,
+    "printedName": "joblib",
+    "homepage": "http://joblib.readthedocs.org",
+    "repository": "https://github.com/joblib/joblib/tree/1.5.2",
+    "copyright_line": "Copyright (c) 2008-2021, The joblib developers.",
+    "copyright_url": "https://github.com/joblib/joblib/blob/1.5.2/LICENSE.txt",
+    "author": "joblib",
+    "license_url": "https://github.com/joblib/joblib/blob/1.5.2/LICENSE.txt",
+    "license_type": "BSD-3-Clause",
+    "license_txt": "joblib_1.5.2.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Guillaume Cassand"
+  },
+  {
+    "name": "MarkupSafe",
+    "version": "3.0.3",
+    "lic": null,
+    "printedName": "MarkupSafe",
+    "homepage": "https://markupsafe.palletsprojects.com",
+    "repository": "https://github.com/pallets/markupsafe/tree/3.0.3",
+    "copyright_line": "Copyright 2010 Pallets",
+    "copyright_url": "https://github.com/pallets/markupsafe/blob/3.0.3/LICENSE.txt",
+    "author": "pallets",
+    "license_url": "https://github.com/pallets/markupsafe/blob/3.0.3/LICENSE.txt",
+    "license_type": "BSD-3-Clause",
+    "license_txt": "MarkupSafe_3.0.3.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Killa Rodriguez"
+  },
+  {
+    "name": "numpy",
+    "version": "2.0.2",
+    "lic": null,
+    "printedName": "Numpy",
+    "homepage": "https://numpy.org",
+    "repository": "https://github.com/numpy/numpy/tree/v2.0.2",
+    "copyright_line": "Copyright (c) 2005-2024, NumPy Developers.\n       copyright notice, this list of conditions and the following",
+    "copyright_url": "https://github.com/numpy/numpy/blob/v2.0.2/LICENSE.txt",
+    "author": "numpy",
+    "license_url": "https://github.com/numpy/numpy/blob/v2.0.2/LICENSE.txt",
+    "license_type": "BSD-3-Clause",
+    "license_txt": "numpy_2.0.2.txt",
+    "note": null,
+    "_source": [
+      {
+        "filename": "numpy",
+        "path": "python310"
+      },
+      {
+        "filename": "numpy",
+        "path": "python311"
+      },
+      {
+        "filename": "numpy",
+        "path": "python39"
+      }
+    ],
+    "reviewer": "Dorian Roussel"
+  },
+  {
+    "name": "pip",
+    "version": "25.2",
+    "lic": null,
+    "printedName": "pip",
+    "homepage": "https://pip.pypa.io/",
+    "repository": "https://github.com/pypa/pip/tree/25.2",
+    "copyright_line": "Copyright (c) 2008-present The pip developers (see AUTHORS.txt file)",
+    "copyright_url": "https://github.com/pypa/pip/blob/25.2/LICENSE.txt",
+    "author": "Python Packaging Authority",
+    "license_url": "https://github.com/pypa/pip/blob/25.2/LICENSE.txt",
+    "license_type": "MIT",
+    "license_txt": "pip_25.2.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Quentin Groshens"
+  },
+  {
+    "name": "pyproj",
+    "version": "3.2.1",
+    "lic": null,
+    "printedName": "pyproj",
+    "homepage": "https://pyproj4.github.io/pyproj",
+    "repository": "https://github.com/pyproj4/pyproj/tree/3.2.1",
+    "copyright_line": "Copyright (c) 2006-2018, Jeffrey Whitaker.\nCopyright (c) 2019-2021, Open source contributors.",
+    "copyright_url": "https://github.com/pyproj4/pyproj/blob/3.2.1/LICENSE",
+    "author": "Jeff Whitaker",
+    "license_url": "https://github.com/pyproj4/pyproj/blob/3.2.1/LICENSE",
+    "license_type": "MIT",
+    "license_txt": "pyproj_3.2.1.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Fabien Daoulas"
+  },
+  {
+    "name": "scikit-learn",
+    "version": "1.6.1",
+    "lic": null,
+    "printedName": "scikit-learn",
+    "homepage": "https://scikit-learn.org/",
+    "repository": "https://github.com/scikit-learn/scikit-learn/tree/1.6.1",
+    "copyright_line": "Copyright (c) 2007-2024 The scikit-learn developers.",
+    "copyright_url": "https://github.com/scikit-learn/scikit-learn/blob/1.6.X/COPYING",
+    "author": "The scikit-learn developers",
+    "license_url": "https://github.com/scikit-learn/scikit-learn/blob/1.6.X/COPYING",
+    "license_type": "BSD-3-Clause",
+    "license_txt": null,
+    "note": null,
+    "_source": null,
+    "reviewer": "Divya Thomas"
+  },
+  {
+    "name": "scipy",
+    "version": "1.13.1",
+    "lic": null,
+    "printedName": "scipy",
+    "homepage": "https://scipy.org",
+    "repository": "https://github.com/scipy/scipy/tree/v1.13.1",
+    "copyright_line": "Copyright (c) 2001-2002 Enthought, Inc. 2003-2024, SciPy Developers.All rights reserved.",
+    "copyright_url": "https://github.com/scipy/scipy/blob/v1.13.1/LICENSE.txt",
+    "author": "scipy",
+    "license_url": "https://github.com/scipy/scipy/blob/v1.13.1/LICENSE.txt",
+    "license_type": "BSD-3-Clause",
+    "license_txt": "scipy_1.13.1.txt",
+    "note": null,
+    "_source": [
+      {
+        "filename": "scipy",
+        "path": "python310"
+      },
+      {
+        "filename": "scipy",
+        "path": "python311"
+      },
+      {
+        "filename": "scipy",
+        "path": "python39"
+      }
+    ],
+    "reviewer": "Nicolas Mauhé"
+  },
+  {
+    "name": "setuptools",
+    "version": "80.9.0",
+    "lic": null,
+    "printedName": "setuptools",
+    "homepage": "https://pypi.org/project/setuptools/",
+    "repository": "https://github.com/pypa/setuptools/tree/v80.9.0",
+    "copyright_line": null,
+    "copyright_url": null,
+    "author": "Python Packaging Authority",
+    "license_url": "https://github.com/pypa/setuptools/blob/v80.9.0/LICENSE",
+    "license_type": "MIT",
+    "license_txt": "setuptools_80.9.0.txt",
+    "note": "no copyright info found",
+    "_source": null,
+    "reviewer": "Guillaume Cassand"
+  },
+  {
+    "name": "Shapely",
+    "version": "1.8.5.post1",
+    "lic": null,
+    "printedName": "Shapely",
+    "homepage": "https://shapely.readthedocs.io/en/stable/",
+    "repository": "https://github.com/shapely/shapely/tree/1.8.5.post1",
+    "copyright_line": "Copyright (c) 2007, Sean C. Gillies",
+    "copyright_url": "https://github.com/shapely/shapely/blob/1.8.5.post1/LICENSE.txt",
+    "author": "shapely",
+    "license_url": "https://github.com/shapely/shapely/blob/1.8.5.post1/LICENSE.txt",
+    "license_type": "BSD-3-Clause",
+    "license_txt": "Shapely_1.8.5.post1.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Romain Menini"
+  },
+  {
+    "name": "threadpoolctl",
+    "version": "3.6.0",
+    "lic": null,
+    "printedName": "Thread-pool Controls",
+    "homepage": "https://github.com/joblib/threadpoolctl/",
+    "repository": "https://github.com/joblib/threadpoolctl/tree/3.6.0",
+    "copyright_line": "Copyright (c) 2019, threadpoolctl contributors",
+    "copyright_url": "https://github.com/joblib/threadpoolctl/blob/3.6.0/LICENSE",
+    "author": "Thomas Moreau",
+    "license_url": "https://github.com/joblib/threadpoolctl/blob/3.6.0/LICENSE",
+    "license_type": "BSD-3-Clause",
+    "license_txt": "threadpoolctl_3.6.0.txt",
+    "note": null,
+    "_source": [
+      {
+        "filename": "threadpoolctl",
+        "path": "python310"
+      },
+      {
+        "filename": "threadpoolctl",
+        "path": "python311"
+      },
+      {
+        "filename": "threadpoolctl",
+        "path": "python39"
+      }
+    ],
+    "reviewer": "Rustin Crandall"
+  },
+  {
+    "name": "Werkzeug",
+    "version": "2.0.3",
+    "lic": null,
+    "printedName": "werkzeug",
+    "homepage": "https://werkzeug.palletsprojects.com",
+    "repository": "https://github.com/pallets/werkzeug/tree/2.0.3",
+    "copyright_line": "Copyright 2007 Pallets",
+    "copyright_url": "https://github.com/pallets/werkzeug/blob/2.0.3/LICENSE.rst",
+    "author": "pallets",
+    "license_url": "https://github.com/pallets/werkzeug/blob/2.0.3/LICENSE.rst",
+    "license_type": "BSD-3-Clause",
+    "license_txt": "pallets_2.0.3.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Shivani Chaudhary"
+  },
+  {
+    "name": "wheel",
+    "version": "0.45.1",
+    "lic": null,
+    "printedName": "wheel",
+    "homepage": "https://github.com/pypa/wheel",
+    "repository": "https://github.com/pypa/wheel/tree/0.45.1",
+    "copyright_line": "Copyright (c) 2012 Daniel Holth <dholth@fastmail.fm> and contributors",
+    "copyright_url": "https://github.com/pypa/wheel/blob/0.45.1/LICENSE.txt",
+    "author": null,
+    "license_url": "https://github.com/pypa/wheel/blob/0.45.1/LICENSE.txt",
+    "license_type": "MIT",
+    "license_txt": "wheel_0.45.1.txt",
+    "note": null,
+    "_source": [
+      {
+        "filename": "wheel-0.45.1",
+        "path": "__virtualenv__"
+      }
+    ],
+    "reviewer": "Li-Heng Fu"
+  },
+  {
+    "name": "zipp",
+    "version": "3.23.0",
+    "lic": null,
+    "printedName": "zipp",
+    "homepage": "https://github.com/jaraco/zipp",
+    "repository": "https://github.com/jaraco/zipp/tree/v3.23.0",
+    "copyright_line": null,
+    "copyright_url": null,
+    "author": "Jason R. Coombs",
+    "license_url": "https://github.com/jaraco/zipp/blob/v3.23.0/pyproject.toml#L24",
+    "license_type": "MIT",
+    "license_txt": "zipp_3.23.0.txt",
+    "note": "Copyright was removed from license, no where to be found now",
+    "_source": [
+      {
+        "filename": "zipp",
+        "path": "python39"
+      }
+    ],
+    "reviewer": "Hela Othmani"
+  }
+]

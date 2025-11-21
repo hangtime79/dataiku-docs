@@ -1,0 +1,74 @@
+:orphan:
+
+LDAP Authentication Bypass
+############################
+
+Information
+=============
+
+* Advisory ID: DSA-2023-010
+* CVE reference: CVE-2023-51717
+* CVSS Base Score: 9.8
+* CVSS String: CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H
+* Severity: Critical
+* CWE classification: CWE-287
+* Advisory Release Date: Dec 21st, 2023 19:00 CET
+
+Summary
+========
+
+Before DSS 11.4.5 and 12.4.1, verification of credentials when authenticating with LDAP identity was insufficient. 
+
+Depending on the configuration of the LDAP server, this could lead to a full authentication bypass.
+
+
+Affected Products
+==================
+
+Dataiku DSS before 11.4.5 and 12.4.1
+
+Affected Situations
+====================
+
+Dataiku Cloud customers are not affected.
+
+Only customers who have enabled LDAP support in DSS are affected.
+
+Furthermore, to be affected, your LDAP server needs to be configured to allow "unauthenticated binds"
+(not to be confused with "anonymous binds"). This is a discouraged behavior as per LDAP specification, 
+but is the default behavior of Microsoft Active Directory.
+
+Mitigation
+==========
+
+Customers running DSS 12.1.0 or above, and who are using SSO in addition to LDAP (i.e., users are not authenticating to DSS through their LDAP password, but through SSO, and LDAP is only used for provisioning), can mitigate the issue by disabling "Allow user authentication" in the LDAP settings (Admin > Settings > User login & provisioning)
+
+Remediation
+============
+
+Dataiku DSS 12.4.1 has been made available to customers to remediate this issue.
+
+In addition, for customers still running DSS 11, DSS 11.4.5 has been made available to remediate the issue.
+
+Acknowledgement
+================
+
+Dataiku would like to thank Christian Turri, consultant, for discovering and reporting the issue.
+
+Contact
+========
+
+E-mail: security@dataiku.com
+
+Last modified
+==============
+
+Dec 22nd, 2023
+
+Timeline
+=========
+
+* Dec 20th, 2023: Issue reported to vendor
+* Dec 20th, 2023: Issue confirmed and acknowledged by vendor
+* Dec 21st, 2023: Fixed versions published and advisory published
+* Dec 22nd, 2023: CVE id assigned and added to the advisory

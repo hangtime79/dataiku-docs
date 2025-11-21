@@ -1,0 +1,276 @@
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link href="" rel="stylesheet" id="getCSSFromManagedFolder">
+<link href="" rel="stylesheet" id="getCSSFromProjectLib">
+
+<h1 class="display-1">Using resources in a web application</h1>
+<p>Some code samples to demonstrate how we can use resources in web applications</p>
+<div class="container">
+    <h2 class="" dispaly-2>From external URL</h2>
+    <div class="accordion" id="externalURL">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingExternalURL">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseExternalURL"
+                        aria-expanded="false" aria-controls="collapseExternalURL">
+                    Image
+                </button>
+            </h2>
+            <div id="collapseExternalURL" class="accordion-collapse collapse" aria-labelledby="headingExternalURL"
+                 data-bs-parent="#externalURL">
+                <div class="accordion-body">
+                    <p>You can use images comming from an URL by using the classical
+                        <code>&lt;img scr="URL_TO_USE" alt="Description"/&gt;</code>
+                    </p>
+                    <img src="https://picsum.photos/200/300" alt="Random picture from the internet"></img>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="accordion" id="externalURLJs">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingExternalURLJs">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseExternalURLJs"
+                        aria-expanded="false" aria-controls="collapseExternalURLJs">
+                    Fetching resources from javascript
+                </button>
+            </h2>
+            <div id="collapseExternalURLJs" class="accordion-collapse collapse" aria-labelledby="headingExternalURLJs"
+                 data-bs-parent="#externalURLJs">
+                <div class="accordion-body">
+                    <p>Or you can use Javascript to fetch resources.</p>
+                    <img src="" alt="Random picture from the internet" id="externalImageJs"></img>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <h2>From managed folders</h2>
+
+    <div class="accordion" id="accordion-managed-folder">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="displayInline">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapsedisplayInline"
+                        aria-expanded="false" aria-controls="collapsedisplayInline">
+                    Display an image
+                </button>
+            </h2>
+            <div id="collapsedisplayInline" class="accordion-collapse collapse" aria-labelledby="displayInline"
+                 data-bs-parent="#accordion-managed-folder">
+                <div class="accordion-body">
+                    <p>The image is loaded within the javascript code</p>
+                    <img id="getImageFromManageFolderImg" alt="image" class="container"></img>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="displayAndDownloadInline">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapsedisplayAndDownloadInline" aria-expanded="false"
+                        aria-controls="collapsedisplayAndDownloadInline">
+                    Display an image and allow this image to be downloaded by clicking on it
+                </button>
+            </h2>
+            <div id="collapsedisplayAndDownloadInline" class="accordion-collapse collapse"
+                 aria-labelledby="displayAndDownloadInline" data-bs-parent="#accordion-managed-folder">
+                <div class="accordion-body">
+                    <p>The image is loaded within the javascript code</p>
+                    <a id="getImageFromManageFolderA" href="" download="image.png">
+                        <img id="getImageFromManageFolderAImg" alt="image" class="container"></img>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="DownloadPdfInline">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseDownloadPdfInline" aria-expanded="false"
+                        aria-controls="collapseDownloadPdfInline">
+                    PDF
+                </button>
+            </h2>
+            <div id="collapseDownloadPdfInline" class="accordion-collapse collapse" aria-labelledby="DownloadPdfInline"
+                 data-bs-parent="#accordion-managed-folder">
+                <div class="accordion-body">
+                    <p>The image is loaded within the javascript code</p>
+                    <a id="getPDFFromManagedFolderA" href="" download="file.pdf">
+                        <span id="getPDFFromManagedFolder" onclick="" class="btn btn-primary">Get PDF file</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="DownloadCSSInline">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseDownloadCSSInline" aria-expanded="false"
+                        aria-controls="collapseDownloadCSSInline">
+                    Local CSS
+                </button>
+            </h2>
+            <div id="collapseDownloadCSSInline" class="accordion-collapse collapse" aria-labelledby="DownloadCSSInline"
+                 data-bs-parent="#accordion-managed-folder">
+                <div class="accordion-body">
+                    <p>The image <span class="devadvocate-alert">is loaded</span> within the javascript code</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2>From resources in project library </h2>
+
+    <div class="accordion" id="accordion-project-lib">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="displayInlineProjectLib">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapsedisplayInlineProjectLib"
+                        aria-expanded="false" aria-controls="collapsedisplayInlineProjectLib">
+                    Display an image
+                </button>
+            </h2>
+            <div id="collapsedisplayInlineProjectLib" class="accordion-collapse collapse" aria-labelledby="displayInlineProjectLib"
+                 data-bs-parent="#accordion-project-lib">
+                <div class="accordion-body">
+                    <p>The image is loaded within the javascript code</p>
+                    <img id="getImageFromProjectLibImg" alt="image" class="container"></img>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="displayAndDownloadInlineProjectLib">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapsedisplayAndDownloadInlineProjectLib" aria-expanded="false"
+                        aria-controls="collapsedisplayAndDownloadInlineProjectLib">
+                    Display an image and allow this image to be downloaded by clicking on it
+                </button>
+            </h2>
+            <div id="collapsedisplayAndDownloadInlineProjectLib" class="accordion-collapse collapse"
+                 aria-labelledby="displayAndDownloadInline" data-bs-parent="#accordion-project-lib">
+                <div class="accordion-body">
+                    <p>The image is loaded within the javascript code</p>
+                    <a id="getImageFromProjectLibA" href="" download="image.png">
+                        <img id="getImageFromProjectLibAImg" alt="image" class="container"></img>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="DownloadPdfInlineProjectLib">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseDownloadPdfInlineProjectLib" aria-expanded="false"
+                        aria-controls="collapseDownloadPdfInlineProjectLib">
+                    PDF
+                </button>
+            </h2>
+            <div id="collapseDownloadPdfInlineProjectLib" class="accordion-collapse collapse" aria-labelledby="DownloadPdfInline"
+                 data-bs-parent="#accordion-project-lib">
+                <div class="accordion-body">
+                    <p>The pdf link is updated within the javascript code</p>
+                    <a id="getPDFFromProjectLibA" href="" download="file.pdf">
+                        <span id="getPDFFromProjectLib" onclick="" class="btn btn-primary">Get PDF file</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="DownloadCSSInlineProjectLib">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseDownloadCSSInlineProjectLib" aria-expanded="false"
+                        aria-controls="collapseDownloadCSSInlineProjectLib">
+                    Local CSS
+                </button>
+            </h2>
+            <div id="collapseDownloadCSSInlineProjectLib" class="accordion-collapse collapse" aria-labelledby="DownloadCSSInline"
+                 data-bs-parent="#accordion-project-lib">
+                <div class="accordion-body">
+                    <p>The image <span class="devadvocate-alert2">is loaded</span> within the javascript code</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2>Global shared Code (Static Web resources)</h2>
+    <div class="accordion" id="accordion-global-share-code">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="globalDisplayInline">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseglobalDisplayInline" aria-expanded="false"
+                        aria-controls="collapseglobalDisplayInline">
+                    Display an image
+                </button>
+            </h2>
+            <div id="collapseglobalDisplayInline" class="accordion-collapse collapse"
+                 aria-labelledby="globalDisplayInline"
+                 data-bs-parent="#accordion-global-share-code">
+                <div class="accordion-body">
+                    <img alt="image" src="/local/static/image.jpg" class="container"></img>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="globalDisplayAndDownloadInline">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#globalDollapsedisplayAndDownloadInline" aria-expanded="false"
+                        aria-controls="globalDollapsedisplayAndDownloadInline">
+                    Display an image and allow this image to be downloaded by clicking on it
+                </button>
+            </h2>
+            <div id="globalDollapsedisplayAndDownloadInline" class="accordion-collapse collapse"
+                 aria-labelledby="globalDisplayAndDownloadInline" data-bs-parent="#accordion-global-share-code">
+                <div class="accordion-body">
+                    <a href="/local/static/image.jpg" download="image.jpg">
+                        <img src="/local/static/image.jpg" alt="image" class="container"></img>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="globalDownloadPdfInline">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseglobalDownloadPdfInline" aria-expanded="false"
+                        aria-controls="collapseglobalDownloadPdfInline">
+                    PDF
+                </button>
+            </h2>
+            <div id="collapseglobalDownloadPdfInline" class="accordion-collapse collapse"
+                 aria-labelledby="globalDownloadPdfInline" data-bs-parent="#accordion-global-share-code">
+                <div class="accordion-body">
+                    <a href="/local/static/file.pdf" download="file.pdf">
+                        <span class="btn btn-primary">Get PDF file</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="globalDownloadCSSInline">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseglobalDownloadCSSInline" aria-expanded="false"
+                        aria-controls="collapseglobalDownloadCSSInline">
+                    Local CSS
+                </button>
+            </h2>
+            <div id="collapseglobalDownloadCSSInline" class="accordion-collapse collapse"
+                 aria-labelledby="globalDownloadCSSInline" data-bs-parent="#accordion-global-share-code">
+                <div class="accordion-body">
+                    <link href="/local/static/my-css.css" rel="stylesheet">
+                    <p>The image <span class="devadvocate-alert">is loaded</span> within the javascript code</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

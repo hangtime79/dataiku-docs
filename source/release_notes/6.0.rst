@@ -1,0 +1,584 @@
+DSS 6.0 Release notes
+#####################
+
+.. contents::
+    :depth: 3
+    :local:
+
+Migration notes
+================
+
+Migration paths to DSS 6.0
+----------------------------
+
+    * From DSS 5.1: Automatic migration is supported, with the restrictions and warnings described in :ref:`releases_notes.6.0.limitations`
+
+    * From DSS 5.0: In addition to the restrictions and warnings described in :ref:`releases_notes.6.0.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`5.0 -> 5.1 </release_notes/5.1>`
+
+    * From DSS 4.3: In addition to the restrictions and warnings described in :ref:`releases_notes.6.0.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`4.3 -> 5.0 </release_notes/5.0>` and :doc:`5.0 -> 5.1 </release_notes/5.1>`
+
+    * From DSS 4.2: In addition to the restrictions and warnings described in :ref:`releases_notes.6.0.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`4.2 -> 4.3 </release_notes/4.3>`, :doc:`4.3 -> 5.0 </release_notes/5.0>` and :doc:`5.0 -> 5.1 </release_notes/5.1>`
+
+    * From DSS 4.1: In addition to the restrictions and warnings described in :ref:`releases_notes.6.0.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`4.1 -> 4.2 </release_notes/4.2>`, :doc:`4.2 -> 4.3 </release_notes/4.3>`, :doc:`4.3 -> 5.0 </release_notes/5.0>` and :doc:`5.0 -> 5.1 </release_notes/5.1>`
+
+    * From DSS 4.0: In addition to the restrictions and warnings described in :ref:`releases_notes.6.0.limitations`, you need to pay attention to the restrictions and warnings applying to your previous versions. See :doc:`4.0 -> 4.1 </release_notes/4.1>`, :doc:`4.1 -> 4.2 </release_notes/4.2>`, :doc:`4.2 -> 4.3 </release_notes/4.3>`, :doc:`4.3 -> 5.0 </release_notes/5.0>` and :doc:`5.0 -> 5.1 </release_notes/5.1>`
+
+    * Migration from DSS 3.1 and below is not supported. You must first upgrade to 5.0. See :doc:`/release_notes/5.0`
+
+How to upgrade
+----------------
+
+It is strongly recommended that you perform a full backup of your DSS data directory prior to starting the upgrade procedure.
+
+For automatic upgrade information, see :doc:`/installation/custom/upgrade`.
+
+Pay attention to the warnings described in :ref:`releases_notes.6.0.limitations`.
+
+
+.. _releases_notes.6.0.limitations:
+
+
+Limitations and warnings
+--------------------------
+
+Automatic migration from previous versions (see above) is supported, but there are a few points that need manual attention.
+
+Graphics exports
+%%%%%%%%%%%%%%%%%
+
+Like with any upgrade, the graphics export feature (exporting Flow or dashboards) must be reinstalled after upgrade. For more details, on how to reinstall this feature please see :doc:`/installation/custom/graphics-export`
+
+Models grid search behavior change
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+DSS 6.0 introduces a minor upgrade to scikit-learn which fixes a bug in the model selection feature. In some rare cases, this can cause grid searching to select a different hyperparameter value when retraining a model on the same data. For more details, please see https://scikit-learn.org/stable/whats_new/v0.20.html#sklearn-model-selection
+
+Support removal notice
+------------------------
+
+As previously announced, DSS 6.0 removes support for the prepare recipe running on the Hadoop Mapreduce engine. We strongly advise you to use the Spark engine instead.
+
+Deprecation notice
+-------------------
+
+DSS 6.0 deprecates support for some features and versions. Support for these will be removed in a later release.
+
+* Pig support is deprecated. We strongly advise you to migrate to Spark.
+* Support for Spark 1 (1.6) is deprecated. We strongly advise you to migrate to Spark 2. All Hadoop distributions can use Spark 2.
+* Conditional outputs on binary classification models are deprecated.
+
+Version 6.0.5 - February 25th, 2020
+=====================================
+
+DSS 6.0.5 is a bugfix release.  For a summary of major changes in 6.0, see below
+
+Automation
+-----------
+
+* Fixed "Triggers" view
+
+Collaboration
+--------------
+
+* Fixed display of object types in catalog
+
+Security
+---------
+
+* Fixed :doc:`CVE-2020-8817 </security/advisories/cve-2020-8817>`: Ability to tamper with creation and ownership metadata
+* Fixed :doc:`CVE-2020-9378 </security/advisories/cve-2020-9378>`: Directory traversal vulnerability in Shapefile parser
+
+Version 6.0.4 - February 4th, 2020
+====================================
+DSS 6.0.4 is a minor release.  For a summary of major changes in 6.0, see below
+
+
+Datasets
+-----------------
+* Fixed metrics computation on SQL query datasets
+
+
+Version 6.0.3 - January 21th, 2020
+====================================
+
+DSS 6.0.3 is a minor release.  For a summary of major changes in 6.0, see below
+
+Datasets
+-----------------
+* **New Feature** Support for creating natively partitioned BigQuery datasets
+* Better support of uploaded dataset with very large number of files
+* Fixed browsing of exposed managed folders (Now properly redirects to the target project)
+* Fixed unpartitioning of Elasticsearch datasets
+* Fixed bad meaning detection of very low numbers (wrongfully detected as "Longitude")
+* Added support for STS credentials for S3 connections with EMRFS interface
+
+Recipes
+-----------------
+* Fixed possible error on window recipe when using date range and DSS engine on datasets with empty cells
+* Removed DSS engine on prepare recipe when input and output are on BigQuery
+* Fixed DSS formula "modulo" function on BigQuery engine
+* Made `dataiku.get_connection()` API usable in Python recipes
+* Fixed find and replace shortcut on code editors
+
+
+Plugins
+-----------------
+* **New feature** Improved support of python-code based 'SELECT' plugin parameter
+* Fixed progress reporting of macros provided by plugins
+* Fixed auto-generated plugin description file when converting a code recipe to a plugin
+* Fixed 'MANAGED_FOLDER' and 'SAVED_MODEL' plugins parameter types
+* Fixed plugin store URL in the 'New recipe' drop down
+* Add possibility for plugin recipes targeting folder to be visible in the right panel
+* Fixed search in the plugin store page
+
+ML
+-----------------
+* Fixed possible race condition when running scoring recipes inside containers
+* Fixed usage of ensemble model on the automation node
+* Fixed migration of train recipes that made the underlying model unusable by evaluate recipes
+* Fixed partitioned models when all targets in the test set are equal to 0
+* Clarified some help messages on calibration and time ordering
+* SQL pipeline can now be used for partitioned models scoring
+* Fixed Javascript error when opening a train recipe that has been run before 6.0
+* Improved variable choice UI for time-based ordering in visual ML
+
+Collaboration
+--------------
+* **New Feature** Added a Microsoft Teams integration for project events
+* **New Feature** Add mathematical formula support in the wiki (using Mathjax)
+* Fixed possibility to reference DSS object in To do lists
+
+Performance
+-----------------
+* Improved catalog performance and fixed possible instance hang for certain "killer queries"
+* Fixed race condition when using sync recipe on uploaded datasets with underlying cloud-based storage
+
+Code environment and container execution
+------------------------------------------
+* Fixed creation of R code environments with Jupyter when using Python 3 for builtin env
+* Fixed build of Docker base image
+* Fixed "Remove old container images" macro when builtin env uses Python 3
+
+Flow
+-----------------
+* Smarter display in the right panel of available plugin recipes when datasets are selected
+
+Cluster
+-----------------
+* Fixed possible error when setting default cluster for a project
+* Administrator can now add/attach clusters from administration settings on a remote API Deployer
+
+SSO
+-----------------
+* **New Feature** Added possibility to redirect to a custom page after logout
+* Added support for IdP metadata with multiple signing certificate
+
+Misc
+-----------------
+* **New Feature** Contextual right panel is now available on most DSS components
+* Fixed "safe mode" edition of webapps
+* Fixed drag-and-drop reordering of dashboard slides
+* S3 and HDFS managed folder are now usable on scenario reporter attachments
+
+
+Version 6.0.2 - December 5th, 2019
+====================================
+DSS 6.0.2 is a minor release.  For a summary of major changes in 6.0, see below
+
+
+Kubernetes
+-----------------
+* **New feature** Added support of managed Kubernetes clusters for use with Model API Deployer
+
+Charts
+-----------------
+* Fixed usage of 'day of week' when using SparkSQL chart engine on old Spark versions (<2.3)
+
+Dataset
+-----------------
+* Fixed wrong display of the tooltip for the "count of records" metric
+* Fixed a bug on MongoDB and Cassandra datasets that could not be easily unpartitioned after being partitioned
+* Fixed "Files from folder" datasets when the underlying folder targets a cloud-based connection (Azure Blob, S3, GCS)
+* Fixed dataset mass import when hadoop standalone integration has been run
+
+Security
+-----------------
+* Make the SSL ciphers recommended option available on the API node
+
+Flow
+-----------------
+* Improved update of flow after mass importing datasets
+
+Administration
+-----------------
+* Fixed displayed value of maximum mail attachments size in SMTP messaging channel settings
+
+Coding recipes
+-----------------
+* Fixed issue on python recipe when using docker execution and libraries importing the 'code' python builtin module
+
+Visual recipes
+-----------------
+* Fixed split recipe random subsets mode when using splitting proportions below 10%
+* Improved timezone management when using date formatter preparation step on SQLServer
+
+Dashboards
+-----------------
+* Fixed migration of wiki tiles in dashboards
+* Fixed display issue of metric tooltips on Firefox
+* Fixed current displayed label on animated charts
+
+Machine learning
+-----------------
+* Improved reproducibility of results using feature reduction preprocessing with python 3
+* Improved reproducibility of results of DBSCAN and Isolation Forest clustering algorithms
+* Improved feature handling copy capabilities when working on a copied analysis
+* Fixed possible non display of grid search curves
+* Fixed non java compatible models deployment when model partitioning is enabled
+* Fixed metric computation on partitioned models when the 'pearson' metric is not available for one of the trained models
+* Fixed creation of non-partitioned datasets when creating scoring recipes based on partitioned input datasets
+* Fixed scoring recipe when the dataset to score only contains 1 row
+
+Plugins
+-----------------
+* **New feature** make 'DATASET_COLUMN' and 'DATASET_COLUMNS' plugin parameter types available for checks and metrics
+* Fixed possible error when uploading an update for a plugin which does not exist
+
+Web apps
+-----------------
+* Put back the 'run as user' settings on non User Isolation Framework (previously MUS) installations
+
+
+Version 6.0.1 - November 6th, 2019
+====================================
+
+DSS 6.0.1 is a minor release. For a summary of major changes in 6.0, see below
+
+
+Collaboration
+-----------------
+* Fixed non visible discussions on articles after migration
+
+
+Visual recipes
+-----------------
+* Add ability to rename columns when using SQL pipelines
+* Fixed S3 to Redshift fast path on S3 partitioned datasets
+* Improved support of customized metastore table name of non HDFS datasets when using Spark engine
+
+Coding
+-----------------
+* Make the dkuManagedFolderCopyToLocal R function recursive
+* Fixed dkuManagedFolderCopyFromLocal R function which ignored beginning of each copied file
+
+Webapps
+-----------------
+* Fixed Bokeh webapps that always reused the same port
+
+Misc
+-----------------
+* Fixed possible issue when accessing a non existing table using the DSS internal metastore
+
+Plugins
+-----------------
+* Fixed plugin recipes using dynamically-filled dropdowns
+
+Version 6.0.0 - October, 24th, 2019
+=====================================
+
+DSS 6.0.0 is a major upgrade to DSS with major new features.
+
+New features
+-------------
+
+Managed Kubernetes clusters
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+DSS can automatically start, stop and manage for you multiple clusters running on the major cloud providers. This makes it very seamless to deploy Kubernetes clusters with very low setup and administration work.
+
+DSS provides managed Kubernetes capabilities on:
+
+* Amazon Web Services through :doc:`EKS </containers/eks/index>`
+* Azure through :doc:`AKS </containers/aks/index>`
+* Google Cloud Platform through :doc:`GKE </containers/gke/index>`
+
+For more details, please see :doc:`/containers/managed-k8s-clusters` and :doc:`/cloud/index`
+
+Managed Spark on Kubernetes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+DSS can now automatically manage deployment of Spark jobs on Kubernetes. This includes automatically setting up connectivity to cloud storages, building container images, handling multiple code environments, providing security and isolation.
+
+Thanks to this feature, you can now deploy Spark jobs on a unified Kubernetes infrastructure, handling both Spark and non-Spark jobs. Multiple Kubernetes clusters are supported.
+
+For more details, please see :doc:`/spark/index` and :doc:`/cloud/index`
+
+
+Partitioned models
+%%%%%%%%%%%%%%%%%%%
+
+DSS can now build partitioned models, that is, train a separate model for each partition of an input dataset. Training separate models (also sometimes referred to as "stratified models") is useful when you expect data to be significantly different between partitions, or when you need incrementality. For example, you may want to train one model per country, per business unit, per factory, …
+
+Once trained, partitioned models can be used to score other partitioned data, or unpartitioned data containing partition identifiers. For more information, see :doc:`/machine-learning/partitioned`.
+
+
+Time series visualization
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+DSS now includes a dynamically zoomable line chart for time series.
+
+For more details, please see :doc:`/time-series/index`
+
+New plugins experience
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+The plugins store has a brand new look, allowing you to find plugins much more easily.
+
+We have also strongly improved the plugin installation experience, with guided steps to install plugins, code envs and other dependencies.
+
+The plugin development experience has been overhauled for better productivity.
+
+Plugins now feature a predefined parameters system, which allows you to reuse parameters between plugins, and to have sensitive information for plugins managed by the administrator.
+
+For more details, please see :doc:`/plugins/index`
+
+Support for AWS Athena and Glue metastore
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+DSS now supports experimental connection with AWS Athena. This connection provides the following capabilities:
+
+* Running interactive SQL notebooks on Athena based on previously-built S3 datasets
+* Using Athena as charts engine for S3 datasets
+* Running SQL queries on Athena based on previously-built S3 datasets (execution and data read through Athena, write through DSS)
+
+DSS also adds support for leveraging AWS Glue as a metastore catalog.
+
+For more details, please see :doc:`/cloud/aws/index` (overview, reference architecture), :doc:`/connecting/sql/athena` and :doc:`/metastore/glue-metastore` (details).
+
+
+SQL pipelines
+%%%%%%%%%%%%%%%%
+
+DSS provides pipeline functionality for a flow that uses a SQL engine and consists of consecutive recipes sharing the same connection. SQL pipelines can minimize or avoid unnecessary writes and reads of intermediate datasets in a flow, thereby boosting workflow performance.
+
+For more details, please see :doc:`/sql/pipelines/index`.
+
+
+Global search toolbar
+%%%%%%%%%%%%%%%%%%%%%%%
+
+A new unified contextual search toolbar has been added to the DSS navigation bar. Use it for contextual search in project objects, wikis, help topics, and much more
+
+Pluggable algorithms
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+You can now add custom algorithms for the in-memory Visual ML component as plugins, making them available without any code.
+
+For more details, please see :doc:`/plugins/reference/prediction-algorithms`.
+
+Pluggable webapps
+%%%%%%%%%%%%%%%%%%
+
+Webapps can now be packaged as plugins, shared and reused.
+
+For more details, please see :doc:`/plugins/reference/webapps`.
+
+Pluggable chart types
+%%%%%%%%%%%%%%%%%%%%%%
+
+New chart types can now be packages as plugins, shared and reused.
+
+Pluggable custom view for folders and models
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Managed folders and models now support a concept of pluggable custom views. Use cases can include:
+
+* A custom view representing the content of a folder (for example, a neural network visualizer)
+* A custom view on the results of a saved model (for example, to display interpretability results)
+
+
+Time series preparation
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+DSS provides a preparation plugin that includes visual recipes for performing the following operations on time series data:
+
+- Resampling into equispaced time intervals
+- Performing analytics functions over a moving window
+- Extracting aggregations around a global extremum
+- Extracting intervals where values lie within an acceptable range 
+
+This plugin is fully supported by Dataiku. For more details, please see :doc:`/time-series/time-series-preparation/index`.
+
+Native Python processor in preparation
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The Python processor in data preparation can now use a real Python process, which allows usage of Python 3 and of any additional package through the usage of the DSS code environments feature.
+
+The Python processor now supports vectorized operation using Pandas for fast operation.
+
+For more details, please see :doc:`/preparation/processors/python-custom`
+
+Scenario reporting to Microsoft Teams
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Scenarios can now report on completion and custom events to Microsoft Teams.
+
+Other notable enhancements
+---------------------------
+
+Improved project folders
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The project folders feature has been strongly enhanced with the following capabilities:
+
+* Drag & drop to add folders in projects on the "projects list" page
+* Ability to view project folders on the personalized home page
+* Security on project folders
+* Ability to have empty project folders
+* Per-folder view of the graph of projects
+
+Time-aware cross-validation and evaluation
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+When running prediction tasks on time-oriented datasets (for example, a daily sales dataset), it is useful to use time-aware cross-validation for optimizing and evaluating your model. This allows you to ensure that by only looking at past data, your model is able to adequately predict future data.
+
+For more details, please see :doc:`/machine-learning/advanced-optimization`.
+
+Enhanced Snowflake integration
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Thanks to the new native Spark integration, you can now directly access Snowflake datasets in any Spark-powered recipe (either visual or code). This leverages the native Spark Snowflake connector for optimal performance.
+
+In addition, the Sync recipe can now perform fast synchronization between Azure Blob and Snowflake datasets.
+
+For more details, please see :doc:`/connecting/sql/snowflake`
+
+ADLS gen2 support in Azure dataset
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The Azure dataset now supports access to data using ADLS gen2
+
+Python 3 support for base env
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+It is now possible to use Python 3 as the builtin environment of DSS.
+
+Note that we do not currently recommend migrating existing instances to this mode due to the need to ensure that all user code using the builtin environment is compatible with Python 3.
+
+.. TODO: Add reference to documentation when it is written.
+
+New field types for plugins
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Plugin components can now declare string lists, dates, and many other new kinds of fields.
+
+For more details, please see :doc:`/plugins/reference/params`
+
+Redesigned contextual right panel 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The right column panel available in Flow, objects lists and object actions has been redesigned to provide faster and more efficient access to the most common actions and information.
+
+Support for HANA Calculation views
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The HANA support can now list and read calculation views. The connection explorer can automatically filter by HANA package.
+
+Managed standalone Hadoop libraries
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Dataiku now provides fully-managed standalone Hadoop and Spark libraries, allowing full support for Parquet, ORC, S3, ADLS gen1 and gen2, GS, ... without any cluster or 3rd party integration required
+
+More native support for Amazon ECR
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+DSS now natively handles ability to push images to Amazon ECR, removing need for a custom script
+
+Other enhancements and fixes
+-----------------------------
+
+Hadoop & Spark
+%%%%%%%%%%%%%%%%
+
+* Added ability to access shared datasets in Pyspark notebooks
+* Added ability to select Hive runtime configuration for exploration and direct read through DSS
+
+Datasets & file formats
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+* Added support for ElasticSearch 7
+* Added ability to support ElasticSearch mapping type _doc
+* Added ability to rename columns when importing an Excel file
+* Fixed Snowflake synchronization failure with special characters
+* Fixed Excel export when running on Java 11
+* Fixed reading of booleans in Excel files
+* Fixed "click to configure" button on "Analyze on full data"
+
+Data preparation
+%%%%%%%%%%%%%%%%%%
+
+* Added SQL compatibility for the "Round" processor
+
+Flow
+%%%%%%%%%%%
+
+* Added support for Spark engine on SQL input datasets
+
+
+Visual recipes
+%%%%%%%%%%%%%%%
+
+* Split recipe: fixed "drop data" in random dispatch mode on Spark engine
+* Sort recipe: fixed on MS SQL Server
+* Sync recipe: improved S3 to Redshift fast-path on partitioned datasets
+
+Notebooks
+%%%%%%%%%%%
+
+* Automatically install by default Jupyter kernels for containerized execution when updating a code env
+
+Machine learning
+%%%%%%%%%%%%%%%%%
+
+* Fixed UI of prediction and clustering recipes when running on HDFS datasets
+* Better variables ordering for Partial Dependencies Plot
+* Added subsampling on Partial Dependencies Plot and Subpopulation Analysis for faster results
+* Improved performance of Deep Learning training
+* Added support for Partial dependencies and subpopulation analysis on containers
+* Fixed possible non-stability across trainings when using Python 3
+* Added error percentage as a metric that can be output as part of the evaluation recipe
+
+Webapps
+%%%%%%%%%
+
+* Fixed issues when exporting/importing projects containing webapps
+
+Automation 
+%%%%%%%%%%%%%%%%%
+
+* Added support for variables expansion in SQL triggers
+* Added ability to execute or not, and to create new exports or not when attaching Jupyter notebooks to mails
+
+Collaboration
+%%%%%%%%%%%%%%
+
+* Fixed sending of Slack notifications on job builds
+* Added back "description icon" on Flow
+
+Reliability & Scalability
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+* Improved Oracle insertion performance in presence of NULL values
+* Fixed potential issues while reading enormous log files
+
+Security
+%%%%%%%%%
+
+* Fixed and clarified issues with code env permissions
+
+API
+%%%%%
+
+* Added ability to terminate a cluster through Python API
+* Fixed ability to update R code environments through API
+

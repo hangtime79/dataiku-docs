@@ -1,0 +1,35 @@
+:orphan:
+
+Improper logging of cleartext credentials
+#########################################
+
+Information
+=============
+
+* Advisory ID: DSA-2024-002
+* CVSS Base Score: 6.5
+* CVSS String: CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N
+* Severity: Medium
+* CWE classification: CWE-313
+* Advisory Release Date: April 26th, 2024 19:00 CET
+
+Summary
+========
+
+In DSS 12.6.0, the cleartext password/token of some SQL connections may be written in logs as cleartext.
+
+Affected Products
+==================
+
+Dataiku DSS 12.6.0
+
+Fix
+====
+
+Dataiku DSS 12.6.1 has been made available to customers to remediate this issue.
+
+Timeline
+=========
+
+* Apr 19th, 2024: Issue discovered internally
+* Apr 26th, 2024: Fixed version published and advisory published

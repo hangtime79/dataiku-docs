@@ -1,0 +1,333 @@
+DSS 2.0 Relase notes
+#####################
+
+.. contents::
+    :depth: 2
+    :local:
+
+Version 2.0.4 - August 31th, 2015
+======================================
+
+.. warning::
+
+	For migration from DSS 1.X, please see the DSS 2.0.0 release notes
+
+DSS 2.0.4 contains bug fixes
+
+UI
+---
+
+Fix layout of SQL and R recipe editors
+
+Security
+--------
+
+* Flag login cookies as HTTP-only
+* Fix missing access control on export internal API
+* Fix path traversal in "logs" internal API (accessible only to admin)
+* Fix a few GET/POST mismatches
+* Add new security-related options
+
+	* Option to force usage of Secure cookies
+	* Option to disable error stacks
+	* Option to disable version strings
+
+Version 2.0.3 - August 20th, 2015
+======================================
+
+.. warning::
+
+	For migration from DSS 1.X, please see the DSS 2.0.0 release notes
+
+DSS 2.0.3 contains both bug fixes and new features
+
+New Features
+-------------
+
+* DSS can now read and perform advanced extraction on XML files. Please see :doc:`/connecting/formats/xml` for more information.
+
+* DSS is now compatible with MongoDB 3.0
+
+Bug Fixes
+----------
+
+Datasets
+%%%%%%%%%%
+
+* It is now possible to read and write from S3 buckets without the permission to list the buckets on the account.
+
+* Small UI fixes
+
+Recipes
+%%%%%%%%%
+
+* Preparation recipe: fixed some corner cases with cross-project recipes
+* Outer join is not possible with the "DSS internal" engine and is therefore not suggested anymore
+* Fixed some issues with Oracle on visual recipes
+* Fixed mass actions in Grouping recipe
+* Several fixes with the filter editor
+* Fixed some small UI issues
+* Since Oracle identifiers are limited to 30 characters, DSS will now try to limit the size of column names it generates in visual recipes
+* Fixed a display bug in "Stack" recipe
+
+Hadoop
+%%%%%%%
+
+* Fixed Hive recipes when "TextFile" is not the default Hive storage format
+
+Machine learning
+%%%%%%%%%%%%%%%%%
+
+* Fixed regression with H2O models
+* Fixed an issue with computation of RMSLE measure which could break models
+* Fixed the "Keep my settings" button
+* Fixed the filters on the "Predicted data" view
+* Fixed failure of scoring recipes in some cases with date columns
+* Fixed important issue with boolean variables that could be wrongly handled, leading to invalid results
+* Fixed issue with large number of clusters (>100)
+* Fixed regression on random forest with manually-entered multiple number of trees
+
+Administration
+%%%%%%%%%%%%%%%%
+
+* Fixed UI issues in scheduler
+* Fixed saving of allowed groups in connections
+
+Version 2.0.2 - June 23rd, 2015
+======================================
+
+.. warning::
+
+	For migrations from DSS 1.X, please see the DSS 2.0.0 release notes
+
+DSS 2.0.2 contains both bug fixes and new features
+
+New Features
+-------------
+
+* New "Fold multiple columns by prefix" processor. See :doc:`/preparation/reshaping` for more information
+
+* You can now "redeploy" a training recipe and a saved model from an analysis. This allows you to change the settings of the model without having to "replug" the Flow to a new saved model.
+
+* The "Geo-Join" processor can now output distance as miles
+
+* Minor UX improvements
+
+Important change: MySQL column names
+--------------------------------------
+
+The behaviour of MySQL datasets has been changed. The MySQL connector will now automatically use column names specified by "AS" aliases in SQL queries.
+
+So for example, "SELECT a AS b FROM table" will now yield a dataset with a column named "b", while it was previously named "a".
+
+To revert to the old behaviour, go to the settings of the MySQL connection, and add the property: "useOldAliasMetadataBehavior" = "false".
+
+This change only affects versions 5.1 and above of the MySQL JDBC driver. For more information, please see: http://dev.mysql.com/doc/connector-j/en/connector-j-installing-upgrading-5-1.html
+
+Bug fixes
+----------
+
+Datasets
+%%%%%%%%%
+
+* Empty Zip files are now properly handled
+* Fixed an issue with multi-file JSON datasets
+
+Recipes
+%%%%%%%%
+
+* Fixed some data parsing issues in the Grouping recipe
+* Fixed handling of booleans in the Grouping recipe on PostgreSQL
+* Fixed SQL recipes on custom JDBC connections
+
+Hadoop
+%%%%%%%
+
+* Improved the behavior of the Hive integration with Sentry. Authorizing file:/// URIs is not required anymore, and integration with the HDFS ACL synchronization now works properly
+
+* Fixes for exotic Hive options ("fixed-metastore" DataNucleus mode)
+
+* Fixed validation of some Hive recipes on MapR
+
+Misc
+%%%%%%%%%%%%%%%%%
+
+* It's now possible to disable probability columns in multi-class classification recipes
+* Fixed features hashing
+* Fixed notebook export for Spectral Clustering models
+* Updated URI for the IUS repository
+* Various small UI fixes
+
+
+Version 2.0.1 - June 10th, 2015
+======================================
+
+.. warning::
+
+	For migrations from DSS 1.X, please see the DSS 2.0.0 release notes
+
+DSS 2.0.1 is a bugfix release
+
+
+Recipes and Flow
+-----------------
+
+* Fixed bad initial settings for partitioned recipes
+* Small UI improvements
+* DSS now includes its own version of the Graphviz tool: fixes Flow layout on CentOS 6
+
+Datasets
+----------
+
+* Fixed the "Advanced" settings display for filesystem datasets
+* Fixed the "Explore" view for datasets imported from other projects
+* Fixed reading multiple JSON files with root path for elements.
+
+Machine Learning
+-----------------
+
+* Text handling: fixed display of the vocabulary for the Count and TF/IDF vectorizers
+* Avoid doing grid search when not needed in various alogrihtms
+* Fixed custom scoring function for regression problems
+* Fixed error when trying several number of trees in Random Forest
+* Fixed wrong results in scoring recipes when "drop rows" is selected for missing values handling
+
+Dashboard and insights
+-----------------------
+
+* Fixed loading of nvd3.js
+* Fixed issues with settings of the insights miniatures
+* Fixed an issue with the hexagonal binning parameter (was not saved)
+
+Version 2.0.0 - May 19th, 2015
+======================================
+
+DSS 2.0.0 is a major upgrade that brings new exciting features and a redesigned user experience.
+
+Migration notes
+---------------
+
+.. warning::
+
+	Migration to DSS 2.0 from a previous DSS 1.X instance requires some attention.
+
+	To migrate to DSS 2.0, you must first upgrade your instance to the latest 1.4 version. See :doc:`/release_notes/1.4`
+
+Automatic migration from Data Science Studio 1.4.X is supported, with the following restrictions and warnings:
+
+* Previously trained machine learning models must be retrained
+* As a consequence, machine learning models deployed directly in Flow without a retraining recipe
+  won't be usable anymore for scoring. You will need to retrain the model in an Analysis, redeploy it to Flow, and replug a scoring recipe.
+* If you use cross-projects recipes, you need to perform some adjustements detailed below
+
+
+How to update ML models in Flow
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+If you have ML models in Flow, you need to retrain them before they are usable again.
+
+
+How to update cross-projects recipes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In DSS 1.X, if you had access to projects A and B, then all datasets from project A could be directly used in project B. However, you had to create the recipe "manually".
+
+In DSS 2.X, the default behaviour has changed: only datasets from project A that are explicitly "exposed to project B" can be used, and they directly appear on the Flow of project B.
+
+You can either:
+
+* Go to the project settings of project A and "expose" the required datasets to project B
+* Go to Administration > Settings > Misc and change the "Cross-projects access to datasets" behaviour.
+
+Furthermore, by default, recursive builds now "stop" at project boundaries. You can change this behaviour on a per-dataset basis, and you can also change the default global behaviour in Administration > Settings > Misc.
+
+Preparation and machine learning
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+On upgrade, all previous preparation scripts and machine learning model benches will be converted to the new Analysis component
+
+How to upgrade
+%%%%%%%%%%%%%%%%
+
+It is **strongly recommended** that you perform a full backup of your Data Science Studio data directory prior to starting the upgrade procedure.
+
+Hadoop support
+%%%%%%%%%%%%%%%%
+
+This release removes support for CDH 4
+
+External libraries upgrades
+----------------------------
+
+Several external libraries bundled with DSS have been bumped to major revisions. Some of these libraries (most notably Pandas include some *backwards-incompatible* changes). You might need to upgrade your code.
+
+Notable upgrades:
+
+* Pandas 0.14 -> 0.16. Breaking changes notably around categoricals. See http://pandas.pydata.org/pandas-docs/stable/release.html
+* Scikit-learn 0.14 -> 0.16
+
+
+New features
+-------------
+
+User experience
+%%%%%%%%%%%%%%%%%
+
+The user experience of DSS has been redesigned based on the feedbacks from our users.
+
+* Thanks to the organization in universes, you'll always find what you need at your fingertips.
+* The new sidebar gives you immediate access to all actions in context.
+* A redesigned search that gives you immediate access to your recent items and contextually-relevant objects
+* The streamlined Flow lets you focus on what matters most and reduces visual clutter
+* Use checklists to organize your collaborative work in projects
+
+Analysis and data preparation
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The new "Analysis" module is where you'll perform all visual analysis on a dataset. It combines the power of visual data preparation, drag-and-drop visualizations and guided machine learning.
+
+You can now create new features using visual data preparation and immediately use them in machine learning models.
+
+Data preparation now features a "Column-oriented view" for immediate glances on your dataset and easy mass actions.
+
+New processor: currency converter (supports 40 currencies with historical data)
+
+Machine learning
+%%%%%%%%%%%%%%%%%%
+
+The machine learning component has been completely rehauled. It now features:
+
+* Advanced cross-validation policies:
+
+  * K-Fold cross validation
+
+  * Explicit train and test sets
+
+* Completely redesigned model assessment pages, with much deeper insight into the performance your models
+
+* Parallel grid search for semi-automatic optimization of models
+
+* New feature generation options
+
+* Text processing options: count, TF-IDF and hashing vectorizers, with support for stop words and n-grams
+
+* Binarization and quantization of numerical variables
+
+* Models in Flow are now versioned and you can choose how to switch to new versions
+
+* Built-in data preparation without prior materialization of the prepared datasets
+
+Visual recipes
+%%%%%%%%%%%%%%%%%%
+
+Several new visual recipes let you do more and more advanced data manipulation without writing a single line of code:
+
+* "Join" recipe (with multi-dataset, multi-key joins, fuzzy joins, case-insensitive joins, ...)
+* "Split" recipe
+* "Union" recipe to concatenate datasets
+* Redesigned "Grouping" recipe
+
+Easter eggs
+%%%%%%%%%%%%
+
+Will you find all our new easter eggs ?

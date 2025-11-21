@@ -1,0 +1,46 @@
+DSS 1.0 Release Notes
+########################
+
+Version 1.0.3 - May 15th, 2014
+===============================
+
+New features
+-------------
+
+* MongoDB support
+
+Bug fixes
+----------
+
+* Fix in Hive datasets synchronization when schema contains map types
+* Fix syncing of partitioned filesystem datasets to Vertica
+* Fix mapping of "int" type in Pig
+
+Version 1.0.2 - April 10th, 2014
+=====================================
+
+Bug fixes
+----------
+
+* Fix layout issues in SQL datasets and HTML apps
+
+Version 1.0.1 - March 18th, 2014
+=================================
+
+New features
+-------------
+
+* Basic support for Avro files
+
+Version 1.0.0 - February 6th, 2014
+=========================================
+
+Initial official release of DSS 1.0
+
+New features
+----------------
+
+* Visual analytics
+* Clustering
+* Support for HTTP, FTP and SSH remote files
+* R recipes (basic support)

@@ -1,0 +1,28 @@
+:orphan:
+
+Race condition on UIF can lead to account takeover
+#####################################################
+
+Information
+=============
+
+* Advisory ID: DSA-2022-023
+* CVSS Base Score: 8.8
+* CVSS String: CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H
+* Severity: High
+* CWE classification: CWE-367
+
+Summary
+========
+
+It was discovered that a race condition :doc:`User Isolation </user-isolation/index>` impersonated execution could lead to the ability for an attacker to take over another user's UNIX account.
+
+Affected Products
+==================
+
+* Dataiku DSS before 11.1.4
+
+Fix
+===
+
+Dataiku DSS 11.1.4 has been made available to customers to remediate this issue

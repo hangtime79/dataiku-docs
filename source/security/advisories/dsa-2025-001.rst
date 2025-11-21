@@ -1,0 +1,29 @@
+:orphan:
+
+Cross-site-scripting in Prepare recipe
+###############################################
+
+Information
+=============
+
+* Advisory ID: DSA-2025-001
+* CVSS Base Score: 8.8
+* CVSS String: CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H
+* Severity: High
+* CWE classification: CWE-79
+
+Summary
+========
+
+In Dataiku DSS before 13.4.0, improper sanitization could lead to stored XSS in the Prepare recipe
+
+
+Affected Products
+==================
+
+* Dataiku DSS before 13.4.0
+
+Fix
+===
+
+Dataiku DSS 13.4.0 has been made available to customers to remediate this issue

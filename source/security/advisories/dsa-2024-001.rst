@@ -1,0 +1,42 @@
+:orphan:
+
+Improper preservation of "Run as" settings
+##########################################
+
+Information
+=============
+
+* Advisory ID: DSA-2024-001
+* CVSS Base Score: 8.8
+* CVSS String: CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H
+* Severity: High
+* CWE classification: CWE-281
+* Advisory Release Date: April 26th, 2024 19:00 CET
+
+Summary
+========
+
+Before DSS 12.6.1, a DSS user with ability to pull a project's version history from an arbitrary remote
+could run a scenario/recipe as another arbitrary user.
+
+Affected Products
+==================
+
+Dataiku DSS before 12.6.1
+
+Fix
+====
+
+Dataiku DSS 12.6.1 has been made available to customers to remediate this issue.
+
+Acknowledgement
+================
+
+Dataiku would like to thank Hugo Le Moine and Jean-Baptiste Priez, Data Scientists, for discovering and reporting the issue.
+
+Timeline
+=========
+
+* Apr 19th, 2024: Issue reported to vendor
+* Apr 19th, 2024: Issue confirmed and acknowledged by vendor
+* Apr 26th, 2024: Fixed version published and advisory published

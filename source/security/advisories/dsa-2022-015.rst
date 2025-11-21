@@ -1,0 +1,29 @@
+:orphan:
+
+Insufficient access control in troubleshooting tools
+#########################################################
+
+Information
+=============
+
+* Advisory ID: DSA-2022-015
+* CVSS String: CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N
+* CVSS Base Score: 4.3 (Medium)
+* CWE classification: CWE-200
+
+Summary
+========
+
+It was discovered that some internal troubleshooting tools in DSS did not perform sufficient access control, which could lead an attacker to introduce spurious entries in the runs list of a scenario
+
+Affected Products
+==================
+
+* Dataiku DSS 9 and older versions
+* Dataiku DSS 10 before 10.0.9
+* Dataiku DSS 11 before 11.0.3
+
+Fix
+===
+
+Dataiku DSS 10.0.9 and Dataiku DSS 11.0.3 have been made available to customers to remediate this issue

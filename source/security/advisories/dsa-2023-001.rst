@@ -1,0 +1,28 @@
+:orphan:
+
+Directory traversal via download action of file editor
+######################################################
+
+Information
+=============
+
+* Advisory ID: DSA-2023-001
+* CVSS Base Score: 8.8
+* CVSS String: CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H
+* Severity: High
+* CWE classification: CWE-35
+
+Summary
+========
+
+Before DSS 11.3.2, a directory traversal via the file editor's download action could lead to arbitrary file access
+
+Affected Products
+==================
+
+* Dataiku DSS before 11.3.2
+
+Fix
+===
+
+Dataiku DSS 11.3.2 has been made available to customers to remediate this issue

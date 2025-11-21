@@ -1,0 +1,36 @@
+[
+  {
+    "name": "dash-extensions-js",
+    "version": "0.0.2",
+    "lic": null,
+    "printedName": "dash-extensions-js",
+    "homepage": "https://www.dash-extensions.com/sections/javascript",
+    "repository": "https://github.com/emilhe/dash-extensions-js/tree/f9631859c15ee4101f1584b89cbf54ff4ed18326",
+    "copyright_line": null,
+    "copyright_url": "https://github.com/emilhe/dash-extensions-js/blob/f9631859c15ee4101f1584b89cbf54ff4ed18326/package.json#L13",
+    "author": "Emil Haldrup Eriksen",
+    "license_url": "https://github.com/emilhe/dash-extensions-js/blob/f9631859c15ee4101f1584b89cbf54ff4ed18326/package.json#L13",
+    "license_type": "MIT",
+    "license_txt": null,
+    "note": "extensions for https://github.com/emilhe/dash-extensions. No tag, f9631859c15ee4101f1584b89cbf54ff4ed18326 is for 0.0.2",
+    "_source": null,
+    "reviewer": "Guillaume Cassand"
+  },
+  {
+    "name": "ramda",
+    "version": "0.26.1",
+    "lic": null,
+    "printedName": "Ramda",
+    "homepage": "https://ramdajs.com",
+    "repository": "https://github.com/ramda/ramda/tree/0.26.1",
+    "copyright_line": "Copyright (c) 2013-2018 Scott Sauyet and Michael Hurley",
+    "copyright_url": "https://github.com/ramda/ramda/blob/0.26.1/LICENSE.txt",
+    "author": "Scott Sauyet and Michael Hurley",
+    "license_url": "https://github.com/ramda/ramda/blob/0.26.1/LICENSE.txt",
+    "license_type": "MIT",
+    "license_txt": "ramda_0.26.1.txt",
+    "note": null,
+    "_source": null,
+    "reviewer": "Quentin Groshens"
+  }
+]

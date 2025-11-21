@@ -1,0 +1,29 @@
+:orphan:
+
+
+Improper Access Control on "Copy subflow" action
+################################################
+
+Information
+=============
+
+* Advisory ID: DSA-2025-005
+* CVSS Base Score: 4.3
+* CVSS String: AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N
+* Severity: Medium
+* CWE classification: CWE-284
+
+Summary
+========
+
+In Dataiku DSS before 13.5.5, a user could use "copy subflow" action to write on a project if he has read-only access on it
+
+Affected Products
+==================
+
+* Dataiku DSS before 13.5.5
+
+Fix
+===
+
+Dataiku DSS 13.5.5 has been made available to customers to remediate this issue

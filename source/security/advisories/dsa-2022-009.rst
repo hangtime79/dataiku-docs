@@ -1,0 +1,27 @@
+:orphan:
+
+Stored XSS in machine learning results
+######################################
+
+Information
+=============
+
+* Advisory ID: DSA-2022-009
+* CVSS String: CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H
+* CVSS Base Score: 8.8 (High)
+* CWE classification: CWE-79
+
+Summary
+========
+
+Insufficient input sanitization could lead to a stored XSS in the Machine Learning results component
+
+Affected Products
+==================
+
+Dataiku DSS in versions before 10.0.8
+
+Mitigation
+===========
+
+Dataiku DSS 10.0.8 has been made available to customers to remediate this issue

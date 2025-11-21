@@ -1,0 +1,1 @@
+source /opt/dataiku/py37-dss/bin/activate && python /home/dataiku/scripts/write_key.py

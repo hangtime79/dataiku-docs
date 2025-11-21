@@ -1,0 +1,29 @@
+:orphan:
+
+Missing project permissions check when accessing LLM through API
+#################################################################
+
+Information
+=============
+
+* Advisory ID: DSA-2024-003
+* CVSS Base Score: 6.5
+* CVSS String: CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N
+* Severity: Medium
+* CWE classification: CWE-862
+* Advisory Release Date: May 31st, 2024
+
+Summary
+========
+
+An authenticated user without access to a project could use the API to query LLMs of this project
+
+Affected Products
+==================
+
+Dataiku DSS 12.3.0 to 12.6.3
+
+Fix
+====
+
+Dataiku DSS 12.6.3 has been made available to customers to remediate this issue.

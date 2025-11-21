@@ -1,0 +1,59 @@
+// This file is the descriptor for the sample dataset template devadv-plugin-test
+{
+  "meta": {
+    // label: name of the app template as displayed, should be short
+    "label": "pro-customers",
+    // description: longer string to help end users understand what this sample is
+    "description": "",
+    // icon: must be one of the FontAwesome 5.15.4 icons, complete list here at https://fontawesome.com/v5/docs/
+    "icon": "fas fa-flask",
+    // rowCount: Number of rows of your sample, optional
+    // "rowCount": 100,
+
+    // logo: optional displayed logo when selecting your sample
+    // The logo should be located in the root of the plugin folder, inside a "resource" directory
+    // For example: my-plugin/resource/my_logo.png
+    // The logo image should be 280x200 pixels
+    // The logo filename must only contain letters (a-z, A-Z), digits (0-9), dots (.), underscores (_), hyphens (-), and spaces ( )
+    // The logo filename extension must be one of the following: ".apng", ".png", ".avif", ".gif", ".jpg", ".jpeg", ".jfif", ".svg", ".webp", ".bmp", ".ico", ".cur"
+    // "logo": "my_logo.png",
+
+    // displayOrderRank: number used to sort the various samples by descending order
+    "displayOrderRank": 1
+  },
+  // Your data should be placed in a "data" directory where you can include your CSV files (e.g., "sample.csv") encoded in utf-8.
+  // Your cells have to be separated by commas (,).
+  // You can use double quotes (") as a quoting character to enclose cells containing the separator, and use backslash (\) as an escape character.
+  // Additionally, you can use compressed files with the ".gz" extension for Gzip-compressed files (e.g., "sample.csv.gz")
+  // You can also include multiple files or use zipped CSV files for convenience.
+
+  // columns: schema columns of your sample
+  // Each column must have:
+  // - A unique "name"
+  // - A "type" matching one of the available storage types
+  //   - Available types include: string, int, double, boolean, dateonly, bigint and others : https://doc.dataiku.com/dss/latest/schemas/definitions.html#storage-types
+  // Optional properties for each column:
+  // - "comment": Description of the column
+  // - "meaning": Can be user-defined or one of the recognized meanings
+  //   - Recognized meanings include: Text, DoubleMeaning, LongMeaning, Boolean, DateOnly and others : https://doc.dataiku.com/dss/latest/schemas/meanings-list.html
+  //
+  // The following example is a sample schema for a heights dataset
+  "columns": [
+    {
+      "name": "id",
+      "type": "bigint",
+      "comment": "Unique identifier"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "comment": "Name of the person"
+    },
+    {
+      "name": "size",
+      "type": "double",
+      "comment": "Height of the person, in meters",
+      "meaning": "DoubleMeaning"
+    }
+  ]
+}

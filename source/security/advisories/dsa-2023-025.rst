@@ -1,0 +1,29 @@
+:orphan:
+
+Directory traversal through git symlink support abuse
+#####################################################
+
+Information
+=============
+
+* Advisory ID: DSA-2023-025
+* CVSS Base Score: 8.8
+* CVSS String: CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H
+* Severity: High
+* CWE classification: CWE-35
+
+Summary
+========
+
+It was discovered that when committing a symbolic link to the git repository of a project's configuration,
+an attacker could then read files from outside that project configuration
+
+Affected Products
+==================
+
+* Dataiku DSS before 11.3.2
+
+Fix
+===
+
+Dataiku DSS 11.3.2 has been made available to customers to remediate this issue

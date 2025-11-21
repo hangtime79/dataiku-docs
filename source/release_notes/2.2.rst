@@ -1,0 +1,344 @@
+DSS 2.2 Relase notes
+#####################
+
+.. contents::
+    :depth: 2
+    :local:
+
+
+Migration notes
+================
+
+.. warning::
+
+	Migration to DSS 2.2 from DSS 1.X is not supported. You should first migrate to the latest
+	2.0.X version. See :doc:`/release_notes/2.0`
+
+* Automatic migration from Data Science Studio 2.1.X is fully supported.
+* Automatic migration from Data Science Studio 2.0.X is supported, subject to the notes and limitations
+  outlined in :doc:`2.1`
+
+For automatic upgrade information, see :doc:`/installation/custom/upgrade`
+
+Version 2.2.5 - February 10th, 2015
+====================================
+
+DSS 2.2.5 is a bugfix version.
+For a summary of the major new features in the 2.2 series, see: https://www.dataiku.com/learn/whatsnew
+
+Datasets
+---------
+
+* Add support for reading database tables containing blobs (blobs are still skipped)
+
+Misc
+-----
+
+* Fix a deadlock leading to DSS freezing
+
+Version 2.2.4 - January 29th 2015
+====================================
+
+DSS 2.2.4 is a bugfix version.
+For a summary of the major new features in the 2.2 series, see: https://www.dataiku.com/learn/whatsnew
+
+Hadoop
+-------
+
+Add support for HortonWorks HDP 2.3.4
+
+Version 2.2.3 - January 22nd 2015
+====================================
+
+DSS 2.2.3 is a bugfix version.
+For a summary of the major new features in the 2.2 series, see: https://www.dataiku.com/learn/whatsnew
+
+General
+---------
+
+* Fix a leak of threads that lead to an excessive resource consumption
+
+Hadoop
+-------
+
+* Fix handling of timezones in Impala recipes (when running in "stream" mode) by workarounding a JDBC driver bug
+
+Datasets
+---------
+
+* Add support for new S3 signature algorithms, enabling support of newest AWS regions
+* Remove excessive debugging in ElasticSearch datasets
+
+Recipes
+--------
+
+* Fix unclickable Create recipe button with foreign datasets
+* Fix ability to use Unicode column names in Python recipes
+
+Machine learning
+-----------------
+
+* Fix filters UI in "explicit extract from two datasets" mode in machine learning
+* Fix some cases where auto-setting model parameters doesn't work
+* Fix refresh of data samples for clustering
+
+Version 2.2.2 - December 10th 2015
+====================================
+
+DSS 2.2.2 contains both bug fixes and new features.
+For a summary of the major new features in the 2.2 series, see: https://learn.dataiku.com/whatsnew
+
+New features
+-------------
+
+Experimental Spark-on-S3 and EMR support
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+DSS 2.2.2 contains an *experimental-only* support for running Spark on S3 datasets, and for running
+on Amazon EMR.
+
+Experimental SFTP support
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+You can now create datasets over SFTP connections. These datasets are available through the "RemoteFiles" (i.e. with local cache) mode.
+
+Misc
+%%%%%
+
+* S3 dataset can now target a custom endpoint
+
+Bugfixes
+---------
+
+Spark
+%%%%%%
+
+* Fixed several issues handling complex types, especially on Avro datasets
+* Fixed case-sensitivity issues on Parquet datasets.
+
+Hadoop
+%%%%%%%%
+
+* Fixed support for timestamp columns in Impala notebooks and recipes
+* Fixed issue with Kerberos connectivity
+
+Datasets
+%%%%%%%%
+
+* Fix mappings not correctly propagated in ElasticSearch
+* S3 now properly ignores hidden and special files
+* Fixed S3 support for single-file datasets
+* Fixed partitioned SQL query datasets
+
+Machine learning
+%%%%%%%%%%%%%%%%%%
+
+* Fixed computation of output probability centiles when working with K-Fold cross-test
+
+Recipes
+%%%%%%%
+
+* Fixed ability to remove input datasets in the Join recipe
+* The "Run" button in the R recipe editor has been fixed
+* Fixed "Push to editable" recipes always having the same name
+* Fixed ability to create recipes on foreign datasets
+* Fixed "Save" button badly behaving on SQL recipes
+* Grouping recipe:
+
+	* Do not display unavailable mass actions
+	* Fixed MAX aggregation
+	* Fixed storage types for custom aggregations
+
+* Window recipe: Fixed time-range bounding on Vertica
+
+Visual data preparation
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+* Fixed columns sometimes badly displaying when using mass removal
+
+API node
+%%%%%%%%%%
+
+* Fixed issue with numerical columns used as categorical
+
+Misc
+%%%%%
+
+* Fixed a few issues on Safari
+* Fixed "Add description" button on home page
+
+
+Version 2.2.1 - November 17th 2015
+====================================
+
+DSS 2.2.1 is a bugfix release. For a summary of the new features in the 2.2.0, see: https://learn.dataiku.com/whatsnew
+
+Plugins
+--------
+
+* Introduced more support for partitioning and fix some related bugs
+* Fix bugs around boolean values in plugins configuration
+* Allow expansion of variables in plugin configuration
+* Make sure that new plugins are immediately recognized
+
+Editable datasets
+------------------
+
+* Fix failure to save data when all columns had been previously removed
+
+Version 2.2.0 - November 11th 2015
+=====================================
+
+DSS 2.2.0 is a significant upgrade, that brings major new features to DSS.
+
+For a summary of the major new features, see: https://learn.dataiku.com/whatsnew
+
+New features
+-------------
+
+Prediction API server
+%%%%%%%%%%%%%%%%%%%%%%%
+
+DSS now comes with a full-featured API server, called DSS API Node, for real-time prediction of records.
+
+By using DSS only, you can compute predictions for all records of an unlabeled datasets. Using the REST API of the DSS API node, you can request predictions for new previously-unseen records in real time.
+
+The DSS API node provides high availability and scalability for scoring of records.
+
+For more information about the API node, see :doc:`/apinode/index`
+
+
+Window function recipe
+%%%%%%%%%%%%%%%%%%%%%%%
+
+DSS now has a new visual recipe to compute SQL-99 style analytic functions (also called window functions).
+
+This visual recipe makes it incredibly easy to create moving averages, ranks, quantiles, ...
+
+It provides the full power of your engine's analytic support, with multiple windows, unlimited sort and partitioning, ...
+
+This recipe is available on all engines supporting it:
+
+* Most SQL databases
+* Hive
+* Spark
+* Cloudera Impala
+
+
+Other major enhancements
+--------------------------
+
+
+Plugins
+%%%%%%%%%%%%
+
+The user response to our plugins feature has been overwhelming. In DSS 2.2, we have heard your feedback and made a ton of enhancements to the plugins system.
+
+Core system
+@@@@@@@@@@@@
+
+* Activate plugins development tools directly within DSS.
+* Edit all plugin files directly within DSS. No command-line nor vi required!
+
+* Plugins can now retrieve a lot of DSS configuration details: know whether Spark or Impala are enabled, get proxy settings, ...
+
+* Plugin-level configuration, retrievable by all datasets and recipes of the plugin. Great for storing access credentials for example.
+
+
+Custom Datasets
+@@@@@@@@@@@@@@@@
+
+* Support for partitioned datasets. See our `Tutorial <https://learn.dataiku.com/howto/other/partitioning/partitioning-redispatch.html>`_ for more information
+* View the logs directly in DSS UI
+
+Custom recipes
+@@@@@@@@@@@@@@@
+
+* The recipe UIs will now properly obey the role definitions
+* The new APIs make it much easier to write recipes that automatically dispatch to one of several engines, depending on the dataset configuration and which features are enabled.
+
+* Recipes can now read much more info about datasets (paths, files, DB details, ...). This makes it easy to submit connection details directly to a third-party execution engine instead of having the data go through the DSS engine.
+
+Long-running tasks infrastructure
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+DSS now has a new multi-process infrastructure for handling long-running tasks.
+
+The key benefits are:
+
+* DSS is now more resilient against various data issues that could previously cause crashes
+* Aborting some long-running tasks, like computing a random sample on a SQL database is now
+  faster and rock-solid
+* Each user can now list and abort all his own tasks from a centralized screen. Administrators
+  can do the same with all tasks
+
+SQL: dates without timezone
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+DSS now has full support for dates without timezone columns in all SQL databases. Previously, support and handling differed depending on the database engine.
+
+For all databases, dates-without-timezone can now be handled as string, server-local dates or as a user-specified timezone.
+
+
+Public API
+%%%%%%%%%%%%
+
+The public API now includes a set of methods to interact with managed folders
+
+Internal Python API
+%%%%%%%%%%%%%%%%%%%%
+
+* :py:meth:`dataiku.get_dss_settings` (see paragraph about plugins)
+* :py:meth:`Dataset.get_location_info` and :py:meth:`Dataset.get_files_info` for new kinds of interaction with your datasets. (For example: submit connection details directly to a third-party execution engine instead of having the data go through the DSS engine)
+* :py:meth:`Dataset.get_formatted_data` to retrieve a dataset as a stream of bytes with a specific format.
+
+Multi-connection SQL recipes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+SQL query recipes can now use (optionally) datasets from multiple connections (of the same type) as input. This lets you create a recipe that uses two databases on the same database server, for example.
+
+It is still your responsibility to write the proper SQL to actually do the cross-database lookups.
+
+Notable bug fixes
+-----------------
+
+Visual recipes
+%%%%%%%%%%%%%%%
+
+* Fixes around partitioned VisualSQL recipes
+* Fix for vstack recipe on Oracle
+* Fix for grouping recipe on DSS engine with custom aggregations
+
+Datasets
+%%%%%%%%%
+
+* Default format of S3 datasets is now compatible with Redshift
+* Properly update the Hive metastore when the dataset schema changes
+
+Recipes
+%%%%%%%%
+
+* Fixed SQL script on PostgreSQL with non-standard port
+* Fixed Hive error reporting (line numbers were not propagated properly)
+
+Charts
+%%%%%%%
+
+* Fixed hidden tooltips on published charts
+* Fixed saving of "one tick per bin" option
+
+Machine learning
+%%%%%%%%%%%%%%%%%
+
+* Fixed error in clustering when empty columns
+
+UI
+%%%
+
+* Fixed error when trying to upload a plugin without selecting a file.
+
+Data preparation
+%%%%%%%%%%%%%%%%%
+
+* Fixed wrongful detection as "Decimal french format"
+* Fixed display of custom date formats on Firefox

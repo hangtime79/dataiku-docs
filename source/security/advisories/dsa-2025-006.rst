@@ -1,0 +1,32 @@
+:orphan:
+
+
+Improper logging of cleartext credentials
+#########################################
+
+Information
+=============
+
+* Advisory ID: DSA-2025-006
+* CVSS Base Score: 4.3
+* CVSS String: AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N
+* Severity: Medium
+* CWE classification: CWE-313
+
+Summary
+========
+
+In Dataiku DSS 14 before 14.1.0 and Dataiku DSS 13 before 13.5.7,
+the Hugging Face token was printed in the job log when running a fine-tuning recipe locally
+(not in a container) on a Hugging Face local LLM.
+
+Affected Products
+==================
+
+* Dataiku DSS 14 before 14.1.0
+* Dataiku DSS 13 before 13.5.7
+
+Fix
+===
+
+Dataiku 14.1.0 and 13.5.7 have been made available to customers to remediate this issue

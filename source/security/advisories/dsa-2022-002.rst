@@ -1,0 +1,28 @@
+:orphan:
+
+Access control issue on foreign managed folders
+#####################################################
+
+Information
+=============
+
+* Advisory ID: DSA-2022-002
+* CVSS Base Score: 5.7
+* CVSS String: CVSS:3.0/AV:N/AC:L/PR:L/UI:R/S:U/C:H/I:N/A:N
+* Severity: Medium
+* CWE classification: CWE-284
+
+Summary
+========
+
+In Dataiku DSS before 10.0.6, insufficient access control could allow an authenticated attacker who has been given the internal identifier of a managed folder the ability to read and modify it
+
+Affected Products
+==================
+
+* Dataiku DSS before 10.0.6
+
+Fix
+===
+
+Dataiku DSS 10.0.6 has been made available to customers to remediate this issue

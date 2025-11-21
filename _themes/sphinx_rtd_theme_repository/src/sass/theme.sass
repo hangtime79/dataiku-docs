@@ -1,0 +1,140 @@
+// ------------------------------------------------------------
+// CONTRIBUTORS, PLEASE READ THIS!
+// ------------------------------------------------------------
+// This theme pulls from other frontend projects. The only
+// things you should edit are the sass files that start with
+// "theme_*.sass". All other files are loaded through bower.
+// ------------------------------------------------------------
+
+// Variable defaults set by Wyrm
+@import wyrm_core/wy_variables
+
+// Variable overrides that change coloring and fonts for this theme.
+@import theme_variables
+
+// bourbon.io framework
+@import ~bourbon/app/assets/stylesheets/bourbon
+
+// Bourbon.io/neat framework, with some default media queries
+@import wyrm_core/grid_settings
+@import ~bourbon-neat/app/assets/stylesheets/neat
+// Some corrections for neat
+@import wyrm_core/neat_extra
+
+// Custom reset
+@import wyrm_core/reset
+
+// Wyrm mixins
+@import wyrm_core/mixin
+
+// Font Awesome with wyrm extras
+@import ~font-awesome/scss/font-awesome
+@import wyrm_core/font_icon_defaults
+
+// Wyrm core styles used in this theme
+@import wyrm_core/alert
+@import wyrm_core/button
+@import wyrm_core/dropdown
+@import wyrm_core/form
+@import wyrm_core/generic
+@import wyrm_core/table
+@import wyrm_core/type
+
+// Theme specific styles. These are likely the files you want to edit.
+@import theme_breadcrumbs
+@import theme_layout
+@import theme_badge
+@import theme_rst
+@import theme_mathjax
+@import theme_font_awesome_compatibility
+@import theme_font_local
+
+// Begin DKU specific
+@font-face
+  font-family: 'Fabrikat Regular';
+  src: url('https://pages.dataiku.com/hubfs/font-fabrikat-new/Fabrikat%20Regular.eot'), url('https://pages.dataiku.com/hubfs/font-fabrikat-new/Fabrikat%20Regular.woff2') format('woff2'), url('https://pages.dataiku.com/hubfs/font-fabrikat-new/Fabrikat%20Regular.woff') format('woff'), url('https://pages.dataiku.com/hubfs/font-fabrikat-new/Fabrikat%20Regular.ttf') format('truetype')
+  font-weight: normal
+  font-style: normal
+
+.k
+  color: #3333CC
+
+img
+  border: 1px #ddd solid
+
+h2
+  border-bottom: 2px #aaa solid
+
+.rst-content table.docutils td
+  white-space: normal
+
+.rst-content table.docutils th
+  white-space: normal
+
+.rst-content p
+  margin-bottom: 18px
+
+.rst-content ul.simple
+  margin-bottom: 10px
+
+.rst-content p + ul
+  margin-top: -12px
+
+.alert-outdated
+  background: #fefaee
+  padding: 8px
+  text-align: center
+  border: 1px #f0b310 solid
+  margin-bottom: 10px
+
+.alert-uptodate
+  background: rgba(42,177,172,0.18)
+  padding: 8px
+  text-align: center
+  border: 1px #2ab1ac solid
+  margin-bottom: 10px
+
+h2,h3,h4
+  margin-top: 25px
+  margin-bottom: 20px
+
+h2
+  font-size: 160%
+
+h3
+  font-size: 146%
+
+h4
+  font-size: 130%
+  font-weight: 500
+  margin-bottom: 16px
+
+h5
+  margin-top: 16px
+  margin-bottom: 8px
+
+.wy-side-nav-search
+  z-index: $z-index-popover
+  background-color: $link-color
+
+.wy-grid-for-nav
+  padding-top: 115px
+
+.wy-nav-side
+  position: absolute
+  top: 115px
+  bottom: auto
+
+.toctree-l0
+  margin-top: 24px
+  padding-left: 8px;
+  color: #bbbbbb
+  font-size: 1.08em
+  margin-bottom: 8px
+
+.toctree-l0:first-child
+   margin-top: 10px
+
+.rst-content section ul li > ul
+  margin-bottom: 0
+  margin-top: 0

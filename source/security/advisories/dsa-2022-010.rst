@@ -1,0 +1,27 @@
+:orphan:
+
+Insufficient access control on export to dataset
+##########################################################################
+
+Information
+=============
+
+* Advisory ID: DSA-2022-010
+* CVSS String: CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:H/A:N
+* CVSS Base Score: 6.5 (Medium)
+* CWE classification: CWE-284
+
+Summary
+========
+
+Insufficient access control could allow hostile attackers to leverage the export mechanism to overwrite a dataset in a project that they do not have access to
+
+Affected Products
+==================
+
+* Dataiku DSS before 10.0.8
+
+Fix
+===
+
+Dataiku DSS 10.0.8 has been made available to customers to remediate this issue

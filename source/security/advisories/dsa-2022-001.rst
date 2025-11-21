@@ -1,0 +1,70 @@
+:orphan:
+
+PwnKit Linux vulnerability (CVE-2021-4034)
+###########################################
+
+
+Information
+=============
+
+* Advisory ID: DSA-2022-001 (original vulnerability: CVE-2021-4034)
+* CVSS Base Score: 8.8
+* CVSS String: CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H
+* Severity: High
+* CWE classification: CWE-787 / CWE-125
+
+Summary
+========
+
+A Local Privilege Escalation was found in the "PolicyKit" component of all major Linux distributions. This allows hostile local users to gain root access.
+
+Cloud Stacks DSS instances are affected by this vulnerability.
+
+Affected Products
+==================
+
+* Dataiku DSS 9.0.6 and previous versions (Cloud Stacks deployments)
+* Dataiku DSS 10.0.2 and previous versions  (Cloud Stacks deployments)
+
+.. warning::
+
+	Non-Cloud Stacks deployments may be affected too. However, for these deployments, Dataiku software
+	does not manage the base OS in which the vulnerability lies.
+
+	Please refer to the mitigation instructions from your OS vendor
+
+Fix
+===========
+
+Dataiku DSS 9.0.7 and 10.0.3 have been released and address the vulnerability
+
+Mitigation
+==========
+
+To fix the vulnerability without upgrading to DSS 9.0.7 or 10.0.3, please follow these instructions:
+
+* Log onto your Fleet Manager
+* Go to the Instance template (or Instance templates) used by your instances
+* Add a setup action of type "Run Ansible Tasks". Make sure "After DSS start" is selected as the Stage
+
+* Enter the following Ansible command
+
+.. code-block:: bash
+
+	---
+	- become: true
+	  command: /usr/bin/yum update -y polkit
+
+* Save the instance template
+* For each instance, go to the instance page, and click on Actions > Replay Setup Actions
+* Your DSS instance is now safe from the vulnerability
+
+Timeline
+========
+
+* January 25th, 2022 (5pm): Vulnerability is disclosed
+* January 26th, 2022: Dataiku publishes mitigation instructions
+* January 27th, 2022: Dataiku notifies affected customers
+* January 28th, 2022: Dataiku publishes fixed version
+
+If you encounter any issue following this procedure, or for any additional question, please feel free to reach out to Dataiku Support.

@@ -1,0 +1,29 @@
+:orphan:
+
+
+Unauthenticated Denial of Service
+###################################
+
+Information
+=============
+
+* Advisory ID: DSA-2025-004
+* CVSS Base Score: 7.5
+* CVSS String: AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H
+* Severity: High
+* CWE classification: CWE-770
+
+Summary
+========
+
+In Dataiku DSS before 13.5.4, unauthenticated attackers could cause a Denial of Service by sending specifically-crafted malformed requests.
+
+Affected Products
+==================
+
+* Dataiku DSS before 13.5.4
+
+Fix
+===
+
+Dataiku DSS 13.5.4 has been made available to customers to remediate this issue

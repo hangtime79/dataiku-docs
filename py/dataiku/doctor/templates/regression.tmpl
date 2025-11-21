@@ -1,0 +1,66 @@
+{% extends "prediction.tmpl" %}
+
+{% block target_variable %}
+## We renamed the target variable to a column named target
+ml_dataset['__target__'] = ml_dataset['{{target}}']
+del ml_dataset['{{target}}']
+{% endblock %}
+
+
+
+
+{% block model_definition %}
+
+{% if algorithm == "RANDOM_FOREST_REGRESSION" %}
+{% if modeling_params.rf_estimators  == 0 %}
+from dataiku.doctor import RandomForestRegressorIML
+clf = RandomForestRegressorIML(
+    n_jobs={{ modeling_params.rf_njobs }},
+    random_state=1337,
+    max_depth={{ modeling_params.rf_max_tree_depth if modeling_params.rf_max_tree_depth > 0 else None }},
+    min_samples_leaf={{ modeling_params.rf_min_samples_leaf }},
+    verbose=2)
+{% else %}
+from sklearn.ensemble import RandomForestRegressor
+clf = RandomForestRegressor(n_estimators={{ modeling_params.rf_estimators }},
+    n_jobs={{ modeling_params.rf_njobs }},
+    random_state=1337,
+    max_depth={{ modeling_params.rf_max_tree_depth if modeling_params.rf_max_tree_depth > 0 else None }},
+    min_samples_leaf={{ modeling_params.rf_min_samples_leaf }},
+    verbose=2)
+{% endif %}
+{% elif algorithm == "RIDGE_REGRESSION" %}
+from sklearn.linear_model import RidgeCV
+clf = RidgeCV(fit_intercept=True, normalize=True)
+{% elif algorithm == "LASSO_REGRESSION" %}
+from sklearn.linear_model import LassoLarsIC
+clf = LassoLarsIC(fit_intercept=True, normalize=True, copy_X=True)
+{% elif algorithm == "LEASTSQUARE_REGRESSION" %}
+from sklearn.linear_model import LinearRegression
+clf = LinearRegression(fit_intercept=True, normalize=True)
+{% elif algorithm == "SCIKIT_MODEL" %}
+{{modeling_params['scikit_clf']}}
+{% else %}
+# Algorithm unsupported !
+{% endif %}
+
+{% endblock %}
+
+
+## The model is now being trained, we can apply it to our validation set:
+{% block prediction %}
+%time _predictions = clf.predict(valid_X)
+predictions = pd.Series(data=_predictions, index=valid_X.index, name='predicted_value')
+
+# Build scored dataset
+results_valid = valid_X.join(predictions, how='left')
+results_valid = results_valid.join(valid['__target__'], how='left')
+results_valid = results_valid.rename(columns= {'__target__': '{{ target }}'})
+{% endblock %}
+
+
+{% block evaluation %}
+## You can measure the model's accuracy:
+c =  results_valid[['predicted_value', '{{ target }}']].corr()
+print 'Pearson correlation: %s' % c['predicted_value'][1]
+{% endblock %}

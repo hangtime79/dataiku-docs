@@ -1,0 +1,28 @@
+:orphan:
+
+Insufficient access control on managed cluster logs and configuration
+##########################################################################
+
+Information
+=============
+
+* Advisory ID: DSA-2022-005
+* CVSS String: CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N
+* CVSS Base Score: 4.3 (Medium)
+* CWE classification: CWE-284
+
+Summary
+========
+
+In Dataiku DSS 10.0.6 and 10.0.7, users with only "Use" instead of "Manage" permission could access managed clusters logs and configuration.
+
+Affected Products
+==================
+
+* Dataiku DSS 10.0.6
+* Dataiku DSS 10.0.7
+
+Fix
+===
+
+Dataiku DSS 10.0.8 has been made available to customers to remediate this issue

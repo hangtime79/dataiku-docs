@@ -1,0 +1,28 @@
+:orphan:
+
+Aborting scenarios with read-only permission on the project
+###########################################################
+
+Information
+=============
+
+* Advisory ID: DSA-2023-026
+* CVSS Base Score: 4.3
+* CVSS String: CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L
+* Severity: Medium
+* CWE classification: CWE-285
+
+Summary
+========
+
+It was discovered that a user with read only permission on a project could abort scenario belonging to this project
+
+Affected Products
+==================
+
+* Dataiku DSS before 11.4.4
+
+Fix
+===
+
+Dataiku DSS 11.4.4 has been made available to customers to remediate this issue

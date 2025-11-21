@@ -1,0 +1,26 @@
+# Run the command below to install all dependencies:
+# pip install -r requirements.txt
+
+
+urllib3<2
+sphinx>7
+sphinx-rtd-theme<2
+pandas<1.4
+numpy<=1.17.3
+docutils<0.19
+linkify-it-py
+sphinxcontrib-bibtex
+sphinxcontrib-jsmath
+sphinxcontrib-htmlhelp
+sphinxcontrib-mermaid
+sphinxext-opengraph
+sphinx-design
+sphinx-copybutton
+sphinx-tabs
+sphinx_reredirects
+myst-parser
+furo
+jsx-lexer
+ipython
+spdx-lookup
+

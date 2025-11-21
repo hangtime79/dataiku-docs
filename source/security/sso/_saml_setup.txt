@@ -1,0 +1,159 @@
+
+To set up SAML integration, you need:
+
+* to register a new service provider entry on your SAML identity provider, for this |DKU_APP| instance.
+  This entry is identified by a unique "entity ID", and is bound to the SAML login URL for this |DKU_APP| instance.
+
+* to configure |DKU_APP| with the IdP parameters, so that |DKU_APP| can redirect non logged-in users to the IdP for authentication, and
+  can authentify the IdP response
+
+* optionally, to configure which of the user attributes returned by the IdP is to be used as the |DKU_APP| username, or configure
+  rewrite rules to extract the |DKU_APP| username from the chosen IdP attribute
+
+These steps are individually detailed below.
+
+Registering a service provider entry for |DKU_APP| on the identity provider.
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+The exact steps for this depend on the identity provider platform which you plan to connect to, and should be performed
+by your IdP administrator. This entry may also be called a "SAML application".
+
+You will typically need:
+
+* an "Entity ID" which uniquely represents this |DKU_APP| instance on the IdP (sometimes also called "Application ID URI").
+
+  This entity ID is allocated by the IdP, or chosen by the IdP admin.
+
+* the SAML login URL for |DKU_APP| ("Assertion Consumer Service Endpoint", which may also be called "Redirect URI", "Callback URL", or "ACS URL").
+
+  This URL *must* be configured as 
+  
+  .. parsed-literal::
+
+   |SAML_CALLBACK_PATH|
+
+  where ``BASE_URL`` is the URL through which |DKU_APP| users access this |DKU_APP| instance.
+
+  For example, if |DKU_APP| is accessed at |SAML_CALLBACK_URL_EXAMPLE|, the SAML callback URL must be defined as
+
+.. parsed-literal::
+
+    |SAML_CALLBACK_PATH_EXAMPLE|
+
+
+Note that some SAML identity providers require the callback URL to use the HTTPS scheme.
+
+As an additional step, you may also have to authorize your users to access this new SAML application at the IdP level.
+
+Finally, you will need to retrieve the "IdP Metadata" XML document from the identity provider, which is required to configure |DKU_APP| (also called 
+"Federation metadata document").
+
+
+Configuring |DKU_APP| for SAML authentication.
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+SAML configuration is in the "Settings / Security & Audit / User login & provisioning / SSO" screen.
+
+Select "Enable", choose protocol "SAML" and fill up the associated configuration fields:
+
+* IdP Metadata XML : the XML document describing the IdP connection parameters, which you should have retrieved from the IdP.
+  
+  It should contain a <EntityDescriptor> record itself containing a <IDPSSODescriptor> record.
+
+* SP entity ID : the entity ID (or application ID) which you have configured on the IdP in the step above
+
+* SP ACS URL : the redirect URL (or callback URL) which you have configured on the IdP in the step above
+
+.. warning::
+
+  You need to restart |DKU_APP| after any modification to the SAML configuration parameters.
+
+
+Optional: configuring signed requests
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+If your IdP requires it (this is generally not the case) you can configure |DKU_APP| to digitally sign SAML requests so that the IdP can
+authentify them.
+
+For this, you need to provide a file containing a RSA or DSA keypair (private key plus associated certificate), which |DKU_APP| will use
+for signing, and provide the associated certificate to the IdP so that it can verify the signatures.
+
+This file must be in the standard PKCS#12 format, and installed on the |DKU_APP| host. It can be generated using standard tools, as follows:
+
+.. code-block:: bash
+
+  # Generate a PKCS12 file containing a self-signed RSA key and certificate with the "keytool" java command:
+  keytool -keystore <FILENAME>.p12 -storetype pkcs12 -storepass <PASSWORD> -genkeypair -keyalg RSA -dname "CN=DSS" -validity 3650
+
+  # Generate a PKCS12 file containing a self-signed RSA key and certificate with the openssl suite:
+  openssl req -x509 -newkey rsa:2048 -nodes -keyout <FILENAME>.key -subj "/CN=DSS" -days 3650 -out <FILENAME>.crt
+  openssl pkcs12 -export -out <FILENAME>.p12 -in <FILENAME>.crt -inkey <FILENAME>.key -passout pass:<PASSWORD>
+
+You then need to complete the |DKU_APP| configuration as follows:
+
+* check the "Sign requests" box
+* Keystore file : absolute path to the PKCS#12 file generated above
+* Keystore password : PKCS#12 file password
+* Key alias in keystore : optional name of the key to use, in case the PKCS#12 file contains multiple entries
+
+
+Choosing the login attribute
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Upon successful authentication at the IdP level, the IdP sends to |DKU_APP| an assertion, which contains all attributes of the logged in user.
+Each attribute is named. You need to indicate which of the attributes contains the user's login, that |DKU_APP| will use.
+
+Note that |DKU_APP| logs all attributes received from the SAML server in the backend log file, which may help
+configuring this field.
+
+If this field is left empty, |DKU_APP| will use the default SAML "name ID" attribute.
+
+Login remapping rules
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Optionally, you can define one or several rewriting rules to transform the selected SAML attribute into the intended |DKU_APP| username.
+These rules are standard search-and-replace Java regular expressions, where ``(...)`` can be used to capture a substring in the 
+input, and ``$1``, ``$2``... mark the place where to insert these captured substrings in the output. Rules are evaluated in 
+order, until a match is found. Only the first matching rule is taken into account.
+
+A standard use case for such rewriting rules would be to strip the domain part from email-address-like attributes.
+For example, configuring the following rule:
+
+.. code-block:: 
+
+	([^@]*)@mydomain.com     ->     $1
+
+would rewrite a SAML attribute ``first.last@mydomain.com`` into ``first.last``, and do nothing on SAML attribute
+``first.last@otherdomain.com`` (as the left-hand part of the rule would not match).
+
+.. warning::
+	The Login remapping rules are evaluated in order. If you have multiple rules and their regexes overlap (ie `^(.*)@mycompany.corp$` and `^(.*)$`), make sure the most specific one is defined first.
+
+User Supplier
+^^^^^^^^^^^^^
+
+DSS SSO implementation is able to supply users from an SSO context. Meaning you can configure DSS to auto-provision or synchronize users when a user authenticates via SSO.
+
+Once you have enabled the `Login-time provisioning` and/or `Login-time resync` option, in the SAML context you need to configure the mapping between
+the SAML assertion (the identity provider's response to DSS) and the DSS representation of an identity. (See the documentation of your identity provider or contact your identity provider's administrator for the required information).
+
+Testing SAML SSO
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* Configure SAML integration as described above
+* Restart |DKU_APP|
+* Access the |DKU_APP| URL from another browser or an anonymous window
+* You should be redirected to the IDP for authentication, then back to the |DKU_APP| redirect URL, then to the |DKU_APP| homepage
+* If login fails, check the logs for more information
+
+.. note::
+
+	Once SSO has been enabled, if you access the root |DKU_APP| URL, SSO login will be attempted. If SSO login fails, you will only 
+	see an error.
+
+	You can still use the regular login/password login by going to the ``/login/`` URL on |DKU_APP|. This allows you to still log in 
+	using a local account if SSO login is dysfunctional.
+
+	If the SAML configuration is invalid (in particular if the IdP metadata XML is malformed) |DKU_APP| will not restart. You will need
+	to manually disable SAML in the general-settings.json configuration file as described below.

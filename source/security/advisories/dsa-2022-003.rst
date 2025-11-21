@@ -1,0 +1,28 @@
+:orphan:
+
+Cross-script-scripting on model reports
+########################################
+
+Information
+=============
+
+* Advisory ID: DSA-2022-003
+* CVSS Base Score: 7.6
+* CVSS String: CVSS:3.0/AV:N/AC:L/PR:L/UI:R/S:U/C:H/I:H/A:L
+* Severity: High
+* CWE classification: CWE-79
+
+Summary
+========
+
+In Dataiku DSS before 10.0.6, insufficient input sanitization could allow an authenticated attacker to send a malicious link to a custom model report that would trigger a cross-script-scripting issue
+
+Affected Products
+==================
+
+* Dataiku DSS before 10.0.6
+
+Fix
+===
+
+Dataiku DSS 10.0.6 has been made available to customers to remediate this issue

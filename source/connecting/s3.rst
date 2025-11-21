@@ -1,0 +1,152 @@
+Amazon S3
+#########
+
+DSS can interact with Amazon Web Services' Simple Storage
+Service (AWS S3) to:
+
+* Read and write datasets
+* Read and write managed folders
+
+S3 is an object storage service: you create "buckets"
+that can store arbitrary binary content and textual metadata under a specific key, unique in the container.
+
+While not technically a hierarchical file system with folders, sub-folders and
+files, that behavior can be emulated by using keys containing ``/``. For
+instance, you can store your daily logs using keys like ``2015/01/24/app.log``.
+S3 lets you list all objects with a specific prefix, say ``2015/01/`` and many
+S3 clients (including the AWS Web Console) can "browse" your buckets this way.
+
+DSS uses the same filesystem-like mechanism when accessing S3: when you specify
+a bucket, you can browse it to quickly find your dataset, or you can set the
+prefix in which DSS may output datasets. Datasets on S3 thus must be in one of
+the supported :ref:`filesystem formats <file-formats>`.
+
+.. note::
+
+	Using S3 as a filesystem comes with a few limitations:
+	  - keys must not start with a ``/``
+	  - "files" with names containing ``/`` are not supported
+	  - "folders" (prefixes) ``.`` and ``..`` are not supported
+	  - like on a filesystem, a file and a folder with the same name are not
+	    supported: if a file ``some/key`` exists, it takes precedence over a
+	    ``some/key/`` prefix / folder
+
+Create a S3 connection
+===========================
+
+To create a S3 connection, you need to have a AWS keypair (access key and secret key). Note that if your DSS server is running on AWS itself, DSS can automatically retrieve credentials from the environment. In that case, you can use "Environment" credentials
+
+Required S3 permissions
+--------------------------
+
+The access you specify in an AWS connection must have the following
+permissions:
+
+- To read data from a bucket, it must at least have listing and reading
+  permissions on that bucket:
+  
+  .. code-block:: text
+  
+    s3:ListBucket arn:aws:s3:::examplebucket
+    s3:GetObject arn:aws:s3:::examplebucket/*
+
+- To write data to a bucket, it must also have writing, deletion and
+  multipart-upload-aborting permissions on that bucket:
+  
+  .. code-block:: text
+  
+    s3:ListBucket arn:aws:s3:::examplebucket
+    s3:GetObject arn:aws:s3:::examplebucket/*
+    s3:PutObject arn:aws:s3:::examplebucket/*
+    s3:DeleteObject arn:aws:s3:::examplebucket/*
+    s3:AbortMultipartUpload arn:aws:s3:::examplebucket/*
+
+- Not mandatory, but bucket listing permission allows you to pick a bucket
+  from a dropdown list instead of manually typing its name when creating a
+  dataset:
+  
+  .. code-block:: text
+  
+    s3:ListAllMyBuckets arn:aws:s3:::*
+
+- Also not mandatory, bucket locating permission can improve performance by
+  making DSS access a bucket via its preferred AWS endpoint:
+  
+  .. code-block:: text
+  
+    s3:GetBucketLocation arn:aws:s3:::*
+
+For more details about how to create policies and add these permissions to them, please see the AWS documentation here: `<https://docs.aws.amazon.com/AmazonS3/latest/user-guide/set-permissions.html>`_
+
+Transfer ownership to the bucket owner
+------------------------------------------
+
+If the target bucket is owned by another account, and if ACLs are enabled and set to "Bucket owner preferred", it is possible to transfer the ownership of uploaded data to the bucket owner by adding the ``bucket-owner-full-control`` canned ACL to the write operation.
+
+The ``bucket-owner-full-control`` canned ACL can be set on every write operation in DSS by setting the ``dku.connection.s3.addBucketOwnerCannedACL`` custom property to ``true`` on the S3 connection.
+
+.. important::
+
+  In addition to the required permissions mentioned above to write data to a bucket, the source AWS account used by the S3 connection must have permission to read and write ACLs and to list objects in the target bucket.
+  This can be set on the target bucket by adding the source account's canonical id as a new grantee with List/Write permissions for objects and Read/Write permissions for ACL (edit the Access control list section in the permission tab of the target bucket).
+
+For more details about configuring ACLs, please refer to the AWS documentation here: `<https://docs.aws.amazon.com/AmazonS3/latest/userguide/managing-acls.html>`_
+
+.. note::
+
+  The recommendation for cross-account access is to use AssumeRole. For more details about AssumeRole, please see the AWS documentation here: `<https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html>`_
+
+Creating S3 datasets
+======================
+
+After creating your S3 connection in Administration, you can create S3 datasets.
+
+From either the Flow or the datasets list, click on New dataset > S3. 
+
+* Select the connection in which your files are located
+* If available, select the bucket (either by listing or entering it)
+* Click on "Browse" to locate your files.
+
+Connections path handling
+==========================
+
+The S3 connection can be either in "free selection" mode, or in "path restriction mode".
+
+In "free selection" mode, users can select the bucket in which they want to read, and the path within the bucket. If the AWS keypair has the permission to list buckets, a bucket selector will be available for users.
+
+In "path restriction mode", you choose a bucket, and optionally a path within the bucket. Users will only be able to read and write data within that "base bucket + path".
+
+To enable "path restriction mode", simply write a bucket name (and optionally a path in bucket) in the "Path restrictions" section of the connection settings
+
+Location of managed datasets and folders
+===========================================
+
+For a "free selection" connection
+----------------------------------
+
+When you create a managed dataset or folder in a S3 connection, DSS will automatically create it within the "Default bucket" and the "Default path". 
+
+Below that root path, the "naming rule" applies. See :doc:`relocation` for more information.
+
+For a "path restriction" connection
+-------------------------------------
+
+
+When you create a managed dataset or folder in a S3 connection, DSS will automatically create it within the Bucket and Path selected in the "Path restrictions" section, and will append the "Default path" from the "managed datasets & folders" section.
+
+Below that root path, the "naming rule" applies. See :doc:`relocation` for more information.
+
+Server-side encryption of files
+===================================
+
+Encryption Mode
+----------------
+
+Options for server-side encryption of files can be set to either 'None', 'SSE-S3' or 'SSE-KMS'.  For more information on these options, please see the AWS documentation here: `<https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html>`_
+
+Custom Object Storage
+======================
+
+Some S3-compatible storage providers may not support the default Signature Version 4 (SigV4) signer used by the AWS client.
+Instead, they may work with the dedicated  `AWSS3V4Signer <https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/auth/signer/AwsS3V4Signer.html>`_ implementation provided by AWS.
+To enable this signer, set the property ``dku.s3.AWSS3V4Signer.enable`` to ``true`` in the "Custom properties" > "Advanced connection properties" of the S3 connection.

@@ -1,0 +1,1163 @@
+DSS 4.0 Release notes
+#####################
+
+.. contents::
+    :depth: 3
+    :local:
+
+Migration notes
+================
+
+Migration paths to DSS 4.0
+----------------------------
+
+	* From DSS 3.1: Automatic migration is supported, with the restrictions and warnings described in :ref:`releases_notes.4.0.limitations`
+
+	* From DSS 3.0: In addition to the restrictions and warnings described in :ref:`releases_notes.4.0.limitations`, you need to pay attention to the restrictions and warnings applying to DSS 3.0. See :doc:`3.0 -> 3.1 </release_notes/3.1>`
+
+	* From DSS 2.X: In addition to the following restrictions and warnings, you need to pay attention
+	  to the restrictions and warnings applying to your previous versions: see :doc:`2.0 -> 2.1 </release_notes/2.1>` :doc:`2.1 -> 2.2 </release_notes/2.2>` :doc:`2.2 -> 2.3 </release_notes/2.3>`
+	  :doc:`2.3 -> 3.0 </release_notes/3.0>` and :doc:`3.0 -> 3.1 </release_notes/3.1>`
+
+	* Migration from DSS 1.X is not supported. You must first upgrade to 2.0. See :doc:`/release_notes/2.0`
+
+How to upgrade
+----------------
+
+It is strongly recommended that you perform a full backup of your Data Science Studio data directory prior to starting the upgrade procedure.
+
+For automatic upgrade information, see :doc:`/installation/custom/upgrade`.
+
+Pay attention to the warnings described in :ref:`releases_notes.4.0.limitations`.
+
+
+.. _releases_notes.4.0.limitations:
+
+Limitations and warnings
+--------------------------
+
+DSS 4.0 is a major release, which changes some underlying workings of DSS. Automatic migration from previous versions is supported, but there are a few points that need manual attention.
+
+HiveServer2
+%%%%%%%%%%%%
+
+In Hadoop settings, previous versions of DSS didn't use the HiveServer2 component. DSS now uses and requires HiveServer2 for all interaction with Hive. HiveServer2 is included by default in all Hadoop distributions. See :doc:`/hadoop/hive` for more information.
+
+When migrating from previous versions, you need to setup the hostname of your HiveServer2 instance in Administration > Settings > Hadoop.
+
+Charts on SQL or Impala
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The way charts engine is configured has been redesigned. You now first select the desired engine and DSS will show you errors if the engine is not compatible. While most of the charts that used to run on SQL (or Impala) will remain so, we recommend that you check all charts thata were supposed to run on SQL, and more generally all charts that use "full" sampling on datasets.
+
+Permissions
+%%%%%%%%%%%%
+
+The permissions system has been overhauled and new permission definitions have been introduced. DSS automatically migrates permissions to the new system. We recommend that you check all permissions, both for users and API keys.
+
+Dashboard
+%%%%%%%%%%%
+
+The new dashboard uses a new layout system, with a responsive grid instead of a fixed-size one. You might need to tweak the layout of your existing dashboards.
+
+R
+%%
+
+After upgrading to DSS 4, you'll need to re-run ``./bin/dssadmin install-R-integration`` for R to work properly.
+
+Webapps
+%%%%%%%%%
+
+Since the addition of the new dashboard, :doc:`Webapps </webapps/index>` have been moved to their own section in the UI. You'll find the usual webapp editor in the "Notebooks" section of the project ("Web Apps" subtab)
+
+For webapps that have a Python backend, make sure that the python backend file does not contain
+`encoding magic comment <https://www.python.org/dev/peps/pep-0263/>`_, such as:
+
+.. code-block:: python
+
+  # -*- coding: <encoding name> -*-
+
+or:
+
+.. code-block:: python
+
+  # coding=utf-8
+
+
+The old deprecated "/datasets/getcontent" API used by webapps prior to DSS 1.0 has been removed. Very old webapps still using ``dataiku_load_dataset()`` or ``dataiku_dataset_object`` need to be migrated to new Webapps API.
+
+Other
+%%%%%%
+
+* Models trained with prior versions of DSS must be retrained when upgrading to 4.0 (usual limitations on retraining models and regenerating API node packages - see :doc:`/installation/custom/upgrade`). This includes models deployed to the flow (re-run the training recipe), models in analysis (retrain them before deploying) and API package models (retrain the flow saved model and build a new package)
+
+* After installation of the new version, R setup must be replayed
+
+* We now recommend using mainly personal API keys for external applications controlling DSS, rather than project or global keys. Some operations, like creating datasets or recipes, are not always possible using non-personal API keys.
+
+External libraries upgrades
+----------------------------
+
+Several external libraries bundled with DSS have been bumped to major revisions. Some of these libraries  include some *backwards-incompatible* changes. You might need to upgrade your code.
+
+Notable upgrades:
+
+* scikit-learn 0.17 -> 0.18
+* matplotlib 1.5 -> 2.0
+
+As usual, remember that you should not change the version of Python libraries bundled with DSS.
+
+Version 4.0.9 - October, 3rd 2017
+====================================
+
+Datasets
+---------
+
+* **New feature**: ElasticSearch: Add SSL support
+* Fix charts on ElasticSearch dataset
+
+Recipes
+---------
+
+* Fix 'contains' and 'startsWith' operators if the expression has special characters in it.
+
+Migrations
+----------
+
+* Fix migrations if there is a space in the java path
+
+Machine Learning
+-----------------
+
+* Fix usage of "Class rebalanced" sampling with "Explicit extract from the dataset" mode
+
+
+Misc
+-----
+* Small fixes in scenario API
+* **New feature**:  Add support for Debian 9
+* SAML SSO: allow unsigned assertions in the IdP response if the response itself is signed
+* Fix dependencies installation on Red Hat 6
+* Fix download charts on Chrome >= 60
+
+
+Version 4.0.8 - September, 6th 2017
+====================================
+
+Tutorials
+----------
+
+* Brand new "starter" tutorials (Basics, Lab & Flow, Machine Learning)
+* New tutorials on automation, deployment and SQL
+
+Hadoop & Spark
+----------------
+
+* Add support for Spark 2.2
+* Add support for Cloudera CDH 5.12
+
+Flow
+-----
+
+* You can now specify multiple ranges of dates for partitions in the "Build" dialog
+
+Datasets
+---------
+
+* ElasticSearch: Fix counting of shards in case index has less shards than cluster
+* ElasticSearch: add warning if index/type not found, or if some documents were rejected
+
+Misc
+-----
+
+* Security: Disable Jupyter terminals in Multi-User security mode as they are not impersonated
+* Fix "Project Activity" page that could fail to display due to timezone issues
+* Make sure the Python notebook cannot be disrupted by pre-installed Jupyter on the machine
+
+
+Version 4.0.7 - August, 24th 2017
+=================================
+
+Data preparation
+----------------
+
+* The Data preparation UI will now warn when trying to use a column that does not exist in a preparation step.
+
+Datasets
+---------
+
+* Oracle: Fixed issue with the Oracle "undetermined" number type returned when doing "CASE WHEN"
+* S3: Fixed clearing of single-file datasets
+* Internal stats: fixed the "scenarios runs" view while a scenario is running
+
+Machine Learning
+-----------------
+
+* Fixed Least Absolute Deviation and Huber loss functions for GBT regression
+
+Hadoop/Spark
+-------------
+
+* Make custom variables usable in Scala recipes used in a Spark pipeline
+
+Misc
+-----
+
+* Fixed possible crash when aborting SQL queries from a notebook
+* Fixed ability to tune log rotation settings
+* Fixed erratic display of Flow on Firefox 55
+* Fixed the "Clean internal databases" macro
+* Improved Java GC behavior under certain kinds of memory pressure
+* Added missing system dependency for installing Sparklyr support
+
+
+Version 4.0.6 - July, 19th 2017
+=================================
+
+DSS 4.0.6 contains bugfixes.  For the details of what's new in 4.0, see below.
+
+Data preparation
+----------------
+
+* Added new "coalesce()" function to formula language
+
+Datasets
+---------
+
+* Fixed error in some specific cases of using GCS connector
+* Fixed possible job failure when building large number of partitions on a HDFS dataset
+
+Machine learning
+-----------------
+
+* Improved display of "count vectorization" and "TF/IDF vectorization" in decision trees
+
+Recipes
+-------
+
+* Fixed possible error in scoring recipe with large schemas
+* Fixed various issues with capturing of "NULL" in split recipe
+
+Dashboards
+-----------
+
+* Added "download" button to charts insight view
+
+Security
+---------
+
+* Fixed a few wrong comments in multi-user-security setup
+* Fixed some edge cases with SPNEGO authentication
+
+Migration
+----------
+
+* Fixed potential migration bug where migration from version 3.1.3 and below could fail in some specific use cases of metrics usage with "Integer out of range" errors.
+* Fixed potential migration bug where migration could fail with "timeNanos out of range" error. 
+
+Version 4.0.5 - June, 22nd 2017
+==================================
+
+DSS 4.0.5 contains both bugfixes and major new features. For the details of what's new in 4.0, see below.
+
+Hadoop and Spark
+-----------------
+
+* **New feature**: HDFS connections can now reference any kind of HDFS URL, not only paths on the default FS. :doc:`This makes it possible to read s3://, s3a://, wasb://, adl:// and others through HDFS connections </hadoop/hadoop-fs-connections>`. Credentials are passed through additional per-connection properties (*Limitation: using S3 as a HDFS filesystem is not supported on MapR*)
+* **New feature**: Add support for LDAP authentication and SSL on Impala, add more options for custom Impala URLs
+* Fix reading S3 datasets in Spark in multi-user-security mode
+* Make sure that we properly use the S3 fast path, even in single-user-security mode
+* Fixed support for s3a:// URLs on EMR 5.5
+* Add support for custom HiveServer2 URLs
+* Fixed creation of Hive tables when complex types have nested names with special characters
+* Added warnings when trying to use invalid Hive database and table names
+* Don't print useless warnings when reading Spark-generated Parquet files
+* Fixed Spark pipelines on EMR 5.4 and above
+* Fixed Spark pipelines with partitioned datasets in Spark 2.X
+* Fixed reading of foreign datasets in function mode in Scala recipe with Spark 2.X
+* Fixed rare issue with reading datasets in PySpark
+* Added ability to set default value for "write datasets using Impala" in Impala and visual recipes
+* Impala: LEADDIFF / LAGDIFF on an "int" column now properly generate a "bigint" column
+* Fixed processing of multi-dimension partitioned datasets with Spark
+
+
+Machine Learning
+-----------------
+
+* **New feature**: Isolation Forest, for anomaly detection
+* **New feature**: Feature selection (filter, LASSO-based or tree-based) and reduction (PCA)
+* Updated H2O version, add support for H2O on Spark 2.1
+* Add support for H2O on CDH 5.9 and above
+* Clustering: fix wrong results when "Drop rows" is used for handling missing values
+* Fixed non-optimized scoring with multiple feature interactions on the same columns
+* Fixed optimized scoring with numerical derivatives
+* Fixed optimized scoring of partitioned datasets (was scoring the whole dataset)
+* Fixed SQL scoring with multiclass and impact coding
+* Fixed categorical feature interactions with non-ASCII column names
+* Properly disallow SQL scoring if there is a preparation script
+* API node: fixed enrichment with Oracle and SQLServer
+* Fixed "max features" selection in Random Forests and Extra Trees algorithms
+* Properly display actual number of trained estimators in XGBoost in case of early stopping
+* Preprocessed feature names are now displayed
+* Properly warn when export to Python notebook is not supported
+* Fix Python notebook export of XGBoost, SVM, SGD, and custom models
+* Fixed icon of the evaluation recipe
+* Fixed UI issue on tol and validation params for ANN algorithm
+
+
+Datasets
+--------
+
+* **New feature**: Add support for authentication on Elasticsearch datasets
+* **New feature**: Beta support for Exasol
+* ElasticSearch: fixed failure with uppercase type names and type names with special characters
+* Fixed silent failures when uploading files that are rejected by a proxy
+* Dont' try to use Impala for metrics when a dataset has complex types (unsupported by Impala)
+* Fixed percentage display issues in analyze
+* Show computation errors when refreshing count of records from the dataset's right contextual bar
+* Teradata: Fixed reading of SQL "DATE" fields
+* Let user choose whether SQL dates should be parsed as DSS dates
+* Fixed writing datasets with Excel format
+* Fixed handling of multiple "post-write" statements, when run from SQL recipes
+
+Recipes
+----------
+
+* **New feature** : Standard deviation in grouping and window recipes
+* Add automatic translation to SQL of "and" and "or" in filter formulas
+* Grouping and Window recipes: Fix postfilter with output column name overrides
+* Invalid computed columns will not break engine selection anymore
+* Fixed copy of SparkSQL recipes
+* Fixed bad handling of NULL values in Filter and Split recipes in SQL mode (NULL values were not taken into account in "other values")
+* Join recipe: don't lose complex type definition on retrieved columns
+* Fixed refresh of "OK / NOK" indicator on pre and post filters on several recipes
+* Proper warning in join recipe when trying to join on a non-existing column
+* Sync from S3 to Redshift: add ability to use IAM role instead of explicit credentials
+* Fixed postfilter on window recipe on DSS engine
+* Don't fail if invalid engines are added to the list of preferred engines
+* Make sure that the default query in Impala recipes is always working out of the box, even with multiple databases
+* Impala recipe: show substitution variables even if query fails
+* SQL, Hive, Impala recipes: add variables for "database/schema"
+* Don't use forbidden engines, even when there are only forbidden engines
+* Fixed partitioning in split recipe with SQL engine
+* Fixed UI issues in stack recipe when the same dataset is used several times
+* Fixed Hive->Impala recipe conversion
+* Fixed UI issues in "Custom Python" dependencies
+
+Automation
+-----------
+
+* Fix Python API to send messages from custom Python scenarios/steps
+* Fixed code editor sizing on custom Python and SQL steps
+* Add minute resolution on time-based triggers
+* A broken scenario (because its run-as user does not exist) does not impact other scenarios anymore
+
+Notebooks
+----------
+
+* Added support for project variables in Scala notebooks
+
+Data preparation
+-----------------
+
+* Show more matching column names in typeahead suggestions
+
+Security
+---------
+
+* **New feature**: Added support for SAML SSO
+* **New feature**: Added support for SPNEGO SSO
+* **New feature**: Added ability to have expiring sessions
+* **New feature**: Added ability to enforce a single session per user
+* **New feature**: Added ability to restrict visibility of users and groups (to only the users in your groups)
+* **New feature**: Added ability to customize X-Frame-Options, Content-Security-Policy, X-XSS-Protection and X-Content-Type-Options headers
+* Fixed: only moderators may save non-owned dashboards
+* Fixed LDAP groups that were not available in connections security screen
+* Multi-user-security: fixed the case when UNIX user name is not the same as the Hadoop short user name
+* Multi-user-security: fixed Pyspark notebooks in some combination of Hadoop umasks and group memberships
+
+Misc
+-----
+
+* Performance improvements in internal databases
+* Homepage listing does not impact other users' performance anymore
+* Add ability to select a subset of columns in Python's ``iter_rows`` method
+* Various UI fixes
+* Added check for Pandas version, to warn against unsupported Pandas upgrades
+* install-R-integration: added ability to override CRAN mirror
+* Fixed possible "URI too long" issue in dataset "Share" window
+* Fixed possible "URI too long" issue in plugins with "fully custom forms"
+* Check for SELinux when installing
+* Add ability to clear internal databases with a time limit
+* Webapps: add ability to disable the Python backend
+* Fixed very rare possibility of data loss when the filesystem is having issues
+* Fixed wrongfully mandatory fields in SQL connection screens
+* Fixed possible nginx crash when webapps failed to initialize
+* Fixed default todo list on new projects
+
+Version 4.0.4 - April, 27th 2017
+=====================================
+
+DSS 4.0.4 is a bugfix release. For the details of what's new in 4.0, see below.
+
+Datasets
+---------
+
+* **New**: Add compatibility with ElasticSearch 5.2 and 5.3
+* **New**: Add support for reading DATE columns in ORC files
+* **New**: BETA support for Snowflake database
+* **New**: Add support for Amazon S3 Server-Side Encryption
+* Fix failure in Azure Blob connector
+* Fix SQL splitting in PostgreSQL that could cause "No match found" error in SQL recipes
+* SQL datasets: Fix quoting of partitioning column names
+
+Hadoop and Spark
+-----------------
+
+* **New**: Add support for MapR 5.2 with MEP 3.0
+* **New**: Add support for HDP 2.6
+* **New**: Add support for CDH 5.11
+* Fix a bug in direct Spark-S3 interface when using EMRFS mode with implicit credentials
+* Fix null/empty mismatch in non-HDFS datasets on Spark
+
+Machine learning
+-----------------
+
+* **New**: Ability to see either rescaled or raw coefficients in regression
+* **New**: Add support for Vertica 8.0 AdvancedAnalytics
+* UI improvements in Lasso path analysis
+* Fix failures in grid search on regression models
+
+Automation
+----------
+
+* **New**: Add a new view of all triggers across instance
+* Performance improvements on instance scenario views
+* Fix sort of bundles list
+* Show conflicts indicator on scenarios
+
+Flow and recipes
+-----------------
+
+* Fix Spark pipelines when Pyspark or SparkR recipes are present (not pipelineable)
+* Truncate too long pipeline names that can make Spark pipeline jobs fail
+* Fix naming issues in sync recipe that caused issues when an input column was named "count"
+* Fix SQL recipe failure on some databases if the query ends with a comment
+
+Data preparation
+-----------------
+
+* Fixed ability to insert a custom projection system definition in coordinate system processor
+* Fix broken handling of "Others" columns in Pivot processor
+
+Notebooks and webapps
+----------------------
+
+* Fixed bad redirect after creation of a webapp with a _ in the name
+* Fixed custom JDBC notebooks in Impala mode (not recommended)
+
+Dashboard
+----------
+
+* Fix error when reading information of an insight whose source was deleted
+* Fix permission issue on charts for explorers
+* Fix mismatches when copying a slide
+
+Misc
+-----
+
+* **New**: Add support for Amazon Linux 2017.03 and Ubuntu 17.04
+* Small UI fixes
+* Add ability to restore macro settings to default
+* Performance improvements on data catalog
+* More ability to tune data catalog indexing
+* Fix too strict permission check for managing exposed elements
+* Fix error on home page when projects end with _
+* Various performance improvements and observability
+* Fix load of Intercom widget on very slow networks
+* Fix dataiku.Dataset.get_config() Python API
+
+Version 4.0.3 - March, 27th 2017
+=====================================
+
+DSS 4.0.3 is a bugfix release with several new features. For the details of what's new in 4.0, see below.
+
+Machine learning
+-----------------
+
+* **New feature**: Lasso-LARS regression for automatic selection of a given number of features in a linear model
+* **New feature**: Ability to generate new "interaction" features by combining two existing features.
+* **New feature**: Partial dependency plots are now available for Random Forest and Decision Tree models (regression only)
+* Better scoring performance for models with large number of columns
+* Fix scikit-learn multiclass logistic regression in multinomial mode
+* Fix scoring of probability-aware custom models
+* Fix support of unlimited-depth tree models
+
+Datasets
+---------
+
+* Fix: don't fail when the explore sampling had partitions selected and dataset was unpartitioned
+* Azure: fix support for files with double extension (like .csv.gz)
+* Azure: fix prepare recipe when target is another filesystem
+* Fix support for Tableau export plugin
+* Always allow the "files in folder" dataset, regardless of license
+* Fix live charts on Vertica and SQL server
+* Fix computation of statistics on whole data when there are empties
+* Allow non-standard ports for SSH connections
+
+Webapps
+--------
+
+* Fix ability to edit API key settings
+
+Recipes
+--------
+
+* Split recipe: Fix ability to add a new dataset from the recipe settings
+* Group and Window recipes: fix edition of aggregations
+* Join recipe: fix ability to replace inputs
+* Prepare recipe: fix display of Hadoop options for MapReduce engine
+
+Data preparation
+------------------
+
+* Fix JSONPath extractor in "single result" mode
+
+Automation
+------------
+
+* Fix SQL probes executed on Hive
+* Strong performance improvement on saving metric values with very large DSS installs
+* Fix dsscli on the automation node
+* Fix "Run notebook" step in scenarios
+* Fix "add checks" link
+* Don't lock DSS while computing metrics from the public API
+* Fix SQL probe plugins
+
+Administration and security
+----------------------------
+
+* **New feature**: public API to list and unload Jupyter notebooks
+* **New feature**: Project leads can now allow arbitrary users to access the dashboards
+* Project administrators may now export datasets without explicit permission
+* Don't fail if empty values are added for preferred and forbidden engines
+* Fix scenario link in background tasks monitoring
+* Show task owner in background tasks monitoring
+* Fix saving of Hive execution config keys
+* Fix display of connected users
+* Prefer using Hive or Impala for counting number of records
+
+Performance
+------------
+
+These fixes mostly concern responsiveness of DSS UI for very large installations (in number of users, projects, datasets, ...)
+
+* Strong performance improvements for home page display
+* Performance improvements for flow page, datasets list, dataset page, recipe creation, analysis page
+* Improved performance for Hive metastore synchronization, especially for large Hive databases
+
+Misc
+----
+
+* Performance improvements for metastore synchronization
+* Make more things configurable for Data Catalog index
+* Fix dashboard save failure
+* Force Python not to try to connect to Internet during installation
+* Fix memory leak in scenarios that could lead to DSS crash after several days when a large number of scenarios are active
+* Improve capabilities of "Search" in objects lists
+* Fix typos and small UI issues
+* Fix possible hang while listing Jupyter notebooks
+
+Version 4.0.2 - March, 1st 2017
+=====================================
+
+DSS 4.0.2 is a bugfix release with minor new features. For the details of what's new in 4.0, see below.
+
+Data preparation
+-----------------
+
+* **New feature**: it is now possible to re-edit date parsers with Smart date.
+* Smart date: new formats are detected and guessed
+* Smart date: ignore some very unlikely formats
+* Smart date: UI improvements
+* Fixed invalid reset of filters
+* Fixed display of column popup on prepare recipe
+* Sort on non-existing column does not create empty columns anymore
+
+Datasets
+----------
+
+* Fix miscounting of rows for Parquet and ORC file formats (could lead to smaller than expected samples)
+* Add mean and stddev to full-data-analysis of date columns
+* Show count and percentage of top values in full-data-analysis (numerical tab)
+* Fixed drop down to select meaning in column view
+* Various UI improvements on columns view
+* Performance improvements for metrics computation with many partitions
+* Make it possible to select port on FTP connections
+
+Machine learning
+------------------
+
+* Partial dependencies: fix display when feature name contains ':'
+* Partial dependencies: Add a text filter for features
+* Fixed number of estimators for Extra Trees
+* Add missing "partitions selection" menu in Explicit extract policies
+* Fixed computation of cluster size on MLLib
+
+Dashboards
+-----------
+
+* Add ability to export dataset in "dataset table" insight
+
+Recipes
+--------
+
+* Add ability to change Inputs / Outputs on Sync recipe
+* Fix display of pre-filters in join recipe
+* Bugfix on join recipe creation
+* Fix partition dependencies tester with multiple partitioned datasets
+* Fixed selection of grouping keys in grouping recipe
+
+Hadoop & Spark
+----------------
+
+* Warn when trying to use Spark engines on HDFS datasets that are not compatible with Spark fast path
+* Faster Hive metastore synchronization for partitioned datasets with lots of partitions
+* Fix pipelining of split recipes (not pipelineable)
+* Added ability to customize HiveServer2 URL
+
+Administration & Monitoring
+-----------------------------
+
+* **New feature**: Add a view on scenario runs in the internal stats dataset
+* Fix possible hang when reporting to a non-responding Graphite server
+* Don't let users create connections with no name
+
+Setup and migration
+--------------------
+
+* Migration from 3.X: Don't force DSS engine when output is Redshift
+* Fixed ability to select LDAP as authentication source
+
+API
+----
+
+* **New feature**: Ability to set CORS headers on public API.
+* Fixed datasets set_metadata call
+* Fixed recipe get_recipe_and_payload in Python wrapper
+
+Misc
+-----
+
+* **New feature**: Project consistency check is now available as a scenario step
+* **New feature**: Add ability to export macros results (to CSV, Excel, dataset, ...)
+* New design for "Mass actions" button
+* Fix "last modified" date on analysis list
+* Work-around a Websocket deadlock in Jetty (https://github.com/eclipse/jetty.project/issues/272) that could hang DSS
+* Various performance improvements
+
+
+Version 4.0.1 - February, 16th 2017
+=====================================
+
+DSS 4.0.1 is a bugfix release. For the details of what's new in 4.0, see below.
+
+Setup
+------
+
+* Fixed migration from 3.X when recipe names or dataset names contain accented characters
+* Fixed migration of 3.X instances where no action had been performed
+* Fixed incorrect exit status for failed migrations
+* Added more information to diagnosis reports
+
+Datasets
+----------
+
+* Fixed BigQuery datasets
+
+Explore
+---------
+
+* Added ability to do analysis on full data for date types
+
+R
+-
+
+* Implemented append mode in R recipes and notebooks
+
+Hadoop
+--------
+
+* Fixed writing of map and object fields to Parquet files
+* Fixed Hive icon in Flow
+
+Spark
+------
+
+* Implement filtering of datasets in Spark (Python, R, Scala) API
+* Fixed ability to use foreign datasets in Spark recipes
+
+UI
+---
+
+* Added "last modified" information to visual analysis
+* Better warnings when trying to use invalid dataset names
+* No more messages when building charts when you only have read access on a project
+* Fixed creation of recipes in recipe copy
+
+Dashboards
+-----------
+
+* Fixed too strict permissions in Jupyter insights
+* Fixed too strict permissions in scenario run insights
+
+Misc
+-----
+
+* Performance enhancements in data catalog
+* Fixed notifications on project edition
+* Verify foreign dataset permissions when building jobs and training models
+* Better error reporting for empty jobs
+* Improve code snippets here and there
+* Better audit logging for job events
+* Fix download of files bigger than 2GB from folders
+
+Version 4.0.0 - February, 13th 2017
+=====================================
+
+DSS 4.0.0 is a major upgrade to DSS with a lot of new features and major architectural changes. For a summary of the major new features, see: https://www.dataiku.com/learn/whatsnew
+
+New features
+-------------
+
+New dashboard
+%%%%%%%%%%%%%%
+
+DSS 4 features a completely redesigned dashboard with far expanded capabilities.
+
+* The dashboard now uses a 12-cells responsive grid and a new layout engine that makes it much easier to move content around. The dashboard UX has been strongly overhauled.
+
+* You can now have multiple dashboard per project. Dashboard can either be personal or public. Each dashboard can have multiple slides. The dashboard can be put in fullscreen mode
+
+* Dashboard-only users, who don't have access to the full project content can now create their own dashboards. A new authorization system lets data analysts choose what part of the project are available to dashboard-only users.
+
+* A new publication system
+
+* Many features have been added on published charts (show/hide axis, tooltips, legends, filters, ability for readers to set their own filters, ...)
+
+* Many features have been added on published datasets (show/hide headers, select columns, show colorization, ability for readers to set their own filters, ...)
+
+* Jupyter notebooks published on the dashboard can now have multiple versions, even concurrently.
+
+* New kind of publishable insights have been added: report of a saved model, DSS metrics, project activity info, object activity feed.
+
+* You can now add rich text, images, URLs and web pages directly on the dashboard.
+
+For more information, see :doc:`/dashboards/index`.
+
+Multi-user security
+%%%%%%%%%%%%%%%%%%%%
+
+The regular behavior of DSS is to run as a single UNIX account on its host machine. When a DSS end-user executes a code recipe, it runs as this single UNIX user. Similarly, when a DSS end-user executes an Hadoop recipe or notebook, it runs on the cluster as the Hadoop user of the DSS server.
+
+DSS now supports an alternate mode of deployment, called *multi-user security*. In this mode, DSS will *impersonate* the end-user and run all user-controlled code under its own identity.
+
+For more information, see :doc:`/user-isolation/index`
+
+Spark 2
+%%%%%%%%%
+
+DSS is now compatible with Spark 2.0. In addition, an experimental support for Spark 2.1 is provided (preview only).
+
+For more information, see :doc:`/spark/index`
+
+Spark pipelines
+%%%%%%%%%%%%%%%%%%
+
+When several consecutive steps in a DSS Flow (including with branches or splits) use the Spark engine, DSS now has the ability to automatically merge all of these recipes and run them as a single Spark job. This strongly boosts performance by avoiding needless writes and reads of intermediate datasets, and also alleviates Spark startup overheads.
+
+The behavior of intermediate datasets can be configured by the user: write them or not (only the final datasets are written in that case).
+
+For more information, see :doc:`/spark/pipelines`
+
+Sparklyr
+%%%%%%%%%
+
+DSS now supports integration with sparklyr, an alternative API for using Spark from R code. The sparklyr integration cohabits with the SparkR integration. Both APIs are usable in recipes and notebooks.
+
+For more information, see :doc:`/spark/usage`
+
+Interactive hierarchical clustering
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+DSS now features a hierarchical clustering model. It has the unique feature of being "interactive": rather than setting a fixed number of clusters, you can edit the hierarchy of clusters after training.
+
+For example, if DSS has chosen to keep two clusters, but by studying them, you notice that the difference is not relevant to your problem, you can merge them. Oppositely, if a cluster contains two subpopulations that have relevant differences, you can split them to make deeper clusters.
+
+Quick models
+%%%%%%%%%%%%%
+
+DSS now includes a set of pre-configured "model templates". When you create a new model, you can now choose what kind of models you want:
+
+* Very explainable models (based on simple decision trees or linear formulas)
+* Most performant models, with highly cross-validated algorithms and wide search for optimal parameters
+* Models leading to finding most insights in your datasets (by fitting different kinds of algorithms)
+
+You can still set all settings of all kinds of algorithms, but quick models allow you to get started faster with common business requirements.
+
+Distributed and in-database scoring
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+For most models created in DSS visual machine learning (with Python or MLLib backends),
+you can now run scoring recipes:
+
+* In distributed mode, on Spark
+* In SQL databases, without data movement
+
+This new feature strongly improves scalability of machine learning model application.
+
+Notifications & Integrations
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The notifications system in DSS has been greatly overhauled to adapt better to larger teams.
+
+* You can now "watch" every kind of object in DSS (dataset, recipe, analysis, whole project, ...) and get notified when updates are available (someone modified the recipe, a new comment has been posted, ...). In your profile, you can edit which objects you watch.
+
+* A brand new "personal" drawer (click on your user image) which shows all of your notifications, your profile, ...
+
+* In addition to receiving your notifications in your personal drawer, each user can also choose to receive "offline" summaries (what happened on your watched objects while you were away from DSS) or daily digests (each morning, get a summary of what happened on your watched objects).
+
+* DSS can push notifications to third party systems. Slack and Hipchat integrations are provided and more will follow. You can also connect DSS with Github so that commit messages in DSS can close Github issues.
+
+* A new "activity" drawer shows all your running activities (jobs, scenarios, notebooks, webapp backends, macros, and other long tasks).
+
+
+New prebuilt notebooks
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+DSS now comes with 4 new prebuilt notebooks for analyzing datasets:
+
+* Distribution analysis and statistical tests on a single numerical population
+* Distribution analysis and statistical tests on multiple population groups
+* High-dimensionality data visualization using t-SNE
+* Topics modeling using NMF and LDA
+
+Sort in explore
+%%%%%%%%%%%%%%%%
+
+The explore view (also data preparation view in analysis and prepare recipe) can now be sorted, according to a single or multiple criterions.
+
+This sort is only visual and on the sample. The original data is not sorted.
+
+Analyze on whole dataset in explore
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The "Analyze" view in Explore can now be based on the whole dataset (in addition to the exploration sample). This is available on all dataset types and will automatically run in database, Hive or Impala depending on the type of dataset and available engines. See :doc:`/explore/analyze` for more information.
+
+
+New data sources
+%%%%%%%%%%%%%%%%%%%
+
+DSS can now connect to:
+
+* Google Cloud Storage (read and write)
+* Azure Blob Storage (read and write)
+
+Audit trail
+%%%%%%%%%%%%
+
+DSS now includes a full applicative audit trail of all activities performed by all users. With appropriate configuration, this audit trail is non repudiable: even if a user manages to compromise DSS, traces leading up to the compromise will not be alterable.
+
+Macros
+%%%%%%%
+
+Macros are predefined actions that allow you to automate a variety of tasks, like:
+
+* Maintenance and diagnostic tasks
+* Specific connectivity tasks for import of data
+* Generation of various reports, either about your data or DSS
+
+Macros can either run either manually or from a scenario. Some macros are provided as part of DSS, and they can also be in a plugin or developed by you.
+
+For example, the following macros are provided as part of DSS:
+
+* Generate an audit report of which connections are used
+* List and mass-delete datasets by tag filters
+* Clear internal DSS databases
+* Clear old DSS job logs
+
+More information is available at :doc:`/operations/macros`
+
+Sample and prepare memory limits
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The DSS administrator can now set maximum memory size for the design samples and the memory size occupied by memory representation of intermediate steps in a visual preparation recipe or analysis. This strongly incrases the stability and resilience of DSS, especially when users try to create huge design samples.
+
+Limits are configured in Administration > Settings > Limits
+
+Other notable enhancements
+---------------------------
+
+Machine learning
+%%%%%%%%%%%%%%%%%
+
+* A new faster scoring engine has been implemented. Scoring recipes and API node will be much faster. They can also run on Spark or in-database.
+* The API node can now run models trained with Spark MLLib
+* A new "evaluation" recipe allows you to evaluate the performance of a model (getting all performance metrics) on any labeled dataset, independently from the training process.
+* New algorithm: Artificial Neural networks (multi-layer perceptron) for Python backend
+* New algorithm: KNN (K-Nearest-Neightbors) for Python backend
+* New algorithm: Extra Trees for Python backend
+* Impact coding preprocessing is now available for MLLib models
+* Clustering result screens: you can now edit cluster details from all screens
+* Clustering result screens: the heatmap can now display categorical variables, provides more sorting options, and provides multiple export formats for further analysis of significant clustering variables
+* The random seed can now be fixed for clustering models
+* Many more parameters can be grid-searched
+* Custom models without probabilites are now supported
+* Improved snippet auto description of models
+
+Sampling
+%%%%%%%%%%
+
+New sampling modes have been introduced:
+
+* Exact "random count of records": get exactly the count you asked for
+* "Last records"
+* Stratified sampling versus a target column
+
+Note that some of these sampling methods are only available for explore, analyze and prepare recipes, not in the sampling recipe.
+
+
+In addition:
+
+* "Random count of records" sampling is now up to 2 times faster.
+* It is now possible to define a filter within the sampling.
+* It is now possible to use "last N partitions" as a partition selection method in sampling
+
+For more information, see:
+
+* :doc:`Sampling in explore and visual data prep </explore/sampling>`
+* :doc:`Sampling in other parts of DSS </sampling/index>`
+
+Charts
+%%%%%%%
+
+* Charts engine selection has been overhauled to be more predictible: you now first choose your charts engine, and then can choose compatible sampling and charts.
+* It is now possible to set the line width for line charts
+
+Coding recipes
+%%%%%%%%%%%%%%%
+
+* Advanced options and statements splitting capabilities have been added to the SQL Query recipe. See :doc:`/code_recipes/sql` for more information. This makes it easier to do advanced things like stored procedures or CTEs in SQL recipes.
+* SQL script recipes can now automatically infer output schema, like SQL query recipes. See :doc:`/code_recipes/sql` for more information
+* SparkSQL recipes can now use the global Hive metastore, alternatively to using only the local datasets. See :doc:`/code_recipes/sparksql` for more information
+* You can now disable validation of code prior to running recipes. This is useful for some kinds of recipes where validation can be very slow.
+
+Visual recipes
+%%%%%%%%%%%%%%%
+
+* The Sync, Filter/Sample and Split recipes can now run on Spark, Hive, SQL and Impala
+* The window recipe can now work on any kind of dataset, even if you don't have Spark.
+* Administrators can now set preferred engines, blacklisted engines
+* The Join recipe can now be configured to automatically select all columns of some datasets, even when their schema changes.
+* The join and stack recipes can now automatically downcast columns to match types
+
+Security
+%%%%%%%%%%%%
+
+* In addition to multi-user security and audit-trail, the permissions system has been overhauled and new permission definitions have been introduced. You can now define thinner-grained group permissions at the project level. See :doc:`/security/permissions`.
+* More options are available for sharing items between projects, and authorizing objects on dashboards. See :doc:`/security/shared-objects`.
+* User profiles can now be set directly from LDAP groups.
+* The details of connections can now be made available to some groups, who can then use them in recipes
+* Connection passwords are now encrypted on disk using a reversible encryption scheme
+
+Datasets
+%%%%%%%%%
+
+* Administrator can now set preferred connections and file formats when creating new managed datasets.
+* It is now possible to import SQL tables as SQL datasets from the DSS UI, without being an administrator. Go to New dataset > Import from connection. This is also possible for Hive tables.
+* When a HDFS dataset has been imported from an existing Hive table, it is possible to "update" the definition of the dataset from the associated Hive table definition in the Hive metastore
+* The filtering infrastructure (used in filter recipe, for filtering in sample, in APIs, ...) now more directly translates user-defined filters to SQL. This provides more efficient filtering in SQL and less timezone-related issues.
+* Support for ElasticSearch 5 has been added
+* It is now possible to define a dataset based on the files in a DSS managed folder.
+* The "internal stats" dataset now includes ability to view jobs information and build informatino
+* Teradata connections can now be put in "autocommit" mode, which makes it much easier to write DDL statements, use stored procedures, write stored procedures or use third-party plugins.
+* In-database charts are now available for Teradata.
+* Teradata datasets will more often avoid going over the Teradata max row size limitations
+* Sorting, searching, and mass actions have been added to the schema editor
+
+Library editor and per project library
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+You can now write / add your own Python modules or packages in per-project library paths in addition to the global "lib/python" one. In addition, you can edit both the global and per-project "lib/python" folders directly from the DSS UI.
+
+You can also edit a new "lib/R" folder, which can be used to import R source files.
+
+Hadoop & Spark
+%%%%%%%%%%%%%%%%%
+
+* It is now possible to import Hive tables as HDFS datasets from the DSS UI, without being an administrator. Go to New dataset > Import from connection.
+* The Spark-Scala recipe now features a new "function" mode which allows the recipe to be part of a Spark pipeline
+* You can now run SparkSQL recipes against the global Hive metastore. Note that this disables automatic validation.
+* You can now manage multiple named Hive configurations, used to pass additional Hive parameters on recipes and notebooks
+
+Data preparation
+%%%%%%%%%%%%%%%%%%
+
+* The "Round" processor can now round to a fixed number of decimal places
+* The "Pivot" processor can now keep repeated values
+* New meaning: "Currency amount" (i.e. a currency symbol and a numeric amount), with an associated processor to split currency and amount. This is particularly useful in conjunction with the existing currency converter processor
+* Holidays database have been updated and improved
+* User agents parsing has been updated and improved
+
+Flow
+%%%%%%%%%%%%%%%%%%
+
+* The "Consistency check" Flow tool has been greatly enhanced. It can now check many more kinds of recipes, and perform more structural checks
+* A new "engines" flow view let you see easily on which engine (DSS, SQL, Hadoop, Hive, Spark, ...) each of your recipes run.
+* You can now copy recipes
+* You can now change the input / output datasets of all recipes
+
+Version control
+%%%%%%%%%%%%%%%%%
+
+DSS now features the ability to rollback configuration changes from the UI. We advise great care when rolling back changes.
+
+You can also manage "Git remotes" directly from the DSS UI, including pushing to remotes. The public API features a new method to push to remotes.
+
+API
+%%%%
+
+In addition to the previously existing project-specific and global API keys, DSS now features "personal" API keys. Personal API keys have the same rights has their owner. In some setups, creating datasets and recipes can only be done using Admin or Personal API keys.
+
+The internal API (``dataiku`` package) can now automatically call the public API. To obtain an API client, use ``dataiku.api_client()``.
+
+The public API now includes methods for:
+
+* Getting and setting general DSS settings
+* Managing installed plugins
+* Monitoring and aborting "futures" (long-running tasks)
+* Getting metrics
+
+For more information, see :doc:`/publicapi/index`
+
+Plugins
+%%%%%%%%
+
+Plugins can provide Python modules that can be imported into Python code with a dedicated API.
+
+Webapps
+%%%%%%%%
+
+Webapps now live as new top-level objects, besides code notebooks.
+
+Python backends have been strongly overhauled with:
+
+* Ability to start automatically with DSS
+* Impersonation ability
+* Automatic restart in case of crash
+* Centralized monitoring screen (Administration > Monitoring > Webapp backends)
+
+Monitoring
+%%%%%%%%%%%%
+
+Administrators now have better overviews of all what's running in a DSS instance, with more information to relate to processes (pid, Jupyter kernel id, ...)
+
+Installation and setup
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+* Added support for Ubuntu 16.10
+* Removed support for Ubuntu 12.04
+
+Misc
+%%%%%%
+
+* New options are available for making datasets "relocatable", easing copying and reimporting projects, while avoiding conflicts between projects. See :doc:`/connecting/relocation`.
+* Mass actions are now available in many more locations in DSS (objects list, features screen, prepare column view, schema editor, ...)
+* A lot of general performance improvements, especially for large number of users
+* Project export/import will now preserve timelines
+* Added rotation of nginx access logs
+
+
+Notable bug fixes
+-------------------
+
+Performance and stability
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+* DSS could become unresponsive while deleting a dataset or a project if the remote data source was unreachable, or the Hive metastore server hanged. This has been fixed.
+* Browsing HDFS connections was very slow and could make DSS unresponsive. This has been fixed.
+* Performance of various UI parts with wide datasets (1000+ columns) has been strongly improved
+* With large number of users, notifications system could strongly slow down DSS. This has been fixed.
+* DSS could become unresponsive while testing a dataset if the remote data source was not answering. This has been fixed.
+* Fixed excessive logging in various parts of DSS
+
+Datasets
+%%%%%%%%%
+
+* It is now possible to set the MongoDB port in the UI
+* Re-added ability to append on HDFS datasets (depending on the recipe)
+* Don't fail when a partitioned SQL dataset contains null values in partitioning column
+
+Data preparation
+%%%%%%%%%%%%%%%%%%
+
+* Removing a column used for coloring output table will not cause an error anymore
+* Currency converter does not throw errors in "fixed currency" mode
+* Added val() method to handle columns with dots in formulas
+* Fixed various caching issues that led to not good enough performance in some cases
+
+Recipes
+%%%%%%%%%
+
+* Creating a visual recipe from a partitioned dataset will now properly respect the "Non partitioned" setting (when creating the modal)
+* Changing name of partition columns, or partitioning or unpartitionig datasets is now much better handled.
+* Various issues around cases where partitioning columns must or must not be in the schemas have been fixed. This notably fixes redispatching of partitions when writing to a HDFS dataset.
+* Scoring recipe with preparation steps using additional datasets has been fixed
+* Filtering on dates has been fixed for several databases (Oracle, Teradata, ...)
+* Join recipe with contains / ignore case has been fixed for Redshift and Impala
+* Fixed "Rename columns" feature in grouping recipe
+* Fixed various issues in sampling recipe
+* Fixed "distinct" pre and post filters in Window recipe on Impala and Hive engines
+
+Charts
+%%%%%%
+
+* Fixed taking into account of meaning for charts. Setting a meaning in the explore view will now be properly taken into account for charts.
+* Fixed display of hexabgonal binning charts on dashboard tiles
+* Added tooltips on pivot table charts
+
+Automation
+%%%%%%%%%%%%
+
+* A too long trigger will not cause other scenarios to hang
+* Fixed failures in custom Python step when too much data is returned
+
+Hadoop & Spark
+%%%%%%%%%%%%%%%
+
+* Using reserved Hive names like "date" as partitioning column name in HDFS datasets will not cause issues anymore
+
+Flow
+%%%%%%
+
+* Fixed "propagate schema from Flow" on SQL datasets (string length issues)
+* Fixed type mismatch issues (strings instead of int) when propagating schema on some recipes
+
+Machine learning
+%%%%%%%%%%%%%%%%%
+
+* It is now possible to rename the "outliers" cluster
+* Fixed text features with MLLib when there are null values in the text column
+* Fixed updating of "Cost matrix" in ML model reports
+* Many fixes around training and scoring with "foreign" datasets (datasets from other projects)
+
+API
+%%%%
+
+* Fixed issues in API around creation and edition of users
+
+Misc
+%%%%%
+
+* Deleting a project now properly removes activity / timelines information for it
+* Fixed display of Python backend logs in webapps

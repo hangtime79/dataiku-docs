@@ -1,0 +1,28 @@
+:orphan:
+
+Cross-site-scripting through Jupyter notebooks
+###############################################
+
+Information
+=============
+
+* Advisory ID: DSA-2022-022
+* CVSS Base Score: 7.6
+* CVSS String: CVSS:3.0/AV:N/AC:L/PR:L/UI:R/S:U/C:H/I:H/A:L
+* Severity: High
+* CWE classification: CWE-79
+
+Summary
+========
+
+In Dataiku DSS before 11.1.2, missing sandboxing of some API endpoints could lead to stored XSS through hostile notebooks
+
+Affected Products
+==================
+
+* Dataiku DSS before 11.1.2
+
+Fix
+===
+
+Dataiku DSS 11.1.2 has been made available to customers to remediate this issue

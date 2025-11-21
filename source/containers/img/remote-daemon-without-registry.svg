@@ -1,0 +1,350 @@
+<svg id="mermaid-1535708420894" width="100%" xmlns="http://www.w3.org/2000/svg" height="100%" style="max-width:450px;" viewBox="-50 -10 450 277.28125"><style>
+
+
+#mermaid-1535708420894 .label {
+  font-family: 'trebuchet ms', verdana, arial;
+  color: #333; }
+
+#mermaid-1535708420894 .node rect,
+#mermaid-1535708420894 .node circle,
+#mermaid-1535708420894 .node ellipse,
+#mermaid-1535708420894 .node polygon {
+  fill: #ECECFF;
+  stroke: #9370DB;
+  stroke-width: 1px; }
+
+#mermaid-1535708420894 .node.clickable {
+  cursor: pointer; }
+
+#mermaid-1535708420894 .arrowheadPath {
+  fill: #333333; }
+
+#mermaid-1535708420894 .edgePath .path {
+  stroke: #333333;
+  stroke-width: 1.5px; }
+
+#mermaid-1535708420894 .edgeLabel {
+  background-color: #e8e8e8; }
+
+#mermaid-1535708420894 .cluster rect {
+  fill: #ffffde !important;
+  stroke: #aaaa33 !important;
+  stroke-width: 1px !important; }
+
+#mermaid-1535708420894 .cluster text {
+  fill: #333; }
+
+#mermaid-1535708420894 div.mermaidTooltip {
+  position: absolute;
+  text-align: center;
+  max-width: 200px;
+  padding: 2px;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 12px;
+  background: #ffffde;
+  border: 1px solid #aaaa33;
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 100; }
+
+#mermaid-1535708420894 .actor {
+  stroke: #CCCCFF;
+  fill: #ECECFF; }
+
+#mermaid-1535708420894 text.actor {
+  fill: black;
+  stroke: none; }
+
+#mermaid-1535708420894 .actor-line {
+  stroke: grey; }
+
+#mermaid-1535708420894 .messageLine0 {
+  stroke-width: 1.5;
+  stroke-dasharray: '2 2';
+  marker-end: 'url(#arrowhead)';
+  stroke: #333; }
+
+#mermaid-1535708420894 .messageLine1 {
+  stroke-width: 1.5;
+  stroke-dasharray: '2 2';
+  stroke: #333; }
+
+#mermaid-1535708420894 #arrowhead {
+  fill: #333; }
+
+#mermaid-1535708420894 #crosshead path {
+  fill: #333 !important;
+  stroke: #333 !important; }
+
+#mermaid-1535708420894 .messageText {
+  fill: #333;
+  stroke: none; }
+
+#mermaid-1535708420894 .labelBox {
+  stroke: #CCCCFF;
+  fill: #ECECFF; }
+
+#mermaid-1535708420894 .labelText {
+  fill: black;
+  stroke: none; }
+
+#mermaid-1535708420894 .loopText {
+  fill: black;
+  stroke: none; }
+
+#mermaid-1535708420894 .loopLine {
+  stroke-width: 2;
+  stroke-dasharray: '2 2';
+  marker-end: 'url(#arrowhead)';
+  stroke: #CCCCFF; }
+
+#mermaid-1535708420894 .note {
+  stroke: #aaaa33;
+  fill: #fff5ad; }
+
+#mermaid-1535708420894 .noteText {
+  fill: black;
+  stroke: none;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 14px; }
+
+
+#mermaid-1535708420894 .section {
+  stroke: none;
+  opacity: 0.2; }
+
+#mermaid-1535708420894 .section0 {
+  fill: rgba(102, 102, 255, 0.49); }
+
+#mermaid-1535708420894 .section2 {
+  fill: #fff400; }
+
+#mermaid-1535708420894 .section1,
+#mermaid-1535708420894 .section3 {
+  fill: white;
+  opacity: 0.2; }
+
+#mermaid-1535708420894 .sectionTitle0 {
+  fill: #333; }
+
+#mermaid-1535708420894 .sectionTitle1 {
+  fill: #333; }
+
+#mermaid-1535708420894 .sectionTitle2 {
+  fill: #333; }
+
+#mermaid-1535708420894 .sectionTitle3 {
+  fill: #333; }
+
+#mermaid-1535708420894 .sectionTitle {
+  text-anchor: start;
+  font-size: 11px;
+  text-height: 14px; }
+
+
+#mermaid-1535708420894 .grid .tick {
+  stroke: lightgrey;
+  opacity: 0.3;
+  shape-rendering: crispEdges; }
+
+#mermaid-1535708420894 .grid path {
+  stroke-width: 0; }
+
+
+#mermaid-1535708420894 .today {
+  fill: none;
+  stroke: red;
+  stroke-width: 2px; }
+
+
+
+#mermaid-1535708420894 .task {
+  stroke-width: 2; }
+
+#mermaid-1535708420894 .taskText {
+  text-anchor: middle;
+  font-size: 11px; }
+
+#mermaid-1535708420894 .taskTextOutsideRight {
+  fill: black;
+  text-anchor: start;
+  font-size: 11px; }
+
+#mermaid-1535708420894 .taskTextOutsideLeft {
+  fill: black;
+  text-anchor: end;
+  font-size: 11px; }
+
+
+#mermaid-1535708420894 .taskText0,
+#mermaid-1535708420894 .taskText1,
+#mermaid-1535708420894 .taskText2,
+#mermaid-1535708420894 .taskText3 {
+  fill: white; }
+
+#mermaid-1535708420894 .task0,
+#mermaid-1535708420894 .task1,
+#mermaid-1535708420894 .task2,
+#mermaid-1535708420894 .task3 {
+  fill: #8a90dd;
+  stroke: #534fbc; }
+
+#mermaid-1535708420894 .taskTextOutside0,
+#mermaid-1535708420894 .taskTextOutside2 {
+  fill: black; }
+
+#mermaid-1535708420894 .taskTextOutside1,
+#mermaid-1535708420894 .taskTextOutside3 {
+  fill: black; }
+
+
+#mermaid-1535708420894 .active0,
+#mermaid-1535708420894 .active1,
+#mermaid-1535708420894 .active2,
+#mermaid-1535708420894 .active3 {
+  fill: #bfc7ff;
+  stroke: #534fbc; }
+
+#mermaid-1535708420894 .activeText0,
+#mermaid-1535708420894 .activeText1,
+#mermaid-1535708420894 .activeText2,
+#mermaid-1535708420894 .activeText3 {
+  fill: black !important; }
+
+
+#mermaid-1535708420894 .done0,
+#mermaid-1535708420894 .done1,
+#mermaid-1535708420894 .done2,
+#mermaid-1535708420894 .done3 {
+  stroke: grey;
+  fill: lightgrey;
+  stroke-width: 2; }
+
+#mermaid-1535708420894 .doneText0,
+#mermaid-1535708420894 .doneText1,
+#mermaid-1535708420894 .doneText2,
+#mermaid-1535708420894 .doneText3 {
+  fill: black !important; }
+
+
+#mermaid-1535708420894 .crit0,
+#mermaid-1535708420894 .crit1,
+#mermaid-1535708420894 .crit2,
+#mermaid-1535708420894 .crit3 {
+  stroke: #ff8888;
+  fill: red;
+  stroke-width: 2; }
+
+#mermaid-1535708420894 .activeCrit0,
+#mermaid-1535708420894 .activeCrit1,
+#mermaid-1535708420894 .activeCrit2,
+#mermaid-1535708420894 .activeCrit3 {
+  stroke: #ff8888;
+  fill: #bfc7ff;
+  stroke-width: 2; }
+
+#mermaid-1535708420894 .doneCrit0,
+#mermaid-1535708420894 .doneCrit1,
+#mermaid-1535708420894 .doneCrit2,
+#mermaid-1535708420894 .doneCrit3 {
+  stroke: #ff8888;
+  fill: lightgrey;
+  stroke-width: 2;
+  cursor: pointer;
+  shape-rendering: crispEdges; }
+
+#mermaid-1535708420894 .doneCritText0,
+#mermaid-1535708420894 .doneCritText1,
+#mermaid-1535708420894 .doneCritText2,
+#mermaid-1535708420894 .doneCritText3 {
+  fill: black !important; }
+
+#mermaid-1535708420894 .activeCritText0,
+#mermaid-1535708420894 .activeCritText1,
+#mermaid-1535708420894 .activeCritText2,
+#mermaid-1535708420894 .activeCritText3 {
+  fill: black !important; }
+
+#mermaid-1535708420894 .titleText {
+  text-anchor: middle;
+  font-size: 18px;
+  fill: black; }
+
+#mermaid-1535708420894 g.classGroup text {
+  fill: #9370DB;
+  stroke: none;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 10px; }
+
+#mermaid-1535708420894 g.classGroup rect {
+  fill: #ECECFF;
+  stroke: #9370DB; }
+
+#mermaid-1535708420894 g.classGroup line {
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1535708420894 .classLabel .box {
+  stroke: none;
+  stroke-width: 0;
+  fill: #ECECFF;
+  opacity: 0.5; }
+
+#mermaid-1535708420894 .classLabel .label {
+  fill: #9370DB;
+  font-size: 10px; }
+
+#mermaid-1535708420894 .relation {
+  stroke: #9370DB;
+  stroke-width: 1;
+  fill: none; }
+
+#mermaid-1535708420894 #compositionStart {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1535708420894 #compositionEnd {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1535708420894 #aggregationStart {
+  fill: #ECECFF;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1535708420894 #aggregationEnd {
+  fill: #ECECFF;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1535708420894 #dependencyStart {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1535708420894 #dependencyEnd {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1535708420894 #extensionStart {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1535708420894 #extensionEnd {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1535708420894 .commit-id,
+#mermaid-1535708420894 .commit-msg,
+#mermaid-1535708420894 .branch-label {
+  fill: lightgrey;
+  color: lightgrey; }
+</style><style>#mermaid-1535708420894 {
+    color: rgba(0, 0, 0, 0.65098);
+    font: normal normal normal normal 14px/21px "Monospaced Number", "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }</style><g></g><g><line id="actor1243" x1="75" y1="5" x2="75" y2="266.28125" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="0" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="75" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="75" dy="0">Dataiku DSS</tspan></text></g><g><line id="actor1244" x1="275" y1="5" x2="275" y2="266.28125" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="200" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="275" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="275" dy="0">Remote Docker</tspan></text></g><defs><marker id="arrowhead" refX="5" refY="2" markerWidth="6" markerHeight="4" orient="auto"><path d="M 0,0 V 4 L6,2 Z"></path></marker></defs><defs><marker id="crosshead" markerWidth="15" markerHeight="8" orient="auto" refX="16" refY="4"><path fill="black" stroke="#000000" stroke-width="1px" d="M 9,2 V 6 L16,4 Z" style="stroke-dasharray: 0px, 0px;"></path><path fill="none" stroke="#000000" stroke-width="1px" d="M 0,1 L 6,7 M 6,1 L 0,7" style="stroke-dasharray: 0px, 0px;"></path></marker></defs><g><text x="175" y="93" class="messageText" style="text-anchor: middle;">Build image</text><line x1="75" y1="100" x2="275" y2="100" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><text x="175" y="128" class="messageText" style="text-anchor: middle;">Run container</text><line x1="75" y1="135" x2="275" y2="135" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><rect x="270" y="137" fill="#f4f4f4" stroke="#666" width="10" height="44.28125" rx="0" ry="0"></rect></g><g><rect x="100" y="145" fill="#EDF2AE" stroke="#666" width="150" height="36.28125" rx="0" ry="0" class="note"></rect><text x="96" y="169" fill="black" class="noteText"><tspan x="116" fill="black">Job runs</tspan></text></g><g><rect x="0" y="201.28125" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="75" y="233.78125" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="75" dy="0">Dataiku DSS</tspan></text></g><g><rect x="200" y="201.28125" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="275" y="233.78125" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="275" dy="0">Remote Docker</tspan></text></g></svg>
